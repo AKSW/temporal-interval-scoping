@@ -1,6 +1,5 @@
 package it.unimib.disco.TemporalIntervalCreator;
 
-import it.unimib.disco.Evaluation.Evaluation;
 import it.unimib.disco.FactExtractor.DateOccurrence;
 import it.unimib.disco.FactExtractor.ResourceFetcher;
 import it.unimib.disco.ReadFiles.ReadFiles;
@@ -25,10 +24,12 @@ private static Logger logger = Logger.getLogger(TemporalIntervalCreator.class);
 	
 public static void main (String []args) throws FileNotFoundException{
 	if (args.length < 1) {
-		System.out.println("Use: java TemporalIntervalCreator <Resource list file>");
+		System.out.println("Use: java TemporalIntervalCreator <Resource list file> <temporal defacto output>");
+		System.out.println("Example: java TemporalIntervalCreator /temporalIntervalCreator_ResourceList_in2.txt /sortbyplayer-labels-with-space_out_lionel.csv");
 	} else {
+		
 		// Resource URI extraction
-		List<String> resURIs = ReadFiles.getURIs(new File(args[0]));
+		List<String> resURIs = ReadFiles.getURIs(new File(TemporalIntervalCreator.class.getResource(args[0]).getFile()));
 		logger.info("DBpedia resources list file parsed");
 
 		ResourceFetcher rf = new ResourceFetcher();
@@ -65,7 +66,7 @@ public static void main (String []args) throws FileNotFoundException{
 		//logger.info("Build diagonal Matrix");
 		
 		// Resource URI extraction
-		List<String> temporalDefactoFacts = ReadFiles.getURIs(new File(args[1]));
+		List<String> temporalDefactoFacts = ReadFiles.getURIs(new File(TemporalIntervalCreator.class.getResource(args[1]).getFile()));
 		logger.info("TemporalDefacto's facts parsed");
 		
 		HashMap<String,DateOccurrence [][]> matrixManhattanDurationUri = ta.matrixManhattanDuration(reducedMatrix2);
