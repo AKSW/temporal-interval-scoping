@@ -1,0 +1,7 @@
+YagoPredicate;DBpediaPredicate
+isMarriedTo;[http://dbpedia.org/ontology/spouse]
+graduatedFrom;[http://dbpedia.org/ontology/almaMater]
+worksAt;[http://dbpedia.org/property/workplaces]
+hasWonPrize;[http://dbpedia.org/ontology/award]
+isAffiliatedTo;[http://dbpedia.org/property/party, http://dbpedia.org/ontology/party]
+playsFor;[http://dbpedia.org/property/clubs, http://dbpedia.org/ontology/team]

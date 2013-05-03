@@ -1,0 +1,7 @@
+isMarriedTo;[http://dbpedia.org/ontology/spouse]		
+graduatedFrom;[http://dbpedia.org/ontology/almaMater]		
+wasBornIn;[http://dbpedia.org/property/birthPlace,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/property/placeOfBirth]
+hasWonPrize;[http://dbpedia.org/ontology/award]		
+isAffiliatedTo;[http://dbpedia.org/property/party,http://dbpedia.org/ontology/party]	
+holdsPoliticalPosition;[http://dbpedia.org/property/office,http://dbpedia.org/property/title]	
+playsFor;[http://dbpedia.org/ontology/team]	

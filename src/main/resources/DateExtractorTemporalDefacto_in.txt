@@ -1,0 +1,503 @@
+http://dbpedia.org/resource/David_Beckham	David Beckham	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Preston_North_End_F.C.	Deepdale	1995	null
+http://dbpedia.org/resource/David_Beckham	David Beckham	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Real_Madrid_C.F.	Real	2003	2007
+http://dbpedia.org/resource/David_Beckham	David Beckham	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/England_national_football_team	England	1996	2009
+http://dbpedia.org/resource/David_Beckham	David Beckham	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/A.C._Milan	Milan	2010	null
+http://dbpedia.org/resource/David_Beckham	David Beckham	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/A.C._Milan	Milan	2009	null
+http://dbpedia.org/resource/David_Beckham	David Beckham	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Los_Angeles_Galaxy	Galaxy	2007	null
+http://dbpedia.org/resource/David_Beckham	David Beckham	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Manchester_United_F.C.	Manchester	1993	1993
+http://dbpedia.org/resource/David_Beckham	David Beckham	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Manchester_United_F.C.	Manchester	1991	2003
+http://dbpedia.org/resource/Alex_Ferguson	Alex Ferguson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Scotland_national_football_team	Scotland	1967	null
+http://dbpedia.org/resource/Alex_Ferguson	Alex Ferguson	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Falkirk_F.C.	Falkirk	1969	1973
+http://dbpedia.org/resource/Alex_Ferguson	Alex Ferguson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Dunfermline_Athletic_F.C.	Athletic	1964	1967
+http://dbpedia.org/resource/Alex_Ferguson	Alex Ferguson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Scottish_League_XI	Scottish League	1967	null
+http://dbpedia.org/resource/Alex_Ferguson	Alex Ferguson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/St._Johnstone_F.C.	St. Johnstone	1960	1964
+http://dbpedia.org/resource/Alex_Ferguson	Alex Ferguson	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Queen's_Park_F.C.	Queen's Park	1957	1960
+http://dbpedia.org/resource/Alex_Ferguson	Alex Ferguson	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Rangers_F.C.	Rangers	1967	1969
+http://dbpedia.org/resource/Alex_Ferguson	Alex Ferguson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Ayr_United_F.C.	Ayr United	1973	1974
+http://dbpedia.org/resource/Bill_Shankly	Bill Shankly	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Preston_North_End_F.C.	Deepdale	1933	1949
+http://dbpedia.org/resource/Bill_Shankly	Bill Shankly	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Carlisle_United_F.C.	Carlisle	1932	1933
+http://dbpedia.org/resource/Bill_Shankly	Bill Shankly	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Scotland_national_football_team	Scotland	1938	1943
+http://dbpedia.org/resource/Bill_Shankly	Bill Shankly	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Cronberry_Eglinton_F.C.	Cronberry Eglinton	1931	1932
+http://dbpedia.org/resource/Steve_McManaman	Steve McManaman	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Liverpool_F.C.	Liverpool	1988	1999
+http://dbpedia.org/resource/Steve_McManaman	Steve McManaman	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Manchester_City_F.C.	Manchester	2003	2005
+http://dbpedia.org/resource/Steve_McManaman	Steve McManaman	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/England_national_football_team	England	1994	2001
+http://dbpedia.org/resource/Steve_McManaman	Steve McManaman	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Real_Madrid_C.F.	Real	1999	2003
+http://dbpedia.org/resource/Steve_McManaman	Steve McManaman	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Liverpool_F.C.	Liverpool	1990	1999
+http://dbpedia.org/resource/Cristiano_Ronaldo	Cristiano Ronaldo	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/C.F._Andorinha	Andorinha	1993	1995
+http://dbpedia.org/resource/Cristiano_Ronaldo	Cristiano Ronaldo	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/C.D._Nacional	Nacional	1995	1997
+http://dbpedia.org/resource/Cristiano_Ronaldo	Cristiano Ronaldo	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Manchester_United_F.C.	Manchester	2003	2009
+http://dbpedia.org/resource/Cristiano_Ronaldo	Cristiano Ronaldo	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Real_Madrid_C.F.	Real	2009	null
+http://dbpedia.org/resource/Cristiano_Ronaldo	Cristiano Ronaldo	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Sporting_Clube_de_Portugal	Sporting	2002	2002
+http://dbpedia.org/resource/Cristiano_Ronaldo	Cristiano Ronaldo	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Sporting_Clube_de_Portugal	Sporting	1997	2002
+http://dbpedia.org/resource/Lionel_Messi	Lionel Messi	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Newell's_Old_Boys	Newell	1995	2000
+http://dbpedia.org/resource/Lionel_Messi	Lionel Messi	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/FC_Barcelona	Barcelona	2000	2003
+http://dbpedia.org/resource/Lionel_Messi	Lionel Messi	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/FC_Barcelona_C	FC Barcelona C	2003	2004
+http://dbpedia.org/resource/Lionel_Messi	Lionel Messi	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/FC_Barcelona_B	FC Barcelona B	2004	2005
+http://dbpedia.org/resource/Lionel_Messi	Lionel Messi	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Argentina_national_football_team	Albiceleste	2005	null
+http://dbpedia.org/resource/Roy_Hodgson	Roy Hodgson	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Tonbridge_Angels_F.C.	Tonbridge	1966	1969
+http://dbpedia.org/resource/Roy_Hodgson	Roy Hodgson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Maidstone_United_F.C.	Maidstone	1971	1972
+http://dbpedia.org/resource/Roy_Hodgson	Roy Hodgson	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Ashford_United_F.C.	Ashford United	1972	1973
+http://dbpedia.org/resource/Roy_Hodgson	Roy Hodgson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Carshalton_Athletic_F.C.	Athletic	1974	1976
+http://dbpedia.org/resource/Roy_Hodgson	Roy Hodgson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Berea_Park_F.C.	Berea Park	1973	1974
+http://dbpedia.org/resource/Roy_Hodgson	Roy Hodgson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Crystal_Palace_F.C.	Palace	1965	1966
+http://dbpedia.org/resource/Roy_Hodgson	Roy Hodgson	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Crystal_Palace_F.C.	Palace	1965	1965
+http://dbpedia.org/resource/Jos%C3%A9_Mourinho	José Mourinho	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/C.F._Os_Belenenses	Belenenses	1982	1983
+http://dbpedia.org/resource/Jos%C3%A9_Mourinho	José Mourinho	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/G.D._Sesimbra	G.D. Sesimbra	1983	1985
+http://dbpedia.org/resource/Jos%C3%A9_Mourinho	José Mourinho	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Rio_Ave_F.C.	Rio Ave	1980	1982
+http://dbpedia.org/resource/Dejan_Savi%C4%87evi%C4%87	Dejan Savićević	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/FK_Mladost_Podgorica	Mladost	1981	1983
+http://dbpedia.org/resource/Dejan_Savi%C4%87evi%C4%87	Dejan Savićević	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/SK_Rapid_Wien	Rapid	1999	2001
+http://dbpedia.org/resource/Dejan_Savi%C4%87evi%C4%87	Dejan Savićević	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/FK_Budu%C4%87nost_Podgorica	FK Budućnost Podgorica	1983	1988
+http://dbpedia.org/resource/Dejan_Savi%C4%87evi%C4%87	Dejan Savićević	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/A.C._Milan	Milan	1992	1998
+http://dbpedia.org/resource/Dejan_Savi%C4%87evi%C4%87	Dejan Savićević	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Red_Star_Belgrade	Zvezda	1989	1992
+http://dbpedia.org/resource/Dejan_Savi%C4%87evi%C4%87	Dejan Savićević	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/FK_Budu%C4%87nost_Podgorica	FK Budućnost Podgorica	1983	1984
+http://dbpedia.org/resource/Michael_Owen	Michael Owen	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/England_B_national_football_team	England B national football team	2006	2007
+http://dbpedia.org/resource/Michael_Owen	Michael Owen	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Real_Madrid_C.F.	Real	2004	2005
+http://dbpedia.org/resource/Michael_Owen	Michael Owen	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Liverpool_F.C.	Liverpool	1996	2004
+http://dbpedia.org/resource/Michael_Owen	Michael Owen	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Manchester_United_F.C.	Manchester	2009	null
+http://dbpedia.org/resource/Michael_Owen	Michael Owen	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Newcastle_United_F.C.	Newcastle	2005	2009
+http://dbpedia.org/resource/Michael_Owen	Michael Owen	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Liverpool_F.C.	Liverpool	1996	1996
+http://dbpedia.org/resource/Robin_Friday	Robin Friday	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Chelsea_F.C.	Chelsea	1966	1967
+http://dbpedia.org/resource/Robin_Friday	Robin Friday	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Hayes_F.C.	Hayes	1971	1973
+http://dbpedia.org/resource/Robin_Friday	Robin Friday	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Crystal_Palace_F.C.	Palace	1965	null
+http://dbpedia.org/resource/Robin_Friday	Robin Friday	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Cardiff_City_F.C.	Cardiff	1976	1977
+http://dbpedia.org/resource/Robin_Friday	Robin Friday	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Walthamstow_Avenue_F.C.	Walthamstow Avenue	1971	null
+http://dbpedia.org/resource/Robin_Friday	Robin Friday	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Queens_Park_Rangers_F.C.	Ranger	1965	1966
+http://dbpedia.org/resource/Roy_Keane	Roy Keane	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Cobh_Ramblers_F.C.	Cobh Ramblers	1989	1990
+http://dbpedia.org/resource/Roy_Keane	Roy Keane	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Manchester_United_F.C.	Manchester	1993	2005
+http://dbpedia.org/resource/Roy_Keane	Roy Keane	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Republic_of_Ireland_national_football_team	Republic of Ireland national football team	1991	2005
+http://dbpedia.org/resource/Roy_Keane	Roy Keane	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Nottingham_Forest_F.C.	Forest	1990	1993
+http://dbpedia.org/resource/Roy_Keane	Roy Keane	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Celtic_F.C.	Celtic	2005	2006
+http://dbpedia.org/resource/Radomir_Anti%C4%87	Radomir Antić	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Fenerbah%C3%A7e_S.K._(football)	Fenerbahçe S.K.	1977	1978
+http://dbpedia.org/resource/Radomir_Anti%C4%87	Radomir Antić	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Yugoslavia_national_football_team	Yugoslavia national football team	1973	null
+http://dbpedia.org/resource/Radomir_Anti%C4%87	Radomir Antić	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/FK_Partizan	Partizan	1968	1977
+http://dbpedia.org/resource/Radomir_Anti%C4%87	Radomir Antić	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/FK_Sloboda_U%C5%BEice	FK Sloboda UÅ¾ice	1967	1968
+http://dbpedia.org/resource/Radomir_Anti%C4%87	Radomir Antić	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Luton_Town_F.C.	Luton	1980	1984
+http://dbpedia.org/resource/Radomir_Anti%C4%87	Radomir Antić	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Real_Zaragoza	Real	1978	1980
+http://dbpedia.org/resource/Stanley_Matthews	Stanley Matthews	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Stoke_City_F.C.	Stoke	1961	1965
+http://dbpedia.org/resource/Stanley_Matthews	Stanley Matthews	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/England_national_football_team	England	1934	1957
+http://dbpedia.org/resource/Stanley_Matthews	Stanley Matthews	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Blackpool_F.C.	Blackpool	1947	1961
+http://dbpedia.org/resource/Stanley_Matthews	Stanley Matthews	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/The_Football_League	The Football League	1934	1956
+http://dbpedia.org/resource/Stanley_Matthews	Stanley Matthews	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Stoke_City_F.C.	Stoke	1930	1932
+http://dbpedia.org/resource/Franck_Rib%C3%A9ry	Franck Ribéry	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Olympique_de_Marseille	Marseille	2005	2007
+http://dbpedia.org/resource/Franck_Rib%C3%A9ry	Franck Ribéry	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/US_Boulogne	Boulogne	2000	2000
+http://dbpedia.org/resource/Franck_Rib%C3%A9ry	Franck Ribéry	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Olympique_Al%C3%A8s	Olympique Alès	2002	2003
+http://dbpedia.org/resource/Franck_Rib%C3%A9ry	Franck Ribéry	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/FC_Metz	Metz	2004	2005
+http://dbpedia.org/resource/Franck_Rib%C3%A9ry	Franck Ribéry	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/US_Boulogne	Boulogne	2000	2002
+http://dbpedia.org/resource/Franck_Rib%C3%A9ry	Franck Ribéry	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/France_national_football_team	France national football team	2006	null
+http://dbpedia.org/resource/Franck_Rib%C3%A9ry	Franck Ribéry	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Galatasaray_S.K._(football_team)	Galatasaray S.K.	2005	null
+http://dbpedia.org/resource/Franck_Rib%C3%A9ry	Franck Ribéry	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/FC_Bayern_Munich	Munich	2007	null
+http://dbpedia.org/resource/Franck_Rib%C3%A9ry	Franck Ribéry	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Lille_OSC	Lille	1996	1999
+http://dbpedia.org/resource/Roberto_Baggio	Roberto Baggio	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/A.C._Milan	Milan	1995	1997
+http://dbpedia.org/resource/Roberto_Baggio	Roberto Baggio	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/ACF_Fiorentina	Viola	1985	1990
+http://dbpedia.org/resource/Roberto_Baggio	Roberto Baggio	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/F.C._Internazionale_Milano	Inter	1998	2000
+http://dbpedia.org/resource/Roberto_Baggio	Roberto Baggio	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Italy_national_football_team	Azzuri	1988	2004
+http://dbpedia.org/resource/Roberto_Baggio	Roberto Baggio	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Vicenza_Calcio	Vicenza Calcio	1982	1985
+http://dbpedia.org/resource/Roberto_Baggio	Roberto Baggio	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Juventus_F.C.	Juventus	1990	1995
+http://dbpedia.org/resource/Roberto_Baggio	Roberto Baggio	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Brescia_Calcio	Brescia Calcio	2000	2004
+http://dbpedia.org/resource/Roque_Santa_Cruz	Roque Santa Cruz	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/FC_Bayern_Munich_II	FC Bayern Munich II	2005	2006
+http://dbpedia.org/resource/Roque_Santa_Cruz	Roque Santa Cruz	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Manchester_City_F.C.	Manchester	2009	null
+http://dbpedia.org/resource/Roque_Santa_Cruz	Roque Santa Cruz	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/FC_Bayern_Munich	Munich	1999	2007
+http://dbpedia.org/resource/Roque_Santa_Cruz	Roque Santa Cruz	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Club_Olimpia	Asunción	1990	1997
+http://dbpedia.org/resource/Roque_Santa_Cruz	Roque Santa Cruz	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Club_Olimpia	Asunción	1997	1997
+http://dbpedia.org/resource/Roque_Santa_Cruz	Roque Santa Cruz	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Real_Betis	Real	2011	null
+http://dbpedia.org/resource/Roque_Santa_Cruz	Roque Santa Cruz	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Paraguay_national_football_team	Albirroja	1999	null
+http://dbpedia.org/resource/Roque_Santa_Cruz	Roque Santa Cruz	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Blackburn_Rovers_F.C.	Blackburn	2011	2009
+http://dbpedia.org/resource/Kevin_Keegan	Kevin Keegan	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Southampton_F.C.	Southampton	1980	1982
+http://dbpedia.org/resource/Kevin_Keegan	Kevin Keegan	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Newcastle_United_F.C.	Newcastle	1982	1984
+http://dbpedia.org/resource/Kevin_Keegan	Kevin Keegan	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Blacktown_City_FC	Blacktown City FC	1985	null
+http://dbpedia.org/resource/Kevin_Keegan	Kevin Keegan	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Scunthorpe_United_F.C.	Scunthorpe	1968	1971
+http://dbpedia.org/resource/Kevin_Keegan	Kevin Keegan	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/England_national_football_team	England	1972	1982
+http://dbpedia.org/resource/Kevin_Keegan	Kevin Keegan	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Liverpool_F.C.	Liverpool	1971	1977
+http://dbpedia.org/resource/Kevin_Keegan	Kevin Keegan	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Scunthorpe_United_F.C.	Scunthorpe	1968	1968
+http://dbpedia.org/resource/Kevin_Keegan	Kevin Keegan	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Hamburger_SV	Hamburger	1977	1980
+http://dbpedia.org/resource/Graeme_Souness	Graeme Souness	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Montreal_Olympique	Montreal Olympique	1972	null
+http://dbpedia.org/resource/Graeme_Souness	Graeme Souness	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Liverpool_F.C.	Liverpool	1978	1984
+http://dbpedia.org/resource/Graeme_Souness	Graeme Souness	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/U.C._Sampdoria	Sampdoria	1984	1986
+http://dbpedia.org/resource/Graeme_Souness	Graeme Souness	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Middlesbrough_F.C.	Middlesbrough	1972	1978
+http://dbpedia.org/resource/Graeme_Souness	Graeme Souness	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Tottenham_Hotspur_F.C.	Tottenham	1970	1972
+http://dbpedia.org/resource/Graeme_Souness	Graeme Souness	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Scotland_national_football_team	Scotland	1974	1986
+http://dbpedia.org/resource/Graeme_Souness	Graeme Souness	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Rangers_F.C.	Rangers	1986	1991
+http://dbpedia.org/resource/Graeme_Souness	Graeme Souness	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/West_Adelaide_SC	West Adelaide SC	1978	null
+http://dbpedia.org/resource/Eden_Hazard	Eden Hazard	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/A.F.C._Tubize	Tubize	2003	2005
+http://dbpedia.org/resource/Eden_Hazard	Eden Hazard	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Belgium_national_football_team	Belgium national football team	2008	null
+http://dbpedia.org/resource/Eden_Hazard	Eden Hazard	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Lille_OSC	Lille	2005	2007
+http://dbpedia.org/resource/Alan_Shearer	Alan Shearer	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Wallsend_Boys_Club	Wallsend Boys Club	0	null
+http://dbpedia.org/resource/Alan_Shearer	Alan Shearer	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Blackburn_Rovers_F.C.	Blackburn	1992	1996
+http://dbpedia.org/resource/Alan_Shearer	Alan Shearer	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/England_national_football_team	England	1992	2000
+http://dbpedia.org/resource/Alan_Shearer	Alan Shearer	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Newcastle_United_F.C.	Newcastle	1996	2006
+http://dbpedia.org/resource/Alan_Shearer	Alan Shearer	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Southampton_F.C.	Southampton	1986	1988
+http://dbpedia.org/resource/Alan_Shearer	Alan Shearer	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/England_B_national_football_team	England B national football team	1992	null
+http://dbpedia.org/resource/Alan_Shearer	Alan Shearer	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Southampton_F.C.	Southampton	1988	1992
+http://dbpedia.org/resource/Karim_Benzema	Karim Benzema	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Real_Madrid_C.F.	Real	2009	null
+http://dbpedia.org/resource/Karim_Benzema	Karim Benzema	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Olympique_Lyonnais	Lyon	2004	2009
+http://dbpedia.org/resource/Wayne_Rooney	Wayne Rooney	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Everton_F.C.	Everton	2002	2004
+http://dbpedia.org/resource/Wayne_Rooney	Wayne Rooney	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Manchester_United_F.C.	Manchester	2004	null
+http://dbpedia.org/resource/David_Villa	David Villa	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Real_Zaragoza	Real	2003	2005
+http://dbpedia.org/resource/David_Villa	David Villa	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/UP_Langreo	UP Langreo	1991	1999
+http://dbpedia.org/resource/David_Villa	David Villa	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Valencia_CF	Valencia	2005	2010
+http://dbpedia.org/resource/David_Villa	David Villa	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Spain_national_football_team	Selección	2005	null
+http://dbpedia.org/resource/David_Villa	David Villa	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/FC_Barcelona	Barcelona	2010	null
+http://dbpedia.org/resource/David_Villa	David Villa	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Sporting_de_Gij%C3%B3n_B	Sporting de Gijón B	1999	2001
+http://dbpedia.org/resource/David_Villa	David Villa	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Sporting_de_Gij%C3%B3n	Sporting de Gijón	2001	2003
+http://dbpedia.org/resource/Samir_Nasri	Samir Nasri	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Olympique_de_Marseille	Marseille	2004	2004
+http://dbpedia.org/resource/Samir_Nasri	Samir Nasri	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Arsenal_F.C.	Arsenal.com	2008	2011
+http://dbpedia.org/resource/Samir_Nasri	Samir Nasri	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Manchester_City_F.C.	Manchester	2011	null
+http://dbpedia.org/resource/Brian_Clough	Brian Clough	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/England_B_national_football_team	England B national football team	1957	null
+http://dbpedia.org/resource/Brian_Clough	Brian Clough	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Billingham_Synthonia_F.C.	Billingham Synthonia	1953	1955
+http://dbpedia.org/resource/Brian_Clough	Brian Clough	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Middlesbrough_F.C.	Middlesbrough	1951	1961
+http://dbpedia.org/resource/Brian_Clough	Brian Clough	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Sunderland_A.F.C.	Sunderland	1961	1964
+http://dbpedia.org/resource/Brian_Clough	Brian Clough	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Middlesbrough_F.C.	Middlesbrough	1955	1953
+http://dbpedia.org/resource/Brian_Clough	Brian Clough	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/England_national_football_team	England	1959	null
+http://dbpedia.org/resource/Diego_Maradona	Diego Maradona	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Argentinos_Juniors	Argentinos	1976	1981
+http://dbpedia.org/resource/Diego_Maradona	Diego Maradona	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Argentinos_Juniors	Argentinos	1976	1976
+http://dbpedia.org/resource/Diego_Maradona	Diego Maradona	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Newell's_Old_Boys	Newell	1993	1994
+http://dbpedia.org/resource/Diego_Maradona	Diego Maradona	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/FC_Barcelona	Barcelona	1982	1984
+http://dbpedia.org/resource/Diego_Maradona	Diego Maradona	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/S.S.C._Napoli	Napoli	1984	1991
+http://dbpedia.org/resource/Diego_Maradona	Diego Maradona	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Argentina_national_football_team	Albiceleste	1977	1994
+http://dbpedia.org/resource/Diego_Maradona	Diego Maradona	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Sevilla_FC	Sevilla FC	1992	1993
+http://dbpedia.org/resource/Diego_Maradona	Diego Maradona	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Boca_Juniors	Boca	1995	1982
+http://dbpedia.org/resource/Diego_Maradona	Diego Maradona	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Boca_Juniors	Boca	1981	1997
+http://dbpedia.org/resource/Patrice_Evra	Patrice Evra	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/CO_Les_Ulis	CO Les Ulis	1992	1993
+http://dbpedia.org/resource/Patrice_Evra	Patrice Evra	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/France_national_football_team	France national football team	2004	null
+http://dbpedia.org/resource/Patrice_Evra	Patrice Evra	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/AS_Monaco_FC	Monaco	2002	2006
+http://dbpedia.org/resource/Patrice_Evra	Patrice Evra	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/OGC_Nice	Nice	2000	2002
+http://dbpedia.org/resource/Patrice_Evra	Patrice Evra	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Paris_Saint-Germain_F.C.	Saint-Germain	1997	1998
+http://dbpedia.org/resource/Patrice_Evra	Patrice Evra	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Manchester_United_F.C.	Manchester	2006	null
+http://dbpedia.org/resource/Ars%C3%A8ne_Wenger	Arsène Wenger	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/RC_Strasbourg	RC Strasbourg	1978	1981
+http://dbpedia.org/resource/Ars%C3%A8ne_Wenger	Arsène Wenger	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/FC_Mulhouse	FC Mulhouse	1973	1975
+http://dbpedia.org/resource/Ars%C3%A8ne_Wenger	Arsène Wenger	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/ASPV_Strasbourg	ASPV Strasbourg	1975	1978
+http://dbpedia.org/resource/Marius_Niculae	Marius Niculae	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/FC_Dinamo_Bucure%C8%99ti	FC Dinamo București	1996	2001
+http://dbpedia.org/resource/Marius_Niculae	Marius Niculae	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Romania_national_football_team	Romania national football team	2000	null
+http://dbpedia.org/resource/Marius_Niculae	Marius Niculae	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Inverness_Caledonian_Thistle_F.C.	Caledonia	2007	2008
+http://dbpedia.org/resource/Marius_Niculae	Marius Niculae	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Sporting_Clube_de_Portugal	Sporting	2001	2005
+http://dbpedia.org/resource/Marius_Niculae	Marius Niculae	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Kavala_F.C.	Kavala	2011	null
+http://dbpedia.org/resource/Marius_Niculae	Marius Niculae	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Standard_Li%C3%A8ge	Standard Liège	2005	2006
+http://dbpedia.org/resource/David_Icke	David Icke	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Hereford_United_F.C.	Hereford	1971	1973
+http://dbpedia.org/resource/David_Icke	David Icke	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Coventry_City_F.C.	Coventry	1967	1971
+http://dbpedia.org/resource/Bryan_Robson	Bryan Robson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/West_Bromwich_Albion_F.C.	Albion	1974	1974
+http://dbpedia.org/resource/Bryan_Robson	Bryan Robson	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Manchester_United_F.C.	Manchester	1981	1994
+http://dbpedia.org/resource/Bryan_Robson	Bryan Robson	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/England_national_football_team	England	1980	1991
+http://dbpedia.org/resource/Bryan_Robson	Bryan Robson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/England_B_national_football_team	England B national football team	1979	1990
+http://dbpedia.org/resource/Bryan_Robson	Bryan Robson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Middlesbrough_F.C.	Middlesbrough	1994	1996
+http://dbpedia.org/resource/Bryan_Robson	Bryan Robson	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/West_Bromwich_Albion_F.C.	Albion	1972	1974
+http://dbpedia.org/resource/Thierry_Henry	Thierry Henry	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Juventus_F.C.	Juventus	1999	null
+http://dbpedia.org/resource/Thierry_Henry	Thierry Henry	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Arsenal_F.C.	Arsenal.com	2012	2007
+http://dbpedia.org/resource/Thierry_Henry	Thierry Henry	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/France_national_football_team	France national football team	1997	2010
+http://dbpedia.org/resource/Thierry_Henry	Thierry Henry	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/CO_Les_Ulis	CO Les Ulis	1983	1989
+http://dbpedia.org/resource/Thierry_Henry	Thierry Henry	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/AS_Monaco_FC	Monaco	1994	1999
+http://dbpedia.org/resource/Thierry_Henry	Thierry Henry	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/ES_Viry-Ch%C3%A2tillon	ES Viry-Châtillon	1990	1992
+http://dbpedia.org/resource/Thierry_Henry	Thierry Henry	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Arsenal_F.C.	Arsenal.com	1999	2007
+http://dbpedia.org/resource/Thierry_Henry	Thierry Henry	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/New_York_Red_Bulls	Metro	2010	null
+http://dbpedia.org/resource/Thierry_Henry	Thierry Henry	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/FC_Barcelona	Barcelona	2007	2010
+http://dbpedia.org/resource/Harry_Kewell	Harry Kewell	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Marconi_Stallions_FC	Marconi	1990	1995
+http://dbpedia.org/resource/Harry_Kewell	Harry Kewell	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Melbourne_Victory_FC	Victory	2011	null
+http://dbpedia.org/resource/Harry_Kewell	Harry Kewell	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Liverpool_F.C.	Liverpool	2003	2008
+http://dbpedia.org/resource/Harry_Kewell	Harry Kewell	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Leeds_United_A.F.C.	Leeds	1995	2003
+http://dbpedia.org/resource/Harry_Kewell	Harry Kewell	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Galatasaray_S.K.	Gala	2008	2011
+http://dbpedia.org/resource/Harry_Kewell	Harry Kewell	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Australia_national_association_football_team	Socceroos	1996	null
+http://dbpedia.org/resource/Harry_Kewell	Harry Kewell	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Leeds_United_A.F.C.	Leeds	1995	1997
+http://dbpedia.org/resource/Ryan_Giggs	Ryan Giggs	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Manchester_United_F.C.	Manchester	1991	1991
+http://dbpedia.org/resource/Ryan_Giggs	Ryan Giggs	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Manchester_United_F.C.	Manchester	1987	1991
+http://dbpedia.org/resource/Ryan_Giggs	Ryan Giggs	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Manchester_City_F.C.	Manchester	1985	1987
+http://dbpedia.org/resource/Herbert_Chapman	Herbert Chapman	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Stalybridge_Rovers_F.C.	Stalybridge Rovers	1897	null
+http://dbpedia.org/resource/Herbert_Chapman	Herbert Chapman	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Swindon_Town_F.C.	Swindon	1899	null
+http://dbpedia.org/resource/Herbert_Chapman	Herbert Chapman	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Ashton_North_End_F.C.	Ashton North End	1895	1897
+http://dbpedia.org/resource/Herbert_Chapman	Herbert Chapman	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Sheppey_United_F.C.	Sheppey	1899	1900
+http://dbpedia.org/resource/Herbert_Chapman	Herbert Chapman	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Worksop_Town_F.C.	Worksop Town	1900	1901
+http://dbpedia.org/resource/Herbert_Chapman	Herbert Chapman	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Grimsby_Town_F.C.	Grimsby	1898	1899
+http://dbpedia.org/resource/Herbert_Chapman	Herbert Chapman	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Northampton_Town_F.C.	Northampton Town	1901	1902
+http://dbpedia.org/resource/Herbert_Chapman	Herbert Chapman	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Notts_County_F.C.	Notts	1903	1905
+http://dbpedia.org/resource/Herbert_Chapman	Herbert Chapman	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Sheffield_United_F.C.	Blade	1902	1903
+http://dbpedia.org/resource/Joey_Barton	Joey Barton	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Manchester_City_F.C.	Manchester	2002	2007
+http://dbpedia.org/resource/Joey_Barton	Joey Barton	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Queens_Park_Rangers_F.C.	Ranger	2011	null
+http://dbpedia.org/resource/Joey_Barton	Joey Barton	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Newcastle_United_F.C.	Newcastle	2007	2011
+http://dbpedia.org/resource/Joey_Barton	Joey Barton	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/England_national_football_team	England	2007	null
+http://dbpedia.org/resource/Didier_Drogba	Didier Drogba	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Levallois_SC	Levallois	1996	1997
+http://dbpedia.org/resource/Didier_Drogba	Didier Drogba	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/C%C3%B4te_d'Ivoire_national_football_team	Côte d'Ivoire national football team	2002	null
+http://dbpedia.org/resource/Didier_Drogba	Didier Drogba	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Olympique_de_Marseille	Marseille	2003	2004
+http://dbpedia.org/resource/Didier_Drogba	Didier Drogba	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Chelsea_F.C.	Chelsea	2004	null
+http://dbpedia.org/resource/Didier_Drogba	Didier Drogba	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/En_Avant_de_Guingamp	En Avant de Guingamp	2002	2003
+http://dbpedia.org/resource/Didier_Drogba	Didier Drogba	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Le_Mans_FC	Le Mans FC	1997	1998
+http://dbpedia.org/resource/Didier_Drogba	Didier Drogba	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Le_Mans_FC	Le Mans FC	1998	2002
+http://dbpedia.org/resource/Frank_Lampard	Frank Lampard	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/West_Ham_United_F.C.	Whufc	1994	2001
+http://dbpedia.org/resource/Frank_Lampard	Frank Lampard	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Chelsea_F.C.	Chelsea	2001	null
+http://dbpedia.org/resource/Frank_Lampard	Frank Lampard	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Swansea_City_A.F.C.	Swansea	1995	1996
+http://dbpedia.org/resource/Frank_Lampard	Frank Lampard	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/England_national_football_team	England	1999	null
+http://dbpedia.org/resource/Frank_Lampard	Frank Lampard	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/West_Ham_United_F.C.	Whufc	1995	1995
+http://dbpedia.org/resource/Alessandro_Del_Piero	Alessandro Del Piero	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Italy_national_football_team	Azzuri	1995	2008
+http://dbpedia.org/resource/Alessandro_Del_Piero	Alessandro Del Piero	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Calcio_Padova	Calcio Padova	1988	1993
+http://dbpedia.org/resource/Alessandro_Del_Piero	Alessandro Del Piero	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Juventus_F.C.	Juventus	1993	1994
+http://dbpedia.org/resource/Alessandro_Del_Piero	Alessandro Del Piero	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Calcio_Padova	Calcio Padova	1991	1993
+http://dbpedia.org/resource/Robbie_Fowler	Robbie Fowler	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/England_national_football_team	England	1996	2002
+http://dbpedia.org/resource/Robbie_Fowler	Robbie Fowler	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Leeds_United_A.F.C.	Leeds	2001	2003
+http://dbpedia.org/resource/Robbie_Fowler	Robbie Fowler	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/North_Queensland_Fury_FC	Fury	2009	2010
+http://dbpedia.org/resource/Robbie_Fowler	Robbie Fowler	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Manchester_City_F.C.	Manchester	2003	2006
+http://dbpedia.org/resource/Robbie_Fowler	Robbie Fowler	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Perth_Glory_FC	Glory	2010	2011
+http://dbpedia.org/resource/Robbie_Fowler	Robbie Fowler	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/England_B_national_football_team	England B national football team	1994	null
+http://dbpedia.org/resource/Robbie_Fowler	Robbie Fowler	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Blackburn_Rovers_F.C.	Blackburn	2008	null
+http://dbpedia.org/resource/Robbie_Fowler	Robbie Fowler	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Muangthong_United_F.C.	Muangthong United	2011	2012
+http://dbpedia.org/resource/Robbie_Fowler	Robbie Fowler	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Cardiff_City_F.C.	Cardiff	2007	2008
+http://dbpedia.org/resource/Robbie_Fowler	Robbie Fowler	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Liverpool_F.C.	Liverpool	1984	1993
+http://dbpedia.org/resource/Robbie_Fowler	Robbie Fowler	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Liverpool_F.C.	Liverpool	2006	1993
+http://dbpedia.org/resource/Juan_Rom%C3%A1n_Riquelme	Juan Román Riquelme	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Villarreal_CF	Villarreal	2005	2008
+http://dbpedia.org/resource/Juan_Rom%C3%A1n_Riquelme	Juan Román Riquelme	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Boca_Juniors	Boca	1996	2008
+http://dbpedia.org/resource/Juan_Rom%C3%A1n_Riquelme	Juan Román Riquelme	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/FC_Barcelona	Barcelona	2002	2005
+http://dbpedia.org/resource/Juan_Rom%C3%A1n_Riquelme	Juan Román Riquelme	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Argentina_national_football_team	Albiceleste	1997	null
+http://dbpedia.org/resource/Juan_Rom%C3%A1n_Riquelme	Juan Román Riquelme	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Boca_Juniors	Boca	2008	2008
+http://dbpedia.org/resource/Juan_Rom%C3%A1n_Riquelme	Juan Román Riquelme	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Villarreal_CF	Villarreal	2003	2005
+http://dbpedia.org/resource/George_Best	George Best	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Los_Angeles_Aztecs	Aztec	1976	null
+http://dbpedia.org/resource/George_Best	George Best	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Manchester_United_F.C.	Manchester	1961	1974
+http://dbpedia.org/resource/George_Best	George Best	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Hibernian_F.C.	Hibernian	1979	1981
+http://dbpedia.org/resource/George_Best	George Best	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Stockport_County_F.C.	Stockport	1975	null
+http://dbpedia.org/resource/George_Best	George Best	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Cork_Celtic_F.C.	Cork Celtic	1975	1976
+http://dbpedia.org/resource/George_Best	George Best	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Fulham_F.C.	Fulham	1976	1978
+http://dbpedia.org/resource/George_Best	George Best	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Jewish_Guild	Jewish Guild	1974	null
+http://dbpedia.org/resource/George_Best	George Best	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Northern_Ireland_national_football_team	Northern Ireland national football team	1964	1977
+http://dbpedia.org/resource/George_Best	George Best	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Dunstable_Town_F.C.	Dunstable Town	1974	null
+http://dbpedia.org/resource/Pel%C3%A9	Pelé	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Bauru_Atl%C3%A9tico_Clube	Bauru AtlÃ©tico Clube	1954	1956
+http://dbpedia.org/resource/Pel%C3%A9	Pelé	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Santos_FC	Santos	1956	1974
+http://dbpedia.org/resource/Pel%C3%A9	Pelé	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Brazil_national_football_team	Brazil	1957	1971
+http://dbpedia.org/resource/Robin_van_Persie	Robin van Persie	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/SBV_Excelsior	Excelsior	1998	1999
+http://dbpedia.org/resource/Robin_van_Persie	Robin van Persie	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Feyenoord	Feyenoord	1998	2004
+http://dbpedia.org/resource/Robin_van_Persie	Robin van Persie	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Arsenal_F.C.	Arsenal.com	2004	null
+http://dbpedia.org/resource/Robin_van_Persie	Robin van Persie	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Feyenoord	Feyenoord	2001	2001
+http://dbpedia.org/resource/Carlos_T%C3%A9vez	Carlos Tévez	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/All_Boys	All Boys	1992	1996
+http://dbpedia.org/resource/Carlos_T%C3%A9vez	Carlos Tévez	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Boca_Juniors	Boca	2001	2001
+http://dbpedia.org/resource/Carlos_T%C3%A9vez	Carlos Tévez	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Manchester_United_F.C.	Manchester	2007	2009
+http://dbpedia.org/resource/Carlos_T%C3%A9vez	Carlos Tévez	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Manchester_City_F.C.	Manchester	2009	null
+http://dbpedia.org/resource/Carlos_T%C3%A9vez	Carlos Tévez	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/West_Ham_United_F.C.	Whufc	2006	2007
+http://dbpedia.org/resource/Carlos_T%C3%A9vez	Carlos Tévez	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Argentina_national_football_team	Albiceleste	2004	null
+http://dbpedia.org/resource/Carlos_T%C3%A9vez	Carlos Tévez	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Boca_Juniors	Boca	1997	2001
+http://dbpedia.org/resource/Rafael_Ben%C3%ADtez	Rafael Benítez	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/AD_Parla	AD Parla	1981	1985
+http://dbpedia.org/resource/Rafael_Ben%C3%ADtez	Rafael Benítez	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Real_Madrid_Castilla	Real	1974	1981
+http://dbpedia.org/resource/Rafael_Ben%C3%ADtez	Rafael Benítez	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Linares_CF	Linares CF	1985	1986
+http://dbpedia.org/resource/Craig_Bellamy	Craig Bellamy	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/West_Ham_United_F.C.	Whufc	2007	2009
+http://dbpedia.org/resource/Craig_Bellamy	Craig Bellamy	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Newcastle_United_F.C.	Newcastle	2001	2005
+http://dbpedia.org/resource/Craig_Bellamy	Craig Bellamy	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Manchester_City_F.C.	Manchester	2009	2011
+http://dbpedia.org/resource/Craig_Bellamy	Craig Bellamy	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Liverpool_F.C.	Liverpool	2006	2007
+http://dbpedia.org/resource/Craig_Bellamy	Craig Bellamy	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Celtic_F.C.	Celtic	2005	null
+http://dbpedia.org/resource/Craig_Bellamy	Craig Bellamy	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Blackburn_Rovers_F.C.	Blackburn	2005	2006
+http://dbpedia.org/resource/Craig_Bellamy	Craig Bellamy	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Liverpool_F.C.	Liverpool	2011	2007
+http://dbpedia.org/resource/Craig_Bellamy	Craig Bellamy	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Wales_national_football_team	Wales national football team	1998	null
+http://dbpedia.org/resource/Craig_Bellamy	Craig Bellamy	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Coventry_City_F.C.	Coventry	2000	2001
+http://dbpedia.org/resource/Craig_Bellamy	Craig Bellamy	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Norwich_City_F.C.	Norwich	1990	1996
+http://dbpedia.org/resource/Craig_Bellamy	Craig Bellamy	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Cardiff_City_F.C.	Cardiff	2010	2011
+http://dbpedia.org/resource/Craig_Bellamy	Craig Bellamy	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Norwich_City_F.C.	Norwich	1990	2000
+http://dbpedia.org/resource/Micky_Adams	Micky Adams	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Coventry_City_F.C.	Coventry	1983	1987
+http://dbpedia.org/resource/Micky_Adams	Micky Adams	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Sheffield_United_F.C.	Blade	1974	1978
+http://dbpedia.org/resource/Micky_Adams	Micky Adams	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Gillingham_F.C.	Gillingham	1979	1983
+http://dbpedia.org/resource/Micky_Adams	Micky Adams	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Fulham_F.C.	Fulham	1994	1997
+http://dbpedia.org/resource/Micky_Adams	Micky Adams	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Southampton_F.C.	Southampton	1989	1994
+http://dbpedia.org/resource/Micky_Adams	Micky Adams	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Brentford_F.C.	Brentford	1997	1998
+http://dbpedia.org/resource/Micky_Adams	Micky Adams	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Swansea_City_A.F.C.	Swansea	1997	null
+http://dbpedia.org/resource/Micky_Adams	Micky Adams	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Leeds_United_A.F.C.	Leeds	1987	1989
+http://dbpedia.org/resource/Micky_Adams	Micky Adams	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Stoke_City_F.C.	Stoke	1994	null
+http://dbpedia.org/resource/Micky_Adams	Micky Adams	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Gillingham_F.C.	Gillingham	1978	1983
+http://dbpedia.org/resource/John_Terry	John Terry	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/West_Ham_United_F.C.	Whufc	1991	1995
+http://dbpedia.org/resource/John_Terry	John Terry	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/England_national_football_team	England	2003	null
+http://dbpedia.org/resource/John_Terry	John Terry	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Nottingham_Forest_F.C.	Forest	2000	null
+http://dbpedia.org/resource/John_Terry	John Terry	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Chelsea_F.C.	Chelsea	1998	1998
+http://dbpedia.org/resource/John_Terry	John Terry	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Chelsea_F.C.	Chelsea	1995	1998
+http://dbpedia.org/resource/Bobby_Robson	Bobby Robson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/England_national_football_team	England	1957	1962
+http://dbpedia.org/resource/Bobby_Robson	Bobby Robson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Fulham_F.C.	Fulham	1962	1956
+http://dbpedia.org/resource/Bobby_Robson	Bobby Robson	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/West_Bromwich_Albion_F.C.	Albion	1956	1962
+http://dbpedia.org/resource/Bobby_Robson	Bobby Robson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/London_XI	London XI	1955	null
+http://dbpedia.org/resource/Bobby_Robson	Bobby Robson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Vancouver_Royals	Vancouver Royals	1967	1968
+http://dbpedia.org/resource/John_Atyeo	John Atyeo	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Portsmouth_F.C.	Portsmouth	1950	1951
+http://dbpedia.org/resource/John_Atyeo	John Atyeo	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Bristol_City_F.C.	Bristol City	1951	1966
+http://dbpedia.org/resource/John_Atyeo	John Atyeo	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/England_national_football_team	England	1955	1957
+http://dbpedia.org/resource/Georgi_Kinkladze	Georgi Kinkladze	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Manchester_City_F.C.	Manchester	1995	1998
+http://dbpedia.org/resource/Georgi_Kinkladze	Georgi Kinkladze	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/AFC_Ajax	Ajax	1998	2000
+http://dbpedia.org/resource/Georgi_Kinkladze	Georgi Kinkladze	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Derby_County_F.C.	Derby	2000	2003
+http://dbpedia.org/resource/Georgi_Kinkladze	Georgi Kinkladze	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Anorthosis_Famagusta_FC	Anorthosis	2004	2005
+http://dbpedia.org/resource/Georgi_Kinkladze	Georgi Kinkladze	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Boca_Juniors	Boca	1994	null
+http://dbpedia.org/resource/Georgi_Kinkladze	Georgi Kinkladze	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/FC_Rubin_Kazan	Rubin	2005	2006
+http://dbpedia.org/resource/Georgi_Kinkladze	Georgi Kinkladze	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Georgia_national_football_team	Georgia national football team	1992	2005
+http://dbpedia.org/resource/Georgi_Kinkladze	Georgi Kinkladze	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/FC_Mretebi_Tbilisi	FC Mretebi Tbilisi	1989	1991
+http://dbpedia.org/resource/Georgi_Kinkladze	Georgi Kinkladze	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/FC_Dinamo_Tbilisi	FC Dinamo Tbilisi	1991	1989
+http://dbpedia.org/resource/Georgi_Kinkladze	Georgi Kinkladze	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/FC_Dinamo_Tbilisi	FC Dinamo Tbilisi	1991	1995
+http://dbpedia.org/resource/Georgi_Kinkladze	Georgi Kinkladze	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Derby_County_F.C.	Derby	1999	2003
+http://dbpedia.org/resource/Jim_Gannon	Jim Gannon	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Halifax_Town_A.F.C.	Halifax	1990	null
+http://dbpedia.org/resource/Jim_Gannon	Jim Gannon	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Dundalk_F.C.	Dundalk	1987	1989
+http://dbpedia.org/resource/Jim_Gannon	Jim Gannon	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Shelbourne_F.C.	Shelbourne	2001	2004
+http://dbpedia.org/resource/Jim_Gannon	Jim Gannon	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Sheffield_United_F.C.	Blade	1989	1990
+http://dbpedia.org/resource/Jim_Gannon	Jim Gannon	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Notts_County_F.C.	Notts	1994	null
+http://dbpedia.org/resource/Jim_Gannon	Jim Gannon	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Crewe_Alexandra_F.C.	Alexandra	2000	2001
+http://dbpedia.org/resource/Jim_Gannon	Jim Gannon	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Stockport_County_F.C.	Stockport	1990	2000
+http://dbpedia.org/resource/John_Barnes_(footballer)	John Barnes	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/England_national_football_team	England	1983	1995
+http://dbpedia.org/resource/John_Barnes_(footballer)	John Barnes	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Watford_F.C.	Watford	1981	1987
+http://dbpedia.org/resource/John_Barnes_(footballer)	John Barnes	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Celtic_F.C.	Celtic	1999	2000
+http://dbpedia.org/resource/John_Barnes_(footballer)	John Barnes	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Charlton_Athletic_F.C.	Athletic	1999	null
+http://dbpedia.org/resource/John_Barnes_(footballer)	John Barnes	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Liverpool_F.C.	Liverpool	1987	1997
+http://dbpedia.org/resource/John_Barnes_(footballer)	John Barnes	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Newcastle_United_F.C.	Newcastle	1997	1999
+http://dbpedia.org/resource/Ian_Rush	Ian Rush	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Chester_City_F.C.	Chester City	1978	1980
+http://dbpedia.org/resource/Ian_Rush	Ian Rush	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Newcastle_United_F.C.	Newcastle	1997	1998
+http://dbpedia.org/resource/Ian_Rush	Ian Rush	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Sheffield_United_F.C.	Blade	1998	null
+http://dbpedia.org/resource/Ian_Rush	Ian Rush	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Sydney_Olympic_FC	Sydney Olympic FC	1999	2000
+http://dbpedia.org/resource/Ian_Rush	Ian Rush	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Leeds_United_A.F.C.	Leeds	1996	1997
+http://dbpedia.org/resource/Ian_Rush	Ian Rush	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Liverpool_F.C.	Liverpool	1980	1987
+http://dbpedia.org/resource/Ian_Rush	Ian Rush	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Juventus_F.C.	Juventus	1987	1988
+http://dbpedia.org/resource/Ian_Rush	Ian Rush	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Wrexham_F.C.	Wrexham	1998	1999
+http://dbpedia.org/resource/Ian_Rush	Ian Rush	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Liverpool_F.C.	Liverpool	1980	1996
+http://dbpedia.org/resource/Sini%C5%A1a_Mihajlovi%C4%87	SiniÅ¡a MihajloviÄ	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/A.S._Roma	Roma	1992	1994
+http://dbpedia.org/resource/Sini%C5%A1a_Mihajlovi%C4%87	SiniÅ¡a MihajloviÄ	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/F.C._Internazionale_Milano	Inter	2004	2006
+http://dbpedia.org/resource/Sini%C5%A1a_Mihajlovi%C4%87	SiniÅ¡a MihajloviÄ	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Serbia_national_football_team	Serbia national football team	1991	2003
+http://dbpedia.org/resource/Sini%C5%A1a_Mihajlovi%C4%87	SiniÅ¡a MihajloviÄ	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/HNK_Borovo	HNK Borovo	1986	1988
+http://dbpedia.org/resource/Sini%C5%A1a_Mihajlovi%C4%87	SiniÅ¡a MihajloviÄ	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/S.S._Lazio	Lazio	1998	2004
+http://dbpedia.org/resource/Sini%C5%A1a_Mihajlovi%C4%87	SiniÅ¡a MihajloviÄ	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Red_Star_Belgrade	Zvezda	1990	1992
+http://dbpedia.org/resource/Sini%C5%A1a_Mihajlovi%C4%87	SiniÅ¡a MihajloviÄ	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/FK_Vojvodina	Vojvodina	1988	1990
+http://dbpedia.org/resource/Sini%C5%A1a_Mihajlovi%C4%87	SiniÅ¡a MihajloviÄ	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/U.C._Sampdoria	Sampdoria	1994	1998
+http://dbpedia.org/resource/Rio_Ferdinand	Rio Ferdinand	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/West_Ham_United_F.C.	Whufc	1996	1996
+http://dbpedia.org/resource/Rio_Ferdinand	Rio Ferdinand	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Leeds_United_A.F.C.	Leeds	2000	2002
+http://dbpedia.org/resource/Rio_Ferdinand	Rio Ferdinand	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/A.F.C._Bournemouth	Bournemouth	1996	1997
+http://dbpedia.org/resource/Rio_Ferdinand	Rio Ferdinand	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/England_national_football_team	England	1997	null
+http://dbpedia.org/resource/Rio_Ferdinand	Rio Ferdinand	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Manchester_United_F.C.	Manchester	2002	null
+http://dbpedia.org/resource/Rio_Ferdinand	Rio Ferdinand	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/West_Ham_United_F.C.	Whufc	1994	2000
+http://dbpedia.org/resource/Gordon_Banks	Gordon Banks	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/England_national_football_team	England	1963	1972
+http://dbpedia.org/resource/Gordon_Banks	Gordon Banks	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Chesterfield_F.C.	Chesterfield	1955	1959
+http://dbpedia.org/resource/Gordon_Banks	Gordon Banks	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Hellenic_F.C.	Hellenic	1971	null
+http://dbpedia.org/resource/Gordon_Banks	Gordon Banks	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Leicester_City_F.C.	Leicester	1959	1967
+http://dbpedia.org/resource/Gordon_Banks	Gordon Banks	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Stoke_City_F.C.	Stoke	1967	1972
+http://dbpedia.org/resource/Gordon_Banks	Gordon Banks	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/St_Patrick's_Athletic_F.C.	St Patrick's Athletic	1977	null
+http://dbpedia.org/resource/Gordon_Banks	Gordon Banks	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Cleveland_Stokers	Cleveland Stokers	1967	null
+http://dbpedia.org/resource/Bryan_Gunn	Bryan Gunn	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Invergordon_F.C.	Invergordon	1979	1980
+http://dbpedia.org/resource/Bryan_Gunn	Bryan Gunn	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Norwich_City_F.C.	Norwich	1986	1998
+http://dbpedia.org/resource/Bryan_Gunn	Bryan Gunn	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Scotland_national_football_team	Scotland	1990	1994
+http://dbpedia.org/resource/Bryan_Gunn	Bryan Gunn	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Hibernian_F.C.	Hibernian	1998	null
+http://dbpedia.org/resource/Bryan_Gunn	Bryan Gunn	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Aberdeen_F.C.	Aberdeen	1980	1986
+http://dbpedia.org/resource/Gianluigi_Buffon	Gianluigi Buffon	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Juventus_F.C.	Juventus	2001	null
+http://dbpedia.org/resource/Gianluigi_Buffon	Gianluigi Buffon	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Italy_national_football_team	Azzuri	1997	null
+http://dbpedia.org/resource/Gianluigi_Buffon	Gianluigi Buffon	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Parma_F.C.	Parma	1991	1995
+http://dbpedia.org/resource/Gianluigi_Buffon	Gianluigi Buffon	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Parma_F.C.	Parma	1995	2001
+http://dbpedia.org/resource/Stuart_McCall	Stuart McCall	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Everton_F.C.	Everton	1988	1991
+http://dbpedia.org/resource/Stuart_McCall	Stuart McCall	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Scotland_national_football_team	Scotland	1990	1998
+http://dbpedia.org/resource/Stuart_McCall	Stuart McCall	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Bradford_City_A.F.C.	Bradford	1982	1988
+http://dbpedia.org/resource/Stuart_McCall	Stuart McCall	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Rangers_F.C.	Rangers	1991	1998
+http://dbpedia.org/resource/Stuart_McCall	Stuart McCall	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Sheffield_United_F.C.	Blade	2002	2004
+http://dbpedia.org/resource/Stuart_McCall	Stuart McCall	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Bradford_City_A.F.C.	Bradford	1998	1988
+http://dbpedia.org/resource/Billy_Liddell	Billy Liddell	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Scotland_national_football_team	Scotland	1942	1955
+http://dbpedia.org/resource/Billy_Liddell	Billy Liddell	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Liverpool_F.C.	Liverpool	1938	1961
+http://dbpedia.org/resource/Fabio_Capello	Fabio Capello	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/A.C._Milan	Milan	1976	1980
+http://dbpedia.org/resource/Fabio_Capello	Fabio Capello	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/A.S._Roma	Roma	1967	1970
+http://dbpedia.org/resource/Fabio_Capello	Fabio Capello	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Italy_national_football_team	Azzuri	1972	1978
+http://dbpedia.org/resource/Fabio_Capello	Fabio Capello	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Juventus_F.C.	Juventus	1970	1976
+http://dbpedia.org/resource/Alou_Diarra	Alou Diarra	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/CS_Louhans-Cuiseaux	Louhans-Cuiseaux	1997	2000
+http://dbpedia.org/resource/Alou_Diarra	Alou Diarra	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/RC_Lens	Lens	2004	2006
+http://dbpedia.org/resource/Alou_Diarra	Alou Diarra	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/SC_Bastia	SC Bastia	2003	2004
+http://dbpedia.org/resource/Alou_Diarra	Alou Diarra	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/France_national_football_team	France national football team	2004	null
+http://dbpedia.org/resource/Alou_Diarra	Alou Diarra	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/FC_Bayern_Munich	Munich	2000	2002
+http://dbpedia.org/resource/Alou_Diarra	Alou Diarra	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Olympique_Lyonnais	Lyon	2006	2007
+http://dbpedia.org/resource/Alou_Diarra	Alou Diarra	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Le_Havre_AC	Le Havre AC	2002	2003
+http://dbpedia.org/resource/Alou_Diarra	Alou Diarra	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/CS_Louhans-Cuiseaux	Louhans-Cuiseaux	1999	2000
+http://dbpedia.org/resource/Alou_Diarra	Alou Diarra	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/FC_Bayern_Munich_II	FC Bayern Munich II	2000	2002
+http://dbpedia.org/resource/Alou_Diarra	Alou Diarra	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/RC_Lens	Lens	2004	2005
+http://dbpedia.org/resource/Alou_Diarra	Alou Diarra	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Liverpool_F.C.	Liverpool	2002	2005
+http://dbpedia.org/resource/Ellyse_Perry	Ellyse Perry	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Australia_women's_national_association_football_team	Matildas	2007	null
+http://dbpedia.org/resource/Ellyse_Perry	Ellyse Perry	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Central_Coast_Mariners_FC_W-League	Central Coast Mariners FC W-League	2008	2009
+http://dbpedia.org/resource/Ellyse_Perry	Ellyse Perry	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Canberra_United_FC	Canberra United FC	2009	null
+http://dbpedia.org/resource/Eric_Cantona	Eric Cantona	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/AJ_Auxerre	AJ Auxerre	1983	1983
+http://dbpedia.org/resource/Eric_Cantona	Eric Cantona	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Olympique_de_Marseille	Marseille	1988	1991
+http://dbpedia.org/resource/Eric_Cantona	Eric Cantona	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Manchester_United_F.C.	Manchester	1992	1997
+http://dbpedia.org/resource/Eric_Cantona	Eric Cantona	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/France_national_beach_soccer_team	France national beach soccer team	2005	null
+http://dbpedia.org/resource/Eric_Cantona	Eric Cantona	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/FC_Martigues	FC Martigues	1985	1986
+http://dbpedia.org/resource/Eric_Cantona	Eric Cantona	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/France_national_football_team	France national football team	1987	1995
+http://dbpedia.org/resource/Eric_Cantona	Eric Cantona	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/FC_Girondins_de_Bordeaux	Bordeaux	1989	null
+http://dbpedia.org/resource/Eric_Cantona	Eric Cantona	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/N%C3%AEmes_Olympique	N%C3%AEmes Olympique	1991	null
+http://dbpedia.org/resource/Eric_Cantona	Eric Cantona	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Montpellier_HSC	Montpellier HSC	1989	1990
+http://dbpedia.org/resource/Eric_Cantona	Eric Cantona	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/AJ_Auxerre	AJ Auxerre	1981	1983
+http://dbpedia.org/resource/Eric_Cantona	Eric Cantona	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Leeds_United_A.F.C.	Leeds	1992	null
+http://dbpedia.org/resource/Henrik_Larsson	Henrik Larsson	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Celtic_F.C.	Celtic	1997	2004
+http://dbpedia.org/resource/Henrik_Larsson	Henrik Larsson	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Manchester_United_F.C.	Manchester	2007	null
+http://dbpedia.org/resource/Henrik_Larsson	Henrik Larsson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Helsingborgs_IF	Helsingborgs	2006	2009
+http://dbpedia.org/resource/Henrik_Larsson	Henrik Larsson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/FC_Barcelona	Barcelona	2004	2006
+http://dbpedia.org/resource/Henrik_Larsson	Henrik Larsson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Feyenoord	Feyenoord	1993	1997
+http://dbpedia.org/resource/Henrik_Larsson	Henrik Larsson	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Helsingborgs_IF	Helsingborgs	2006	1993
+http://dbpedia.org/resource/Henrik_Larsson	Henrik Larsson	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Sweden_national_football_team	Blågult	1993	2009
+http://dbpedia.org/resource/Henrik_Larsson	Henrik Larsson	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/H%C3%B6gaborgs_BK	H%C3%B6gaborgs BK	1988	1992
+http://dbpedia.org/resource/Mohamed_Aboutrika	Mohamed Aboutrika	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Tersana_SC	Tersana	1990	1997
+http://dbpedia.org/resource/Mohamed_Aboutrika	Mohamed Aboutrika	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Al-Ahly_S.C.	Al-Ahly	2004	null
+http://dbpedia.org/resource/Mohamed_Aboutrika	Mohamed Aboutrika	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Egypt_national_football_team	Egypt national football team	2001	null
+http://dbpedia.org/resource/Mohamed_Aboutrika	Mohamed Aboutrika	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Tersana_SC	Tersana	1990	2004
+http://dbpedia.org/resource/Nelson_Haedo_Valdez	Nelson Haedo Valdez	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/SV_Werder_Bremen_II	SV Werder Bremen II	2001	2005
+http://dbpedia.org/resource/Nelson_Haedo_Valdez	Nelson Haedo Valdez	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/SV_Werder_Bremen	Bremen	2002	2006
+http://dbpedia.org/resource/Nelson_Haedo_Valdez	Nelson Haedo Valdez	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Paraguay_national_football_team	Albirroja	2004	null
+http://dbpedia.org/resource/Nelson_Haedo_Valdez	Nelson Haedo Valdez	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/H%C3%A9rcules_CF	H%C3%A9rcules CF	2010	2011
+http://dbpedia.org/resource/Nelson_Haedo_Valdez	Nelson Haedo Valdez	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Borussia_Dortmund	Borussia	2006	2010
+http://dbpedia.org/resource/Nelson_Haedo_Valdez	Nelson Haedo Valdez	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/FC_Rubin_Kazan	Rubin	2011	null
+http://dbpedia.org/resource/Nelson_Haedo_Valdez	Nelson Haedo Valdez	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Club_Atl%C3%A9tico_Tembetary	Club Atl%C3%A9tico Tembetary	1998	2000
+http://dbpedia.org/resource/Nelson_Haedo_Valdez	Nelson Haedo Valdez	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Club_Atl%C3%A9tico_Tembetary	Club Atl%C3%A9tico Tembetary	2000	2000
+http://dbpedia.org/resource/Mario_Balotelli	Mario Balotelli	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/A.C._Lumezzane	A.C. Lumezzane	2005	2005
+http://dbpedia.org/resource/Mario_Balotelli	Mario Balotelli	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Italy_national_football_team	Azzuri	2010	null
+http://dbpedia.org/resource/Mario_Balotelli	Mario Balotelli	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Manchester_City_F.C.	Manchester	2010	null
+http://dbpedia.org/resource/Mario_Balotelli	Mario Balotelli	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/F.C._Internazionale_Milano	Inter	2006	2010
+http://dbpedia.org/resource/Mario_Balotelli	Mario Balotelli	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/A.C._Lumezzane	A.C. Lumezzane	2001	2006
+http://dbpedia.org/resource/James_Milner	James Milner	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Newcastle_United_F.C.	Newcastle	2004	2008
+http://dbpedia.org/resource/James_Milner	James Milner	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Aston_Villa_F.C.	Villa	2005	2006
+http://dbpedia.org/resource/James_Milner	James Milner	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Leeds_United_A.F.C.	Leeds	2002	2004
+http://dbpedia.org/resource/James_Milner	James Milner	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Swindon_Town_F.C.	Swindon	2003	null
+http://dbpedia.org/resource/James_Milner	James Milner	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Aston_Villa_F.C.	Villa	2008	2006
+http://dbpedia.org/resource/Fernando_Torres	Fernando Torres	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Liverpool_F.C.	Liverpool	2007	2011
+http://dbpedia.org/resource/Fernando_Torres	Fernando Torres	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Chelsea_F.C.	Chelsea	2011	null
+http://dbpedia.org/resource/Fernando_Torres	Fernando Torres	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Atl%C3%A9tico_Madrid	Atl%C3%A9tico Madrid	1995	2007
+http://dbpedia.org/resource/Fernando_Torres	Fernando Torres	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Atl%C3%A9tico_Madrid	Atl%C3%A9tico Madrid	2001	2001
+http://dbpedia.org/resource/Steve_Bruce	Steve Bruce	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Sheffield_United_F.C.	Blade	1998	1999
+http://dbpedia.org/resource/Steve_Bruce	Steve Bruce	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/England_B_national_football_team	England B national football team	1987	null
+http://dbpedia.org/resource/Steve_Bruce	Steve Bruce	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Birmingham_City_F.C.	Birmingham	1996	1998
+http://dbpedia.org/resource/Steve_Bruce	Steve Bruce	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Manchester_United_F.C.	Manchester	1987	1996
+http://dbpedia.org/resource/Steve_Bruce	Steve Bruce	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Norwich_City_F.C.	Norwich	1984	1987
+http://dbpedia.org/resource/Steve_Bruce	Steve Bruce	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Gillingham_F.C.	Gillingham	1979	1979
+http://dbpedia.org/resource/Steve_Bruce	Steve Bruce	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Gillingham_F.C.	Gillingham	1979	1984
+http://dbpedia.org/resource/Dennis_Bergkamp	Dennis Bergkamp	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Arsenal_F.C.	Arsenal.com	1995	2006
+http://dbpedia.org/resource/Dennis_Bergkamp	Dennis Bergkamp	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Netherlands_national_football_team	Elftal	1990	2000
+http://dbpedia.org/resource/Dennis_Bergkamp	Dennis Bergkamp	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/AFC_Ajax	Ajax	1981	1986
+http://dbpedia.org/resource/Dennis_Bergkamp	Dennis Bergkamp	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/AFC_Ajax	Ajax	1986	1986
+http://dbpedia.org/resource/Dennis_Bergkamp	Dennis Bergkamp	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/F.C._Internazionale_Milano	Inter	1993	1995
+http://dbpedia.org/resource/Zlatan_Ibrahimovi%C4%87	Zlatan IbrahimoviÄ	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Malm%C3%B6_FF	Malm%C3%B6 FF	1999	2001
+http://dbpedia.org/resource/Zlatan_Ibrahimovi%C4%87	Zlatan IbrahimoviÄ	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/A.C._Milan	Milan	2011	2011
+http://dbpedia.org/resource/Zlatan_Ibrahimovi%C4%87	Zlatan IbrahimoviÄ	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/AFC_Ajax	Ajax	2001	2004
+http://dbpedia.org/resource/Zlatan_Ibrahimovi%C4%87	Zlatan IbrahimoviÄ	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/FC_Barcelona	Barcelona	2009	2011
+http://dbpedia.org/resource/Zlatan_Ibrahimovi%C4%87	Zlatan IbrahimoviÄ	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/F.C._Internazionale_Milano	Inter	2006	2009
+http://dbpedia.org/resource/Zlatan_Ibrahimovi%C4%87	Zlatan IbrahimoviÄ	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Juventus_F.C.	Juventus	2004	2006
+http://dbpedia.org/resource/Zlatan_Ibrahimovi%C4%87	Zlatan IbrahimoviÄ	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Sweden_national_football_team	Blågult	2001	null
+http://dbpedia.org/resource/Roberto_Mancini	Roberto Mancini	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/S.S._Lazio	Lazio	1997	2001
+http://dbpedia.org/resource/Roberto_Mancini	Roberto Mancini	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Leicester_City_F.C.	Leicester	2001	null
+http://dbpedia.org/resource/Roberto_Mancini	Roberto Mancini	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Italy_national_football_team	Azzuri	1984	1994
+http://dbpedia.org/resource/Roberto_Mancini	Roberto Mancini	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/U.C._Sampdoria	Sampdoria	1982	1997
+http://dbpedia.org/resource/Paul_Gascoigne	Paul Gascoigne	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Gansu_Tianma_F.C.	Gansu Tianma	2003	null
+http://dbpedia.org/resource/Paul_Gascoigne	Paul Gascoigne	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Middlesbrough_F.C.	Middlesbrough	1998	2000
+http://dbpedia.org/resource/Paul_Gascoigne	Paul Gascoigne	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Rangers_F.C.	Rangers	1995	1998
+http://dbpedia.org/resource/Paul_Gascoigne	Paul Gascoigne	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Boston_United_F.C.	Boston	2004	null
+http://dbpedia.org/resource/Paul_Gascoigne	Paul Gascoigne	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/S.S._Lazio	Lazio	1992	1995
+http://dbpedia.org/resource/Paul_Gascoigne	Paul Gascoigne	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/England_national_football_team	England	1988	1998
+http://dbpedia.org/resource/Paul_Gascoigne	Paul Gascoigne	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Newcastle_United_F.C.	Newcastle	1985	1985
+http://dbpedia.org/resource/Paul_Gascoigne	Paul Gascoigne	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Tottenham_Hotspur_F.C.	Tottenham	1988	1992
+http://dbpedia.org/resource/Paul_Gascoigne	Paul Gascoigne	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Burnley_F.C.	Burnley	2002	null
+http://dbpedia.org/resource/Paul_Gascoigne	Paul Gascoigne	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Everton_F.C.	Everton	2000	2002
+http://dbpedia.org/resource/Paul_Gascoigne	Paul Gascoigne	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/England_B_national_football_team	England B national football team	1989	null
+http://dbpedia.org/resource/Paul_Gascoigne	Paul Gascoigne	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Newcastle_United_F.C.	Newcastle	1980	1985
+http://dbpedia.org/resource/Willie_Irvine	Willie Irvine	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Great_Harwood_F.C.	GHFC	1973	1974
+http://dbpedia.org/resource/Willie_Irvine	Willie Irvine	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Halifax_Town_A.F.C.	Halifax	1972	1973
+http://dbpedia.org/resource/Willie_Irvine	Willie Irvine	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Northern_Ireland_national_football_team	Northern Ireland national football team	1963	1972
+http://dbpedia.org/resource/Willie_Irvine	Willie Irvine	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Preston_North_End_F.C.	Deepdale	1968	1971
+http://dbpedia.org/resource/Willie_Irvine	Willie Irvine	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Brighton_%26_Hove_Albion_F.C.	Brighton	1971	1972
+http://dbpedia.org/resource/Willie_Irvine	Willie Irvine	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Burnley_F.C.	Burnley	1960	1968
+http://dbpedia.org/resource/Bobby_Charlton	Bobby Charlton	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Preston_North_End_F.C.	Deepdale	1973	1975
+http://dbpedia.org/resource/Bobby_Charlton	Bobby Charlton	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Manchester_United_F.C.	Manchester	1953	1973
+http://dbpedia.org/resource/Bobby_Charlton	Bobby Charlton	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Manchester_United_F.C.	Manchester	1953	1956
+http://dbpedia.org/resource/Bobby_Charlton	Bobby Charlton	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Waterford_United_F.C.	Waterford	1976	null
+http://dbpedia.org/resource/Michael_Carrick	Michael Carrick	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Manchester_United_F.C.	Manchester	2006	null
+http://dbpedia.org/resource/Michael_Carrick	Michael Carrick	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Swindon_Town_F.C.	Swindon	1999	null
+http://dbpedia.org/resource/Michael_Carrick	Michael Carrick	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Tottenham_Hotspur_F.C.	Tottenham	2004	2006
+http://dbpedia.org/resource/Michael_Carrick	Michael Carrick	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Birmingham_City_F.C.	Birmingham	2000	null
+http://dbpedia.org/resource/Michael_Carrick	Michael Carrick	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/England_B_national_football_team	England B national football team	2006	null
+http://dbpedia.org/resource/Michael_Carrick	Michael Carrick	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/West_Ham_United_F.C.	Whufc	1998	1998
+http://dbpedia.org/resource/Michael_Carrick	Michael Carrick	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Wallsend_Boys_Club	Wallsend Boys Club	1986	1997
+http://dbpedia.org/resource/Michael_Carrick	Michael Carrick	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/West_Ham_United_F.C.	Whufc	1998	2004
+http://dbpedia.org/resource/Clarke_Carlisle	Clarke Carlisle	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Watford_F.C.	Watford	2005	2007
+http://dbpedia.org/resource/Clarke_Carlisle	Clarke Carlisle	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Leeds_United_A.F.C.	Leeds	2004	2005
+http://dbpedia.org/resource/Clarke_Carlisle	Clarke Carlisle	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Queens_Park_Rangers_F.C.	Ranger	2000	2004
+http://dbpedia.org/resource/Clarke_Carlisle	Clarke Carlisle	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Preston_North_End_F.C.	Deepdale	2011	2012
+http://dbpedia.org/resource/Clarke_Carlisle	Clarke Carlisle	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Blackpool_F.C.	Blackpool	1997	2000
+http://dbpedia.org/resource/Clarke_Carlisle	Clarke Carlisle	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Northampton_Town_F.C.	Northampton Town	2012	null
+http://dbpedia.org/resource/Clarke_Carlisle	Clarke Carlisle	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Burnley_F.C.	Burnley	2007	null
+http://dbpedia.org/resource/Clarke_Carlisle	Clarke Carlisle	http://dbpedia.org/property/clubs	http://dbpedia.org/resource/Luton_Town_F.C.	Luton	2007	null
