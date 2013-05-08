@@ -15,7 +15,7 @@ public class Fact {
 
     Map<Entry, String> components;
 
-    public enum Entry {SUBJECT, OBJECT, PREDICATE, DATE, SCORE};
+    public enum Entry {SUBJECT, OBJECT, PREDICATE, YAGOSTART, YAGOEND, DATE, SCORE};
     public Fact() {
         components = new HashMap<Entry, String>();
     }
