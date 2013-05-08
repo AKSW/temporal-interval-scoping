@@ -70,7 +70,7 @@ public class Test {
 //        facts.add(f3);
 //        facts.add(f4);
 //        
-//        facts = (new LocalNormalization()).computeSmoothing(facts);
+//        facts = (new LocalNormalization()).normalize(facts);
 //        System.out.println(facts);
         
         List<Fact> allFacts = new ArrayList<Fact>();
@@ -82,7 +82,7 @@ public class Test {
         allFacts.add(g2);
         allFacts.add(g3);
         
-        allFacts = (new GlobalNormalization()).computeSmoothing(allFacts);
+        allFacts = (new GlobalNormalization()).normalize(allFacts);
         System.out.println(allFacts);
         
     }

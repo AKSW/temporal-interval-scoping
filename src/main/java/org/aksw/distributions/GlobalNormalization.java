@@ -16,7 +16,7 @@ import org.aksw.distributions.Fact.Entry;
  */
 public class GlobalNormalization implements Normalization {
 
-    public List<Fact> computeSmoothing(List<Fact> facts) {
+    public List<Fact> normalize(List<Fact> facts) {
         List<Fact> copy = new ArrayList<Fact>();
         for (int i = 0; i < facts.size(); i++) {
             copy.add(facts.get(i).copy());

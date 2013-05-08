@@ -11,5 +11,5 @@ import java.util.List;
  * @author ngonga
  */
 public interface Normalization {
-    List<Fact> computeSmoothing(List<Fact> facts);  
+    List<Fact> normalize(List<Fact> facts);  
 }
