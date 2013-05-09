@@ -61,6 +61,7 @@ public class ChiSquaredGlobalNormalization implements Normalization{
     
     public double chi(double score, double expected)
     {
+        if(score < expected) return (-1d)*(score - expected)*(score - expected)/expected;
         return (score - expected)*(score - expected)/expected;
     }
 }
