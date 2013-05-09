@@ -1,5 +1,7 @@
 package it.unimib.disco.DateExtractorTemporalDefacto;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
@@ -10,24 +12,35 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import umontreal.iro.lecuyer.probdist.NormalDist;
 
 class URLExtractor implements Runnable {
 	URL _u;
-	PrintWriter _pw;
 	String _start,_end;
 	
-	public URLExtractor(URL u, PrintWriter pw,String start, String end) {
+	public PrintWriter smallContextWriter;
+	public PrintWriter mediumContextWriter;
+	public PrintWriter largeContextWriter;
+	
+	public URLExtractor(URL u, String start, String end) {
 		_u = u;
-		_pw = pw;
 		_start=start;
 		_end=end;
+		
+		try {
+			smallContextWriter = new PrintWriter(new FileOutputStream("sortbyplayer-labels-with-space_out_small.csv"));
+			mediumContextWriter = new PrintWriter(new FileOutputStream("sortbyplayer-labels-with-space_out_medium.csv"));
+			largeContextWriter = new PrintWriter(new FileOutputStream("sortbyplayer-labels-with-space_out_large.csv"));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void run() {
-		HashSet<ArrayList<String>> facts = new HashSet<ArrayList<String>>();
 		
 		try {
 			HttpURLConnection conn = (HttpURLConnection)_u.openConnection();
@@ -35,75 +48,72 @@ class URLExtractor implements Runnable {
 			conn.setReadTimeout(10*100000);
 			conn.addRequestProperty("User-Agent", "Data Quality bot (anisa.rula@disco.unimib.it)");
 			
+			// read the json return value from the webservice
 			String line;
 			StringBuilder builder = new StringBuilder();
 			BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			while((line = reader.readLine()) != null) builder.append(line);
 			
-			while((line = reader.readLine()) != null) {
-				builder.append(line);
-			}
-			
-			String jsonText=builder.toString();
-		
-			JSONObject json = new JSONObject(jsonText);
+			JSONObject json = new JSONObject(builder.toString());
 			
 			Object subject = json.get("subject");
 			Object predicate = json.get("predicate");
 			Object object = json.get("object");
 			JSONObject small = json.getJSONObject("small");
-			//JSONObject medium = json.getJSONObject("medium");
-			//JSONObject large = json.getJSONObject("large");
-			@SuppressWarnings("rawtypes")
-			Iterator it= small.keys();
-			while(it.hasNext()){
-								
-				String timepoint = (String)it.next();
-				
-				ArrayList<String> fact= new ArrayList<String>();
-				
-				fact.add(subject.toString());
-				fact.add(predicate.toString());
-				fact.add(object.toString());
-				fact.add(_start);
-				fact.add(_end);
-				fact.add(timepoint);
-				fact.add(small.get(timepoint).toString());
-				
-				facts.add(fact);
-				//_pw.println(fact);
-			 }
-			HashMap<String,Integer> resourceTotOccu= countOccurrence(facts);
-			HashSet<ArrayList<String>> factsProb=frequProbabCalculator(facts,resourceTotOccu);
-			//calculate the probability distribution
-			//statisticalCalculator(facts);
-			//factsProb= probabilityCalculator(statisticalCalculator(facts), facts);
-			for (ArrayList<String> str: factsProb){
-				_pw.println(str);
-			}
+			JSONObject medium = json.getJSONObject("medium");
+			JSONObject large = json.getJSONObject("large");
 			
-			
-			
-			/*it= medium.keys();
-			while(it.hasNext()){
-				String key = (String)it.next();
-				_pw.println(subject+","+predicate+","+object+","+_start +"," +_end+","+"medium"+","+key+","+medium.get(key));
-			    
-			 }
-			it= large.keys();
-			while(it.hasNext()){
-				String key = (String)it.next();
-				_pw.println(subject+","+predicate+","+object+","+_start +"," +_end+","+"large"+","+key+","+large.get(key));
-			    
-			 }*/
-
-			//_pw.println(subject+" "+predicate+" "+object+" "+start +" " +end);
-			
-		} catch (Exception e) {
+			processData(small, subject, predicate, object, this.smallContextWriter);
+			processData(medium, subject, predicate, object, this.smallContextWriter);
+			processData(large, subject, predicate, object, this.smallContextWriter);
+		}
+		catch (Exception e) {
 			System.err.println("Problem with " + _u + ": " + e.getMessage());
 			e.printStackTrace();
 		}
 		
 	}
+	
+	/**
+	 * best method name ever
+	 */
+	public void processData(JSONObject context, Object subject, Object predicate, Object object, PrintWriter wirter){
+		
+		HashSet<ArrayList<String>> facts = new HashSet<ArrayList<String>>();
+		
+		Iterator it= context.keys();
+		while(it.hasNext()){
+							
+			String timepoint = (String)it.next();
+			
+			ArrayList<String> fact= new ArrayList<String>();
+			
+			fact.add(subject.toString());
+			fact.add(predicate.toString());
+			fact.add(object.toString());
+			fact.add(_start);
+			fact.add(_end);
+			fact.add(timepoint);
+			try {
+				fact.add(context.get(timepoint).toString());
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			facts.add(fact);
+			//_pw.println(fact);
+		 }
+		HashMap<String,Integer> resourceTotOccu= countOccurrence(facts);
+		HashSet<ArrayList<String>> factsProb=frequProbabCalculator(facts,resourceTotOccu);
+		//calculate the probability distribution
+		//statisticalCalculator(facts);
+		//factsProb= probabilityCalculator(statisticalCalculator(facts), facts);
+		for (ArrayList<String> str: factsProb){
+			wirter.println(str);
+		}
+	}
+	
 	
 	public HashSet<ArrayList<String>> frequProbabCalculator(HashSet<ArrayList<String>> facts, HashMap<String,Integer> resourceTotOccu){
 		HashSet<ArrayList<String>> factsProb=new HashSet< ArrayList<String>>();

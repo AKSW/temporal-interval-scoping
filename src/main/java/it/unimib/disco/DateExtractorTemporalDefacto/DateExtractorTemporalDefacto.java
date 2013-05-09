@@ -27,9 +27,6 @@ public class DateExtractorTemporalDefacto{
 			
 			String sub,slabel,pred,obj,olabel,start,end,strSup1,strSup2,strSup3;
 			
-			FileOutputStream fos = new FileOutputStream("sortbyplayer-labels-with-space_out.csv");
-			PrintWriter pw = new PrintWriter(fos);
-				
 			for(String str:testData){
 				sub=str.substring(0, str.indexOf("	"));
 				sub=sub.replace("/", "%2F");
@@ -71,17 +68,18 @@ public class DateExtractorTemporalDefacto{
 				System.out.println(strLine);
 				URL u = new URL(strLine);
 
-				URLExtractor w = new URLExtractor(u, pw, start, end);
+				URLExtractor w = new URLExtractor(u, start, end);
 				w.run();
+				w.smallContextWriter.close();
+				w.mediumContextWriter.close();
+				w.largeContextWriter.close();
+				
 				} catch (MalformedURLException e) {
 					e.printStackTrace();
 				} catch (NullPointerException e) {
 					e.printStackTrace();
 				}
 			}
-		      pw.close();
-		      fos.close();
-			
 		}
 	}
 	
