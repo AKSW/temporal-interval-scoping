@@ -21,10 +21,16 @@ public class ChiSquaredGlobalNormalization implements Normalization{
             copy.add(facts.get(i).copy());
         }
 
+        
         //first get all dates
         Set<String> dates = new HashSet<String>();
         for (Fact f : copy) {
             dates.add(f.get(Entry.DATE));
+        }
+        
+        Set<String> objects = new HashSet<String>();
+        for (Fact f : copy) {
+            objects.add(f.get(Entry.OBJECT));
         }
 
         //build a map for each date
@@ -40,7 +46,7 @@ public class ChiSquaredGlobalNormalization implements Normalization{
             }
             
             //expected value 
-            double expected = total/counter;
+            double expected = total/objects.size();
             
             for (Fact f : copy) {
                 if (f.get(Entry.DATE).equals(date)) {
@@ -55,6 +61,6 @@ public class ChiSquaredGlobalNormalization implements Normalization{
     
     public double chi(double score, double expected)
     {
-        return (score - expected)*(score - expected)/expected);
+        return (score - expected)*(score - expected)/expected;
     }
 }
