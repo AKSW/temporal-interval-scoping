@@ -64,19 +64,30 @@ public class MatrixPruningCreator {
 			    	
 			        // object is a literal
 			    	if(verifyDate(object)){
+			    		String objStr = object.toString().substring(0,object.toString().indexOf('.'));
 
-			    		if(!objPred.containsKey(object.toString())){
-			    		
-			    			HashSet<String> pred= new HashSet<String>();
-			    			objPred.put(object.toString(), pred);
+			    		if (stringToLong(objStr).before(stringToLong("2013-12-31"))){
+				    		if(!objPred.containsKey(objStr)){
+				    		
+				    			HashSet<String> pred= new HashSet<String>();
+				    			objPred.put(objStr, pred);
+				    		}
+
+	
+				    		HashSet<String> pred= objPred.get(objStr);
+							pred.add(predicate.toString());
 			    		}
-
-			    		HashSet<String> pred= objPred.get(object.toString());
-						pred.add(predicate.toString());
 
 			    	}
 			    }
-			} 
+			}
+			if(!objPred.containsKey("2013")){
+	    		
+    			HashSet<String> pred= new HashSet<String>();
+    			objPred.put("2013", pred);
+    		}
+			HashSet<String> pred= objPred.get("2013");
+			pred.add("http://dbpedia.org/property/years");
 			result.put(rUri, objPred);
 		
 		}
@@ -100,6 +111,9 @@ public class MatrixPruningCreator {
 				
 				occurrence.add(Integer.toString(occ));
 				objOccurrence.put(stemDate(obj), occurrence);
+				/*if (stringToLong(stemDate(obj)).before(stringToLong("2013-12-31"))){
+					objOccurrence.put(stemDate(obj), occurrence);
+				}*/
 			}
 
 			Map<String, ArrayList<String>> sortedMap = new TreeMap<String, ArrayList<String>>(objOccurrence);
@@ -579,7 +593,7 @@ public class MatrixPruningCreator {
 	public boolean verifyDate(RDFNode dateObject){
 		boolean verified = false;
 		if ((dateObject.toString().matches("(^(((19|20)\\d\\d)[-/\\.](0?[1-9]|1[012])[-/\\.](0?[1-9]|[12][0-9]|3[01]).*))"))
-				||(dateObject.toString().matches("(^(((19|20)\\d\\d).*))"))||
+				||(dateObject.toString().matches("(^(((19|20)\\d\\d)).*)"))||
 				(dateObject.toString().matches("(^(((19|20)\\d\\d)[-/\\.](0?[1-9]|1[012]).*))"))
 				){
 			verified=true;

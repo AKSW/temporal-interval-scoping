@@ -103,7 +103,7 @@ public class ReadFiles {
 				}
 				
 			}while (begin>0);
-			System.out.println(list);
+			
 			fileArray.add(list);
 		}
 		return fileArray;

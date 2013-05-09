@@ -3,12 +3,16 @@ package it.unimib.disco.TemporalIntervalCreator;
 import it.unimib.disco.FactExtractor.DateOccurrence;
 import it.unimib.disco.ReadFiles.ReadFiles;
 
-import java.io.PrintWriter;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+
+import org.aksw.distributions.Fact;
+import org.aksw.distributions.FactReader;
+import org.aksw.distributions.GlobalNormalization;
 
 public class TemporalIntervalFactAssociator {
 
@@ -43,12 +47,11 @@ public class TemporalIntervalFactAssociator {
 		
 	}
 	
-	public HashMap<String,DateOccurrence [][]> matrixYearsDuration(HashMap<String, DateOccurrence [][]> reducedMatrix2, List<String> temporaldefacto){
+	public HashMap<String,DateOccurrence [][]> matrixYearsDuration(HashMap<String, DateOccurrence [][]> reducedMatrix2){
 		
 		HashMap<String,DateOccurrence [][]> temporalDCMatrixURI = new HashMap<String,DateOccurrence [][]>();
 		ArrayList<String> occurrence = new ArrayList<String>();
-		ReadFiles rf=new ReadFiles();
-		rf.readCommaSeparatedFile(temporaldefacto);
+
 		
 		for (String Uri: reducedMatrix2.keySet()){
 			DateOccurrence [][] temporalDCMatrix= reducedMatrix2.get(Uri);
@@ -61,8 +64,9 @@ public class TemporalIntervalFactAssociator {
 						MatrixPruningCreator mpc= new MatrixPruningCreator();
 						Date column = mpc.stringToLong(temporalDCMatrix[0][j].getDate());
 						Date row = mpc.stringToLong(temporalDCMatrix[i][0].getDate());
-						long yearDistance = column.getTime()-row.getTime();
-						
+						long millisecDistance = column.getTime()-row.getTime();
+						long dayDistance= millisecDistance/(1000 * 60 * 60 * 24);
+						long yearDistance= dayDistance/365;
 						occurrence = new ArrayList<String>();
 						occurrence.add(String.valueOf(yearDistance));
 						
@@ -82,22 +86,33 @@ public class TemporalIntervalFactAssociator {
 		
 	}
 	
-public HashMap<String,DateOccurrence [][]> matrixManhattanDuration(HashMap<String, DateOccurrence [][]> reducedMatrix2){
+
+	public DateOccurrence [][] matrixManhattanDuration( DateOccurrence [][] mRed){
 		
-	
-		HashMap<String,DateOccurrence [][]> temporalDCMatrixURI = new HashMap<String,DateOccurrence [][]>();
 		ArrayList<String> occurrence = new ArrayList<String>();
-		
-	
-		
-		for (String Uri: reducedMatrix2.keySet()){
-			DateOccurrence [][] temporalDCMatrix= reducedMatrix2.get(Uri);
+
+			DateOccurrence [][] temporalDCMatrix= new DateOccurrence[mRed.length][mRed.length];
+			
+			occurrence.add("End");
+			temporalDCMatrix[0][0]= new DateOccurrence("[Start]/", occurrence);
+
+			
+			for(int l=1; l<temporalDCMatrix.length; l++){
+				temporalDCMatrix[l][0] = mRed[l][0];
+
+			}
+			
+			
+			for(int m=1; m<temporalDCMatrix.length; m++){
+				temporalDCMatrix[0][m]= mRed[0][m];
+			}
+
 			
 			for (int i=1; i<temporalDCMatrix.length; i++){
-				int count=0;
+				int count=1;
 				for(int j=1; j<temporalDCMatrix[i].length; j++){
-					
-					if(j>=i&&!(temporalDCMatrix[i][j].getOccurrence().get(0).equalsIgnoreCase("X"))){
+		
+					if(j>=i&&!(mRed[i][j].getOccurrence().get(0).equalsIgnoreCase("X"))){
 						
 						occurrence = new ArrayList<String>();
 						occurrence.add(String.valueOf(count));
@@ -113,18 +128,23 @@ public HashMap<String,DateOccurrence [][]> matrixManhattanDuration(HashMap<Strin
 				}
 	
 			}
+/*			for (int i=0; i<temporalDCMatrix.length;i++){
+			for (int j=0;j<temporalDCMatrix[i].length;j++){
+				
+				System.out.print(temporalDCMatrix[i][j].getDate()+""+ temporalDCMatrix[i][j].getOccurrence()+";");
+			}
+			System.out.println();
 
-			temporalDCMatrixURI.put(Uri, temporalDCMatrix);
-		}
-
-		return temporalDCMatrixURI;
+	}*/
+		return temporalDCMatrix;
 		
 	}
 
 
 	public HashMap<String,HashMap<String,HashSet<ArrayList<String>>>> groupOccuByYear(List<String> temporaldefacto){
 		ReadFiles rf=new ReadFiles();
-		HashSet<ArrayList<String>> file=rf.readCommaSeparatedFile(temporaldefacto);
+		HashSet<ArrayList<String>> fileNormalized=rf.readCommaSeparatedFile(temporaldefacto);
+		//HashSet<List<String>> fileNormalized = normalizeFrequency(file);
 		
 		HashMap<String,HashMap<String,HashSet<ArrayList<String>>>> res = new HashMap<String,HashMap<String,HashSet<ArrayList<String>>>>();
 	
@@ -132,7 +152,8 @@ public HashMap<String,DateOccurrence [][]> matrixManhattanDuration(HashMap<Strin
 		
 		HashSet<ArrayList<String>> yearOccs = new HashSet<ArrayList<String>>();
 		
-		for (ArrayList<String> record:file){
+		for (List<String> record:fileNormalized){
+			
 			ArrayList<String> yO = new ArrayList<String>();
 			//System.out.println(record.get(0)+" "+record.get(2));
 			if (!res.containsKey(record.get(0))){
@@ -148,8 +169,8 @@ public HashMap<String,DateOccurrence [][]> matrixManhattanDuration(HashMap<Strin
 			}
 			
 			yearOccs=yearOccu.get(record.get(2));
-			yO.add(record.get(5));
-			yO.add(record.get(6));
+			yO.add(record.get(5)); //timepoint
+			yO.add(record.get(6)); //occurrence of timepoint
 			
 			yearOccs.add(yO);
 
@@ -170,25 +191,44 @@ public HashMap<String,DateOccurrence [][]> matrixManhattanDuration(HashMap<Strin
 		return res;
 	}
 	
-	public HashMap<String,DateOccurrence [][]> dcCalculator(String Uri,HashMap<String,HashSet<ArrayList<String>>> yearOccu,HashMap<String,DateOccurrence [][]> reducedMatrix2,
-			PrintWriter pw){
+	//normalization function
+	public HashSet<List<String>> normalizeFrequency(HashSet<ArrayList<String>> file){
+		HashSet<List<String>> normalizedFile = new HashSet<List<String>>();
+		List<Fact> facts = new ArrayList<Fact>();
 		
-		HashMap<String,DateOccurrence [][]> objMatri=new HashMap<String,DateOccurrence [][]>();
+		for (List<String> f:file){
+			Fact fact = FactReader.readFact(f);
+			
+	        facts.add(fact);
+
+        }
+        facts = (new GlobalNormalization()).normalize(facts);
+			
+       
+        for (Fact f:facts){
+        	normalizedFile.add(FactReader.listFromFact(f));
+        }
+		
+
+		return normalizedFile;
+	}
+	
+	public HashSet<ArrayList<String>> dcCalculator(HashSet<ArrayList<String>> yearOccu,DateOccurrence [][] matrixMD){
+			//PrintWriter pw){
+		
+	
 		ArrayList<String> occurrence = new ArrayList<String>();
 
-		
-		for (String obj: yearOccu.keySet()){
-			pw.println(Uri+" "+obj);
-			HashSet<ArrayList<String>> yearOccs = yearOccu.get(obj);
 			
-			HashMap<String,DateOccurrence [][]> matrixManhattanDurationUri = matrixManhattanDuration(reducedMatrix2);
-			DateOccurrence [][] matrixMD = matrixManhattanDurationUri.get(Uri);
-
-
-			for (int i=0; i<matrixMD.length; i++){
-				for(int j=0; j<matrixMD[i].length; j++){
+			DateOccurrence [][] m = new DateOccurrence[matrixMD.length][matrixMD.length];
+			HashSet<ArrayList<String>> intervals =new HashSet<ArrayList<String>>();
+			for (int i=0; i<m.length; i++){
+				
+				for(int j=0; j<m[i].length; j++){
+					ArrayList<String> interval = new ArrayList<String>();
 					if(i==0||j==0){
-						
+						m[0][j]=matrixMD[0][j];
+						m[i][0]=matrixMD[i][0];
 					}
 					
 					else if(j>i&&!(matrixMD[i][j].getOccurrence().get(0).contains("0"))){
@@ -198,46 +238,71 @@ public HashMap<String,DateOccurrence [][]> matrixManhattanDuration(HashMap<Strin
 						
 						MatrixPruningCreator mpc= new MatrixPruningCreator();
 						
-						Date column = mpc.stringToLong(matrixMD[0][j].getDate());
-						Date row = mpc.stringToLong(matrixMD[i][0].getDate());
+						Date column = mpc.stringToLong(m[0][j].getDate());
+						Date row = mpc.stringToLong(m[i][0].getDate());
 						
-						int hit=hitCalculator(row,column,yearOccs);
-
-						double formula= hit*1.0/duration; 
+						
+						//double formula=hitCount(row,column,yearOccu);
+						
+						double hit=hitCount(row,column,yearOccu);
+						double formula= hit/duration; 
+						
 						occurrence = new ArrayList<String>();
 						occurrence.add(String.valueOf(formula));
 						
-						matrixMD[i][j]= new DateOccurrence("", occurrence);
+						m[i][j]= new DateOccurrence("", occurrence);
+					
+						//add start and end year and the formula
+						interval.add(m[i][0].getDate());
+						interval.add(m[0][j].getDate());
+						interval.add(String.valueOf(formula));
 					}
 					else{
 						occurrence = new ArrayList<String>();
 						occurrence.add("0");
-						matrixMD[i][j]= new DateOccurrence("", occurrence);
+						m[i][j]= new DateOccurrence("", occurrence);
 					}
-					pw.print(matrixMD[i][j].getDate()+""+ matrixMD[i][j].getOccurrence()+";");
+					if(interval.size()!=0){
 					
-				}pw.println();
+						intervals.add(interval);
+					
+					}
+
+					//pw.print(m[i][j].getDate()+""+ m[i][j].getOccurrence()+";");
+					
+				}//pw.println();
 				
 			}
-			
-			objMatri.put(obj, matrixMD);
-		}
-		
-		for ( String obj: objMatri.keySet()){
-			DateOccurrence [][] hm = objMatri.get(obj);
-			System.out.print(Uri+" "+obj);
-			for (int i=1; i<hm.length; i++){
-				for(int j=1; j<hm[i].length; j++){
-					System.out.print(hm[i][j].getOccurrence().get(0));
-				
-			}System.out.println();
-			}
-		}
-		return objMatri;
+
+
+		return intervals;
 		
 	}
 	
-	public int hitCalculator(Date row, Date column,HashSet<ArrayList<String>> yearOccu ){
+	public double hitCount(Date row, Date column,HashSet<ArrayList<String>> yearOccu ){
+		double hit=0;
+		MatrixPruningCreator mpc= new MatrixPruningCreator();
+		int count=0;
+		for (ArrayList<String> value: yearOccu){
+
+	            Date year= mpc.stringToLong(value.get(0));
+
+	            if((column.after(year)||column.equals(year))&&(row.before(year)||row.equals(year))){
+
+	            	hit=hit+Double.valueOf(value.get(1).trim());
+	            	count++;
+			
+	            }
+		}
+		if (count>0){
+		hit=hit/count;
+		}
+
+		return hit;
+		
+	}
+	
+	public int hitWeighted(Date row, Date column,HashSet<ArrayList<String>> yearOccu ){
 		int hit=0;
 		MatrixPruningCreator mpc= new MatrixPruningCreator();
 		for (ArrayList<String> value: yearOccu){
