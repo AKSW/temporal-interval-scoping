@@ -26,6 +26,7 @@ public class DateExtractorTemporalDefacto{
 			List<String> testData = getURIs(new File(args[0]));
 			
 			String sub,slabel,pred,obj,olabel,start,end,strSup1,strSup2,strSup3;
+			URLExtractor w = new URLExtractor();
 			
 			for(String str:testData){
 				sub=str.substring(0, str.indexOf("	"));
@@ -68,11 +69,7 @@ public class DateExtractorTemporalDefacto{
 				System.out.println(strLine);
 				URL u = new URL(strLine);
 
-				URLExtractor w = new URLExtractor(u, start, end);
-				w.run();
-				w.smallContextWriter.close();
-				w.mediumContextWriter.close();
-				w.largeContextWriter.close();
+				w.run(u, start, end);
 				
 				} catch (MalformedURLException e) {
 					e.printStackTrace();
@@ -80,6 +77,10 @@ public class DateExtractorTemporalDefacto{
 					e.printStackTrace();
 				}
 			}
+			
+			w.smallContextWriter.close();
+			w.mediumContextWriter.close();
+			w.largeContextWriter.close();
 		}
 	}
 	

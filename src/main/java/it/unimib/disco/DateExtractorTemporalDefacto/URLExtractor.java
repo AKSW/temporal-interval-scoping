@@ -17,33 +17,28 @@ import org.json.JSONObject;
 
 import umontreal.iro.lecuyer.probdist.NormalDist;
 
-class URLExtractor implements Runnable {
-	URL _u;
-	String _start,_end;
+class URLExtractor {
 	
 	public PrintWriter smallContextWriter;
 	public PrintWriter mediumContextWriter;
 	public PrintWriter largeContextWriter;
 	
-	public URLExtractor(URL u, String start, String end) {
-		_u = u;
-		_start=start;
-		_end=end;
+	public URLExtractor() {
 		
 		try {
-			smallContextWriter = new PrintWriter(new FileOutputStream("sortbyplayer-labels-with-space_out_small.csv"));
-			mediumContextWriter = new PrintWriter(new FileOutputStream("sortbyplayer-labels-with-space_out_medium.csv"));
-			largeContextWriter = new PrintWriter(new FileOutputStream("sortbyplayer-labels-with-space_out_large.csv"));
+			smallContextWriter = new PrintWriter(new FileOutputStream("sortbyplayer-labels-with-space_out_small.csv", true));
+			mediumContextWriter = new PrintWriter(new FileOutputStream("sortbyplayer-labels-with-space_out_medium.csv", true));
+			largeContextWriter = new PrintWriter(new FileOutputStream("sortbyplayer-labels-with-space_out_large.csv", true));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	public void run() {
+	public void run(URL url, String start, String end) {
 		
 		try {
-			HttpURLConnection conn = (HttpURLConnection)_u.openConnection();
+			HttpURLConnection conn = (HttpURLConnection)url.openConnection();
 			conn.setConnectTimeout(10*100000);
 			conn.setReadTimeout(10*100000);
 			conn.addRequestProperty("User-Agent", "Data Quality bot (anisa.rula@disco.unimib.it)");
@@ -63,12 +58,12 @@ class URLExtractor implements Runnable {
 			JSONObject medium = json.getJSONObject("medium");
 			JSONObject large = json.getJSONObject("large");
 			
-			processData(small, subject, predicate, object, this.smallContextWriter);
-			processData(medium, subject, predicate, object, this.smallContextWriter);
-			processData(large, subject, predicate, object, this.smallContextWriter);
+			processData(small, subject, predicate, object, this.smallContextWriter, start, end);
+			processData(medium, subject, predicate, object, this.mediumContextWriter, start, end);
+			processData(large, subject, predicate, object, this.largeContextWriter, start, end);
 		}
 		catch (Exception e) {
-			System.err.println("Problem with " + _u + ": " + e.getMessage());
+			System.err.println("Problem with " + url + ": " + e.getMessage());
 			e.printStackTrace();
 		}
 		
@@ -76,8 +71,10 @@ class URLExtractor implements Runnable {
 	
 	/**
 	 * best method name ever
+	 * @param end 
+	 * @param start 
 	 */
-	public void processData(JSONObject context, Object subject, Object predicate, Object object, PrintWriter wirter){
+	public void processData(JSONObject context, Object subject, Object predicate, Object object, PrintWriter writer, String start, String end){
 		
 		HashSet<ArrayList<String>> facts = new HashSet<ArrayList<String>>();
 		
@@ -91,8 +88,8 @@ class URLExtractor implements Runnable {
 			fact.add(subject.toString());
 			fact.add(predicate.toString());
 			fact.add(object.toString());
-			fact.add(_start);
-			fact.add(_end);
+			fact.add(start);
+			fact.add(end);
 			fact.add(timepoint);
 			try {
 				fact.add(context.get(timepoint).toString());
@@ -110,8 +107,9 @@ class URLExtractor implements Runnable {
 		//statisticalCalculator(facts);
 		//factsProb= probabilityCalculator(statisticalCalculator(facts), facts);
 		for (ArrayList<String> str: factsProb){
-			wirter.println(str);
+			writer.println(str);
 		}
+		writer.flush();
 	}
 	
 	
