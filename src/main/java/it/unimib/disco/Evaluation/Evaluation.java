@@ -24,8 +24,7 @@ public class Evaluation {
 		HashMap<String,ArrayList<String>> yagoIntervals=yagoIntervalsUri.get(Uri);
 		
 		int relevantIntervals=yagoIntervals.size();
-
-		
+	
 		double overlapPrec=0,overlapRecall=0,overlapFM=0;
 
 		
@@ -34,11 +33,12 @@ public class Evaluation {
 			HashSet<ArrayList<String>> intervalsRedu = tempodefactoIntervals.get(obj);
 
 			ArrayList<String> yagoInterval = yagoIntervals.get(obj);
+
 			String yagoStart = yagoInterval.get(0);
 			String yagoEnd = yagoInterval.get(1);
 			
 			MatrixPruningCreator mpc= new MatrixPruningCreator();
-			double countTcorrect =0.0,countTincorrect =0.0;
+			double countTcorrect =0.0;
 			long yearDistanceYago = 0,yearDistance,yearDistanceTot=0;
 			
 			
@@ -59,7 +59,7 @@ public class Evaluation {
 					relevantIntervals=relevantIntervals-1;
 				}
 				else{
-					if(yagoEnd.contains("null")){
+					if(yagoEnd.contains("NOW")){
 						yagoEnd="2013";
 						
 						Date yagoStartDt= mpc.stringToLong(yagoStart);
@@ -75,50 +75,50 @@ public class Evaluation {
 						
 						if (int1.during(int2)||int1.starts(int2)||int1.equals(int2)||int1.finishes(int2)){
 							countTcorrect= countTcorrect+(double)yearDistance;
-							countTincorrect= countTincorrect+((double)yearDistance-(double)yearDistanceYago);
 						}
 						else if (int1.duringInverse(int2)||int1.startsInverse(int2)||int1.finishesInverse(int2)){
 							countTcorrect= countTcorrect+(double)yearDistanceYago;
-							countTincorrect= countTincorrect+((double)yearDistanceYago-(double)yearDistance);
 						}
 						else if (int1.precedes(int2)||int1.follows(int2)){
 							countTcorrect= 0.0;
-							countTincorrect= countTincorrect-(double)yearDistance;
+
 						}
 						else if (int1.meets(int2)||int1.meetsInverse(int2)){
 							countTcorrect= countTcorrect+1;
-							countTincorrect= countTincorrect-((double)yearDistance+1);
+
 						}
 						else{
 							Calendar cal = Calendar.getInstance();
 							if(int1.overlaps(int2)){
-								while (row.before(yagoEndDt)||row.equals(yagoEndDt)){
-									Date i = row;
-									if((i.after(yagoStartDt)||i.equals(yagoStartDt))&&(i.before(yagoEndDt))){
+								Date i = row;
+								while (i.before(yagoEndDt)||i.equals(yagoEndDt)){
+									
+									if((i.after(yagoStartDt)||i.equals(yagoStartDt))&&(i.before(column)||i.equals(column))){
 										countTcorrect= countTcorrect+1;
 									}
 									else{
-										countTincorrect= countTincorrect-1;
+
 									}
 									
-									cal.setTime(row);
+									cal.setTime(i);
 									cal.add(Calendar.YEAR, 1);
-									row = cal.getTime();
+									i = cal.getTime();
 
 								}
 							}
 							else if (int1.overlapsInverse(int2)){
-								while (yagoStartDt.before(column)||yagoStartDt.equals(column)){
-									Date i = yagoStartDt;
+								Date i = yagoStartDt;
+								while (i.before(column)||i.equals(column)){
+									
 									if((i.after(row)||i.equals(row))&&(i.before(yagoEndDt)||i.equals(yagoEndDt))){
 										countTcorrect= countTcorrect+1;
 									}
 									else{
-										countTincorrect= countTincorrect-1;
+
 									}
-									cal.setTime(yagoStartDt);
+									cal.setTime(i);
 									cal.add(Calendar.YEAR, 1);
-									yagoStartDt = cal.getTime();
+									i = cal.getTime();
 								}
 							}
 						}
@@ -139,50 +139,52 @@ public class Evaluation {
 						
 						if (int1.during(int2)||int1.starts(int2)||int1.equals(int2)||int1.finishes(int2)){
 							countTcorrect= countTcorrect+(double)yearDistance;
-							countTincorrect= countTincorrect+((double)yearDistance-(double)yearDistanceYago);
+
 						}
 						else if (int1.duringInverse(int2)||int1.startsInverse(int2)||int1.finishesInverse(int2)){
 							countTcorrect= countTcorrect+(double)yearDistanceYago;
-							countTincorrect= countTincorrect+((double)yearDistanceYago-(double)yearDistance);
+
 						}
 						else if (int1.precedes(int2)||int1.follows(int2)){
 							countTcorrect= 0.0;
-							countTincorrect= countTincorrect-(double)yearDistance;
+
 						}
 						else if (int1.meets(int2)||int1.meetsInverse(int2)){
 							countTcorrect= countTcorrect+1;
-							countTincorrect= countTincorrect-((double)yearDistance+1);
+
 						}
 						else{
 							Calendar cal = Calendar.getInstance();
 							if(int1.overlaps(int2)){
-								while (row.before(yagoEndDt)||row.equals(yagoEndDt)){
-									Date i = row;
-									if((i.after(yagoStartDt)||i.equals(yagoStartDt))&&(i.before(yagoEndDt))){
+								Date i = row;
+								while (i.before(yagoEndDt)||i.equals(yagoEndDt)){
+									
+									if((i.after(yagoStartDt)||i.equals(yagoStartDt))&&(i.before(column)||i.equals(column))){
 										countTcorrect= countTcorrect+1;
 									}
 									else{
-										countTincorrect= countTincorrect-1;
+
 									}
 									
-									cal.setTime(row);
+									cal.setTime(i);
 									cal.add(Calendar.YEAR, 1);
-									row = cal.getTime();
+									i = cal.getTime();
 
 								}
 							}
 							else if (int1.overlapsInverse(int2)){
-								while (yagoStartDt.before(column)||yagoStartDt.equals(column)){
-									Date i = yagoStartDt;
+								Date i = yagoStartDt;
+								while (i.before(column)||i.equals(column)){
+									
 									if((i.after(row)||i.equals(row))&&(i.before(yagoEndDt)||i.equals(yagoEndDt))){
 										countTcorrect= countTcorrect+1;
 									}
 									else{
-										countTincorrect= countTincorrect-1;
+
 									}
-									cal.setTime(yagoStartDt);
+									cal.setTime(i);
 									cal.add(Calendar.YEAR, 1);
-									yagoStartDt = cal.getTime();
+									i = cal.getTime();
 								}
 							}
 						}
@@ -198,7 +200,12 @@ public class Evaluation {
 		//values for a single temporal interval
 		overlapPrec  = countTcorrect/yearDistanceTot;
 		overlapRecall = countTcorrect/yearDistanceYago;
-		overlapFM  = 2*(overlapPrec*overlapRecall)/(overlapPrec+overlapRecall);
+		if(overlapRecall==0&&overlapPrec==0){
+			overlapFM  = 0;
+		}
+		else{
+			overlapFM  = 2*(overlapPrec*overlapRecall)/(overlapPrec+overlapRecall);
+		}
 		
 		ArrayList<Double> metrics=new ArrayList<Double>();
 		metrics.add(overlapPrec);
@@ -212,8 +219,9 @@ public class Evaluation {
 		metrics.add((double)yearDistanceTot);
 		metrics.add((double)yearDistanceYago);*/
 
-		//pw.println("Subject"+" "+"Object"+" "+"Retrieved Interval"+" "+"Yago Interval"+" "+"Precision"+" "+"Recall"+" "+"F1");
-		pw.println(Uri+" "+obj+" "+intervalsRedu+" "+yagoInterval+" "+overlapPrec+" "+overlapRecall+" "+overlapFM);
+
+		//pw.println(Uri+","+obj+","+overlapPrec+","+overlapRecall+","+overlapFM);
+		pw.println(Uri+";"+obj+";"+intervalsRedu+";"+yagoInterval+";"+overlapPrec+";"+overlapRecall+";"+overlapFM);
 		//pw.println(Uri+" "+obj+" "+intervalsRedu+" "+yagoInterval+" "+countTcorrect+" "+yearDistanceTot+" "+yearDistanceYago);
 		
 		}

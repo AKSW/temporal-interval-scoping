@@ -14,7 +14,7 @@ import org.apache.commons.math.stat.descriptive.moment.Variance;
 
 public class Selection {
 
-	public HashMap<String,HashSet<ArrayList<String>>> selection(HashMap<String,HashSet<ArrayList<String>>> objIntervals){
+	public HashMap<String,HashSet<ArrayList<String>>> selection(int selection, int x, int k, HashMap<String,HashSet<ArrayList<String>>> objIntervals){
 		HashMap<String,HashSet<ArrayList<String>>> objIntervalsRedu = new HashMap<String,HashSet<ArrayList<String>>>();
 		HashSet<ArrayList<String>> sel = new HashSet<ArrayList<String>>();
 		
@@ -22,10 +22,17 @@ public class Selection {
 			
 			HashSet<ArrayList<String>> temporalDCobjIntervals= objIntervals.get(obj);
 			try {
-				//sel=retrieveAbsoluteDeviation(temporalDCobjIntervals);
-				//sel = retrieveMax(temporalDCobjIntervals);
-				//sel=retrieveAVGDeviation(temporalDCobjIntervals);
-				sel=topK(temporalDCobjIntervals);
+				
+				if(selection==1){
+					sel=topK(temporalDCobjIntervals,k);
+
+				}
+				else if(selection==2){
+					sel=proxSelect(temporalDCobjIntervals, x);
+				}
+				else if(selection==3){
+					sel=combinedProxyTopk(temporalDCobjIntervals,x,k);
+				}
 				
 
 			} catch (ParseException e) {
@@ -42,15 +49,122 @@ public class Selection {
 		return objIntervalsRedu;
 	}
 	
-	public HashSet<ArrayList<String>> topK (HashSet<ArrayList<String>> intervals) throws ParseException{
+
+	public HashSet<ArrayList<String>> combinedProxyTopk (HashSet<ArrayList<String>> intervals, int x,int k) throws ParseException{
+			
+
+		HashSet<ArrayList<String>> allIntervals= new HashSet<ArrayList<String>>();
+		
+			ArrayList<String> interMax=new ArrayList<String>();
+			double value=0,max=0;
+			for (ArrayList<String> interv: intervals){
+			
+				if (interv.size() != 0){
+				
+					value=Double.valueOf((interv.get(2).trim()));
+					if(value > max && value!=0.0){
+					
+						max=value;
+
+					}
+				}	
+				
+			}
+			
+			for (ArrayList<String> interv: intervals){
+				
+				if (interv.size() != 0){
+				
+					value=Double.valueOf((interv.get(2).trim()));
+
+					if(value >= max && value!=0.0){
+		
+						interMax=new ArrayList<String>();
+						interMax.add(interv.get(0));
+						interMax.add(interv.get(1));
+						interMax.add(interv.get(2));
+						
+						if (interMax.size()!=0 && k>=1){
+							System.out.println(interMax);
+							allIntervals.add(interMax);
+
+							k--;
+							max=max-(x*max)/100;
+
+						}
+	
+
+					}
+
+				}	
+
+		}
+
+		return allIntervals;
+	}
+	
+	public HashSet<ArrayList<String>> proxSelect (HashSet<ArrayList<String>> intervals, int x) throws ParseException{
 			
 		
 		HashSet<ArrayList<String>> allIntervals= new HashSet<ArrayList<String>>();
 
-		int k=0;
-		double maxProv=5000.00;
+		double maxProv=0;
 		
-		while (k<2){
+	
+			ArrayList<String> interMax=new ArrayList<String>();
+			double value=0,max=0;
+			for (ArrayList<String> interv: intervals){
+			
+				if (interv.size() != 0){
+				
+					value=Double.valueOf((interv.get(2).trim()));
+					if(value > max && value!=0.0){
+					
+						max=value;
+
+					}
+				}	
+				
+			}
+			
+			maxProv=max-(x*max)/100;
+
+			for (ArrayList<String> interv: intervals){
+				
+				if (interv.size() != 0){
+				
+					value=Double.valueOf((interv.get(2).trim()));
+
+					if(value <= max && value >= maxProv && value!=0.0){
+		
+						interMax=new ArrayList<String>();
+						interMax.add(interv.get(0));
+						interMax.add(interv.get(1));
+						interMax.add(interv.get(2));
+						
+						if (interMax.size()!=0){
+							System.out.println(interMax);
+							allIntervals.add(interMax);
+						}
+
+					}
+
+				}	
+				
+			}
+			
+		return allIntervals;
+	}
+	
+	public HashSet<ArrayList<String>> topK (HashSet<ArrayList<String>> intervals, int k) throws ParseException{
+			
+		
+		HashSet<ArrayList<String>> allIntervals= new HashSet<ArrayList<String>>();
+
+
+		double maxProv=5000.00;
+		int count=0;
+		while (count<k){
 			ArrayList<String> interMax=new ArrayList<String>();
 			double value=0,max=0;
 			for (ArrayList<String> interv: intervals){
@@ -76,9 +190,10 @@ public class Selection {
 			
 			maxProv=max;
 			if (interMax.size()!=0){
+				System.out.println(interMax);
 				allIntervals.add(interMax);
 			}
-			k++;
+			count++;
 		}
 		
 		return allIntervals;
