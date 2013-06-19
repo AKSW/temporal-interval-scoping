@@ -1,18 +1,12 @@
 package it.unimib.disco.TemporalIntervalCreator;
 
 import it.unimib.disco.FactExtractor.DateOccurrence;
-import it.unimib.disco.ReadFiles.ReadFiles;
 
-
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
-
-import org.aksw.distributions.Fact;
-import org.aksw.distributions.FactReader;
-import org.aksw.distributions.GlobalNormalization;
 
 public class TemporalIntervalFactAssociator {
 
@@ -141,80 +135,8 @@ public class TemporalIntervalFactAssociator {
 	}
 
 
-	public HashMap<String,HashMap<String,HashSet<ArrayList<String>>>> groupOccuByYear(List<String> temporaldefacto){
-		ReadFiles rf=new ReadFiles();
-		HashSet<ArrayList<String>> fileNormalized=rf.readCommaSeparatedFile(temporaldefacto);
-		//HashSet<List<String>> fileNormalized = normalizeFrequency(file);
-		
-		HashMap<String,HashMap<String,HashSet<ArrayList<String>>>> res = new HashMap<String,HashMap<String,HashSet<ArrayList<String>>>>();
-	
-		HashMap<String,HashSet<ArrayList<String>>> yearOccu = new HashMap<String,HashSet<ArrayList<String>>>();
-		
-		HashSet<ArrayList<String>> yearOccs = new HashSet<ArrayList<String>>();
-		
-		for (List<String> record:fileNormalized){
-			
-			ArrayList<String> yO = new ArrayList<String>();
-			//System.out.println(record.get(0)+" "+record.get(2));
-			if (!res.containsKey(record.get(0))){
-				yearOccu = new HashMap<String,HashSet<ArrayList<String>>>();
-				res.put(record.get(0), yearOccu);
-			}
-			
-			yearOccu=res.get(record.get(0));
-			if(!yearOccu.containsKey(record.get(2))){
-				
-				yearOccs = new HashSet<ArrayList<String>>();
-				yearOccu.put(record.get(2),yearOccs);
-			}
-			
-			yearOccs=yearOccu.get(record.get(2));
-			yO.add(record.get(5)); //timepoint
-			yO.add(record.get(6)); //occurrence of timepoint
-			
-			yearOccs.add(yO);
 
-			yearOccu.put(record.get(2),yearOccs);
-
-
-			res.put(record.get(0), yearOccu);
-		 }
-		
-	
-		/*for ( String str: res.keySet()){
-			HashMap<String, HashSet<ArrayList<String>>> hm = res.get(str);
-			for (String obj: hm.keySet()){
-				System.out.println(str+" "+ obj+" "+ hm.get(obj));
-			}
-		}
-		*/
-		return res;
-	}
-	
-	//normalization function
-	public HashSet<List<String>> normalizeFrequency(HashSet<ArrayList<String>> file){
-		HashSet<List<String>> normalizedFile = new HashSet<List<String>>();
-		List<Fact> facts = new ArrayList<Fact>();
-		
-		for (List<String> f:file){
-			Fact fact = FactReader.readFact(f);
-			
-	        facts.add(fact);
-
-        }
-        facts = (new GlobalNormalization()).normalize(facts);
-			
-       
-        for (Fact f:facts){
-        	normalizedFile.add(FactReader.listFromFact(f));
-        }
-		
-
-		return normalizedFile;
-	}
-	
-	public HashSet<ArrayList<String>> dcCalculator(HashSet<ArrayList<String>> yearOccu,DateOccurrence [][] matrixMD){
-			//PrintWriter pw){
+	public HashSet<ArrayList<String>> dcCalculator(int normalizationType, HashSet<ArrayList<String>> yearOccu,DateOccurrence [][] matrixMD,PrintWriter pw){
 		
 	
 		ArrayList<String> occurrence = new ArrayList<String>();
@@ -241,12 +163,19 @@ public class TemporalIntervalFactAssociator {
 						Date column = mpc.stringToLong(m[0][j].getDate());
 						Date row = mpc.stringToLong(m[i][0].getDate());
 						
+						double formula=0d;
 						
-						//double formula=hitCount(row,column,yearOccu);
-						
-						double hit=hitCount(row,column,yearOccu);
-						double formula= hit/duration; 
-						
+						if(normalizationType==1){
+							//no normalization 
+							double hit=hitCountNoNormalization(row,column,yearOccu);
+							formula= hit/duration; 
+						}
+						else{
+							//normalization
+							formula=hitCountNormalization(normalizationType,row,column,yearOccu);
+	
+						}
+
 						occurrence = new ArrayList<String>();
 						occurrence.add(String.valueOf(formula));
 						
@@ -268,9 +197,9 @@ public class TemporalIntervalFactAssociator {
 					
 					}
 
-					//pw.print(m[i][j].getDate()+""+ m[i][j].getOccurrence()+";");
+					pw.print(m[i][j].getDate()+""+ m[i][j].getOccurrence()+";");
 					
-				}//pw.println();
+				}pw.println();
 				
 			}
 
@@ -279,23 +208,48 @@ public class TemporalIntervalFactAssociator {
 		
 	}
 	
-	public double hitCount(Date row, Date column,HashSet<ArrayList<String>> yearOccu ){
+	public double hitCountNoNormalization(Date row, Date column,HashSet<ArrayList<String>> yearOccu ){
 		double hit=0;
 		MatrixPruningCreator mpc= new MatrixPruningCreator();
-		int count=0;
-		for (ArrayList<String> value: yearOccu){
 
+		for (ArrayList<String> value: yearOccu){
+			
 	            Date year= mpc.stringToLong(value.get(0));
 
 	            if((column.after(year)||column.equals(year))&&(row.before(year)||row.equals(year))){
 
-	            	hit=hit+Double.valueOf(value.get(1).trim());
+	            	hit=hit+Double.valueOf(value.get(1).trim());//occurrence value
+
+	            }
+		}
+
+		return hit;
+		
+	}
+	
+	public double hitCountNormalization(int normalizationType,Date row, Date column, HashSet<ArrayList<String>> yearOccu ){
+		double hit=0;
+		MatrixPruningCreator mpc= new MatrixPruningCreator();
+		int count=0;
+		for (ArrayList<String> value: yearOccu){
+	            Date year= mpc.stringToLong(value.get(0));
+
+	            if((column.after(year)||column.equals(year))&&(row.before(year)||row.equals(year))){
+	            	if(normalizationType==2){
+	            		hit=hit+Double.valueOf(value.get(2).trim());//local normalization value
+	            	}
+	            	else{
+	            		hit=hit+Double.valueOf(value.get(1).trim());//occurrence value
+	            	}
+	            	
+	            	//
 	            	count++;
 			
 	            }
 		}
+
 		if (count>0){
-		hit=hit/count;
+			hit=hit/count;
 		}
 
 		return hit;
