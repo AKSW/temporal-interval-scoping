@@ -34,17 +34,17 @@ public static void main (String []args) throws FileNotFoundException{
 	} else {
 		
 		// Resource URI extraction
-		List<String> resURIs = ReadFiles.getURIs(TemporalIntervalCreator.class.getResource(args[0]).getFile()));
+		List<String> resURIs = ReadFiles.getURIs(new File(args[0]));
 		logger.info("DBpedia resources list file parsed");
 
 		
 		// Read temporalDefacto facts
-		List<String> temporalDefactoFacts = ReadFiles.getURIs(TemporalIntervalCreator.class.getResource(args[1]).getFile()));
+		List<String> temporalDefactoFacts = ReadFiles.getURIs(new File(args[1]));
 		logger.info("TemporalDefacto facts parsed");
 		
 		
 		//Read gold standard facts
-		List<String> yagoFacts = ReadFiles.getURIs(TemporalIntervalCreator.class.getResource(args[2]).getFile()));
+		List<String> yagoFacts = ReadFiles.getURIs(new File(args[2]));
 		logger.info("Yago facts parsed");
 		
 
