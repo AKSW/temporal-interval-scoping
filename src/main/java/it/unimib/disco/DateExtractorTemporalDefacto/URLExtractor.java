@@ -78,6 +78,7 @@ class URLExtractor {
 		
 		HashSet<ArrayList<String>> facts = new HashSet<ArrayList<String>>();
 		
+		@SuppressWarnings("rawtypes")
 		Iterator it= context.keys();
 		while(it.hasNext()){
 							

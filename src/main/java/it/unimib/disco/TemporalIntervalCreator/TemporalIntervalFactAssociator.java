@@ -41,16 +41,27 @@ public class TemporalIntervalFactAssociator {
 		
 	}
 	
-	public HashMap<String,DateOccurrence [][]> matrixYearsDuration(HashMap<String, DateOccurrence [][]> reducedMatrix2){
+	public DateOccurrence [][] matrixYearsDuration(DateOccurrence [][] mRed){
 		
-		HashMap<String,DateOccurrence [][]> temporalDCMatrixURI = new HashMap<String,DateOccurrence [][]>();
 		ArrayList<String> occurrence = new ArrayList<String>();
 
+		DateOccurrence [][] temporalDCMatrix= new DateOccurrence[mRed.length][mRed.length];
 		
-		for (String Uri: reducedMatrix2.keySet()){
-			DateOccurrence [][] temporalDCMatrix= reducedMatrix2.get(Uri);
+		occurrence.add("End");
+		temporalDCMatrix[0][0]= new DateOccurrence("[Start]/", occurrence);
+
+		
+		for(int l=1; l<temporalDCMatrix.length; l++){
+			temporalDCMatrix[l][0] = mRed[l][0];
+
+		}
+		
+		
+		for(int m=1; m<temporalDCMatrix.length; m++){
+			temporalDCMatrix[0][m]= mRed[0][m];
+		}
 			
-			for (int i=1; i<temporalDCMatrix.length; i++){
+		for (int i=1; i<temporalDCMatrix.length; i++){
 				for(int j=1; j<temporalDCMatrix[i].length; j++){
 					
 					if(j>=i){
@@ -60,7 +71,7 @@ public class TemporalIntervalFactAssociator {
 						Date row = mpc.stringToLong(temporalDCMatrix[i][0].getDate());
 						long millisecDistance = column.getTime()-row.getTime();
 						long dayDistance= millisecDistance/(1000 * 60 * 60 * 24);
-						long yearDistance= dayDistance/365;
+						long yearDistance= dayDistance/365+1;
 						occurrence = new ArrayList<String>();
 						occurrence.add(String.valueOf(yearDistance));
 						
@@ -73,10 +84,17 @@ public class TemporalIntervalFactAssociator {
 					}
 				}
 			}
-			temporalDCMatrixURI.put(Uri, temporalDCMatrix);
-		}
+			
 		
-		return temporalDCMatrixURI;
+		/*for (int i=0; i<temporalDCMatrix.length;i++){
+			for (int j=0;j<temporalDCMatrix[i].length;j++){
+				
+				System.out.print(temporalDCMatrix[i][j].getDate()+""+ temporalDCMatrix[i][j].getOccurrence()+";");
+			}
+			System.out.println();
+
+	}*/
+		return temporalDCMatrix;
 		
 	}
 	
@@ -122,7 +140,7 @@ public class TemporalIntervalFactAssociator {
 				}
 	
 			}
-/*			for (int i=0; i<temporalDCMatrix.length;i++){
+			/*for (int i=0; i<temporalDCMatrix.length;i++){
 			for (int j=0;j<temporalDCMatrix[i].length;j++){
 				
 				System.out.print(temporalDCMatrix[i][j].getDate()+""+ temporalDCMatrix[i][j].getOccurrence()+";");
@@ -156,6 +174,7 @@ public class TemporalIntervalFactAssociator {
 					else if(j>i&&!(matrixMD[i][j].getOccurrence().get(0).contains("0"))){
 						
 						String occuMatrix = matrixMD[i][j].getOccurrence().get(0).trim();
+						
 						int duration = Integer.valueOf(occuMatrix);
 						
 						MatrixPruningCreator mpc= new MatrixPruningCreator();
@@ -173,7 +192,7 @@ public class TemporalIntervalFactAssociator {
 						else{
 							//normalization
 							formula=hitCountNormalization(normalizationType,row,column,yearOccu);
-	
+							
 						}
 
 						occurrence = new ArrayList<String>();
@@ -192,7 +211,7 @@ public class TemporalIntervalFactAssociator {
 						m[i][j]= new DateOccurrence("", occurrence);
 					}
 					if(interval.size()!=0){
-					
+					//System.out.println(interval);
 						intervals.add(interval);
 					
 					}
@@ -233,7 +252,7 @@ public class TemporalIntervalFactAssociator {
 		int count=0;
 		for (ArrayList<String> value: yearOccu){
 	            Date year= mpc.stringToLong(value.get(0));
-
+	            //System.out.println(row+" "+column+" "+value.get(1).trim());
 	            if((column.after(year)||column.equals(year))&&(row.before(year)||row.equals(year))){
 	            	if(normalizationType==2){
 	            		hit=hit+Double.valueOf(value.get(2).trim());//local normalization value
@@ -250,6 +269,9 @@ public class TemporalIntervalFactAssociator {
 
 		if (count>0){
 			hit=hit/count;
+		}
+		else{
+			hit=0;
 		}
 
 		return hit;

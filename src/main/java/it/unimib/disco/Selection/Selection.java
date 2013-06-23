@@ -190,7 +190,7 @@ public class Selection {
 			
 			maxProv=max;
 			if (interMax.size()!=0){
-				System.out.println(interMax);
+
 				allIntervals.add(interMax);
 			}
 			count++;
