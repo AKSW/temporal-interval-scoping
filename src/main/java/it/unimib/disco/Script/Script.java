@@ -45,6 +45,11 @@ public class Script {
 		int k=0,x=0;
 		Scanner read = new Scanner(System.in); 
 		
+		do{
+			System.out.println("Please choose one of the selection function: 1- topK, 2- proxy, 3 - neighbor:");
+			selection=read.nextInt();
+		}while(selection < 1  && selection>3);
+		
 		//selection function top-k
 		if(selection==1){
 			normalization = 1;//no-normalization
@@ -201,13 +206,19 @@ public class Script {
 				for (String obj: er.keySet()){
 					ArrayList<Double> metrics = er.get(obj);
 
-					avgP=avgP+metrics.get(0);
-					avgR=avgR+metrics.get(1);
-					avgF=avgF+metrics.get(2);
+					if(metrics.get(0).isNaN()||metrics.get(1).isNaN()||metrics.get(2).isNaN()){
+						//System.out.println(uri+" "+obj+" "+metrics.get(0) +" "+ metrics.get(1)+" "+metrics.get(2));
+					}
+					else{
+						avgP=avgP+metrics.get(0);
+						avgR=avgR+metrics.get(1);
+						avgF=avgF+metrics.get(2);
 					
 					total++;
+					}
 				}
 			}
+				
 				double overlapPrec=avgP/total;
 				double overlapRec=avgR/total;
 				double microF1=avgF/total;
