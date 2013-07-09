@@ -61,6 +61,7 @@ public HashMap<String,HashMap<String,ArrayList<Double>>> temporalFact(List<Strin
 
 			
 		HashMap<String,DateOccurrence [][]> reducedMatrix1= dfe.matrixReducerSE(timeAnnotated,maximalMatrixDates);
+		
 	
 		
 		HashMap<String, HashMap<ArrayList<String>,Integer>> timeAnnotated1 = dfe.temporalPredicateExtractor(repositoryDates,false);
@@ -68,7 +69,17 @@ public HashMap<String,HashMap<String,ArrayList<Double>>> temporalFact(List<Strin
 		
 		HashMap<String,DateOccurrence [][]> reducedMatrix2 = dfe.matrixReducerSP(timeAnnotated1,reducedMatrix1);
 		logger.info("Build matrix with starting and ending time points");
-		
+		for (String u: reducedMatrix2.keySet()){
+			DateOccurrence [][] a=reducedMatrix2.get(u);
+			System.out.println(u);
+		for (int i=0; i<a.length;i++){
+			for (int j=0;j<a[i].length;j++){
+				
+				System.out.print(a[i][j].getDate()+""+ a[i][j].getOccurrence()+";");
+			}
+			System.out.println();
+
+	}}
 			
 		NormalizationSelection ns = new NormalizationSelection();
 		HashMap<String,HashMap<String,HashSet<ArrayList<String>>>> groupOccu= ns.groupOccuByYear(normalizationType,temporalDefactoFacts);	

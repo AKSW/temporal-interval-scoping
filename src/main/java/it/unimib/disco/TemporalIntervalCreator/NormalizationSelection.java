@@ -14,8 +14,9 @@ import org.aksw.distributions.GlobalNormalization;
 
 public class NormalizationSelection {
 
+	ReadFiles rf=new ReadFiles();
 	public HashMap<String,HashMap<String,HashSet<ArrayList<String>>>> groupOccuByYear(int normalizationType, List<String> temporaldefacto){
-		ReadFiles rf=new ReadFiles();
+		
 		
 		HashSet<ArrayList<String>> file=rf.readCommaSeparatedFile(temporaldefacto);
 		HashSet<List<String>> fileNormalized= new HashSet<List<String>>();

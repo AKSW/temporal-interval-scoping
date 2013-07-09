@@ -23,6 +23,7 @@ public class Script {
 			HashMap<String,HashMap<String,ArrayList<Double>>> evaluationResult= new HashMap<String,HashMap<String,ArrayList<Double>>>();
 
 		
+		//TemporalIntervalCreatoScriptTD tempAnnot= new TemporalIntervalCreatoScriptTD();
 		TemporalIntervalCreatoScript tempAnnot= new TemporalIntervalCreatoScript();
 	
 		// Resource URI extraction

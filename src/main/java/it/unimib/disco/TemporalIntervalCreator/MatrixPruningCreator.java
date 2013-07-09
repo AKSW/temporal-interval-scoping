@@ -1,6 +1,7 @@
 package it.unimib.disco.TemporalIntervalCreator;
 
 import it.unimib.disco.FactExtractor.DateOccurrence;
+import it.unimib.disco.ReadFiles.ReadFiles;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -23,6 +24,7 @@ import com.hp.hpl.jena.rdf.model.StmtIterator;
 
 
 public class MatrixPruningCreator {
+	ReadFiles rf=new ReadFiles();
 
 	public HashMap<String, HashMap<ArrayList<String>,Integer>> temporalPredicateExtractor(HashMap<String, HashMap<String, HashSet<String>>> repositoryDates,boolean predicate){
 		HashMap<String, HashMap<ArrayList<String>,Integer>> resObjPre = new HashMap<String, HashMap<ArrayList<String>,Integer>>();
@@ -64,17 +66,17 @@ public class MatrixPruningCreator {
 			    	
 			        // object is a literal
 			    	if(verifyDate(object)){
-			    		String objStr = object.toString().substring(0,object.toString().indexOf('.'));
+			    		String dateStr = object.toString().substring(0,object.toString().indexOf('.'));
 
-			    		if (stringToLong(objStr).before(stringToLong("2013-12-31"))){
-				    		if(!objPred.containsKey(objStr)){
+			    		if (stringToLong(dateStr).before(stringToLong("2013-12-31"))){
+				    		if(!objPred.containsKey(dateStr)){
 				    		
 				    			HashSet<String> pred= new HashSet<String>();
-				    			objPred.put(objStr, pred);
+				    			objPred.put(dateStr, pred);
 				    		}
 
 	
-				    		HashSet<String> pred= objPred.get(objStr);
+				    		HashSet<String> pred= objPred.get(dateStr);
 							pred.add(predicate.toString());
 			    		}
 
@@ -92,6 +94,41 @@ public class MatrixPruningCreator {
 		
 		}
 		return result;
+	}
+	
+	public HashMap<String, HashMap<String, HashSet<String>>> fetchDatesTD(List<String> temporaldefacto){
+		
+		HashSet<ArrayList<String>> file=rf.readCommaSeparatedFile(temporaldefacto);
+		HashMap<String, HashMap<String, HashSet<String>>> res = new HashMap<String, HashMap<String, HashSet<String>>>();
+		HashMap<String,HashSet<String>> dateObject = new HashMap<String,HashSet<String>>();
+		HashSet<String> object = new HashSet<String>();
+		
+		for (List<String> record:file){
+					
+			if (!res.containsKey(record.get(0))){
+				dateObject = new HashMap<String,HashSet<String>>();
+				res.put(record.get(0), dateObject);
+			}
+			
+			dateObject=res.get(record.get(0));
+			if (stringToLong(record.get(5)).before(stringToLong("2013-12-31"))&&stringToLong(record.get(5)).after(stringToLong("1980-01-01"))){
+				if(!dateObject.containsKey(record.get(5))){
+					
+					object = new HashSet<String>();
+					dateObject.put(record.get(5),object);
+				}
+				
+				object=dateObject.get(record.get(5));
+				object.add(record.get(2)); //object	
+	
+				dateObject.put(record.get(5),object);
+	
+	
+				res.put(record.get(0), dateObject);
+			}
+		}
+
+		return res;
 	}
 	
 	
