@@ -28,8 +28,6 @@ private static Logger logger = Logger.getLogger(TemporalIntervalCreatoScript.cla
 	
 public HashMap<String,HashMap<String,ArrayList<Double>>> temporalFact(List<String> resURIs,List<String> temporalDefactoFacts,List<String> yagoFacts,int normalizationType,int selection,int k, int x) throws FileNotFoundException{
 
-		
-
 		ResourceFetcher rf = new ResourceFetcher();
 		
 		HashMap<String,OntModel> resourceModel =  rf.fetch(resURIs);

@@ -25,7 +25,7 @@ public class Script {
 		
 		//TemporalIntervalCreatoScriptTD tempAnnot= new TemporalIntervalCreatoScriptTD();
 		
-			TemporalIntervalCreatoScript tempAnnot= new TemporalIntervalCreatoScript();
+		TemporalIntervalCreatoScript tempAnnot= new TemporalIntervalCreatoScript();
 	
 		// Resource URI extraction
 		List<String> resURIs = ReadFiles.getURIs(new File(args[0]));
