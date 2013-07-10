@@ -2,7 +2,7 @@ package it.unimib.disco.Evaluation;
 
 import it.unimib.disco.ReadFiles.ReadFiles;
 import it.unimib.disco.Reasoning.TemporalInterval;
-import it.unimib.disco.TemporalIntervalCreator.MatrixPruningCreator;
+import it.unimib.disco.TemporalIntervalCreator.MatrixCreator;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -37,7 +37,7 @@ public class Evaluation {
 			String yagoStart = yagoInterval.get(0);
 			String yagoEnd = yagoInterval.get(1);
 			
-			MatrixPruningCreator mpc= new MatrixPruningCreator();
+			MatrixCreator mpc= new MatrixCreator();
 			double countTcorrect =0.0;
 			long yearDistanceYago = 0,yearDistance,yearDistanceTot=0;
 			
@@ -247,7 +247,7 @@ public class Evaluation {
 			System.out.println(Uri+" " + obj+ " intervals selected "+ intervalsRedu);
 			ArrayList<String> yagoInterval = yagoIntervals.get(obj);
 			
-			MatrixPruningCreator mpc= new MatrixPruningCreator();
+			MatrixCreator mpc= new MatrixCreator();
 			
 			for(ArrayList<String> interv:intervalsRedu){
 				Date column = mpc.stringToLong(interv.get(1));					

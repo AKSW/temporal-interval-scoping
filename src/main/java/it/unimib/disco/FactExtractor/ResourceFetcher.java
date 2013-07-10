@@ -63,5 +63,36 @@ public class ResourceFetcher {
 		}
 		
 	}
+	
+	public OntModel fetchLocal(String resUri){
+		
+		try {
+			OntModel m = ModelFactory.createOntologyModel();
+			logger.info("Loading ontology model for resource "+resUri);
+			String n3Uri = resUri.replaceAll("resource", "data")+".n3";
+			String r=n3Uri.substring(n3Uri.lastIndexOf('/')+1);
+			System.out.println(r);
+			//Model myRawModel = FileManager.get().loadModel(directory.getAbsoluteFile()+"/resources-ontologies/"+r, "N3");
+			Model myRawModel = FileManager.get().loadModel("D:/Dropbox/dottorato/Projects/KIT/workspace/temporal-interval-scoping/resources-ontologies/Eden_Hazard.n3");
+			// Read into an existing Model
+			Model model = ModelFactory.createDefaultModel();
+			model.read("D:/Dropbox/dottorato/Projects/KIT/workspace/temporal-interval-scoping/resources-ontologies/Eden_Hazard.n3", "N3");
+					
+			model.write(System.out);
+			m.add(myRawModel);
+			return m;
+		} catch (TurtleParseException e) {
+			OntModel m = ModelFactory.createOntologyModel();
+			return m;
+		} catch (NotFoundException nfe){
+			OntModel m = ModelFactory.createOntologyModel();
+			return m;
+		}
+		catch (JenaException je){
+			OntModel m = ModelFactory.createOntologyModel();
+			return m;
+		}
+		
+	}
 
 }

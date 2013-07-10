@@ -23,7 +23,7 @@ import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 
 
-public class MatrixPruningCreator {
+public class MatrixCreator {
 	ReadFiles rf=new ReadFiles();
 
 	public HashMap<String, HashMap<ArrayList<String>,Integer>> temporalPredicateExtractor(HashMap<String, HashMap<String, HashSet<String>>> repositoryDates,boolean predicate){
@@ -54,9 +54,10 @@ public class MatrixPruningCreator {
 			while (iter.hasNext()) {
 				
 			    Statement stmt      = iter.next();  // get next statement
+
 			   // Resource  subject   = stmt.getSubject();     // we are considering only outgoing link so the subject is always rUri
 			    Property  predicate = stmt.getPredicate();   // get the predicate
-			   
+//System.out.println(predicate);
 			    RDFNode   object    = stmt.getObject();      // get the object
 
 			    if (object instanceof Resource) {

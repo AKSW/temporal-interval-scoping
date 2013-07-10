@@ -185,14 +185,16 @@ public class Script {
 	
 		try {
 			BufferedWriter bw;
+			File directory = new File (".");
 			if(selection==1){
-				bw = new BufferedWriter(new FileWriter(new File("evaluation_topK"+"-"+k+"-"+x+".csv")));
+				
+				bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output/"+"evaluation_topK"+"-"+k+"-"+x+".csv")));
 			}
 			else if(selection==2){
-				bw = new BufferedWriter(new FileWriter(new File("evaluation_proxyX"+"-"+k+"-"+x+".csv")));
+				bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output/"+"evaluation_proxyX"+"-"+k+"-"+x+".csv")));
 			}
 			else{
-				bw = new BufferedWriter(new FileWriter(new File("evaluation_neighbor"+"-"+k+"-"+x+".csv")));
+				bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output/"+"evaluation_neighbor"+"-"+k+"-"+x+".csv")));
 			}
 			
 			bw.write("normalizationType"+","+"overlapPrec"+","+"overlapRecall"+","+"Micro-F1"+","+"Macro-F1"+"\n" );

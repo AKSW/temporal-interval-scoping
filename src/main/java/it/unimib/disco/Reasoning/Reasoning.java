@@ -1,6 +1,6 @@
 package it.unimib.disco.Reasoning;
 
-import it.unimib.disco.TemporalIntervalCreator.MatrixPruningCreator;
+import it.unimib.disco.TemporalIntervalCreator.MatrixCreator;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,7 +13,7 @@ public class Reasoning {
 		HashSet<ArrayList<String>> intervResult= new HashSet<ArrayList<String>>();
 		ArrayList<String> interval= new ArrayList<String>();
 	
-		MatrixPruningCreator mpc= new MatrixPruningCreator();
+		MatrixCreator mpc= new MatrixCreator();
 			String startDateStr1=interval1.get(0);
 			String	endDateStr1=interval1.get(1);
 			String	startDateStr2=interval2.get(0);

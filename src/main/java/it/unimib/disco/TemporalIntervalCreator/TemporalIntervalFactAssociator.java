@@ -66,7 +66,7 @@ public class TemporalIntervalFactAssociator {
 					
 					if(j>=i){
 						
-						MatrixPruningCreator mpc= new MatrixPruningCreator();
+						MatrixCreator mpc= new MatrixCreator();
 						Date column = mpc.stringToLong(temporalDCMatrix[0][j].getDate());
 						Date row = mpc.stringToLong(temporalDCMatrix[i][0].getDate());
 						long millisecDistance = column.getTime()-row.getTime();
@@ -177,7 +177,7 @@ public class TemporalIntervalFactAssociator {
 						
 						int duration = Integer.valueOf(occuMatrix);
 						
-						MatrixPruningCreator mpc= new MatrixPruningCreator();
+						MatrixCreator mpc= new MatrixCreator();
 						
 						Date column = mpc.stringToLong(m[0][j].getDate());
 						Date row = mpc.stringToLong(m[i][0].getDate());
@@ -229,7 +229,7 @@ public class TemporalIntervalFactAssociator {
 	
 	public double hitCountNoNormalization(Date row, Date column,HashSet<ArrayList<String>> yearOccu ){
 		double hit=0;
-		MatrixPruningCreator mpc= new MatrixPruningCreator();
+		MatrixCreator mpc= new MatrixCreator();
 
 		for (ArrayList<String> value: yearOccu){
 			
@@ -248,7 +248,7 @@ public class TemporalIntervalFactAssociator {
 	
 	public double hitCountNormalization(int normalizationType,Date row, Date column, HashSet<ArrayList<String>> yearOccu ){
 		double hit=0;
-		MatrixPruningCreator mpc= new MatrixPruningCreator();
+		MatrixCreator mpc= new MatrixCreator();
 		int count=0;
 		for (ArrayList<String> value: yearOccu){
 	            Date year= mpc.stringToLong(value.get(0));
@@ -280,7 +280,7 @@ public class TemporalIntervalFactAssociator {
 	
 	public int hitWeighted(Date row, Date column,HashSet<ArrayList<String>> yearOccu ){
 		int hit=0;
-		MatrixPruningCreator mpc= new MatrixPruningCreator();
+		MatrixCreator mpc= new MatrixCreator();
 		for (ArrayList<String> value: yearOccu){
 
 	            Date year= mpc.stringToLong(value.get(0));

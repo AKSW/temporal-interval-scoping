@@ -67,7 +67,7 @@ public static void main (String []args) throws FileNotFoundException{
 		int k=1; //k>0;
 		
 		// date and fact extractor
-		MatrixPruningCreator dfe = new MatrixPruningCreator();
+		MatrixCreator dfe = new MatrixCreator();
 					
 		HashMap<String, HashMap<String, HashSet<String>>> repositoryDates =  dfe.fetchDates(resourceModel);
 		logger.info("Retrieved all dbpedia's property value of type date");

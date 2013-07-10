@@ -5,12 +5,15 @@ import it.unimib.disco.FactExtractor.DateOccurrence;
 import it.unimib.disco.FactExtractor.ResourceFetcher;
 import it.unimib.disco.Reasoning.Reasoning;
 import it.unimib.disco.Selection.Selection;
-import it.unimib.disco.TemporalIntervalCreator.MatrixPruningCreator;
+import it.unimib.disco.TemporalIntervalCreator.MatrixCreator;
 import it.unimib.disco.TemporalIntervalCreator.NormalizationSelection;
 import it.unimib.disco.TemporalIntervalCreator.TemporalIntervalFactAssociator;
 
+
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -31,29 +34,39 @@ public HashMap<String,HashMap<String,ArrayList<Double>>> temporalFact(List<Strin
 		ResourceFetcher rf = new ResourceFetcher();
 		
 		HashMap<String,OntModel> resourceModel =  rf.fetch(resURIs);
-		logger.info("Retrieved all dbpedia's entity description");
+		logger.info("Retrieved all entity documents");
+		
+		FileOutputStream fos,fos1;
+		File directory = new File (".");
+		if(selection==1){
+			fos = new FileOutputStream(directory.getAbsolutePath()+"/output/matrix/"+"matrix_topK"+"-"+k+"-"+x+".csv");
+			fos1 = new FileOutputStream(directory.getAbsolutePath()+"/output/interval/"+"evaluationWithIntervals_topK"+"-"+k+"-"+x+".csv");
+			
+		}
+		else if(selection==2){
+			fos = new FileOutputStream(directory.getAbsolutePath()+"/output/matrix/"+"matrix_proxyX"+"-"+k+"-"+x+".csv");
+			fos1 = new FileOutputStream(directory.getAbsolutePath()+"/output/interval/"+"evaluationWithIntervals_proxyX"+"-"+k+"-"+x+".csv");
+			
+		}
+		else{
+			fos = new FileOutputStream(directory.getAbsolutePath()+"/output/matrix/"+"matrix_neighbor"+"-"+k+"-"+x+".csv");
+			fos1 = new FileOutputStream(directory.getAbsolutePath()+"/output/interval/"+"evaluationWithIntervals_neighbor"+"-"+k+"-"+x+".csv");
+			
+		}
 		
 
-		FileOutputStream fos = new FileOutputStream("temporalIntervalCreator_out2.csv");
 		PrintWriter pw = new PrintWriter(fos);
-		
-		FileOutputStream fos1 = new FileOutputStream("evaluationWithIntervals.csv");
 		PrintWriter pw1 = new PrintWriter(fos1);
 		
-		/***********Configuration setup**
-		int normalizationType= 4; // no-normalization =1, local-normalization=2, global-normalization =3, chi-square-normalization=4
-		int selection= 3; // topK =1, proxy=2, combined =3
-		int x=3;
-		int k=3; //k>0;*/
-		
+	
 		// date and fact extractor
-		MatrixPruningCreator dfe = new MatrixPruningCreator();
+		MatrixCreator dfe = new MatrixCreator();
 					
 		HashMap<String, HashMap<String, HashSet<String>>> repositoryDates =  dfe.fetchDates(resourceModel);
-		logger.info("Retrieved all dbpedia's property value of type date");
+		logger.info("Retrieved all dbpedia's objects of type date");
 		
 		HashMap<String, DateOccurrence [][]> maximalMatrixDates =  dfe.maximalMatrixCreator(repositoryDates);
-		
+				
 		
 		HashMap<String, HashMap<ArrayList<String>,Integer>> timeAnnotated = dfe.temporalPredicateExtractor(repositoryDates,true);
 
