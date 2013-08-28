@@ -24,6 +24,10 @@ public class DateOccurrence {
 		this.date = initialDate;
 		this.occurrence = initialOccurrence;
 	}
+	public DateOccurrence(String initialDate){
+		this.date = initialDate;
+
+	}
 	public String getDate(){
 
 		return date;

@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+
+import org.aksw.distributions.Fact;
+import org.aksw.distributions.Fact.Entry;
 
 public class TemporalIntervalFactAssociator {
 
@@ -154,7 +158,7 @@ public class TemporalIntervalFactAssociator {
 
 
 
-	public HashSet<ArrayList<String>> dcCalculator(int normalizationType, HashSet<ArrayList<String>> yearOccu,DateOccurrence [][] matrixMD,PrintWriter pw){
+	public HashSet<ArrayList<String>> dcCalculator(int normalizationType, List<Fact> f,DateOccurrence [][] matrixMD,PrintWriter pw){
 		
 	
 		ArrayList<String> occurrence = new ArrayList<String>();
@@ -186,12 +190,12 @@ public class TemporalIntervalFactAssociator {
 						
 						if(normalizationType==1){
 							//no normalization 
-							double hit=hitCountNoNormalization(row,column,yearOccu);
+							double hit=hitCountNoNormalization(row,column,f);
 							formula= hit/duration; 
 						}
 						else{
 							//normalization
-							formula=hitCountNormalization(normalizationType,row,column,yearOccu);
+							formula=hitCountNormalization(normalizationType,row,column,f);
 							
 						}
 
@@ -211,12 +215,12 @@ public class TemporalIntervalFactAssociator {
 						m[i][j]= new DateOccurrence("", occurrence);
 					}
 					if(interval.size()!=0){
-					//System.out.println(interval);
+
 						intervals.add(interval);
 					
 					}
 
-					pw.print(m[i][j].getDate()+""+ m[i][j].getOccurrence()+";");
+					pw.print(m[i][j].getDate()+""+ m[i][j].getOccurrence()+",");
 					
 				}pw.println();
 				
@@ -227,17 +231,17 @@ public class TemporalIntervalFactAssociator {
 		
 	}
 	
-	public double hitCountNoNormalization(Date row, Date column,HashSet<ArrayList<String>> yearOccu ){
+	public double hitCountNoNormalization(Date row, Date column,List<Fact> list ){
 		double hit=0;
 		MatrixCreator mpc= new MatrixCreator();
 
-		for (ArrayList<String> value: yearOccu){
+		for (Fact f:list){
 			
-	            Date year= mpc.stringToLong(value.get(0));
-
+	            Date year= mpc.stringToLong(f.get(Entry.DATE));
+	            
 	            if((column.after(year)||column.equals(year))&&(row.before(year)||row.equals(year))){
-
-	            	hit=hit+Double.valueOf(value.get(1).trim());//occurrence value
+	            
+	            	hit=hit+Double.valueOf(f.get(Entry.SCORE).trim());//occurrence value
 
 	            }
 		}
@@ -246,22 +250,17 @@ public class TemporalIntervalFactAssociator {
 		
 	}
 	
-	public double hitCountNormalization(int normalizationType,Date row, Date column, HashSet<ArrayList<String>> yearOccu ){
+	public double hitCountNormalization(int normalizationType,Date row, Date column, List<Fact> list ){
 		double hit=0;
 		MatrixCreator mpc= new MatrixCreator();
 		int count=0;
-		for (ArrayList<String> value: yearOccu){
-	            Date year= mpc.stringToLong(value.get(0));
-	            //System.out.println(row+" "+column+" "+value.get(1).trim());
+		for (Fact f:list){
+	            Date year= mpc.stringToLong(f.get(Entry.DATE));
+
 	            if((column.after(year)||column.equals(year))&&(row.before(year)||row.equals(year))){
-	            	if(normalizationType==2){
-	            		hit=hit+Double.valueOf(value.get(2).trim());//local normalization value
-	            	}
-	            	else{
-	            		hit=hit+Double.valueOf(value.get(1).trim());//occurrence value
-	            	}
-	            	
-	            	//
+
+	            		hit=hit+Double.valueOf(f.get(Entry.SCORE).trim());//occurrence value
+
 	            	count++;
 			
 	            }

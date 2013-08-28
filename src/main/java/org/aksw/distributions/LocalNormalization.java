@@ -4,8 +4,13 @@
  */
 package org.aksw.distributions;
 
-import com.hp.hpl.jena.sparql.function.library.date;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import org.aksw.distributions.Fact.Entry;
 
 /**
@@ -24,28 +29,28 @@ public class LocalNormalization implements Normalization {
         Map<String, Set<String>> dates = new HashMap<String, Set<String>>();
         for (Fact f : copy) {
             String uri = f.get(Entry.SUBJECT);
-            String predicate = f.get(Entry.PREDICATE);
+            String object = f.get(Entry.OBJECT);
 
             if (!dates.containsKey(uri)) {
                 dates.put(uri, new HashSet<String>());
             }
-            if (!dates.get(uri).contains(predicate)) {
-                dates.get(uri).add(predicate);
+            if (!dates.get(uri).contains(object)) {
+                dates.get(uri).add(object);
             }
         }
 
         //update the values
         double total;
         for (String subject : dates.keySet()) {
-            for (String property : dates.get(subject)) {
+            for (String object : dates.get(subject)) {
                 total = 0d;
                 for (Fact f : copy) {
-                    if (f.get(Entry.SUBJECT).equals(subject) && f.get(Entry.PREDICATE).equals(property)) {
+                    if (f.get(Entry.SUBJECT).equals(subject) && f.get(Entry.OBJECT).equals(object)) {
                         total = total + Double.parseDouble(f.get(Entry.SCORE));
                     }
                 }
                 for (Fact f : copy) {
-                    if (f.get(Entry.SUBJECT).equals(subject) && f.get(Entry.PREDICATE).equals(property)) {
+                    if (f.get(Entry.SUBJECT).equals(subject) && f.get(Entry.OBJECT).equals(object)) {
                         f.add(Entry.SCORE, (Double.parseDouble(f.get(Entry.SCORE)) / total) + "");
                     }
                 }

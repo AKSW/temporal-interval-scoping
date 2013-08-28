@@ -1,5 +1,7 @@
 package it.unimib.disco.FactExtractor;
 
+import it.unimib.disco.YagoDBpediaMapper.TransformYagoToDBpedia;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -18,7 +20,7 @@ import com.hp.hpl.jena.rdf.model.StmtIterator;
 
 public class FactExtractor {
 
-	private static Logger logger = Logger.getLogger(TemporalFactAnnotator.class);
+	private static Logger logger = Logger.getLogger(TransformYagoToDBpedia.class);
 	
 	public HashMap<String, ArrayList<String>> fetchFacts(HashMap<String,OntModel> models){
 		

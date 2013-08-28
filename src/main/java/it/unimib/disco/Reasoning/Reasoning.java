@@ -57,7 +57,7 @@ public class Reasoning {
 		
 	}
 	
-	public HashSet<ArrayList<String>> concatenateIntervlas (HashSet<ArrayList<String>> intervals){
+	public HashSet<ArrayList<String>> concatenateIntervals (HashSet<ArrayList<String>> intervals){
 		HashSet<ArrayList<String>> interv = new HashSet<ArrayList<String>>();
 
 		if (intervals.size()>1){

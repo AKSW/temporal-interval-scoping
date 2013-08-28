@@ -85,7 +85,7 @@ public class Selection {
 						interMax.add(interv.get(2));
 						
 						if (interMax.size()!=0 && k>=1){
-							System.out.println(interMax);
+							//System.out.println(interMax);
 							allIntervals.add(interMax);
 
 							k--;
@@ -143,7 +143,7 @@ public class Selection {
 						interMax.add(interv.get(2));
 						
 						if (interMax.size()!=0){
-							System.out.println(interMax);
+							//System.out.println(interMax);
 							allIntervals.add(interMax);
 						}
 

@@ -13,7 +13,8 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
+
+import org.aksw.distributions.Fact;
 
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.Property;
@@ -30,7 +31,7 @@ public class MatrixCreator {
 		HashMap<String, HashMap<ArrayList<String>,Integer>> resObjPre = new HashMap<String, HashMap<ArrayList<String>,Integer>>();
 		
 		for (String Uri: repositoryDates.keySet()){
-			HashMap<ArrayList<String>,Integer> occurrenceDate=infoTemporalPredicate(repositoryDates.get(Uri),predicate);
+			HashMap<ArrayList<String>,Integer> occurrenceDate=extractTemporalPredicate(repositoryDates.get(Uri),predicate);
 			
 			resObjPre.put(Uri, occurrenceDate);	
 		}	
@@ -38,7 +39,59 @@ public class MatrixCreator {
 		return resObjPre;	
 	}
 	
-	public HashMap<String, HashMap<String, HashSet<String>>> fetchDates(HashMap<String,OntModel> models){
+	public HashSet<Fact> fetchtemporalfacts (HashMap<String,OntModel> models){
+		
+		HashSet<Fact> result = new HashSet<Fact>();
+		
+		for(String rUri: models.keySet()){
+
+			OntModel m = models.get(rUri);
+			
+			StmtIterator iter = m.listStatements();
+				
+			// print out the predicate, subject and object of each statement
+			while (iter.hasNext()) {
+				
+			    Statement stmt      = iter.next();  // get next statement
+			    Fact f = new Fact();
+
+			   // Resource  subject   = stmt.getSubject();     // we are considering only outgoing link so the subject is always rUri
+			    Property  predicate = stmt.getPredicate();   // get the predicate
+ 
+			    RDFNode   object    = stmt.getObject();      // get the object
+
+			    if (object instanceof Resource) {
+
+			    } else {
+			    	
+			        // object is a literal
+			    	if(verifyDate(object)){
+			    		String dateStr= stemDate(object.toString());
+			    		
+			    		if (stringToLong(dateStr).before(stringToLong("2013-12-31"))){
+			    			f.add(Fact.Entry.SUBJECT, rUri);
+			    	        f.add(Fact.Entry.PREDICATE, predicate.toString());
+			    	        f.add(Fact.Entry.OBJECT, dateStr);
+			    	        result.add(f);
+			    		}
+			    	}
+			    }
+			    
+			}
+			/********add year 2013*******/
+			Fact f = new Fact();
+			f.add(Fact.Entry.SUBJECT, rUri);
+			f.add(Fact.Entry.PREDICATE, "http://dbpedia.org/property/years");
+			f.add(Fact.Entry.OBJECT, "2013");
+			result.add(f);
+
+		
+		}
+		return result;
+	}
+	
+	
+	public HashMap<String, HashMap<String, HashSet<String>>> fetchdateswithpredicates(HashMap<String,OntModel> models){
 		
 		HashMap<String, HashMap<String, HashSet<String>>> result = new HashMap<String, HashMap<String, HashSet<String>>>();
 		
@@ -57,30 +110,27 @@ public class MatrixCreator {
 
 			   // Resource  subject   = stmt.getSubject();     // we are considering only outgoing link so the subject is always rUri
 			    Property  predicate = stmt.getPredicate();   // get the predicate
-//System.out.println(predicate);
+ 
 			    RDFNode   object    = stmt.getObject();      // get the object
 
 			    if (object instanceof Resource) {
-		    	
-			    	
+
 			    } else {
 			    	
 			        // object is a literal
 			    	if(verifyDate(object)){
-			    		String dateStr = object.toString().substring(0,object.toString().indexOf('.'));
-
+			    		String dateStr= stemDate(object.toString());
+			    		
 			    		if (stringToLong(dateStr).before(stringToLong("2013-12-31"))){
-				    		if(!objPred.containsKey(dateStr)){
-				    		
-				    			HashSet<String> pred= new HashSet<String>();
-				    			objPred.put(dateStr, pred);
-				    		}
-
-	
-				    		HashSet<String> pred= objPred.get(dateStr);
+			    			if(!objPred.containsKey(dateStr)){
+						    		
+			    				HashSet<String> pred= new HashSet<String>();
+						    	objPred.put(dateStr, pred);
+						    }
+		
+			    			HashSet<String> pred= objPred.get(dateStr);
 							pred.add(predicate.toString());
 			    		}
-
 			    	}
 			    }
 			}
@@ -89,6 +139,7 @@ public class MatrixCreator {
     			HashSet<String> pred= new HashSet<String>();
     			objPred.put("2013", pred);
     		}
+			
 			HashSet<String> pred= objPred.get("2013");
 			pred.add("http://dbpedia.org/property/years");
 			result.put(rUri, objPred);
@@ -96,6 +147,7 @@ public class MatrixCreator {
 		}
 		return result;
 	}
+	
 	
 	public HashMap<String, HashMap<String, HashSet<String>>> fetchDatesTD(List<String> temporaldefacto){
 		
@@ -133,37 +185,24 @@ public class MatrixCreator {
 	}
 	
 	
-	public HashMap<String,DateOccurrence [][]> maximalMatrixCreator(HashMap<String, HashMap<String, HashSet<String>>> repositoryDates){
+	public HashMap<String,DateOccurrence [][]> createMaximalRIM(HashMap<String,ArrayList<String>> repositoryDates){
 		HashMap<String, DateOccurrence [][]> maximalMatrix = new HashMap<String, DateOccurrence [][]>(); 
-		for (String Uri: repositoryDates.keySet()){
 		
-			HashMap<String, HashSet<String>> objPred = repositoryDates.get(Uri);
-			HashMap<String, ArrayList<String>> objOccurrence = new HashMap<String, ArrayList<String>>();
+		for (String uri: repositoryDates.keySet()){
 			
-			for(String obj:objPred.keySet()){
-				ArrayList<String> occurrence= new ArrayList<String>();
-				int occ = 0;
-				for (@SuppressWarnings("unused") String pred: objPred.get(obj)){
-					occ++;
-				}
-				
-				occurrence.add(Integer.toString(occ));
-				objOccurrence.put(stemDate(obj), occurrence);
-				/*if (stringToLong(stemDate(obj)).before(stringToLong("2013-12-31"))){
-					objOccurrence.put(stemDate(obj), occurrence);
-				}*/
-			}
+			ArrayList<String> dates = new ArrayList<String>();
+			dates = repositoryDates.get(uri);
 
-			Map<String, ArrayList<String>> sortedMap = new TreeMap<String, ArrayList<String>>(objOccurrence);
+			Collections.sort(dates);
 
-			maximalMatrix.put(Uri, matrixCreator(sortedMap,sortedMap));
+			maximalMatrix.put(uri, matrixCreator(dates,dates));
 		}
 		
 		return maximalMatrix;		
 		
 	}
 	
-	public HashMap<ArrayList<String>,Integer> infoTemporalPredicate(HashMap<String, HashSet<String>> objPred, boolean predSE){
+	public HashMap<ArrayList<String>,Integer> extractTemporalPredicate(HashMap<String, HashSet<String>> objPred, boolean predSE){
 		
 		HashMap<ArrayList<String>,Integer> timePoints = new HashMap<ArrayList<String>,Integer>();
 		
@@ -180,6 +219,8 @@ public class MatrixCreator {
 					obpred.add(stemPredicateSE(pred));
 					obpred.add(stemPredicateSP(pred));
 				}
+				
+				//count the occurrence of the pair object-predicate
 				if(!timePoints.containsKey(obpred)){
 
 	    			timePoints.put(obpred, 1);
@@ -195,175 +236,9 @@ public class MatrixCreator {
 		return timePoints;
 	}
 	
-	public HashMap<String,DateOccurrence [][]> matrixReducerSE(HashMap<String, HashMap<ArrayList<String>,Integer>> timeAnnotated, 
-			HashMap<String, DateOccurrence [][]> maximalMatrixDates){
-		
-		HashMap<String,DateOccurrence [][]> reducedMatrix = new HashMap<String,DateOccurrence [][]>();
-	
-		for (String Uri: maximalMatrixDates.keySet()){
-			DateOccurrence [][] matrix = maximalMatrixDates.get(Uri);
-			
-			ArrayList<String> occurrence = new ArrayList<String>();
-			
-			for(int i=0; i<matrix.length;i++){
-				
-				for(int j=0; j<matrix[i].length; j++){
-				
-					for (ArrayList<String> objpred: timeAnnotated.get(Uri).keySet()){
-
-							String occu = Integer.toString(timeAnnotated.get(Uri).get(objpred));
-							
-							if (matrix[i][0].getDate().equals(objpred.get(0))){
-								
-								if (objpred.get(1).equals("end")){
-									if(occu.equals(matrix[i][0].getOccurrence().get(0))){
-										
-										if (j==0){
-											if ((matrix[i][j].getPred()!=null)&&(matrix[i][j].getPred().equals("start"))){}
-											else{
-												matrix[i][j]=new DateOccurrence(matrix[i][j].getDate(),objpred.get(1),matrix[i][j].getOccurrence());
-											}
-											
-										}
-										else{
-											if(!(matrix[i][0].getPred().equals("start"))){
-												occurrence = new ArrayList<String>();
-												occurrence.add("X");
-												matrix[i][j]=new DateOccurrence("",occurrence);
-											}
-										}
-										
-									}
-									else{}
-							
-								}
-							
-								else if ((objpred.get(1).equals("start")))
-
-									if(occu.equals(matrix[i][0].getOccurrence().get(0))){
-										
-										matrix[i][j]=new DateOccurrence(matrix[i][j].getDate(),objpred.get(1),matrix[i][j].getOccurrence());
-									}
-
-									else{
-										occurrence = new ArrayList<String>();
-										occurrence.add(occu);
-										if (j==0){
-											if ((matrix[i][j].getPred()!=null)&&(matrix[i][j].getPred().equals("start"))){}
-											else{
-												matrix[i][j]=new DateOccurrence(matrix[i][j].getDate(),objpred.get(1),occurrence);
-											}
-
-										}
-										else{
-											matrix[i][j]=new DateOccurrence("",matrix[i][j].getOccurrence());
-										}
-										
-									}
-							}			
-							else{}
-						}
-				}
-			}
-			
-			for(int i=0; i<matrix.length;i++){
-				
-				for(int j=0; j<matrix[i].length; j++){
-				
-					for (ArrayList<String> objpred: timeAnnotated.get(Uri).keySet()){
-							String occu = Integer.toString(timeAnnotated.get(Uri).get(objpred));
-							if(matrix[0][j].getDate().equals(objpred.get(0))){
-				
-								if (objpred.get(1).equals("start")){
-												
-									if(occu.equals(matrix[0][j].getOccurrence().get(0))){
-
-										if (i==0){
-											if ((matrix[i][j].getPred()!=null)&&(matrix[i][j].getPred().equals("end"))){}
-											else{
-												matrix[i][j]=new DateOccurrence(matrix[i][j].getDate(),objpred.get(1),matrix[i][j].getOccurrence());
-											}
-										}
-										else{
-											if(!(matrix[0][j].getPred().equals("end"))){
-												occurrence = new ArrayList<String>();
-												occurrence.add("X");
-												matrix[i][j]=new DateOccurrence("",occurrence);
-											}
-										}
-									}
-				
-								}
-								else if ((objpred.get(1).equals("end"))){
-									if(occu.equals(matrix[i][0].getOccurrence().get(0))){
-						
-										matrix[i][j]=new DateOccurrence(matrix[i][j].getDate(),matrix[i][j].getOccurrence());
-									}
-					
-									else{
-										occurrence = new ArrayList<String>();
-										occurrence.add(occu);
-										if (i==0){
-											if ((matrix[i][j].getPred()!=null)&&(matrix[i][j].getPred().equals("end"))){}
-											else{
-												matrix[i][j]=new DateOccurrence(matrix[i][j].getDate(),objpred.get(1),occurrence);
-											}
-
-										}
-										else{
-											matrix[i][j]=new DateOccurrence("",matrix[i][j].getOccurrence());
-										}
-									}
-								}
-								else{}
-							}}}}
-			
-			
-			reducedMatrix.put(Uri, matrix);
-		}
-		return reducedMatrix; 
-	}
 	
 	
-	public HashMap<String,DateOccurrence [][]> matrixReducerSP(HashMap<String, HashMap<ArrayList<String>,Integer>> timeAnnotated, 
-			HashMap<String, DateOccurrence [][]> reducedMatrix1){
-		
-		HashMap<String,DateOccurrence [][]> reducedMatrix = new HashMap<String,DateOccurrence [][]>();
-		ArrayList<String> occurrence = new ArrayList<String>();
-		
-		for (String Uri: reducedMatrix1.keySet()){
-			DateOccurrence [][] reduMatrix= reducedMatrix1.get(Uri);
-			
-			Map<ArrayList<String>, Integer> objpredoccu = new LinkedHashMap<ArrayList<String>,Integer>();
-
-		for (ArrayList<String> str : timeAnnotated.get(Uri).keySet() ){
-				objpredoccu.put(str, timeAnnotated.get(Uri).get(str));
-		}
-		
-		DateOccurrence [][] rMatrix = matrixCreator2(objpredoccu,objpredoccu,reduMatrix);
-		
-			for (int i=1; i<rMatrix.length; i++){
-				for(int j=1; j<rMatrix[i].length; j++){
-					
-					if (!(rMatrix[i][j].getOccurrence().get(0).equals("X"))){
-					
-							if (!(rMatrix[0][j].getOccurrence().get(1).equals(rMatrix[i][0].getOccurrence().get(1)))){
-		
-								occurrence = new ArrayList<String>();
-								occurrence.add("X");
-								
-								rMatrix[i][j]= new DateOccurrence("", occurrence);
-							}
-					}
-				}
-			}
-				
-			reducedMatrix.put(Uri, rMatrix);
-		}
-		return reducedMatrix;
-	}
-	
-	public DateOccurrence[][] matrixCreator(Map<String, ArrayList<String>> startobjOccurrence, Map<String, ArrayList<String>> endobjOccurrence){
+	public DateOccurrence[][] matrixCreator(ArrayList<String> startobjOccurrence, ArrayList<String> endobjOccurrence){
 		DateOccurrence matrix[][]= new DateOccurrence[startobjOccurrence.size()+1][endobjOccurrence.size()+1];
 		ArrayList<String> occurrence = new ArrayList<String>();
 		occurrence.add("End");
@@ -371,14 +246,14 @@ public class MatrixCreator {
 
 		
 		int l=1;
-		for(String startobj: startobjOccurrence.keySet()){
-			matrix[l][0] = new DateOccurrence(startobj,startobjOccurrence.get(startobj));
+		for(String startobj: startobjOccurrence){
+			matrix[l][0] = new DateOccurrence(startobj);
 			l++;
 		}
 		
 		int m=1;
-		for(String endobj: endobjOccurrence.keySet()){
-			matrix[0][m]=new DateOccurrence(endobj,endobjOccurrence.get(endobj));
+		for(String endobj: endobjOccurrence){
+			matrix[0][m]=new DateOccurrence(endobj);
 			
 			m++;
 		}
@@ -406,83 +281,6 @@ public class MatrixCreator {
 
 	}
 	
-	public DateOccurrence[][] matrixCreator2(Map<ArrayList<String>,Integer> startobjOccurrence, Map<ArrayList<String>,Integer> endobjOccurrence, DateOccurrence [][] reduMatrix){
-		
-		int column=endobjOccurrence.size();
-		int row = endobjOccurrence.size();
-		/*for(ArrayList<String> startobj: endobjOccurrence.keySet()){
-			
-			if (startobj.get(1).equals("start")||startobj.get(1).equals("NA")){
-				row++;
-			}
-		}
-		for(ArrayList<String> endobj: endobjOccurrence.keySet()){
-
-			if (endobj.get(1).equals("end")||endobj.get(1).equals("NA")){
-				column++;
-			}
-		}*/
-		
-		
-		DateOccurrence matrix[][]= new DateOccurrence[row+1][column+1];
-		
-		ArrayList<String> occurrence = new ArrayList<String>();
-		occurrence.add("End");
-		matrix[0][0]= new DateOccurrence("[Start]/", occurrence);
-		
-		int l=1;
-		for(ArrayList<String> startobj: startobjOccurrence.keySet()){
-			occurrence = new ArrayList<String>();
-			//if (startobj.get(1).equals("start")||startobj.get(1).equals("NA")){
-				occurrence.add(startobj.get(1));
-				occurrence.add(startobj.get(2));
-				occurrence.add(String.valueOf(startobjOccurrence.get(startobj)));
-				matrix[l][0] = new DateOccurrence(startobj.get(0),occurrence);
-				l++;
-			//}
-		}
-		
-		int m=1;
-		for(ArrayList<String> endobj: endobjOccurrence.keySet()){
-			occurrence = new ArrayList<String>();
-			//if (endobj.get(1).equals("end")||endobj.get(1).equals("NA")){
-			occurrence.add(endobj.get(1));
-			occurrence.add(endobj.get(2));
-			occurrence.add(String.valueOf(startobjOccurrence.get(endobj)));
-			matrix[0][m] = new DateOccurrence(endobj.get(0),occurrence);
-		
-			m++;
-			//}
-		}
-
-		occurrence = new ArrayList<String>();
-		occurrence.add("X");
-		int q, j, p=1,i=1;
-		
-		while (i<row+1){
-			q=1;j=1;
-			while(j<column+1){
-				
-				if (stringToLong(matrix[0][j].getDate()).equals(stringToLong(reduMatrix[0][q].getDate()))){
-					if(stringToLong(matrix[i][0].getDate()).equals(stringToLong(reduMatrix[p][0].getDate()))){
-
-						matrix[i][j]=new DateOccurrence("",reduMatrix[p][q].getOccurrence());
-						j++;
-					}else{
-						p++;
-					}
-					
-				}
-				else{
-					q++;
-				}
-			}
-			i++;
-		}
-		
-		return matrix;
-
-	}
 	
 	public Date stringToLong(String datestr){
 		Date date = null;
@@ -511,12 +309,23 @@ public class MatrixCreator {
 		
 		//Stemming of the string date
 		
+		if (date.contains("-")){
+			date=date.substring(0,date.indexOf("-"));
+		}
+		else if (date.contains("/")){
+			date=date.substring(0,date.indexOf("/"));
+		}
+		else{}
 		if (date.contains("^")){
 			date=date.substring(0,date.indexOf('^'));
-			if(date.contains("T")){
-				date=date.substring(0, date.indexOf('T'));
-			}
-			else{}
+		}
+		else{}
+		if(date.contains("T")){
+			date=date.substring(0, date.indexOf('T'));
+		}
+		else{}
+		if(date.contains(".")){
+			date = date.substring(0,date.indexOf('.'));	
 		}
 		else{}
 		

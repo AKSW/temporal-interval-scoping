@@ -1,12 +1,10 @@
-package it.unimib.disco.Script;
+package it.unimib.disco.TemporalIntervalCreator;
 
 import it.unimib.disco.Evaluation.Evaluation;
 import it.unimib.disco.FactExtractor.DateOccurrence;
+import it.unimib.disco.ReadFiles.ReadFiles;
 import it.unimib.disco.Reasoning.Reasoning;
 import it.unimib.disco.Selection.Selection;
-import it.unimib.disco.TemporalIntervalCreator.MatrixCreator;
-import it.unimib.disco.TemporalIntervalCreator.NormalizationSelection;
-import it.unimib.disco.TemporalIntervalCreator.TemporalIntervalFactAssociator;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -22,34 +20,46 @@ import org.aksw.distributions.Fact;
 import org.aksw.distributions.FactGrouping;
 import org.apache.log4j.Logger;
 
-public class TemporalIntervalCreatoScript {
+public class TemporalIntervalCreator {
 
-private static Logger logger = Logger.getLogger(TemporalIntervalCreatoScript.class);
+private static Logger logger = Logger.getLogger(TemporalIntervalCreator.class);
 	
-public HashMap<String,HashMap<String,ArrayList<Double>>> temporalFact(HashMap<String,ArrayList<String>> dateRepository,List<Fact> temporalDefactoFacts,List<String> goldstandard_facts,
-		int normalizationType,int selection,int k, int x) throws FileNotFoundException{
+public static void main (String []args) throws FileNotFoundException{
+	if (args.length < 1) {
+		System.out.println("Use: java TemporalIntervalCreator <Resource list file> <temporal defacto output> <yago's gold standard>");
+		System.out.println("Example: java TemporalIntervalCreator /temporalIntervalCreator_ResourceList.txt /sortbyplayer-labels-with-space_out_medium.csv /gold_standard.csv");
+	} else {
 		
-		FileOutputStream fos,fos1;
-		File directory = new File (".");
-		if(selection==1){
-			fos = new FileOutputStream(directory.getAbsolutePath()+"/output/matrix/"+"matrix_topK"+"-"+k+"-"+x+".csv");
-			fos1 = new FileOutputStream(directory.getAbsolutePath()+"/output/interval/"+"evaluationWithIntervals_topK"+"-"+k+"-"+x+".csv");
-			
-		}
-		else if(selection==2){
-			fos = new FileOutputStream(directory.getAbsolutePath()+"/output/matrix/"+"matrix_proxyX"+"-"+k+"-"+x+".csv");
-			fos1 = new FileOutputStream(directory.getAbsolutePath()+"/output/interval/"+"evaluationWithIntervals_proxyX"+"-"+k+"-"+x+".csv");
-			
-		}
-		else{
-			fos = new FileOutputStream(directory.getAbsolutePath()+"/output/matrix/"+"matrix_neighbor"+"-"+k+"-"+x+".csv");
-			fos1 = new FileOutputStream(directory.getAbsolutePath()+"/output/interval/"+"evaluationWithIntervals_neighbor"+"-"+k+"-"+x+".csv");
-			
-		}
+		// Resource URI extraction
+		List<String> resURIs = ReadFiles.getURIs(new File(args[0]));
+		HashMap<String,ArrayList<String>> dateRepository=new HashMap<String,ArrayList<String>>();
+		dateRepository=new ReadFiles().readCSVFile(resURIs);
 		
+		logger.info("DBpedia resources list file parsed");
 
+		
+		// Read temporalDefacto facts
+		List<String> temporalDefactoFacts = ReadFiles.getURIs(new File(args[1]));
+		List<Fact> l = new ArrayList<Fact>();
+		l = new ReadFiles().creatListOfFacts(temporalDefactoFacts);
+		logger.info("TemporalDefacto facts parsed");
+		
+		
+		//Read gold standard facts
+		List<String> goldstandard_facts = ReadFiles.getURIs(new File(args[2]));
+		logger.info("Yago facts parsed");
+		
+		FileOutputStream fos = new FileOutputStream("temporalIntervalCreator_out2.csv");
 		PrintWriter pw = new PrintWriter(fos);
+		
+		FileOutputStream fos1 = new FileOutputStream("evaluationWithIntervals.csv");
 		PrintWriter pw1 = new PrintWriter(fos1);
+		
+		/***********Configuration setup****/
+		int normalizationType= 1; // no-normalization =1, local-normalization=2, global-normalization =3, chi-square-normalization=4
+		int selection= 2; // topK =1, proxy=2, combined =3
+		int x=4;
+		int k=0; //k>0;
 		
 	
 		/******************RIM**************/
@@ -57,7 +67,7 @@ public HashMap<String,HashMap<String,ArrayList<Double>>> temporalFact(HashMap<St
 		logger.info("Created maximal RIM");
 		
 		/******************Normalization **************/
-		List<Fact> factNormalized= new NormalizationSelection().normalize(normalizationType,temporalDefactoFacts);
+		List<Fact> factNormalized= new NormalizationSelection().normalize(normalizationType,l);
 		
 		/******************Matching **************/
 		HashMap<String,HashMap<String,List<Fact>>> groupFacts = new FactGrouping().groupBySubjectObject(factNormalized);
@@ -123,6 +133,7 @@ public HashMap<String,HashMap<String,ArrayList<Double>>> temporalFact(HashMap<St
 				HashMap<String,HashSet<ArrayList<String>>> timeintervals=reasoningIntervalsUri.get(uri);
 				
 				HashMap<String,ArrayList<Double>> localmetrics=ev.overlap(uri,timeintervals,goldstandard_facts,pw1);
+				System.out.println(uri+" "+localmetrics);
 				evaluationResults.put(uri,localmetrics);
 	
 			}
@@ -137,10 +148,8 @@ public HashMap<String,HashMap<String,ArrayList<Double>>> temporalFact(HashMap<St
 			e1.printStackTrace();
 		}
 
-
-		return evaluationResults;
 	}
-
+}
 }
 
 

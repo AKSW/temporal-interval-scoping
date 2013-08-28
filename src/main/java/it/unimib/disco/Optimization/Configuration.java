@@ -3,8 +3,6 @@ package it.unimib.disco.Optimization;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.opt4j.core.start.Constant;
-
 
 public class Configuration {
 	
@@ -15,10 +13,10 @@ public class Configuration {
 	
 	protected Set<Configuration> configurations = new HashSet<Configuration>();
 	
-	public Configuration(int selection, int x, int k, int normalization){
+	public Configuration(int selection, int k, int x, int normalization){
 		this.selection=selection;
-		this.x=x;
 		this.k=k;
+		this.x=x;
 		this.normalization=normalization;
 	}
 	
@@ -41,21 +39,28 @@ public class Configuration {
 	
 	
 	
-	public Configuration(@Constant(value = "size") int size) {
+	public Configuration(int size) {
 
-		for (int i = 0; i < size; i++) {
+		for (int i = 0; i < size; i++){ 
 			selection = 1 + (int)(Math.random() * ((3 - 1) + 1));
 			normalization = 1 + (int)(Math.random() * ((4 - 1) + 1));
-			x = 1 + (int)(Math.random() * ((3 - 1) + 1));
-			k = 1 + (int)(Math.random() * ((10 - 1) + 1));
-
-			final Configuration configuration = new Configuration(selection, x, k, normalization);
+			k = 1 + (int)(Math.random() * ((2 - 1) + 1));
+			x = 1 + (int)(Math.random() * ((10 - 1) + 1));
+			final Configuration configuration = new Configuration(selection, k, x, normalization);
 			configurations.add(configuration);
 		}
 	}
-	
+	public Configuration[] getArrayConfigurations(){
+		Configuration configurations_array [] = configurations.toArray(new Configuration[configurations.size()]);
+		return configurations_array;
+	}
 	
 	public Set<Configuration> getConfigurations(){
 		return configurations;
 	}
+	
+	public String toString()
+    {
+        return configurations.toString();
+    }
 }

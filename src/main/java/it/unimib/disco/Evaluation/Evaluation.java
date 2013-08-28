@@ -19,7 +19,7 @@ public class Evaluation {
 
 		
 		HashMap<String,ArrayList<Double>> metricsObj = new HashMap<String,ArrayList<Double>>();
-		
+
 		HashMap<String,HashMap<String,ArrayList<String>>> yagoIntervalsUri = groupByEntity(yagoFacts);
 		HashMap<String,ArrayList<String>> yagoIntervals=yagoIntervalsUri.get(Uri);
 		
@@ -213,16 +213,9 @@ public class Evaluation {
 		metrics.add(overlapFM);
 		
 		metricsObj.put(obj,metrics);
+
 		
-		/*ArrayList<Double> metrics=new ArrayList<Double>();
-		metrics.add(countTcorrect);
-		metrics.add((double)yearDistanceTot);
-		metrics.add((double)yearDistanceYago);*/
-
-
-		//pw.println(Uri+","+obj+","+overlapPrec+","+overlapRecall+","+overlapFM);
-		pw.println(Uri+";"+obj+";"+intervalsRedu+";"+yagoInterval+";"+overlapPrec+";"+overlapRecall+";"+overlapFM);
-		//pw.println(Uri+" "+obj+" "+intervalsRedu+" "+yagoInterval+" "+countTcorrect+" "+yearDistanceTot+" "+yearDistanceYago);
+		pw.println(Uri+","+obj+","+intervalsRedu+","+yagoInterval+","+overlapPrec+","+overlapRecall+","+overlapFM);
 		
 		}
 		

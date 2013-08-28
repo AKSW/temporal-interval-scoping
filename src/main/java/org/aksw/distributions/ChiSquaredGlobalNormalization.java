@@ -36,7 +36,8 @@ public class ChiSquaredGlobalNormalization implements Normalization{
         //build a map for each date
         for (String date : dates) {
             double total = 0d;
-            double counter = 0d;
+            @SuppressWarnings("unused")
+			double counter = 0d;
             for (Fact f : copy) {
                 if (f.get(Entry.DATE).equals(date)) {
                     String score = f.get(Entry.SCORE);
@@ -61,7 +62,6 @@ public class ChiSquaredGlobalNormalization implements Normalization{
     
     public double chi(double score, double expected)
     {
-        if(score < expected) return (score - expected)*(score - expected)/expected;
         return (score - expected)*(score - expected)/expected;
     }
 }

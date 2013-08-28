@@ -1,5 +1,7 @@
-package it.unimib.disco.FactExtractor;
+package it.unimib.disco.YagoDBpediaMapper;
 
+import it.unimib.disco.FactExtractor.FactExtractor;
+import it.unimib.disco.FactExtractor.ResourceFetcher;
 import it.unimib.disco.ReadFiles.ReadFiles;
 
 import java.io.BufferedWriter;
@@ -14,14 +16,14 @@ import org.apache.log4j.Logger;
 
 import com.hp.hpl.jena.ontology.OntModel;
 
-public class TemporalFactAnnotator {
+public class TransformYagoToDBpedia {
 
-private static Logger logger = Logger.getLogger(TemporalFactAnnotator.class);
+private static Logger logger = Logger.getLogger(TransformYagoToDBpedia.class);
 private static String prefix = "http://dbpedia.org/resource/";
 	
 public static void main (String []args){
 	if (args.length < 1) {
-		System.out.println("Use: java DBpediaCurrencyEvaluator <DBpedia resource list file> <Significant Properties file>");
+		System.out.println("Use: java DBpediaCurrencyEvaluator <YagoResourceList_in.csv>");
 	} else {
 		// Resource URI extraction
 

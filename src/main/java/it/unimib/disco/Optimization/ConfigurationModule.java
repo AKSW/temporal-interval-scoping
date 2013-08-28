@@ -13,7 +13,7 @@ public class ConfigurationModule extends ProblemModule {
 	public void setSize(int size) {
 		this.size = size;
 	}
-	protected void config() {
+	public void config() {
 		bindProblem(ConfigurationCreator.class, ConfigurationDecoder.class, ConfigurationEvaluator.class);
 	}
 } 

@@ -6,8 +6,13 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+
+import org.aksw.distributions.Fact;
+import org.aksw.distributions.FactReader;
 
 public class ReadFiles {
 
@@ -74,6 +79,61 @@ public class ReadFiles {
 		}
 		return fileArray;
 
+	}
+	
+	public HashMap<String,ArrayList<String>> readCSVFile(List<String> file) {
+		HashMap<String,ArrayList<String>> fileArray = new HashMap<String,ArrayList<String>>(); 
+		
+		for(String record:file){
+			record=record.trim();
+			ArrayList<String> list = new ArrayList<String>();
+
+			String subj=record.substring(0,record.indexOf(','));
+			if (!fileArray.containsKey(subj)){
+				list= new ArrayList<String>();
+				fileArray.put(subj, list);
+			}
+			list=fileArray.get(subj);
+
+			String remainingRecord= record.substring(record.indexOf(',')+1);
+			//remainingRecord=remainingRecord.substring(remainingRecord.indexOf('[')+1,remainingRecord.indexOf(']'));
+			
+			int begin;
+			do{
+				
+				begin= remainingRecord.indexOf(',');
+				
+				if(begin<0){
+					
+					list.add(remainingRecord.substring(0,remainingRecord.length()));
+				}
+				else{
+					list.add(remainingRecord.substring(0, begin));
+
+					remainingRecord=remainingRecord.substring(begin+1);
+				}
+				
+			}while (begin>0);
+
+			fileArray.put(subj,list);
+		}
+		return fileArray;
+
+	}
+	public List<Fact> creatListOfFacts(List<String> temporaldefacto){
+		
+		Fact f = new Fact();
+		List<Fact> allFacts = new ArrayList<Fact>();
+		
+		HashSet<ArrayList<String>> file=readCommaSeparatedFile(temporaldefacto);
+		Iterator<ArrayList<String>> it = file.iterator();
+		
+		while (it.hasNext()){
+			f=FactReader.readFact((ArrayList<String>) it.next());
+			allFacts.add(f);
+		}
+		
+		return allFacts;
 	}
 	
 	public HashSet<ArrayList<String>> readTabSeparatedFile(List<String> file) {
