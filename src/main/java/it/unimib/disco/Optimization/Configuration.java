@@ -6,20 +6,31 @@ import java.util.Set;
 
 public class Configuration {
 	
-	private int selection;
-	private int x;
-	private int k;
-	private int normalization;
+	public int selection;
+	public int x;
+	public int k;
+	public int normalization;
 	
-	protected Set<Configuration> configurations = new HashSet<Configuration>();
+	public Set<Configuration> configurations = new HashSet<Configuration>();
 	
 	public Configuration(int selection, int k, int x, int normalization){
 		this.selection=selection;
 		this.k=k;
 		this.x=x;
 		this.normalization=normalization;
+
 	}
-	
+	public Configuration(int size) {
+
+		for (int i = 0; i < size; i++){ 
+			selection = 1 + (int)(Math.random() * ((3 - 1) + 1));
+			normalization = 1 + (int)(Math.random() * ((4 - 1) + 1));
+			k = 1 + (int)(Math.random() * ((2 - 1) + 1));
+			x = 1 + (int)(Math.random() * ((10 - 1) + 1));
+			final Configuration configuration = new Configuration(selection, k, x, normalization);
+			configurations.add(configuration);
+		}
+	}
 	public int getSelection(){
 		
 		return selection;
@@ -39,17 +50,7 @@ public class Configuration {
 	
 	
 	
-	public Configuration(int size) {
-
-		for (int i = 0; i < size; i++){ 
-			selection = 1 + (int)(Math.random() * ((3 - 1) + 1));
-			normalization = 1 + (int)(Math.random() * ((4 - 1) + 1));
-			k = 1 + (int)(Math.random() * ((2 - 1) + 1));
-			x = 1 + (int)(Math.random() * ((10 - 1) + 1));
-			final Configuration configuration = new Configuration(selection, k, x, normalization);
-			configurations.add(configuration);
-		}
-	}
+	
 	public Configuration[] getArrayConfigurations(){
 		Configuration configurations_array [] = configurations.toArray(new Configuration[configurations.size()]);
 		return configurations_array;

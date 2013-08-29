@@ -53,14 +53,14 @@ public class RunOptimizer {
 			ConfigurationEvaluator e = new ConfigurationEvaluator(dateRepository, l, goldstandard_facts);
 			HashMap<SelectGenotype<Configuration>,Objectives> collection = new HashMap<SelectGenotype<Configuration>,Objectives >();
 		
-			for(int i=0;i<50;i++){
+			while(collection.size()<240){
 				SelectGenotype<Configuration> genotype=new ConfigurationCreator().create();
 				
 				Objectives obj = e.evaluate(new ConfigurationDecoder().decode(genotype));
 				collection.put(genotype,obj);
 					
 			}
-		
+		System.out.println(collection.size());
 			HashMap<SelectGenotype<Configuration>,Objectives> collection_max = new HashMap<SelectGenotype<Configuration>,Objectives >();
 			Objectives obj_max = new Objectives();
 			obj_max.add(objective,0d);

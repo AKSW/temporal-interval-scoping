@@ -10,11 +10,13 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.aksw.distributions.Fact;
+import org.aksw.distributions.Fact.Entry;
 
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.Property;
@@ -149,35 +151,30 @@ public class MatrixCreator {
 	}
 	
 	
-	public HashMap<String, HashMap<String, HashSet<String>>> fetchDatesTD(List<String> temporaldefacto){
+	public HashMap<String, ArrayList<String>> fetchDatesTD(List<Fact> file){
+
+		HashMap<String, ArrayList<String>> res = new HashMap<String, ArrayList<String>>();
+		ArrayList<String> years = new ArrayList<String>();
 		
-		HashSet<ArrayList<String>> file=rf.readCommaSeparatedFile(temporaldefacto);
-		HashMap<String, HashMap<String, HashSet<String>>> res = new HashMap<String, HashMap<String, HashSet<String>>>();
-		HashMap<String,HashSet<String>> dateObject = new HashMap<String,HashSet<String>>();
-		HashSet<String> object = new HashSet<String>();
-		
-		for (List<String> record:file){
+		@SuppressWarnings("rawtypes")
+		Iterator it = file.iterator();
+		while (it.hasNext()){
+			Fact f = new Fact();
+			f = (Fact) it.next();
 					
-			if (!res.containsKey(record.get(0))){
-				dateObject = new HashMap<String,HashSet<String>>();
-				res.put(record.get(0), dateObject);
+			if (!res.containsKey(f.get(Entry.SUBJECT))){
+				years = new ArrayList<String>();
+				res.put(f.get(Entry.SUBJECT), years);
 			}
 			
-			dateObject=res.get(record.get(0));
-			if (stringToLong(record.get(5)).before(stringToLong("2013-12-31"))&&stringToLong(record.get(5)).after(stringToLong("1980-01-01"))){
-				if(!dateObject.containsKey(record.get(5))){
+			years=res.get(f.get(Entry.SUBJECT));
+			if (stringToLong(f.get(Entry.DATE)).before(stringToLong("2013-12-31"))&&stringToLong(f.get(Entry.DATE)).after(stringToLong("1980-01-01"))){
+				if(!years.contains(f.get(Entry.DATE))){
 					
-					object = new HashSet<String>();
-					dateObject.put(record.get(5),object);
+					years.add(f.get(Entry.DATE));
 				}
-				
-				object=dateObject.get(record.get(5));
-				object.add(record.get(2)); //object	
 	
-				dateObject.put(record.get(5),object);
-	
-	
-				res.put(record.get(0), dateObject);
+				res.put(f.get(Entry.SUBJECT), years);
 			}
 		}
 
