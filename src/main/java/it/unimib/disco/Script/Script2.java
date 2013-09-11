@@ -1,5 +1,6 @@
 package it.unimib.disco.Script;
 
+import it.unimib.disco.Evaluation.QualityMeasure;
 import it.unimib.disco.ReadFiles.ReadFiles;
 
 import java.io.BufferedWriter;
@@ -21,8 +22,8 @@ public class Script2 {
 			System.out.println("Example: java TemporalIntervalCreator /temporalIntervalCreator_ResourceList_in2.txt /sortbyplayer-labels-with-space_out_lionel.csv /goldStandard_30_entities.csv");
 		} else {
 			
-			HashMap<String,HashMap<String,HashMap<String,ArrayList<Double>>>> outputResult = new HashMap<String,HashMap<String,HashMap<String,ArrayList<Double>>>>();
-			HashMap<String,HashMap<String,ArrayList<Double>>> evaluationResult= new HashMap<String,HashMap<String,ArrayList<Double>>>();
+			HashMap<String,HashMap<String,HashMap<String,QualityMeasure>>> outputResult = new HashMap<String,HashMap<String,HashMap<String,QualityMeasure>>>();
+			HashMap<String,HashMap<String,QualityMeasure>> evaluationResult= new HashMap<String,HashMap<String,QualityMeasure>>();
 
 		
 		//TemporalIntervalCreatoScriptTD tempAnnot= new TemporalIntervalCreatoScriptTD();
@@ -48,10 +49,10 @@ public class Script2 {
 		List<String> yagoFacts = ReadFiles.getURIs(new File(args[2]));
 		//logger.info("Yago facts parsed");
 				
+		//2, 10, 1, 1
 		int normalization = 0; 
-		
 		int selection=1; //default top-k 
-		int k=0,x=0;
+		int k=8,x=0;
 		Scanner read = new Scanner(System.in); 
 		
 		do{
@@ -62,7 +63,7 @@ public class Script2 {
 		//selection function top-k
 		if(selection==1){
 			normalization = 1;//no-normalization
-			outputResult = new HashMap<String, HashMap<String,HashMap<String,ArrayList<Double>>>>();
+			outputResult = new HashMap<String, HashMap<String,HashMap<String,QualityMeasure>>>();
 			
 			System.out.println("Selection function is topK");
 			do{
@@ -73,7 +74,7 @@ public class Script2 {
 			System.out.println("Insert a normalization function");
 			do{
 				System.out.println("Please insert a positiv integer 1-no normalization, 2-local normalization, 3-global normalization, 4- chisquare normalization:");
-				k=read.nextInt();
+				normalization=read.nextInt();
 			}while(normalization<=0||normalization>4);
 			
 			
@@ -108,7 +109,7 @@ public class Script2 {
 		//selection function proxy
 		else if(selection==2){
 			normalization = 1;//no-normalization
-			outputResult = new HashMap<String, HashMap<String,HashMap<String,ArrayList<Double>>>>();
+			outputResult = new HashMap<String, HashMap<String,HashMap<String,QualityMeasure>>>();
 			
 			System.out.println("You selected the proxy selection function");
 			do{
@@ -119,7 +120,7 @@ public class Script2 {
 			System.out.println("Insert a normalization function");
 			do{
 				System.out.println("Please insert a positiv integer 1-no normalization, 2-local normalization, 3-global normalization, 4- chisquare normalization:");
-				k=read.nextInt();
+				normalization=read.nextInt();
 			}while(normalization<=0||normalization>4);
 
 			//default no-normalization
@@ -153,7 +154,7 @@ public class Script2 {
 		//selection function combined
 		else{ 
 			normalization = 1;//no-normalization
-			outputResult = new HashMap<String, HashMap<String,HashMap<String,ArrayList<Double>>>>();
+			outputResult = new HashMap<String, HashMap<String,HashMap<String,QualityMeasure>>>();
 			
 			System.out.println("You selected neighbor function");
 			do{
@@ -167,7 +168,7 @@ public class Script2 {
 			System.out.println("Insert a normalization function");
 			do{
 				System.out.println("Please insert a positiv integer 1-no normalization, 2-local normalization, 3-global normalization, 4- chisquare normalization:");
-				k=read.nextInt();
+				normalization=read.nextInt();
 			}while(normalization<=0||normalization>4);
 			
 			//default no-normalization
@@ -214,30 +215,30 @@ public class Script2 {
 			
 			bw.write("normalizationType"+","+"overlapPrec"+","+"overlapRecall"+","+"Micro-F1"+","+"Macro-F1"+"\n" );
 			for(String str: outputResult.keySet()){
-				HashMap<String,HashMap<String,ArrayList<Double>>> result= new HashMap<String,HashMap<String,ArrayList<Double>>>();
+				HashMap<String,HashMap<String,QualityMeasure>> result= new HashMap<String,HashMap<String,QualityMeasure>>();
 				result=	 outputResult.get(str);
 
 				double avgP=0d, avgR=0d, avgF=0d;
 				int total=0;
 				for (String uri:result.keySet()){
 				
-				HashMap<String,ArrayList<Double>> er=result.get(uri);
+				HashMap<String,QualityMeasure> er=result.get(uri);
 				for (String obj: er.keySet()){
-					ArrayList<Double> metrics = er.get(obj);
-
-					if(metrics.get(0).isNaN()||metrics.get(1).isNaN()||metrics.get(2).isNaN()){
-						//System.out.println(uri+" "+obj+" "+metrics.get(0) +" "+ metrics.get(1)+" "+metrics.get(2));
+					QualityMeasure metrics = er.get(obj);
+					if(Double.isNaN(metrics.get(QualityMeasure.Entry.PRECISION))||Double.isNaN(metrics.get(QualityMeasure.Entry.RECALL))||Double.isNaN(metrics.get(QualityMeasure.Entry.fMEASURE))){
 					}
 					else{
-						avgP=avgP+metrics.get(0);
-						avgR=avgR+metrics.get(1);
-						avgF=avgF+metrics.get(2);
+						avgP=avgP+metrics.get(QualityMeasure.Entry.PRECISION);
+
+						avgR=avgR+metrics.get(QualityMeasure.Entry.RECALL);
+						avgF=avgF+metrics.get(QualityMeasure.Entry.fMEASURE);
 					
 					total++;
 					}
 				}
 			}
 				
+			
 				double overlapPrec=avgP/total;
 				double overlapRec=avgR/total;
 				double microF1=avgF/total;

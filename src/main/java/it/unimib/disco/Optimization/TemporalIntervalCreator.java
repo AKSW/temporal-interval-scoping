@@ -3,6 +3,7 @@ package it.unimib.disco.Optimization;
 import it.unimib.disco.Evaluation.Evaluation;
 import it.unimib.disco.Evaluation.QualityMeasure;
 import it.unimib.disco.FactExtractor.DateOccurrence;
+import it.unimib.disco.Reasoning.Interval;
 import it.unimib.disco.Reasoning.Reasoning;
 import it.unimib.disco.Selection.Selection;
 import it.unimib.disco.TemporalIntervalCreator.MatrixCreator;
@@ -21,14 +22,16 @@ import java.util.List;
 
 import org.aksw.distributions.Fact;
 import org.aksw.distributions.FactGrouping;
-import org.apache.log4j.Logger;
+
 
 public class TemporalIntervalCreator {
 
-private static Logger logger = Logger.getLogger(TemporalIntervalCreator.class);
+
 
 public QualityMeasure measure(Configuration phenotype, HashMap<String,ArrayList<String>> repositoryDates,
 		List<Fact> temporalDefactoFacts,List<String> goldstandard_facts) throws FileNotFoundException  {
+	
+	//System.out.println(phenotype.getSelection()+" "+phenotype.getX()+" "+phenotype.getK()+" "+phenotype.getNormalization());
 	 QualityMeasure m = new QualityMeasure();
 	 FileOutputStream fos,fos1;
 		File directory = new File (".");
@@ -41,7 +44,7 @@ public QualityMeasure measure(Configuration phenotype, HashMap<String,ArrayList<
 			
 		/******************RIM**************/
 		HashMap<String, DateOccurrence [][]> maximalRIM =  new MatrixCreator().createMaximalRIM(repositoryDates);
-		logger.info("Created maximal RIM");
+		
 		
 		/******************Normalization **************/
 		List<Fact> factNormalized= new NormalizationSelection().normalize(phenotype.getNormalization(),temporalDefactoFacts);	
@@ -50,11 +53,11 @@ public QualityMeasure measure(Configuration phenotype, HashMap<String,ArrayList<
 		HashMap<String,HashMap<String,List<Fact>>> groupFacts = new FactGrouping().groupBySubjectObject(factNormalized);
 		
 		TemporalIntervalFactAssociator ta = new TemporalIntervalFactAssociator();
-		HashMap<String,HashMap<String,HashSet<ArrayList<String>>>> sub_obj_interval = new HashMap<String,HashMap<String,HashSet<ArrayList<String>>>>() ;
+		HashMap<String,HashMap<String,List<Interval>>> sub_obj_interval = new HashMap<String,HashMap<String,List<Interval>>>() ;
 		
 		try {
 		for (String uri: maximalRIM.keySet()){
-			HashMap<String,HashSet<ArrayList<String>>> obj_interval= new HashMap<String,HashSet<ArrayList<String>>>();
+			HashMap<String,List<Interval>> obj_interval= new HashMap<String,List<Interval>>();
 			HashMap<String,List<Fact>> objbasedgroupfacts = groupFacts.get(uri);
 					
 			for (String obj: objbasedgroupfacts.keySet()){
@@ -80,35 +83,35 @@ public QualityMeasure measure(Configuration phenotype, HashMap<String,ArrayList<
 			e1.printStackTrace();
 		}
 		
-		logger.info("Selection function");
-		HashMap<String,HashMap<String,HashSet<ArrayList<String>>>> tempodefactoIntervalsUri = new HashMap<String,HashMap<String,HashSet<ArrayList<String>>>>();
+	
+		HashMap<String,HashMap<String,List<Interval>>> tempodefactoIntervalsUri = new HashMap<String,HashMap<String,List<Interval>>>();
 		for (String uri:sub_obj_interval.keySet()){
-				
-				tempodefactoIntervalsUri.put(uri,new Selection().selection(phenotype.getSelection(), phenotype.getX(), phenotype.getK(),sub_obj_interval.get(uri)));
-				
+			HashMap<String,List<Interval>> ls =new Selection().selection(phenotype.getSelection(), phenotype.getX(), phenotype.getK(),sub_obj_interval.get(uri));
+				tempodefactoIntervalsUri.put(uri,ls);
+				//System.out.println(uri+" "+ls+""+phenotype.getSelection());
 		}
 		        
 		//Concatenate intervals based on Allen's Algebra reasoning
-		 logger.info("Reasoning function");
-		 HashMap<String,HashMap<String,HashSet<ArrayList<String>>>> reasoningIntervalsUri = new HashMap<String,HashMap<String,HashSet<ArrayList<String>>>>();
+	
+		 HashMap<String,HashMap<String,HashSet<Interval>>> reasoningIntervalsUri = new HashMap<String,HashMap<String,HashSet<Interval>>>();
 		    
 		    for (String uri:tempodefactoIntervalsUri.keySet()){
-		    	HashMap<String,HashSet<ArrayList<String>>> reasoningIntervals = new HashMap<String,HashSet<ArrayList<String>>>();
+		    	HashMap<String,HashSet<Interval>> reasoningIntervals = new HashMap<String,HashSet<Interval>>();
 		    	
 		    	for(String obj:tempodefactoIntervalsUri.get(uri).keySet()){
-
+		    		//System.out.println(uri+" "+obj+ " "+tempodefactoIntervalsUri.get(uri).get(obj));
 		    		reasoningIntervals.put(obj, new Reasoning().concatenateIntervals(tempodefactoIntervalsUri.get(uri).get(obj)));
 		    	}
 		    	reasoningIntervalsUri.put(uri, reasoningIntervals);
 		 }
 		    
 			Evaluation ev = new Evaluation();
-			HashMap<String,HashMap<String,ArrayList<Double>>> evaluationResults = new HashMap<String,HashMap<String,ArrayList<Double>>>();
+			HashMap<String,HashMap<String,QualityMeasure>> evaluationResults = new HashMap<String,HashMap<String,QualityMeasure>>();
 
 				for (String uri:reasoningIntervalsUri.keySet()){
-					HashMap<String,HashSet<ArrayList<String>>> tempodefactoIntervals=reasoningIntervalsUri.get(uri);
+					HashMap<String,HashSet<Interval>> tempodefactoIntervals=reasoningIntervalsUri.get(uri);
 					
-					HashMap<String,ArrayList<Double>> localmetrics=ev.overlap(uri,tempodefactoIntervals,goldstandard_facts,pw1);
+					HashMap<String,QualityMeasure> localmetrics=ev.overlap(uri,tempodefactoIntervals,goldstandard_facts,pw1);
 					evaluationResults.put(uri,localmetrics);
 		
 			
@@ -119,13 +122,13 @@ public QualityMeasure measure(Configuration phenotype, HashMap<String,ArrayList<
 		int total=0;
 		for (String uri:evaluationResults.keySet()){
 			
-			HashMap<String,ArrayList<Double>> er=evaluationResults.get(uri);
+			HashMap<String,QualityMeasure>  er=evaluationResults.get(uri);
 			for (String obj: er.keySet()){
-				ArrayList<Double> metrics = er.get(obj);
+				QualityMeasure metrics = er.get(obj);
 				
-				avgP=avgP+metrics.get(0);
-				avgR=avgR+metrics.get(1);
-				avgF=avgF+metrics.get(2);
+				avgP=avgP+metrics.get(QualityMeasure.Entry.PRECISION);
+				avgR=avgR+metrics.get(QualityMeasure.Entry.RECALL);
+				avgF=avgF+metrics.get(QualityMeasure.Entry.fMEASURE);
 				
 				total++;
 			}
@@ -133,8 +136,8 @@ public QualityMeasure measure(Configuration phenotype, HashMap<String,ArrayList<
 		}
 
 		m.add(QualityMeasure.Entry.PRECISION, avgP/total);
-		 m.add(QualityMeasure.Entry.RECALL, avgR/total );
-		 m.add(QualityMeasure.Entry.fMEASURE, avgF/total );
+		m.add(QualityMeasure.Entry.RECALL, avgR/total );
+		m.add(QualityMeasure.Entry.fMEASURE, avgF/total );
 		
 	     return m;
 	}

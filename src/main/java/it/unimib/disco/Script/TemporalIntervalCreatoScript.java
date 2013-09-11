@@ -1,7 +1,9 @@
 package it.unimib.disco.Script;
 
 import it.unimib.disco.Evaluation.Evaluation;
+import it.unimib.disco.Evaluation.QualityMeasure;
 import it.unimib.disco.FactExtractor.DateOccurrence;
+import it.unimib.disco.Reasoning.Interval;
 import it.unimib.disco.Reasoning.Reasoning;
 import it.unimib.disco.Selection.Selection;
 import it.unimib.disco.TemporalIntervalCreator.MatrixCreator;
@@ -26,7 +28,7 @@ public class TemporalIntervalCreatoScript {
 
 private static Logger logger = Logger.getLogger(TemporalIntervalCreatoScript.class);
 	
-public HashMap<String,HashMap<String,ArrayList<Double>>> temporalFact(HashMap<String,ArrayList<String>> dateRepository,List<Fact> temporalDefactoFacts,List<String> goldstandard_facts,
+public HashMap<String,HashMap<String,QualityMeasure>> temporalFact(HashMap<String,ArrayList<String>> dateRepository,List<Fact> temporalDefactoFacts,List<String> goldstandard_facts,
 		int normalizationType,int selection,int k, int x) throws FileNotFoundException{
 		
 		FileOutputStream fos,fos1;
@@ -63,11 +65,11 @@ public HashMap<String,HashMap<String,ArrayList<Double>>> temporalFact(HashMap<St
 		HashMap<String,HashMap<String,List<Fact>>> groupFacts = new FactGrouping().groupBySubjectObject(factNormalized);
 		
 		TemporalIntervalFactAssociator ta = new TemporalIntervalFactAssociator();
-		HashMap<String,HashMap<String,HashSet<ArrayList<String>>>> sub_obj_interval = new HashMap<String,HashMap<String,HashSet<ArrayList<String>>>>() ;
+		HashMap<String,HashMap<String,List<Interval>>> sub_obj_interval = new HashMap<String,HashMap<String,List<Interval>>>() ;
 		
 		try {
 		for (String uri: maximalRIM.keySet()){
-			HashMap<String,HashSet<ArrayList<String>>> obj_interval= new HashMap<String,HashSet<ArrayList<String>>>();
+			HashMap<String,List<Interval>> obj_interval= new HashMap<String,List<Interval>>();
 			HashMap<String,List<Fact>> objbasedgroupfacts = groupFacts.get(uri);
 					
 			for (String obj: objbasedgroupfacts.keySet()){
@@ -94,35 +96,37 @@ public HashMap<String,HashMap<String,ArrayList<Double>>> temporalFact(HashMap<St
 		
 		  
 	    logger.info("Selection function");
-	    HashMap<String,HashMap<String,HashSet<ArrayList<String>>>> tempodefactoIntervalsUri = new HashMap<String,HashMap<String,HashSet<ArrayList<String>>>>();
+	    HashMap<String,HashMap<String,List<Interval>>> tempodefactoIntervalsUri = new HashMap<String,HashMap<String,List<Interval>>>();
 	    for (String uri:sub_obj_interval.keySet()){
-			
-			tempodefactoIntervalsUri.put(uri,new Selection().selection(selection, x, k,sub_obj_interval.get(uri)));
+	    	
+	    	HashMap<String,List<Interval>> ls = new Selection().selection(selection, x, k,sub_obj_interval.get(uri));
+	    	
+			tempodefactoIntervalsUri.put(uri,ls);
 				
 		}
 	    
 	  //Concatenate intervals based on Allen's Algebra reasoning
 	    logger.info("Reasoning function");
-	    HashMap<String,HashMap<String,HashSet<ArrayList<String>>>> reasoningIntervalsUri = new HashMap<String,HashMap<String,HashSet<ArrayList<String>>>>();
+	    HashMap<String,HashMap<String,HashSet<Interval>>> reasoningIntervalsUri = new HashMap<String,HashMap<String,HashSet<Interval>>>();
 	    
 	    for (String uri:tempodefactoIntervalsUri.keySet()){
-	    	HashMap<String,HashSet<ArrayList<String>>> reasoningIntervals = new HashMap<String,HashSet<ArrayList<String>>>();
+	    	HashMap<String,HashSet<Interval>> reasoningIntervals = new HashMap<String,HashSet<Interval>>();
 	    	
 	    	for(String obj:tempodefactoIntervalsUri.get(uri).keySet()){
-
+	    	
 	    		reasoningIntervals.put(obj, new Reasoning().concatenateIntervals(tempodefactoIntervalsUri.get(uri).get(obj)));
 	    	}
 	    	reasoningIntervalsUri.put(uri, reasoningIntervals);
 	    }
 	    
 	    Evaluation ev = new Evaluation();
-		HashMap<String,HashMap<String,ArrayList<Double>>> evaluationResults = new HashMap<String,HashMap<String,ArrayList<Double>>>();
+		HashMap<String,HashMap<String,QualityMeasure>> evaluationResults = new HashMap<String,HashMap<String,QualityMeasure>>();
 		try {
 			
 			for (String uri:reasoningIntervalsUri.keySet()){
-				HashMap<String,HashSet<ArrayList<String>>> timeintervals=reasoningIntervalsUri.get(uri);
+				HashMap<String,HashSet<Interval>> timeintervals=reasoningIntervalsUri.get(uri);
 				
-				HashMap<String,ArrayList<Double>> localmetrics=ev.overlap(uri,timeintervals,goldstandard_facts,pw1);
+				HashMap<String,QualityMeasure> localmetrics=ev.overlap(uri,timeintervals,goldstandard_facts,pw1);
 				evaluationResults.put(uri,localmetrics);
 	
 			}

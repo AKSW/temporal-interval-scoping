@@ -783,5 +783,5 @@ http://dbpedia.org/resource/Nashat_Akram	 http://dbpedia.org/ontology/team	 http
 http://dbpedia.org/resource/Nashat_Akram	 http://dbpedia.org/ontology/team	 http://dbpedia.org/resource/Al-Wakrah_Sports_Club	 2012	 2012	 FALSE
 http://dbpedia.org/resource/Ryan_Shawcross	 http://dbpedia.org/ontology/team	 http://dbpedia.org/resource/Manchester_United_F.C.	 2002	 2005	 FALSE
 http://dbpedia.org/resource/Ryan_Shawcross	 http://dbpedia.org/ontology/team	 http://dbpedia.org/resource/Manchester_United_F.C.	 2006	 2008	 FALSE
-http://dbpedia.org/resource/Greg_Young	 http://dbpedia.org/ontology/team	 http://dbpedia.org/resource/Sheffield_Wednesday_F.C.	 null	 2002	 TRUE
+#http://dbpedia.org/resource/Greg_Young	 http://dbpedia.org/ontology/team	 http://dbpedia.org/resource/Sheffield_Wednesday_F.C.	 null	 2002	 TRUE
 http://dbpedia.org/resource/Jordon_Mutch	 http://dbpedia.org/ontology/team	 http://dbpedia.org/resource/Derby_County_F.C.	 null	 2007	 TRUE

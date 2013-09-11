@@ -13,10 +13,10 @@ public class Configuration {
 	
 	public Set<Configuration> configurations = new HashSet<Configuration>();
 	
-	public Configuration(int selection, int k, int x, int normalization){
+	public Configuration(int selection, int x, int k, int normalization){
 		this.selection=selection;
-		this.k=k;
 		this.x=x;
+		this.k=k;
 		this.normalization=normalization;
 
 	}
@@ -24,10 +24,10 @@ public class Configuration {
 
 		for (int i = 0; i < size; i++){ 
 			selection = 1 + (int)(Math.random() * ((3 - 1) + 1));
-			normalization = 1 + (int)(Math.random() * ((4 - 1) + 1));
-			k = 1 + (int)(Math.random() * ((2 - 1) + 1));
 			x = 1 + (int)(Math.random() * ((10 - 1) + 1));
-			final Configuration configuration = new Configuration(selection, k, x, normalization);
+			k = 1 + (int)(Math.random() * ((2 - 1) + 1));
+			normalization = 1 + (int)(Math.random() * ((4 - 1) + 1));
+			final Configuration configuration = new Configuration(selection, x, k, normalization);
 			configurations.add(configuration);
 		}
 	}

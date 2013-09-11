@@ -1,6 +1,7 @@
 package it.unimib.disco.TemporalIntervalCreator;
 
 import it.unimib.disco.FactExtractor.DateOccurrence;
+import it.unimib.disco.Reasoning.Interval;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -158,18 +159,18 @@ public class TemporalIntervalFactAssociator {
 
 
 
-	public HashSet<ArrayList<String>> dcCalculator(int normalizationType, List<Fact> f,DateOccurrence [][] matrixMD,PrintWriter pw){
+	public List<Interval> dcCalculator(int normalizationType, List<Fact> f,DateOccurrence [][] matrixMD,PrintWriter pw){
 		
 	
 		ArrayList<String> occurrence = new ArrayList<String>();
 
 			
 			DateOccurrence [][] m = new DateOccurrence[matrixMD.length][matrixMD.length];
-			HashSet<ArrayList<String>> intervals =new HashSet<ArrayList<String>>();
+			List<Interval> intervals =new ArrayList<Interval>();
 			for (int i=0; i<m.length; i++){
 				
 				for(int j=0; j<m[i].length; j++){
-					ArrayList<String> interval = new ArrayList<String>();
+					
 					if(i==0||j==0){
 						m[0][j]=matrixMD[0][j];
 						m[i][0]=matrixMD[i][0];
@@ -205,20 +206,19 @@ public class TemporalIntervalFactAssociator {
 						m[i][j]= new DateOccurrence("", occurrence);
 					
 						//add start and end year and the formula
-						interval.add(m[i][0].getDate());
-						interval.add(m[0][j].getDate());
-						interval.add(String.valueOf(formula));
+						Interval interval = new Interval();
+						interval.addStart(m[i][0].getDate());
+						interval.addEnd(m[0][j].getDate());
+						interval.addValue(String.valueOf(formula));
+						intervals.add(interval);
 					}
 					else{
 						occurrence = new ArrayList<String>();
 						occurrence.add("0");
 						m[i][j]= new DateOccurrence("", occurrence);
 					}
-					if(interval.size()!=0){
-
-						intervals.add(interval);
 					
-					}
+
 
 					pw.print(m[i][j].getDate()+""+ m[i][j].getOccurrence()+",");
 					

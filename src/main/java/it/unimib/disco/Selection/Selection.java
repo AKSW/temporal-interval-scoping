@@ -1,9 +1,11 @@
 package it.unimib.disco.Selection;
+import it.unimib.disco.Reasoning.Interval;
 
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 
 import org.apache.commons.math.stat.descriptive.moment.Mean;
 import org.apache.commons.math.stat.descriptive.moment.Variance;
@@ -14,13 +16,13 @@ import org.apache.commons.math.stat.descriptive.moment.Variance;
 
 public class Selection {
 
-	public HashMap<String,HashSet<ArrayList<String>>> selection(int selection, int x, int k, HashMap<String,HashSet<ArrayList<String>>> objIntervals){
-		HashMap<String,HashSet<ArrayList<String>>> objIntervalsRedu = new HashMap<String,HashSet<ArrayList<String>>>();
-		HashSet<ArrayList<String>> sel = new HashSet<ArrayList<String>>();
+	public HashMap<String,List<Interval>> selection(int selection, int x, int k, HashMap<String,List<Interval>> objIntervals){
+		HashMap<String,List<Interval>> objIntervalsRedu = new HashMap<String,List<Interval>>();
+		List<Interval> sel = new ArrayList<Interval>();
 		
 		for (String obj: objIntervals.keySet()){
-			
-			HashSet<ArrayList<String>> temporalDCobjIntervals= objIntervals.get(obj);
+		
+			List<Interval> temporalDCobjIntervals= objIntervals.get(obj);
 			try {
 				
 				if(selection==1){
@@ -50,104 +52,95 @@ public class Selection {
 	}
 	
 
-	public HashSet<ArrayList<String>> combinedProxyTopk (HashSet<ArrayList<String>> intervals, int x,int k) throws ParseException{
+	public List<Interval> combinedProxyTopk (List<Interval> intervals, int x,int k) throws ParseException{
 			
-
-		HashSet<ArrayList<String>> allIntervals= new HashSet<ArrayList<String>>();
+		List<Interval> allIntervals= new ArrayList<Interval>();
 		
-			ArrayList<String> interMax=new ArrayList<String>();
-			double value=0,max=0;
-			for (ArrayList<String> interv: intervals){
 			
-				if (interv.size() != 0){
-				
-					value=Double.valueOf((interv.get(2).trim()));
+			double maxProv=0d,value=0d,max=0d;
+			int count=0;
+			for (Interval interv: intervals){
+					value=Double.valueOf((interv.getValue().trim()));
 					if(value > max && value!=0.0){
 					
 						max=value;
 
 					}
-				}	
-				
 			}
-			
-			for (ArrayList<String> interv: intervals){
-				
-				if (interv.size() != 0){
-				
-					value=Double.valueOf((interv.get(2).trim()));
-
-					if(value >= max && value!=0.0){
-		
-						interMax=new ArrayList<String>();
-						interMax.add(interv.get(0));
-						interMax.add(interv.get(1));
-						interMax.add(interv.get(2));
+			if(x==0){
+				maxProv=0d;
+			}
+			else{
+				maxProv=max-(x*max)/100;
+			}
+			while (count<k){
+				Interval interMax=new Interval();
+				boolean added=false;
+				int index=0;
+				value=0d;max=0d;
+				for (int i=0;i<intervals.size();i++){
 						
-						if (interMax.size()!=0 && k>=1){
-							//System.out.println(interMax);
-							allIntervals.add(interMax);
-
-							k--;
-							max=max-(x*max)/100;
-
+					value=Double.valueOf((intervals.get(i).getValue().trim()));
+					if(value>=maxProv){
+						if(value >= max && value!=0){
+						
+							max=value;
+			
+							interMax=new Interval();
+							interMax.addStart(intervals.get(i).getStart());
+							interMax.addEnd(intervals.get(i).getEnd());
+							interMax.addValue(intervals.get(i).getValue());
+							index=i;
+							added=true;
 						}
-	
-
-					}
-
-				}	
-
-		}
+						
+					}	
+					
+				}
+				
+				if(added){			
+					allIntervals.add(interMax);
+					intervals.remove(index);
+				}
+				count++;
+			}
 
 		return allIntervals;
 	}
 	
-	public HashSet<ArrayList<String>> proxSelect (HashSet<ArrayList<String>> intervals, int x) throws ParseException{
-			
+	
+	public List<Interval> proxSelect (List<Interval> intervals, int x) throws ParseException{		
 		
-		HashSet<ArrayList<String>> allIntervals= new HashSet<ArrayList<String>>();
+		List<Interval> allIntervals= new ArrayList<Interval>();
 
 		double maxProv=0;
 		
-	
-			ArrayList<String> interMax=new ArrayList<String>();
+			Interval interMax=new Interval();
 			double value=0,max=0;
-			for (ArrayList<String> interv: intervals){
-			
-				if (interv.size() != 0){
-				
-					value=Double.valueOf((interv.get(2).trim()));
-					if(value > max && value!=0.0){
+			for (Interval interv: intervals){
+	
+					value=Double.valueOf((interv.getValue().trim()));
+					if(value >= max && value!=0.0){
 					
 						max=value;
 
 					}
-				}	
-				
 			}
 			
 			maxProv=max-(x*max)/100;
 
-			for (ArrayList<String> interv: intervals){
-				
-				if (interv.size() != 0){
-				
-					value=Double.valueOf((interv.get(2).trim()));
+			for (Interval interv: intervals){
+
+					value=Double.valueOf((interv.getValue().trim()));
 
 					if(value <= max && value >= maxProv && value!=0.0){
 		
-						interMax=new ArrayList<String>();
-						interMax.add(interv.get(0));
-						interMax.add(interv.get(1));
-						interMax.add(interv.get(2));
+						interMax=new Interval();
+						interMax.addStart(interv.getStart());
+						interMax.addEnd(interv.getEnd());
+						interMax.addValue(interv.getValue());
 						
-						if (interMax.size()!=0){
-							//System.out.println(interMax);
-							allIntervals.add(interMax);
-						}
-
-					}
+						allIntervals.add(interMax);
 
 				}	
 				
@@ -156,46 +149,43 @@ public class Selection {
 		return allIntervals;
 	}
 	
-	public HashSet<ArrayList<String>> topK (HashSet<ArrayList<String>> intervals, int k) throws ParseException{
-			
-		
-		HashSet<ArrayList<String>> allIntervals= new HashSet<ArrayList<String>>();
+	public List<Interval> topK (List<Interval> intervals, int k) throws ParseException{
+		//List<Interval> intervals=new Interval().sort(list);
 
-
-		double maxProv=5000.00;
+		List<Interval> allIntervals= new ArrayList<Interval>();
+	
 		int count=0;
 		while (count<k){
-			ArrayList<String> interMax=new ArrayList<String>();
+			boolean added=false;
+			Interval interMax=new Interval();
+			int index=0;
 			double value=0,max=0;
-			for (ArrayList<String> interv: intervals){
-			
-				if (interv.size() != 0){
-				
-					value=Double.valueOf((interv.get(2).trim()));
-					if(value<maxProv){
-					if(value > max && value!=0.0){
+			for (int i=0;i<intervals.size();i++){
+					
+					value=Double.valueOf((intervals.get(i).getValue().trim()));
+					
+					if(value >= max && value!=0){
 					
 						max=value;
 		
-						interMax=new ArrayList<String>();
-						interMax.add(interv.get(0));
-						interMax.add(interv.get(1));
-						interMax.add(interv.get(2));
+						interMax=new Interval();
+						interMax.addStart(intervals.get(i).getStart());
+						interMax.addEnd(intervals.get(i).getEnd());
+						interMax.addValue(intervals.get(i).getValue());
+						index=i;
+						added=true;
+					}
 
-					}
-					}
-				}	
 				
 			}
 			
-			maxProv=max;
-			if (interMax.size()!=0){
-
-				allIntervals.add(interMax);
+			if(added){			
+			allIntervals.add(interMax);
+			intervals.remove(index);
 			}
 			count++;
 		}
-		
+	
 		return allIntervals;
 	}
 	

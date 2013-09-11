@@ -33,6 +33,7 @@ public class ConfigurationEvaluator implements Evaluator<Configuration> {
 		TemporalIntervalCreator interv = new TemporalIntervalCreator();
 		QualityMeasure m = new QualityMeasure();
 		try {
+		
 			m = interv.measure(phenotype, resURIs, temporalDefactoFacts, yagoFacts);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

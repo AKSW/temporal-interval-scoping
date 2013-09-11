@@ -22,8 +22,8 @@ public class ConfigurationCreator implements Creator<SelectGenotype<Configuratio
 		{
 		    if (i == item){
 		    	genotype.add(obj.getSelection());
-		    	genotype.add(obj.getK());
 		    	genotype.add(obj.getX());
+		    	genotype.add(obj.getK());
 		    	genotype.add(obj.getNormalization());
 		    	
 		    	}
