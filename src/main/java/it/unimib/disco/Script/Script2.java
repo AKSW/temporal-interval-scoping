@@ -1,6 +1,7 @@
 package it.unimib.disco.Script;
 
 import it.unimib.disco.Evaluation.QualityMeasure;
+import it.unimib.disco.ReadFiles.FactGrouping;
 import it.unimib.disco.ReadFiles.ReadFiles;
 
 import java.io.BufferedWriter;
@@ -31,23 +32,17 @@ public class Script2 {
 		TemporalIntervalCreatoScript tempAnnot= new TemporalIntervalCreatoScript();
 	
 		// Resource URI extraction
-		List<String> resURIs = ReadFiles.getURIs(new File(args[0]));
-		HashMap<String,ArrayList<String>> dateRepository=new HashMap<String,ArrayList<String>>();
-		dateRepository=new ReadFiles().readCSVFile(resURIs);
-		
-		
-		//logger.info("DBpedia date repository ");
-				
+		List<Fact> dateRepository=new ArrayList<Fact>();
+		dateRepository= new ReadFiles().csv(new File(args[0]));
+		HashMap<String,HashMap<String,List<Fact>>> groupedFactBySubjectObject = new FactGrouping().groupBySubjectObject(dateRepository); //group temporal facts (s,p,t) by subject and object (t)
+
 		// Read temporalDefacto facts
-		List<String> temporalDefactoFacts = ReadFiles.getURIs(new File(args[1]));
 		List<Fact> l = new ArrayList<Fact>();
-		l = new ReadFiles().creatListOfFacts(temporalDefactoFacts);
-		//logger.info("TemporalDefacto facts parsed");
+		l = new ReadFiles().csvGS(new File(args[1]));
 				
 				
 		//Read gold standard facts
 		List<String> yagoFacts = ReadFiles.getURIs(new File(args[2]));
-		//logger.info("Yago facts parsed");
 				
 		//2, 10, 1, 1
 		int normalization = 0; 
@@ -80,7 +75,7 @@ public class Script2 {
 			
 			//default no-normalization
 			if (normalization==1){
-				evaluationResult = tempAnnot.temporalFact(dateRepository,l,yagoFacts,normalization,selection,k,x);
+				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,l,yagoFacts,normalization,selection,k,x);
 				outputResult.put("no-normalization",evaluationResult);
 				
 
@@ -88,19 +83,19 @@ public class Script2 {
 
 			//default local-normalization
 			else if (normalization==2){
-				evaluationResult = tempAnnot.temporalFact(dateRepository,l,yagoFacts,normalization,selection,k,x);
+				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,l,yagoFacts,normalization,selection,k,x);
 				outputResult.put("local-normalization",evaluationResult);
 
 			}
 			//default global-normalization
 			else if(normalization==3){
-				evaluationResult = tempAnnot.temporalFact(dateRepository,l,yagoFacts,normalization,selection,k,x);
+				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,l,yagoFacts,normalization,selection,k,x);
 				outputResult.put("global-normalization",evaluationResult);
 
 			}
 			//default chisquared-normalization
 			else{
-				evaluationResult = tempAnnot.temporalFact(dateRepository,l,yagoFacts,normalization,selection,k,x);
+				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,l,yagoFacts,normalization,selection,k,x);
 				outputResult.put("chisquared-normalization",evaluationResult);
 			}
 		}
@@ -125,26 +120,26 @@ public class Script2 {
 
 			//default no-normalization
 			if (normalization==1){
-				evaluationResult = tempAnnot.temporalFact(dateRepository,l,yagoFacts,normalization,selection,k,x);
+				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,l,yagoFacts,normalization,selection,k,x);
 				outputResult.put("no-normalization",evaluationResult);
 
 			}
 
 			//default local-normalization
 			else if (normalization==2){
-				evaluationResult = tempAnnot.temporalFact(dateRepository,l,yagoFacts,normalization,selection,k,x);
+				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,l,yagoFacts,normalization,selection,k,x);
 				outputResult.put("local-normalization",evaluationResult);
 
 			}
 			//default global-normalization
 			else if(normalization==3){
-				evaluationResult = tempAnnot.temporalFact(dateRepository,l,yagoFacts,normalization,selection,k,x);
+				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,l,yagoFacts,normalization,selection,k,x);
 				outputResult.put("global-normalization",evaluationResult);
 
 			}
 			//default chisquared-normalization
 			else{
-				evaluationResult = tempAnnot.temporalFact(dateRepository,l,yagoFacts,normalization,selection,k,x);
+				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,l,yagoFacts,normalization,selection,k,x);
 				outputResult.put("chisquared-normalization",evaluationResult);
 			}
 			
@@ -173,26 +168,26 @@ public class Script2 {
 			
 			//default no-normalization
 			if (normalization==1){
-				evaluationResult = tempAnnot.temporalFact(dateRepository,l,yagoFacts,normalization,selection,k,x);
+				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,l,yagoFacts,normalization,selection,k,x);
 				outputResult.put("no-normalization",evaluationResult);
 
 			}
 
 			//default local-normalization
 			else if (normalization==2){
-				evaluationResult = tempAnnot.temporalFact(dateRepository,l,yagoFacts,normalization,selection,k,x);
+				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,l,yagoFacts,normalization,selection,k,x);
 				outputResult.put("local-normalization",evaluationResult);
 
 			}
 			//default global-normalization
 			else if(normalization==3){
-				evaluationResult = tempAnnot.temporalFact(dateRepository,l,yagoFacts,normalization,selection,k,x);
+				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,l,yagoFacts,normalization,selection,k,x);
 				outputResult.put("global-normalization",evaluationResult);
 
 			}
 			//default chisquared-normalization
 			else{
-				evaluationResult = tempAnnot.temporalFact(dateRepository,l,yagoFacts,normalization,selection,k,x);
+				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,l,yagoFacts,normalization,selection,k,x);
 				outputResult.put("chisquared-normalization",evaluationResult);
 			}
 

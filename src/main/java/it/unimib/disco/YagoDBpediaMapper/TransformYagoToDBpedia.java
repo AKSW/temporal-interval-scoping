@@ -1,7 +1,7 @@
 package it.unimib.disco.YagoDBpediaMapper;
 
 import it.unimib.disco.FactExtractor.FactExtractor;
-import it.unimib.disco.FactExtractor.ResourceFetcher;
+import it.unimib.disco.FactExtractor.ResourceFetcherDB;
 import it.unimib.disco.ReadFiles.ReadFiles;
 
 import java.io.BufferedWriter;
@@ -37,7 +37,7 @@ public static void main (String []args){
 			dbpResourceArray.add(resURIdbp);
 		}
 		
-		ResourceFetcher rf = new ResourceFetcher();
+		ResourceFetcherDB rf = new ResourceFetcherDB();
 		
 		HashMap<String,OntModel> resourceModel =  rf.fetch(dbpResourceArray);
 		logger.info("Retrieved all dbpedia's entity description");

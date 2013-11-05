@@ -3,32 +3,31 @@ package it.unimib.disco.Script;
 import it.unimib.disco.Evaluation.Evaluation;
 import it.unimib.disco.Evaluation.QualityMeasure;
 import it.unimib.disco.FactExtractor.DateOccurrence;
+import it.unimib.disco.Matching.Matcher;
+import it.unimib.disco.MatrixCreator.MatrixCreator;
+import it.unimib.disco.Normalization.NormalizationSelection;
+import it.unimib.disco.ReadFiles.FactGrouping;
 import it.unimib.disco.Reasoning.Interval;
 import it.unimib.disco.Reasoning.Reasoning;
 import it.unimib.disco.Selection.Selection;
-import it.unimib.disco.TemporalIntervalCreator.MatrixCreator;
-import it.unimib.disco.TemporalIntervalCreator.NormalizationSelection;
-import it.unimib.disco.TemporalIntervalCreator.TemporalIntervalFactAssociator;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
 import org.aksw.distributions.Fact;
-import org.aksw.distributions.FactGrouping;
 import org.apache.log4j.Logger;
 
 public class TemporalIntervalCreatoScript {
 
 private static Logger logger = Logger.getLogger(TemporalIntervalCreatoScript.class);
-	
-public HashMap<String,HashMap<String,QualityMeasure>> temporalFact(HashMap<String,ArrayList<String>> dateRepository,List<Fact> temporalDefactoFacts,List<String> goldstandard_facts,
+	//HashMap<String,List<Features>> featuresUri
+public HashMap<String,HashMap<String,QualityMeasure>> temporalFact(HashMap<String,HashMap<String,List<Fact>>> groupedFactBySubjectObject,List<Fact> temporalDefactoFacts,List<String> goldstandard_facts,
 		int normalizationType,int selection,int k, int x) throws FileNotFoundException{
 		
 		FileOutputStream fos,fos1;
@@ -55,8 +54,23 @@ public HashMap<String,HashMap<String,QualityMeasure>> temporalFact(HashMap<Strin
 		
 	
 		/******************RIM**************/
-		HashMap<String, DateOccurrence [][]> maximalRIM =  new MatrixCreator().createMaximalRIM(dateRepository);
+		/*HashMap<String,ArrayList<String>> dateRepository=new HashMap<String,ArrayList<String>>();
+		for ( String str: featuresUri.keySet()){
+			List<Features> hm = featuresUri.get(str);
+			HashSet<String> dateList = new HashSet<String>();
+			for (Features y: hm){
+				dateList.add(y.getTimepoint());
+			}
+			ArrayList<String> list = new ArrayList<String>(dateList);
+			dateRepository.put(str, list);
+		}*/
+		
+		HashMap<String, DateOccurrence [][]> maximalRIM =  new MatrixCreator().createMaximalRIM(new FactGrouping().createRIMvectors(groupedFactBySubjectObject));
 		logger.info("Created maximal RIM");
+		
+		/******************lexical RIM**************/
+		//HashMap<String, DateOccurrence [][]> lexicalRIM =  new MatrixCreator().createLexicalRIM(featuresUri);
+		//logger.info("Created lexical RIM");
 		
 		/******************Normalization **************/
 		List<Fact> factNormalized= new NormalizationSelection().normalize(normalizationType,temporalDefactoFacts);
@@ -64,7 +78,7 @@ public HashMap<String,HashMap<String,QualityMeasure>> temporalFact(HashMap<Strin
 		/******************Matching **************/
 		HashMap<String,HashMap<String,List<Fact>>> groupFacts = new FactGrouping().groupBySubjectObject(factNormalized);
 		
-		TemporalIntervalFactAssociator ta = new TemporalIntervalFactAssociator();
+		Matcher ta = new Matcher();
 		HashMap<String,HashMap<String,List<Interval>>> sub_obj_interval = new HashMap<String,HashMap<String,List<Interval>>>() ;
 		
 		try {
@@ -78,8 +92,7 @@ public HashMap<String,HashMap<String,QualityMeasure>> temporalFact(HashMap<Strin
 				DateOccurrence [][] matrixManhattanDuration = ta.matrixYearsDuration(maximalRIM.get(uri));
 						
 				pw.println(uri+" "+obj);
-				obj_interval.put(obj, ta.dcCalculator(normalizationType,f,matrixManhattanDuration,pw));
-			
+				obj_interval.put(obj, ta.dcCalculator(normalizationType,f,matrixManhattanDuration,pw));	
 			}
 			sub_obj_interval.put(uri, obj_interval);
 		}

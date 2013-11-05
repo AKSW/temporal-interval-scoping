@@ -136,6 +136,91 @@ public class ReadFiles {
 		return allFacts;
 	}
 	
+	
+	public List<Fact> csv (File rsListFile){
+
+		List<Fact> allFacts = new ArrayList<Fact>();
+
+		BufferedReader br = null;
+		String line = "";
+		String cvsSplitBy = ",";
+ 
+		try {
+ 
+		br = new BufferedReader(new FileReader(rsListFile));
+		while ((line = br.readLine()) != null) {
+ 
+		        // use comma as separator
+			String[] fact = line.split(cvsSplitBy);
+			Fact f = new Fact();
+			f.add(Fact.Entry.SUBJECT, fact[0]);
+			f.add(Fact.Entry.PREDICATE, fact[1]);
+			f.add(Fact.Entry.OBJECT, fact[2]);
+			
+			allFacts.add(f);
+		}
+ 
+	} catch (FileNotFoundException e) {
+		e.printStackTrace();
+	} catch (IOException e) {
+		e.printStackTrace();
+	} finally {
+		if (br != null) {
+			try {
+				br.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+ 
+	return allFacts;
+  }
+	
+	public List<Fact> csvGS (File rsListFile){
+
+		List<Fact> allFacts = new ArrayList<Fact>();
+
+		BufferedReader br = null;
+		String line = "";
+		String cvsSplitBy = ",";
+ 
+		try {
+ 
+		br = new BufferedReader(new FileReader(rsListFile));
+		while ((line = br.readLine()) != null) {
+			line=line.substring(line.indexOf('[')+1,line.indexOf(']'));
+		        // use comma as separator
+			String[] fact = line.split(cvsSplitBy);
+			Fact f = new Fact();
+			f.add(Fact.Entry.SUBJECT, fact[0]);
+			f.add(Fact.Entry.PREDICATE, fact[1]);
+			f.add(Fact.Entry.OBJECT, fact[2]);
+			f.add(Fact.Entry.YAGOSTART, fact[3]);
+			f.add(Fact.Entry.YAGOEND, fact[4]);
+			f.add(Fact.Entry.DATE, fact[5]);
+			f.add(Fact.Entry.SCORE, fact[6]);
+			
+			allFacts.add(f);
+		}
+ 
+	} catch (FileNotFoundException e) {
+		e.printStackTrace();
+	} catch (IOException e) {
+		e.printStackTrace();
+	} finally {
+		if (br != null) {
+			try {
+				br.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+ 
+	return allFacts;
+  }
+	
 	public HashSet<ArrayList<String>> readTabSeparatedFile(List<String> file) {
 		HashSet<ArrayList<String>> fileArray = new HashSet<ArrayList<String>>(); 
 		
@@ -151,6 +236,40 @@ public class ReadFiles {
 			do{
 				
 				begin= remainingRecord.indexOf("	");
+				
+				if(begin<0){
+					
+					list.add(remainingRecord.substring(0,remainingRecord.length()));
+				}
+				else{
+					list.add(remainingRecord.substring(0, begin));
+
+					remainingRecord=remainingRecord.substring(begin+1);
+				}
+				
+			}while (begin>0);
+			
+			fileArray.add(list);
+		}
+		return fileArray;
+
+	}
+	
+	public HashSet<ArrayList<String>> readCSV(List<String> file) {
+		HashSet<ArrayList<String>> fileArray = new HashSet<ArrayList<String>>(); 
+		
+		
+		for(String record:file){
+			ArrayList<String> list = new ArrayList<String>();
+			String subj=record.substring(0,record.indexOf(","));
+			list.add(subj);
+			String remainingRecord= record.substring(record.indexOf(",")+1);
+			//remainingRecord=remainingRecord.substring(remainingRecord.indexOf('[')+1,remainingRecord.indexOf(']'));
+			
+			int begin;
+			do{
+				
+				begin= remainingRecord.indexOf(",");
 				
 				if(begin<0){
 					

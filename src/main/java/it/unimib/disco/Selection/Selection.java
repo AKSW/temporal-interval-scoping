@@ -61,7 +61,7 @@ public class Selection {
 			int count=0;
 			for (Interval interv: intervals){
 					value=Double.valueOf((interv.getValue().trim()));
-					if(value > max && value!=0.0){
+					if(value >= max && value!=0.0){
 					
 						max=value;
 

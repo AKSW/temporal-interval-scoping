@@ -1,6 +1,6 @@
 package it.unimib.disco.YagoDBpediaMapper;
 
-import it.unimib.disco.FactExtractor.ResourceFetcher;
+import it.unimib.disco.FactExtractor.ResourceFetcherDB;
 import it.unimib.disco.ReadFiles.ReadFiles;
 
 import java.io.BufferedWriter;
@@ -70,7 +70,7 @@ public class YagoPredicatesMappedToDBpedia {
 			logger.info("Parsed each line separately");
 			
 			
-			ResourceFetcher rf = new ResourceFetcher();
+			ResourceFetcherDB rf = new ResourceFetcherDB();
 			
 			HashMap<String,OntModel> resourceModel =  rf.fetch(yagoSubject);
 			logger.info("Retrieved all dbpedia's entity description");

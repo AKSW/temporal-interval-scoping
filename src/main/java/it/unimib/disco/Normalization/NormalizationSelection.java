@@ -1,5 +1,6 @@
-package it.unimib.disco.TemporalIntervalCreator;
+package it.unimib.disco.Normalization;
 
+import it.unimib.disco.ReadFiles.FactGrouping;
 import it.unimib.disco.ReadFiles.ReadFiles;
 
 import java.util.ArrayList;
@@ -8,7 +9,6 @@ import java.util.List;
 
 import org.aksw.distributions.ChiSquaredGlobalNormalization;
 import org.aksw.distributions.Fact;
-import org.aksw.distributions.FactGrouping;
 import org.aksw.distributions.GlobalNormalization;
 import org.aksw.distributions.LocalNormalization;
 
@@ -45,14 +45,10 @@ public class NormalizationSelection {
 		
 		}
 		
-	
-		/*for ( String str: res.keySet()){
-			HashMap<String, HashSet<ArrayList<String>>> hm = res.get(str);
-			for (String obj: hm.keySet()){
-				System.out.println(str+" "+ obj+" "+ hm.get(obj));
-			}
-		}
-		*/
+		/*for(int i=0;i<fileNormalized.size();i++){
+			System.out.println(fileNormalized.get(i).toString());
+		}*/
+		
 		return fileNormalized;
 	}
 	

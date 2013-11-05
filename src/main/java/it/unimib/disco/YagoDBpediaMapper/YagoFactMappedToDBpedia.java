@@ -22,7 +22,7 @@ public class YagoFactMappedToDBpedia {
 		private static ArrayList<String> yagoSubject=new ArrayList<String>();
 		private static HashMap<String, HashSet<String>> repositoryPredicates = new HashMap<String, HashSet<String>>();
 		private static HashSet<ArrayList<String>> factYago = new HashSet<ArrayList<String>>();
-		private static HashSet<ArrayList<String>> factYagoReduced = new HashSet<ArrayList<String>>();
+		//private static HashSet<ArrayList<String>> factYagoReduced = new HashSet<ArrayList<String>>();
 		private static HashSet<String> allFacts = new HashSet<String>();
 		
 		public static void main (String args[]){
@@ -35,8 +35,8 @@ public class YagoFactMappedToDBpedia {
 				List<String> mappedProperties = ReadFiles.getURIs(new File(args[1]));
 				logger.info("List of predicate parsed");
 				
-				List<String> dbpURI = ReadFiles.getURIs(new File(args[2]));
-				logger.info("List of uris parsed");
+				//List<String> dbpURI = ReadFiles.getURIs(new File(args[2]));
+				//logger.info("List of uris parsed");
 				
 				//list of the mapping between yago's properties and dbpedia's properties
 				for(String yagoProperty: mappedProperties){
@@ -107,26 +107,27 @@ public class YagoFactMappedToDBpedia {
 				
 				logger.info("Parsed each line separately");
 
-				for (ArrayList<String> fact: factYago){
+				/*for (ArrayList<String> fact: factYago){
 					for (String uri: dbpURI)
 						if (fact.get(0).equals(uri)){
 							factYagoReduced.add(fact);
 						}
-				}
+				}*/
 				
 				// date and fact extractor
 				YagoDBpediaMapper dfe = new YagoDBpediaMapper();
 				
-				allFacts=dfe.fetchDBpediaFacts(factYagoReduced, repositoryPredicates);
+				
+				allFacts=dfe.fetchDBpediaFacts(dfe.unifyDBpediaFacts(factYago,factYago), repositoryPredicates);
 				for (String str: allFacts){
 					System.out.println(str);
 				}
 				logger.info("Retrieved all dbpedia's property value of type date");
 				
 				
-				
+				File directory = new File (".");
 				try {
-					BufferedWriter bw = new BufferedWriter(new FileWriter(new File("yagoFactsMappedDBp/YagoFactMappedToDBpedia_out_1.csv")));
+					BufferedWriter bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output/"+"gold_standard_prov.csv")));
 					
 					// header
 					//bw.write("YagoFacts"+"\n" );

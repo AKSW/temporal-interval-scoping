@@ -1,10 +1,11 @@
 package it.unimib.disco.Script;
 
 import it.unimib.disco.FactExtractor.DateOccurrence;
+import it.unimib.disco.Matching.Matcher;
+import it.unimib.disco.MatrixCreator.MatrixCreator;
+import it.unimib.disco.Normalization.NormalizationSelection;
+import it.unimib.disco.ReadFiles.FactGrouping;
 import it.unimib.disco.ReadFiles.ReadFiles;
-import it.unimib.disco.TemporalIntervalCreator.MatrixCreator;
-import it.unimib.disco.TemporalIntervalCreator.NormalizationSelection;
-import it.unimib.disco.TemporalIntervalCreator.TemporalIntervalFactAssociator;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -14,7 +15,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.aksw.distributions.Fact;
-import org.aksw.distributions.FactGrouping;
 
 public class Test3 {
 
@@ -93,8 +93,8 @@ public class Test3 {
 			for (String obj: objbasedgroupfacts.keySet()){
 				List<Fact> f = objbasedgroupfacts.get(obj);
 				
-				DateOccurrence [][] matrixManhattanDuration = new TemporalIntervalFactAssociator().matrixYearsDuration(maximalRIM.get(uri));
-				new TemporalIntervalFactAssociator().dcCalculator(1,f,matrixManhattanDuration,pw);
+				DateOccurrence [][] matrixManhattanDuration = new Matcher().matrixYearsDuration(maximalRIM.get(uri));
+				new Matcher().dcCalculator(1,f,matrixManhattanDuration,pw);
 				}
 			}
 	}

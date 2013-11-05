@@ -1,10 +1,10 @@
 package it.unimib.disco.Evaluation;
 
 import it.unimib.disco.Evaluation.QualityMeasure.Entry;
+import it.unimib.disco.MatrixCreator.MatrixCreator;
 import it.unimib.disco.ReadFiles.ReadFiles;
 import it.unimib.disco.Reasoning.Interval;
 import it.unimib.disco.Reasoning.TemporalInterval;
-import it.unimib.disco.TemporalIntervalCreator.MatrixCreator;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;

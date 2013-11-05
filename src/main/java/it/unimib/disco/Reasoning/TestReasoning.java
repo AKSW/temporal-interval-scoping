@@ -12,19 +12,19 @@ public class TestReasoning {
 		Interval interval3 = new Interval();
 		Interval interval4 = new Interval();
 		
-		interval1.addStart("2003");
-		interval1.addEnd("2005");
+		interval1.addStart("2009");
+		interval1.addEnd("2013");
 		
 		
-		interval2.addStart("2000");
-		interval2.addEnd("2001");
+		interval2.addStart("2001");
+		interval2.addEnd("2004");
 	
 		
-		interval3.addStart("2002");
-		interval3.addEnd("2006");
+		interval3.addStart("2003");
+		interval3.addEnd("2004");
 		
-		interval4.addStart("1990");
-		interval4.addEnd("2000");
+		interval4.addStart("2002");
+		interval4.addEnd("2010");
 		
 		intervals.add(interval1);
 		intervals.add(interval2);
@@ -35,5 +35,10 @@ public class TestReasoning {
 		System.out.println(result);
 		
 	}
-
+//[[2003, 2006], [2009, 2013], [2004, 2006, 0.18333333333333335]]
+	//[[2007, 2013], [2009, 2013, 0.1380952380952381], [1986, 1993, 0.11904761904761904]]
+	//[[2004, 2005, 0.13793103448275862], [2011, 2013, 0.22413793103448276], [2007, 2013]]
+	//[[1986, 1993], [2006, 2013], [2007, 2013], [2009, 2013, 0.1380952380952381]]
+	//[[2009, 2013, 0.13541666666666666], [2001, 2004], [2003, 2004, 0.1875], [2002, 2004]]
+	//http://dbpedia.org/resource/Arjen_Robben http://dbpedia.org/resource/Chelsea_F.C. [[2003, 2004, 0.1875], [2009, 2013, 0.13541666666666666], [2002, 2004, 0.125], [2001, 2004, 0.125]]	
 }

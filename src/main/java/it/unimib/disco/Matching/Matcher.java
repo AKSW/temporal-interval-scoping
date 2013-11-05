@@ -1,6 +1,7 @@
-package it.unimib.disco.TemporalIntervalCreator;
+package it.unimib.disco.Matching;
 
 import it.unimib.disco.FactExtractor.DateOccurrence;
+import it.unimib.disco.MatrixCreator.MatrixCreator;
 import it.unimib.disco.Reasoning.Interval;
 
 import java.io.PrintWriter;
@@ -13,29 +14,27 @@ import java.util.List;
 import org.aksw.distributions.Fact;
 import org.aksw.distributions.Fact.Entry;
 
-public class TemporalIntervalFactAssociator {
+public class Matcher {
 
 	public HashMap<String,DateOccurrence [][]> diagonalMatrixCreator(HashMap<String, DateOccurrence [][]> reducedMatrix2){
 		
 		HashMap<String,DateOccurrence [][]> diagonalMatrixURI = new HashMap<String,DateOccurrence [][]>();
-		ArrayList<String> occurrence = new ArrayList<String>();
+
 		
 		for (String Uri: reducedMatrix2.keySet()){
 			DateOccurrence [][] diagonalMatrix= reducedMatrix2.get(Uri);
 			
 			for (int i=1; i<diagonalMatrix.length; i++){
 				for(int j=1; j<diagonalMatrix[i].length; j++){
-					if(j>=i&&!(diagonalMatrix[i][j].getOccurrence().get(0).equalsIgnoreCase("X"))){
-						occurrence = new ArrayList<String>();
+					if(j>=i&&!(diagonalMatrix[i][j].getOccurrence().equalsIgnoreCase("X"))){
 						
 						double value = (diagonalMatrix.length -j)*1.0/(diagonalMatrix.length-i); 
-						occurrence.add(String.valueOf(value));
-						diagonalMatrix[i][j]= new DateOccurrence("", occurrence);
+	
+						diagonalMatrix[i][j]= new DateOccurrence("", String.valueOf(value));
 					}
 					else{
-						occurrence = new ArrayList<String>();
-						occurrence.add("0");
-						diagonalMatrix[i][j]= new DateOccurrence("", occurrence);
+
+						diagonalMatrix[i][j]= new DateOccurrence("", "0");
 					}
 				}
 			}
@@ -48,47 +47,37 @@ public class TemporalIntervalFactAssociator {
 	
 	public DateOccurrence [][] matrixYearsDuration(DateOccurrence [][] mRed){
 		
-		ArrayList<String> occurrence = new ArrayList<String>();
-
 		DateOccurrence [][] temporalDCMatrix= new DateOccurrence[mRed.length][mRed.length];
-		
-		occurrence.add("End");
-		temporalDCMatrix[0][0]= new DateOccurrence("[Start]/", occurrence);
+		temporalDCMatrix[0][0]= new DateOccurrence("[Start]/", "End");
 
 		
 		for(int l=1; l<temporalDCMatrix.length; l++){
 			temporalDCMatrix[l][0] = mRed[l][0];
-
 		}
-		
 		
 		for(int m=1; m<temporalDCMatrix.length; m++){
 			temporalDCMatrix[0][m]= mRed[0][m];
 		}
 			
 		for (int i=1; i<temporalDCMatrix.length; i++){
-				for(int j=1; j<temporalDCMatrix[i].length; j++){
+			for(int j=1; j<temporalDCMatrix[i].length; j++){
 					
-					if(j>=i){
+				if(j>=i){
 						
-						MatrixCreator mpc= new MatrixCreator();
-						Date column = mpc.stringToLong(temporalDCMatrix[0][j].getDate());
-						Date row = mpc.stringToLong(temporalDCMatrix[i][0].getDate());
-						long millisecDistance = column.getTime()-row.getTime();
-						long dayDistance= millisecDistance/(1000 * 60 * 60 * 24);
-						long yearDistance= dayDistance/365+1;
-						occurrence = new ArrayList<String>();
-						occurrence.add(String.valueOf(yearDistance));
+					MatrixCreator mpc= new MatrixCreator();
+					Date column = mpc.stringToLong(temporalDCMatrix[0][j].getDate());
+					Date row = mpc.stringToLong(temporalDCMatrix[i][0].getDate());
+					long millisecDistance = column.getTime()-row.getTime();
+					long dayDistance= millisecDistance/(1000 * 60 * 60 * 24);
+					long yearDistance= dayDistance/365+1;
 						
-						temporalDCMatrix[i][j]= new DateOccurrence("", occurrence);
-					}
-					else{
-						occurrence = new ArrayList<String>();
-						occurrence.add("0");
-						temporalDCMatrix[i][j]= new DateOccurrence("", occurrence);
-					}
+					temporalDCMatrix[i][j]= new DateOccurrence("", String.valueOf(yearDistance));
+				}
+				else{
+					temporalDCMatrix[i][j]= new DateOccurrence("", "0");
 				}
 			}
+		}
 			
 		
 		/*for (int i=0; i<temporalDCMatrix.length;i++){
@@ -106,12 +95,10 @@ public class TemporalIntervalFactAssociator {
 
 	public DateOccurrence [][] matrixManhattanDuration( DateOccurrence [][] mRed){
 		
-		ArrayList<String> occurrence = new ArrayList<String>();
-
 			DateOccurrence [][] temporalDCMatrix= new DateOccurrence[mRed.length][mRed.length];
 			
-			occurrence.add("End");
-			temporalDCMatrix[0][0]= new DateOccurrence("[Start]/", occurrence);
+
+			temporalDCMatrix[0][0]= new DateOccurrence("[Start]/", "End");
 
 			
 			for(int l=1; l<temporalDCMatrix.length; l++){
@@ -129,17 +116,14 @@ public class TemporalIntervalFactAssociator {
 				int count=1;
 				for(int j=1; j<temporalDCMatrix[i].length; j++){
 		
-					if(j>=i&&!(mRed[i][j].getOccurrence().get(0).equalsIgnoreCase("X"))){
-						
-						occurrence = new ArrayList<String>();
-						occurrence.add(String.valueOf(count));
+					if(j>=i&&!(mRed[i][j].getOccurrence().equalsIgnoreCase("X"))){
+											
+						temporalDCMatrix[i][j]= new DateOccurrence("", String.valueOf(count));
 						count++;
-						temporalDCMatrix[i][j]= new DateOccurrence("", occurrence);
 					}
 					else{
-						occurrence = new ArrayList<String>();
-						occurrence.add("0");
-						temporalDCMatrix[i][j]= new DateOccurrence("", occurrence);
+
+						temporalDCMatrix[i][j]= new DateOccurrence("", "0");
 					}
 					
 				}
@@ -157,13 +141,7 @@ public class TemporalIntervalFactAssociator {
 		
 	}
 
-
-
 	public List<Interval> dcCalculator(int normalizationType, List<Fact> f,DateOccurrence [][] matrixMD,PrintWriter pw){
-		
-	
-		ArrayList<String> occurrence = new ArrayList<String>();
-
 			
 			DateOccurrence [][] m = new DateOccurrence[matrixMD.length][matrixMD.length];
 			List<Interval> intervals =new ArrayList<Interval>();
@@ -176,9 +154,9 @@ public class TemporalIntervalFactAssociator {
 						m[i][0]=matrixMD[i][0];
 					}
 					
-					else if(j>i&&!(matrixMD[i][j].getOccurrence().get(0).contains("0"))){
+					else if(j>i&&!(matrixMD[i][j].getOccurrence().contains("0"))){
 						
-						String occuMatrix = matrixMD[i][j].getOccurrence().get(0).trim();
+						String occuMatrix = matrixMD[i][j].getOccurrence().trim();
 						
 						int duration = Integer.valueOf(occuMatrix);
 						
@@ -199,11 +177,8 @@ public class TemporalIntervalFactAssociator {
 							formula=hitCountNormalization(normalizationType,row,column,f);
 							
 						}
-
-						occurrence = new ArrayList<String>();
-						occurrence.add(String.valueOf(formula));
 						
-						m[i][j]= new DateOccurrence("", occurrence);
+						m[i][j]= new DateOccurrence("", String.valueOf(formula));
 					
 						//add start and end year and the formula
 						Interval interval = new Interval();
@@ -213,9 +188,8 @@ public class TemporalIntervalFactAssociator {
 						intervals.add(interval);
 					}
 					else{
-						occurrence = new ArrayList<String>();
-						occurrence.add("0");
-						m[i][j]= new DateOccurrence("", occurrence);
+
+						m[i][j]= new DateOccurrence("", "0");
 					}
 					
 

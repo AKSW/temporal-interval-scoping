@@ -1,6 +1,6 @@
-package org.aksw.distributions;
+package it.unimib.disco.ReadFiles;
 
-import it.unimib.disco.ReadFiles.ReadFiles;
+import it.unimib.disco.Matching.Features;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
+import org.aksw.distributions.Fact;
 import org.aksw.distributions.Fact.Entry;
 
 public class FactGrouping {
@@ -23,6 +24,7 @@ public HashMap<String,HashMap<String,List<Fact>>> groupBySubjectObject(List<Fact
 		while (it.hasNext()){
 			Fact f = new Fact();
 			f = (Fact) it.next();
+			
 			
 			if (!res.containsKey(f.get(Entry.SUBJECT))){
 
@@ -49,9 +51,9 @@ public HashMap<String,HashMap<String,List<Fact>>> groupBySubjectObject(List<Fact
 		
 	
 		/*for ( String str: res.keySet()){
-			HashMap<String, HashSet<ArrayList<String>>> hm = res.get(str);
+			HashMap<String,List<Fact>> hm = res.get(str);
 			for (String obj: hm.keySet()){
-				System.out.println(str+" "+ obj+" "+ hm.get(obj));
+				System.out.println(hm.get(obj));
 			}
 		}*/
 		
@@ -93,6 +95,62 @@ public HashMap<String,HashMap<String,List<Fact>>> groupBySubjectObject(List<Fact
 		}*/
 		return resource;
 	}
+	
+	public HashMap<String,List<Features>> featureRIM(List<String> featureList){
+		ReadFiles rf=new ReadFiles();
+		HashSet<ArrayList<String>> file=rf.readCSV(featureList);
+	
+		HashMap<String,List<Features>> featuresUri= new HashMap<String,List<Features>>(); 
+		List<Features> features= new ArrayList<Features>();
+		
+		for (ArrayList<String> record:file){
 
+			if (!featuresUri.containsKey(record.get(0))){
+				features= new ArrayList<Features>();
+				featuresUri.put(record.get(0), features);
+			}
 
+			features=featuresUri.get(record.get(0));
+			features.add(new Features(record.get(1),record.get(2)));
+			featuresUri.put(record.get(0),features);
+		}
+		
+		
+		/*for ( String str: featuresUri.keySet()){
+			List<Features> hm = featuresUri.get(str);
+			for (Features y: hm){
+				System.out.println(str+" "+ y.getPredicate()+" "+ y.getTimepoint());
+			}
+		}*/
+		return featuresUri;
+	}
+
+	public HashMap<String,ArrayList<String>> createRIMvectors (HashMap<String,HashMap<String,List<Fact>>> groupedFactBySubjectObject) {
+		HashMap<String,ArrayList<String>> fileArray = new HashMap<String,ArrayList<String>>(); 
+		
+		for(String subj:groupedFactBySubjectObject.keySet()){
+			
+			ArrayList<String> list = new ArrayList<String>();
+
+			if (!fileArray.containsKey(subj)){
+				list= new ArrayList<String>();
+				fileArray.put(subj, list);
+			}
+			list=fileArray.get(subj);
+			HashMap<String,List<Fact>>  groupedFactByObject =  groupedFactBySubjectObject.get(subj);
+			for(String obj:groupedFactByObject.keySet()){
+				list.add(obj);
+			}
+
+			fileArray.put(subj,list);
+		}
+		/*for ( String str: fileArray.keySet()){
+			ArrayList<String> hm = fileArray.get(str);
+			
+				System.out.println(str+" "+ hm);
+
+		}*/
+		return fileArray;
+
+	}
 }

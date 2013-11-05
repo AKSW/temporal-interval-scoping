@@ -1,6 +1,7 @@
-package it.unimib.disco.TemporalIntervalCreator;
+package it.unimib.disco.MatrixCreator;
 
 import it.unimib.disco.FactExtractor.DateOccurrence;
+import it.unimib.disco.Matching.Features;
 import it.unimib.disco.ReadFiles.ReadFiles;
 
 import java.text.DateFormat;
@@ -14,16 +15,12 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import org.aksw.distributions.Fact;
 import org.aksw.distributions.Fact.Entry;
 
-import com.hp.hpl.jena.ontology.OntModel;
-import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.RDFNode;
-import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.rdf.model.Statement;
-import com.hp.hpl.jena.rdf.model.StmtIterator;
 
 
 public class MatrixCreator {
@@ -41,116 +38,7 @@ public class MatrixCreator {
 		return resObjPre;	
 	}
 	
-	public HashSet<Fact> fetchtemporalfacts (HashMap<String,OntModel> models){
 		
-		HashSet<Fact> result = new HashSet<Fact>();
-		
-		for(String rUri: models.keySet()){
-
-			OntModel m = models.get(rUri);
-			
-			StmtIterator iter = m.listStatements();
-				
-			// print out the predicate, subject and object of each statement
-			while (iter.hasNext()) {
-				
-			    Statement stmt      = iter.next();  // get next statement
-			    Fact f = new Fact();
-
-			   // Resource  subject   = stmt.getSubject();     // we are considering only outgoing link so the subject is always rUri
-			    Property  predicate = stmt.getPredicate();   // get the predicate
- 
-			    RDFNode   object    = stmt.getObject();      // get the object
-
-			    if (object instanceof Resource) {
-
-			    } else {
-			    	
-			        // object is a literal
-			    	if(verifyDate(object)){
-			    		String dateStr= stemDate(object.toString());
-			    		
-			    		if (stringToLong(dateStr).before(stringToLong("2013-12-31"))){
-			    			f.add(Fact.Entry.SUBJECT, rUri);
-			    	        f.add(Fact.Entry.PREDICATE, predicate.toString());
-			    	        f.add(Fact.Entry.OBJECT, dateStr);
-			    	        result.add(f);
-			    		}
-			    	}
-			    }
-			    
-			}
-			/********add year 2013*******/
-			Fact f = new Fact();
-			f.add(Fact.Entry.SUBJECT, rUri);
-			f.add(Fact.Entry.PREDICATE, "http://dbpedia.org/property/years");
-			f.add(Fact.Entry.OBJECT, "2013");
-			result.add(f);
-
-		
-		}
-		return result;
-	}
-	
-	
-	public HashMap<String, HashMap<String, HashSet<String>>> fetchdateswithpredicates(HashMap<String,OntModel> models){
-		
-		HashMap<String, HashMap<String, HashSet<String>>> result = new HashMap<String, HashMap<String, HashSet<String>>>();
-		
-		for(String rUri: models.keySet()){
-			
-			HashMap<String, HashSet<String>> objPred = new HashMap<String,HashSet<String>>();
-
-			OntModel m = models.get(rUri);
-			
-			StmtIterator iter = m.listStatements();
-				
-			// print out the predicate, subject and object of each statement
-			while (iter.hasNext()) {
-				
-			    Statement stmt      = iter.next();  // get next statement
-
-			   // Resource  subject   = stmt.getSubject();     // we are considering only outgoing link so the subject is always rUri
-			    Property  predicate = stmt.getPredicate();   // get the predicate
- 
-			    RDFNode   object    = stmt.getObject();      // get the object
-
-			    if (object instanceof Resource) {
-
-			    } else {
-			    	
-			        // object is a literal
-			    	if(verifyDate(object)){
-			    		String dateStr= stemDate(object.toString());
-			    		
-			    		if (stringToLong(dateStr).before(stringToLong("2013-12-31"))){
-			    			if(!objPred.containsKey(dateStr)){
-						    		
-			    				HashSet<String> pred= new HashSet<String>();
-						    	objPred.put(dateStr, pred);
-						    }
-		
-			    			HashSet<String> pred= objPred.get(dateStr);
-							pred.add(predicate.toString());
-			    		}
-			    	}
-			    }
-			}
-			if(!objPred.containsKey("2013")){
-	    		
-    			HashSet<String> pred= new HashSet<String>();
-    			objPred.put("2013", pred);
-    		}
-			
-			HashSet<String> pred= objPred.get("2013");
-			pred.add("http://dbpedia.org/property/years");
-			result.put(rUri, objPred);
-		
-		}
-		return result;
-	}
-	
-	
 	public HashMap<String, ArrayList<String>> fetchDatesTD(List<Fact> file){
 
 		HashMap<String, ArrayList<String>> res = new HashMap<String, ArrayList<String>>();
@@ -199,6 +87,36 @@ public class MatrixCreator {
 		
 	}
 	
+	public HashMap<String,DateOccurrence [][]> createLexicalRIM(HashMap<String,List<Features>> featuresUri){
+		HashMap<String, DateOccurrence [][]> maximalMatrix = new HashMap<String, DateOccurrence [][]>(); 
+		
+		for (String uri: featuresUri.keySet()){
+			List<Features> hm = featuresUri.get(uri);
+			HashSet<String> dateList = new HashSet<String>();
+			HashMap<String,HashSet<String>> timepointpredicate= new HashMap<String,HashSet<String>>(); 
+			HashSet<String> predicates= new HashSet<String>();
+			for (Features y: hm){
+				dateList.add(y.getTimepoint());
+				if (!timepointpredicate.containsKey(y.getTimepoint())){
+					predicates= new HashSet<String>();
+					timepointpredicate.put(y.getTimepoint(), predicates);
+				}
+
+				predicates = timepointpredicate.get(y.getTimepoint());
+				predicates.add(stemPredicateSP(y.getPredicate()));
+				timepointpredicate.put(y.getTimepoint(),predicates);
+			}
+			
+			Map<String, HashSet<String>> sortedMap = new TreeMap<String, HashSet<String>>(timepointpredicate);
+
+
+			maximalMatrix.put(uri, matrixLexicalCreator(sortedMap));
+		}
+		
+		return maximalMatrix;		
+		
+	}
+	
 	public HashMap<ArrayList<String>,Integer> extractTemporalPredicate(HashMap<String, HashSet<String>> objPred, boolean predSE){
 		
 		HashMap<ArrayList<String>,Integer> timePoints = new HashMap<ArrayList<String>,Integer>();
@@ -237,9 +155,8 @@ public class MatrixCreator {
 	
 	public DateOccurrence[][] matrixCreator(ArrayList<String> startobjOccurrence, ArrayList<String> endobjOccurrence){
 		DateOccurrence matrix[][]= new DateOccurrence[startobjOccurrence.size()+1][endobjOccurrence.size()+1];
-		ArrayList<String> occurrence = new ArrayList<String>();
-		occurrence.add("End");
-		matrix[0][0]= new DateOccurrence("[Start]/", occurrence);
+
+		matrix[0][0]= new DateOccurrence("[Start]/", "End");
 
 		
 		int l=1;
@@ -255,20 +172,16 @@ public class MatrixCreator {
 			m++;
 		}
 
-		occurrence = new ArrayList<String>();
-		occurrence.add("X");
 		for (int i=1; i<startobjOccurrence.size()+1; i++){
 			
 			for(int j=1; j<endobjOccurrence.size()+1; j++){
 				
 				if (stringToLong(matrix[i][0].getDate()).after(stringToLong(matrix[0][j].getDate()))){
-					occurrence = new ArrayList<String>();
-					occurrence.add("X");
-						matrix[i][j]=new DateOccurrence("",occurrence);
+
+						matrix[i][j]=new DateOccurrence("","X");
 				}else{
-					occurrence = new ArrayList<String>();
-					occurrence.add("1");
-					matrix[i][j]=new DateOccurrence("",occurrence);
+
+					matrix[i][j]=new DateOccurrence("","1");
 					
 				}
 			}
@@ -278,6 +191,60 @@ public class MatrixCreator {
 
 	}
 	
+	public DateOccurrence[][] matrixLexicalCreator(Map<String,HashSet<String>> features){
+		int leng=0;
+		for (String s: features.keySet()){
+			HashSet<String> hs=features.get(s);
+			Iterator it = hs.iterator();
+			while (it.hasNext()){
+				leng++;
+			}
+		}
+		DateOccurrence matrix[][]= new DateOccurrence[leng+1][leng+1];
+
+		matrix[0][0]= new DateOccurrence("[Start]/", "End");
+
+		
+		int l=1;
+		for(String timepoint: features.keySet()){
+			Iterator it =features.get(timepoint).iterator();
+			while (it.hasNext()){
+				String predicate=(String) it.next();
+				matrix[l][0] = new DateOccurrence(timepoint,predicate);
+				l++;
+			}
+		}
+		
+		int m=1;
+		for(String timepoint: features.keySet()){
+			Iterator it =features.get(timepoint).iterator();
+			while (it.hasNext()){
+				String predicate=(String) it.next();
+		
+				matrix[0][m]=new DateOccurrence(timepoint,predicate);
+			
+				m++;
+			}
+		}
+
+		for (int i=1; i<leng+1; i++){
+			
+			for(int j=1; j<leng+1; j++){
+				
+				if (stringToLong(matrix[i][0].getDate()).after(stringToLong(matrix[0][j].getDate()))){
+
+						matrix[i][j]=new DateOccurrence("","X");
+				}else{
+
+					matrix[i][j]=new DateOccurrence("","1");
+					
+				}
+			}
+		}
+		
+		return matrix;
+
+	}
 	
 	public Date stringToLong(String datestr){
 		Date date = null;

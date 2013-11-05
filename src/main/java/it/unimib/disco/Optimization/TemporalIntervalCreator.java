@@ -3,12 +3,13 @@ package it.unimib.disco.Optimization;
 import it.unimib.disco.Evaluation.Evaluation;
 import it.unimib.disco.Evaluation.QualityMeasure;
 import it.unimib.disco.FactExtractor.DateOccurrence;
+import it.unimib.disco.Matching.Matcher;
+import it.unimib.disco.MatrixCreator.MatrixCreator;
+import it.unimib.disco.Normalization.NormalizationSelection;
+import it.unimib.disco.ReadFiles.FactGrouping;
 import it.unimib.disco.Reasoning.Interval;
 import it.unimib.disco.Reasoning.Reasoning;
 import it.unimib.disco.Selection.Selection;
-import it.unimib.disco.TemporalIntervalCreator.MatrixCreator;
-import it.unimib.disco.TemporalIntervalCreator.NormalizationSelection;
-import it.unimib.disco.TemporalIntervalCreator.TemporalIntervalFactAssociator;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -21,7 +22,6 @@ import java.util.HashSet;
 import java.util.List;
 
 import org.aksw.distributions.Fact;
-import org.aksw.distributions.FactGrouping;
 
 
 public class TemporalIntervalCreator {
@@ -52,7 +52,7 @@ public QualityMeasure measure(Configuration phenotype, HashMap<String,ArrayList<
 		/******************Matching **************/
 		HashMap<String,HashMap<String,List<Fact>>> groupFacts = new FactGrouping().groupBySubjectObject(factNormalized);
 		
-		TemporalIntervalFactAssociator ta = new TemporalIntervalFactAssociator();
+		Matcher ta = new Matcher();
 		HashMap<String,HashMap<String,List<Interval>>> sub_obj_interval = new HashMap<String,HashMap<String,List<Interval>>>() ;
 		
 		try {

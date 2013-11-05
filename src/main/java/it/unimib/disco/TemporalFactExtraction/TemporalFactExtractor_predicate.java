@@ -1,7 +1,7 @@
-package it.unimib.disco.FactExtractor;
+package it.unimib.disco.TemporalFactExtraction;
 
+import it.unimib.disco.FactExtractor.ResourceFetcherDB;
 import it.unimib.disco.ReadFiles.ReadFiles;
-import it.unimib.disco.TemporalIntervalCreator.MatrixCreator;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -18,12 +18,22 @@ import org.apache.log4j.Logger;
 
 import com.hp.hpl.jena.ontology.OntModel;
 
-public class TemporalFactExtractor {
+public class TemporalFactExtractor_predicate implements TemporalExtractionInterface {
 
 	/**
 	 * @author rula
 	 */
-	private static Logger logger = Logger.getLogger(TemporalFactExtractor.class);
+	private static Logger logger = Logger.getLogger(TemporalFactExtractor_predicate.class);
+	
+	public HashSet<Fact> extraction(List<String> resURIs){
+
+		HashMap<String,OntModel> resourceModel =  new ResourceFetcherDB().fetch(resURIs);
+		logger.info("Retrieved all dbpedia's entity description");
+		
+		HashSet<Fact> l =  new ResourceFetcherDB().fetchtemporalfacts(resourceModel);
+		logger.info("Retrieved all time points");
+		return l;
+	}
 	
 	public static void main(String[] args) {
 		
@@ -31,17 +41,11 @@ public class TemporalFactExtractor {
 		List<String> resURIs = ReadFiles.getURIs(new File(args[0]));
 		logger.info("DBpedia resources list file parsed");
 		
-		ResourceFetcher rf = new ResourceFetcher();
-		HashMap<String,OntModel> resourceModel =  rf.fetch(resURIs);
-		logger.info("Retrieved all dbpedia's entity description");
-		
-		MatrixCreator dfe = new MatrixCreator();
-		HashSet<Fact> l =  dfe.fetchtemporalfacts(resourceModel);
-		logger.info("Retrieved all time points");
+		HashSet<Fact> l = new TemporalFactExtractor_predicate().extraction(resURIs);
 
 		try {
 			File directory = new File (".");
-			BufferedWriter bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output/"+"repositoryDates.csv")));
+			BufferedWriter bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output/"+"repositoryDates_player_predicate.csv")));
 			
 			@SuppressWarnings("rawtypes")
 			Iterator it = l.iterator();
@@ -49,7 +53,7 @@ public class TemporalFactExtractor {
 			while (it.hasNext()){
 				Fact f = new Fact();
 				f = (Fact) it.next();
-				bw.write(f.get(Entry.SUBJECT)+","+f.get(Entry.PREDICATE)+","+f.get(Entry.OBJECT)+","+"\n");
+				bw.write(f.get(Entry.SUBJECT)+","+f.get(Entry.PREDICATE)+","+f.get(Entry.OBJECT)+"\n");
 			}
 			bw.flush();
 			bw.close();

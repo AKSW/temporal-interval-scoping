@@ -26,7 +26,7 @@ public class TestSelection {
 		
 		interval2.addStart("2000");
 		interval2.addEnd("2001");
-		interval2.addValue("0.53");
+		interval2.addValue("0.6");
 	
 		
 		interval3.addStart("2002");
@@ -46,7 +46,7 @@ public class TestSelection {
 		
 		obj1.put("barcelona", ls);
 		
-		System.out.println(new Selection().selection(1, 0, 2, obj1));
+		System.out.println(new Selection().selection(2, 0, 2, obj1));
 	}
 
 }
