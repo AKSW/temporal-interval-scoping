@@ -5,6 +5,7 @@ import it.unimib.disco.MatrixCreator.MatrixCreator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 import org.aksw.distributions.Fact;
 import org.apache.log4j.Logger;
@@ -13,6 +14,7 @@ import com.hp.hpl.jena.n3.turtle.TurtleParseException;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.NodeIterator;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
@@ -21,6 +23,7 @@ import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.shared.JenaException;
 import com.hp.hpl.jena.shared.NotFoundException;
 import com.hp.hpl.jena.util.FileManager;
+import com.hp.hpl.jena.vocabulary.RDFS;
 
 /**
  * @author izzy
@@ -31,6 +34,7 @@ public class ResourceFetcherDB {
 	private Logger logger = Logger.getLogger(ResourceFetcherDB.class);
 	
 	private static HashMap<String,OntModel> cache = new HashMap<String,OntModel>();
+	
 	
 	public HashMap<String,OntModel> fetch(List<String> resURIs) {
 		
@@ -126,4 +130,31 @@ public HashSet<Fact> fetchtemporalfacts (HashMap<String,OntModel> models){
 		return result;
 	}
 
+public Map<String,String> fetchLabels (OntModel m){
+	Map<String,String> labels = new HashMap<String,String>();
+//	Map<String,Set<String>> altLabels = new HashMap<String,Set<String>>();
+	
+	NodeIterator rdfsIterator = m.listObjectsOfProperty(RDFS.label);
+    while (rdfsIterator.hasNext()) {
+            RDFNode rdfNode = (RDFNode) rdfsIterator.next();
+            
+            String language = rdfNode.asLiteral().getLanguage();
+            String label = rdfNode.asLiteral().getLexicalForm();
+            if(language.equalsIgnoreCase("en")||language.equalsIgnoreCase("de")||language.equalsIgnoreCase("fr")){
+            labels.put(language,label);
+            }
+    }
+   /* NodeIterator skosAltIterator = m.listObjectsOfProperty(ResourceFactory.createProperty("http://www.w3.org/2004/02/skos/core#altLabel"));
+    while (skosAltIterator.hasNext()) {
+            RDFNode rdfNode = (RDFNode) skosAltIterator.next();
+            
+            String language = rdfNode.asLiteral().getLanguage();
+            String label = rdfNode.asLiteral().getLexicalForm();
+            if(language.equalsIgnoreCase("en")||language.equalsIgnoreCase("de")||language.equalsIgnoreCase("fr")){
+            altLabels.get(language).add(label);
+            }
+    }*/
+
+	return labels;
+	}
 }
