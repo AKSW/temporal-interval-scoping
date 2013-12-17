@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.Response;
 
 import org.aksw.distributions.Fact;
 import org.json.JSONException;
@@ -27,6 +28,7 @@ import au.com.bytecode.opencsv.CSVWriter;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientHandlerException;
+import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.UniformInterfaceException;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.core.util.MultivaluedMapImpl;
@@ -34,17 +36,16 @@ import com.sun.jersey.core.util.MultivaluedMapImpl;
 public class SimpleDefactoClientV2 {
 
         public static final WebResource webResource = Client.create().resource("http://139.18.2.164:1234/getdefactotimes");
-        
+        public static CSVWriter writer;
+       
         public static void main(String[] args) throws IOException, JSONException {
         	ReadFiles rf = new ReadFiles();
         	List<Fact> facts = rf.csvGS(new File(args[0]));
-        	
-        	
-        	
+        	ArrayList<JSONObject> arr=new ArrayList<JSONObject>();
         	for(Fact fact:facts){
         		BufferedReader br_en = new BufferedReader(new FileReader(new File(args[1])));
-            	BufferedReader br_de = new BufferedReader(new FileReader(new File(args[2])));
-            	BufferedReader br_fr = new BufferedReader(new FileReader(new File(args[3])));
+            	//BufferedReader br_de = new BufferedReader(new FileReader(new File(args[2])));
+            	//BufferedReader br_fr = new BufferedReader(new FileReader(new File(args[3])));
             	
             	String line;
         		int found = 0;
@@ -62,7 +63,7 @@ public class SimpleDefactoClientV2 {
             	    String[] surfaceFormsPart = Arrays.copyOfRange(lineParts, 1, lineParts.length);
             	    Set<String> surfaceForms = new HashSet<String>();
             	    
-            	    if (lineParts[0].contains(fact.get(Fact.Entry.SUBJECT))){
+            	    if (lineParts[0].equalsIgnoreCase(fact.get(Fact.Entry.SUBJECT))){
             	    	found++;
             	    	for ( String surfaceForm : surfaceFormsPart) {
             	        
@@ -71,7 +72,7 @@ public class SimpleDefactoClientV2 {
             	    altSubjectLabels.put("en", surfaceForms);
 
             	    }
-            	    else if(lineParts[0].contains(fact.get(Fact.Entry.OBJECT))){
+            	    else if(lineParts[0].equalsIgnoreCase(fact.get(Fact.Entry.OBJECT))){
             	    	found++;
             	    	for ( String surfaceForm : surfaceFormsPart) {
                 	        
@@ -82,14 +83,25 @@ public class SimpleDefactoClientV2 {
             	    }
             	}
         		
-        		found=0;
+        		/*found=0;
         		
         		while ((line = br_de.readLine()) != null&& found<2) {
             		String[] lineParts = line.split("\t");
             	    String[] surfaceFormsPart = Arrays.copyOfRange(lineParts, 1, lineParts.length);
             	    Set<String> surfaceForms = new HashSet<String>();
+            	    String sub_de = fact.get(Fact.Entry.SUBJECT);
+            	    sub_de = sub_de.substring(0, sub_de.indexOf("dbpedia"))+ "de." +  sub_de.substring(sub_de.indexOf("dbpedia"));
+            	    if(subjectLabels.get("de")!=null){
+            	    String labelS_de=subjectLabels.get("de").replace(" ", "_");
+            	    sub_de=sub_de.substring(0,sub_de.lastIndexOf("/")+1)+ labelS_de;}
             	    
-            	    if (lineParts[0].contains(fact.get(Fact.Entry.SUBJECT))){
+            	    String obj_de = fact.get(Fact.Entry.OBJECT);
+            	    obj_de = obj_de.substring(0, obj_de.indexOf("dbpedia"))+ "de." +  obj_de.substring(obj_de.indexOf("dbpedia"));
+            	    if(objectLabels.get("de")!=null){
+            	    String labelO_de=objectLabels.get("de").replace(" ", "_");
+            	    sub_de=sub_de.substring(0,sub_de.lastIndexOf("/")+1)+ labelO_de;}
+            	    
+            	    if (lineParts[0].equalsIgnoreCase(sub_de)){
             	    	found++;
             	    for ( String surfaceForm : surfaceFormsPart) {
             	        
@@ -98,7 +110,8 @@ public class SimpleDefactoClientV2 {
             	    altSubjectLabels.put("de", surfaceForms);
 
             	    }
-            	    else if(lineParts[0].contains(fact.get(Fact.Entry.OBJECT))){
+            	    
+            	    else if(lineParts[0].equalsIgnoreCase(obj_de)){
             	    	found++;
             	    	for ( String surfaceForm : surfaceFormsPart) {
                 	        
@@ -115,8 +128,19 @@ public class SimpleDefactoClientV2 {
             		String[] lineParts = line.split("\t");
             	    String[] surfaceFormsPart = Arrays.copyOfRange(lineParts, 1, lineParts.length);
             	    Set<String> surfaceForms = new HashSet<String>();
+            	    String sub_fr = fact.get(Fact.Entry.SUBJECT);
+            	    sub_fr = sub_fr.substring(0, sub_fr.indexOf("dbpedia"))+ "fr." +  sub_fr.substring(sub_fr.indexOf("dbpedia"));
+            	    if(subjectLabels.get("fr")!=null){
+            	    String labelS_fr=subjectLabels.get("fr").replace(" ", "_");
+            	    sub_fr=sub_fr.substring(0,sub_fr.lastIndexOf("/")+1)+ labelS_fr;}
             	    
-            	    if (lineParts[0].contains(fact.get(Fact.Entry.SUBJECT))){
+            	    String obj_fr = fact.get(Fact.Entry.OBJECT);
+            	    obj_fr = obj_fr.substring(0, obj_fr.indexOf("dbpedia"))+ "fr." +  obj_fr.substring(obj_fr.indexOf("dbpedia"));
+            	    if(objectLabels.get("fr")!=null){
+            	    String labelO_fr=objectLabels.get("fr").replace(" ", "_");
+            	    obj_fr=obj_fr.substring(0,obj_fr.lastIndexOf("/")+1)+ labelO_fr;}
+            	    
+            	    if (lineParts[0].equalsIgnoreCase(sub_fr)){
             	    	found++;
             	    for ( String surfaceForm : surfaceFormsPart) {
             	        
@@ -125,7 +149,7 @@ public class SimpleDefactoClientV2 {
             	    altSubjectLabels.put("fr", surfaceForms);
 
             	    }
-            	    else if(lineParts[0].contains(fact.get(Fact.Entry.OBJECT))){
+            	    else if(lineParts[0].equalsIgnoreCase(obj_fr)){
             	    	found++;
             	    	for ( String surfaceForm : surfaceFormsPart) {
                 	        
@@ -134,35 +158,43 @@ public class SimpleDefactoClientV2 {
                 	    }
             	    	altObjectLabels.put("fr", surfaceForms);
             	    }
-            	}
+            	}*/
         		
         		
             String yagoStart = new MatrixCreator().stemDate(fact.get(Fact.Entry.YAGOSTART));
             String yagoEnd = new MatrixCreator().stemDate(fact.get(Fact.Entry.YAGOEND));
             
             br_en.close();
-        	br_de.close();
-        	br_fr.close();
+        	//br_de.close();
+        	//br_fr.close();
+            if(!subjectLabels.isEmpty()&&!objectLabels.isEmpty()&&!altSubjectLabels.isEmpty()&&!altObjectLabels.isEmpty()){
                 System.out.println(fact.get(Fact.Entry.SUBJECT)+" "+ fact.get(Fact.Entry.PREDICATE)+" "+  fact.get(Fact.Entry.OBJECT)+" "+ 
-                       Arrays.asList("en", "de", "fr")+" "+ yagoStart +" "+  yagoEnd+" "+  "tiny"+" "+  subjectLabels+" "+  objectLabels+" "+  altSubjectLabels+" "+  altObjectLabels);
-             // start the service
+                       Arrays.asList("en")+" "+ yagoStart +" "+  yagoEnd+" "+  "tiny"+" "+  subjectLabels+" "+  objectLabels+" "+  altSubjectLabels+" "+  altObjectLabels);
+            
+            // start the service
             JSONObject result = queryDefacto(fact.get(Fact.Entry.SUBJECT), fact.get(Fact.Entry.PREDICATE), fact.get(Fact.Entry.OBJECT),
-                                 Arrays.asList("en", "de", "fr"), yagoStart, yagoEnd, "tiny", subjectLabels, objectLabels, altSubjectLabels, altObjectLabels);
-
-            writeData(result);
+                                Arrays.asList("en"), yagoStart, yagoEnd, "tiny", subjectLabels, objectLabels, altSubjectLabels, altObjectLabels);
+            System.out.println(result);
+               
+              // JSONObject result = new JSONObject("{\"to\":\"0\",\"tiny\":{},\"oLabel\":\"Member of Parliament@en, Abgeordneter@de\",\"subject\":\"http://dbpedia.org/resource/Aaron_Mike_Oquaye\",\"sLabel\":\"Aaron Mike Oquaye@en, Mike Oquaye@de\",\"predicate\":\"leadername\",\"object\":\"http://dbpedia.org/resource/Member_of_Parliament\",\"from\":\"2005\",\"small\":{\"2005\":1},\"medium\":{\"2013\":1,\"2005\":4},\"large\":{\"2013\":1,\"2005\":4}}");
                 
+                arr.add(result);
+            }
+                 
         	}
         	
+        	writeData(arr);
         }
         
-        private static void writeData(JSONObject result) throws IOException, JSONException {
+     private static void writeData(ArrayList<JSONObject> arr) throws IOException, JSONException {
                 
                 for ( String contextLength : Arrays.asList("tiny", "small", "medium", "large") ) {
                 	File directory = new File (".");
-                	CSVWriter writer = new CSVWriter(new FileWriter(new File(directory.getAbsolutePath()+"/src/main/resources/tmp"+contextLength+".csv")), '\t');
-                        
+                	writer = new CSVWriter(new FileWriter(new File(directory.getAbsolutePath()+"/src/main/resources/tmp"+contextLength+".csv")), '\t');
+                       
+                	for(JSONObject result:arr){
                 	JSONObject years = result.getJSONObject(contextLength);
-                        
+                	 if (years.length()>0){
                         for (int i = 0; i < years.names().length(); i++) {
                                 
                                 List<String> output = new ArrayList<>();
@@ -175,7 +207,9 @@ public class SimpleDefactoClientV2 {
                                 output.add("" + years.get(years.names().getString(i)));
                                 writer.writeNext(output.toArray(new String[]{}));
                         }
-                        writer.close();
+                	 }
+                	}
+                	 writer.close();
                 }
         }
 
@@ -230,6 +264,12 @@ public class SimpleDefactoClientV2 {
                         queryParams.add("to", to);
 
                 // start the service
-                return new JSONObject(webResource.queryParams(queryParams).post(String.class));
+                ClientResponse clientResponse = webResource.queryParams(queryParams).post(ClientResponse.class);
+                String message = clientResponse.getEntity(String.class);
+                if ( clientResponse.getClientResponseStatus().getStatusCode() == Response.Status.BAD_REQUEST.getStatusCode() ) 
+                    throw new RuntimeException("\nWrong parameters given: \n" + message);
+                else 
+                    return new JSONObject(message);
+                //return new JSONObject(webResource.queryParams(queryParams).post(String.class));
         }
 }
