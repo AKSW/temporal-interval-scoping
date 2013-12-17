@@ -18,7 +18,6 @@ import java.util.Set;
 
 import javax.ws.rs.core.MultivaluedMap;
 
-
 import org.aksw.distributions.Fact;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -102,10 +101,10 @@ public class SimpleDefactoClient {
                         Arrays.asList("en", "de", "fr")+" "+  fact.get(Fact.Entry.YAGOSTART)+" "+  fact.get(Fact.Entry.YAGOEND)+" "+  "tiny"+" "+  subjectLabels+" "+  objectLabels+" "+  altSubjectLabels+" "+  altObjectLabels);
 
                 // start the service
-               /* JSONObject result = queryDefacto(fact.get(Fact.Entry.SUBJECT), fact.get(Fact.Entry.PREDICATE), fact.get(Fact.Entry.OBJECT),
+               JSONObject result = queryDefacto(fact.get(Fact.Entry.SUBJECT), fact.get(Fact.Entry.PREDICATE), fact.get(Fact.Entry.OBJECT),
                                 Arrays.asList("en", "de", "fr"), fact.get(Fact.Entry.YAGOSTART), fact.get(Fact.Entry.YAGOEND), "tiny", subjectLabels, objectLabels, altSubjectLabels, altObjectLabels);
 
-                writeData(result);*/
+                writeData(result);
         	
         	}
         }

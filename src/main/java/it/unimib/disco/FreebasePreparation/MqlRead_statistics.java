@@ -1,10 +1,13 @@
 package it.unimib.disco.FreebasePreparation;
+import it.unimib.disco.ReadFiles.FactGrouping;
 import it.unimib.disco.ReadFiles.ReadFiles;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
 
@@ -33,12 +36,16 @@ public class MqlRead_statistics {
 
 
 	      BufferedWriter bw;
-		  bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/src/main/resources/"+"gs_freebase_players.csv")));
-	      List<String> ls_resources = ReadFiles.getURIs(new File(args[0]));
-	      String subject = null;
-	      for(int z=0;z<ls_resources.size();z++){
+		  bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/src/main/resources/gold_standard/"+"gold_standard_players_frb.csv")));
+	      List<String> ls_resources_frb = ReadFiles.getURIs(new File(args[0]));
 	      
-	      String query = "[{\"type\":\"/soccer/football_player\",\"/type/object/id\":\""+ls_resources.get(z)+"\",\"statistics\":[{\"team\":null,\"appearances\":null,\"total_goals\":null,\"from\":null,\"to\":null}]}]";
+	      List<String> ls_resources_dbp = ReadFiles.getURIs(new File(args[1]));
+	      HashMap<String,HashMap<String,ArrayList<String>>> yagoIntervalsUri = new FactGrouping().groupByEntity(ls_resources_dbp);
+	      
+	      String subject = null;
+	      for(int z=0;z<ls_resources_frb.size();z++){
+	      
+	      String query = "[{\"type\":\"/soccer/football_player\",\"/type/object/id\":\""+ls_resources_frb.get(z)+"\",\"statistics\":[{\"team\":null,\"appearances\":null,\"total_goals\":null,\"from\":null,\"to\":null}]}]";
 	      GenericUrl url = new GenericUrl("https://www.googleapis.com/freebase/v1/mqlread");
 	      url.put("query", query);
 	      url.put("key", properties.get("API_KEY"));
@@ -55,20 +62,34 @@ public class MqlRead_statistics {
 	      for (int i = 0; i < array_result.length(); i++) {
 	    	    JSONObject res = array_result.getJSONObject(i);
 	    	    JSONArray array_statistics = res.getJSONArray("statistics");
-	    	    
+
+	    	    subject=ls_resources_frb.get(z).substring(ls_resources_frb.get(z).lastIndexOf('/')+1);
+	    	    for (String u: yagoIntervalsUri.keySet()){
+    	    		
+	    	    	if(u.toLowerCase().endsWith(subject)){
+	    	    		subject=u;
 	    	    if(array_statistics!=null){
 	    	    for(int j = 0; j < array_statistics.length(); j++){
+
 	    	    	JSONObject rec = array_statistics.getJSONObject(j);
-	    	    	subject=ls_resources.get(z);
-	    	    	String team = rec.get("team").toString();
-	    	    	String from = rec.get("from").toString();
-	    	    	String to = rec.get("to").toString();
-	    	
-		    	   bw.write(subject+"	 "+"plays_for"+"	 "+team+"	 "+from+"	 "+to+"\n" );
-
+	    	    	
+		    	    		String team = rec.get("team").toString();
+		    	    		team=team.replaceAll(" ", "_");
+		    	    		
+		    	    		for(String obj:yagoIntervalsUri.get(u).keySet()){
+		    	    			if(obj.contains(team)){
+		    	    				System.out.println(obj+" "+team);
+		    	    				team=obj;
+		    	    				String from = rec.get("from").toString();
+		    	    				String to = rec.get("to").toString();
+		    	    				
+		    	    				bw.write(subject+"	 "+"http://dbpedia.org/ontology/team"+"	 "+team+"	 "+from+"	 "+to+"\n" );
+		    	    			}
+		    	    		}
+		    	    	}
+	    	    	}
+	    	    	}
 	    	    }
-	    	    }
-
 	      }
 	      }
 	      }

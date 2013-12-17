@@ -4,7 +4,6 @@ import it.unimib.disco.Evaluation.QualityMeasure;
 import it.unimib.disco.Evaluation.QualityMeasure.Entry;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,11 +16,11 @@ import org.opt4j.core.problem.Evaluator;
 public class ConfigurationEvaluator implements Evaluator<Configuration> {
 
 	List<String> yagoFacts;
-	HashMap<String,ArrayList<String>> resURIs = new HashMap<String,ArrayList<String>>();
+	HashMap<String,HashMap<String,List<Fact>>> groupedFactBySubjectObject = new HashMap<String,HashMap<String,List<Fact>>>();
 	List<Fact> temporalDefactoFacts;
 	
-	public ConfigurationEvaluator (HashMap<String,ArrayList<String>> resURIs, List<Fact> temporalDefactoFacts, List<String> yagoFacts){
-		this.resURIs = resURIs;
+	public ConfigurationEvaluator (HashMap<String,HashMap<String,List<Fact>>> groupedFactBySubjectObject, List<Fact> temporalDefactoFacts, List<String> yagoFacts){
+		this.groupedFactBySubjectObject = groupedFactBySubjectObject;
 		this.temporalDefactoFacts = temporalDefactoFacts;
 		this.yagoFacts = yagoFacts;
 	}
@@ -34,7 +33,7 @@ public class ConfigurationEvaluator implements Evaluator<Configuration> {
 		QualityMeasure m = new QualityMeasure();
 		try {
 		
-			m = interv.measure(phenotype, resURIs, temporalDefactoFacts, yagoFacts);
+			m = interv.measure(phenotype, groupedFactBySubjectObject, temporalDefactoFacts, yagoFacts);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

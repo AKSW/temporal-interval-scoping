@@ -42,7 +42,7 @@ public class TemporalFactExtractor {
 		List<String> resURIs = ReadFiles.getURIs(new File(args[0]));
 		logger.info("DBpedia resources list file parsed");
 		
-		HashSet<Fact> l = new TemporalFactExtractor_predicate().extraction(resURIs);
+		HashSet<Fact> l = new YearExtractorDBp_predicates().extraction(resURIs);
 
 		try {
 			

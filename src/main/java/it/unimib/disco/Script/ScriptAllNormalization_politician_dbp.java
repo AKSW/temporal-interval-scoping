@@ -9,14 +9,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
 import org.aksw.distributions.Fact;
 
-public class Script {
+public class ScriptAllNormalization_politician_dbp {
 	public static void main (String args []) throws FileNotFoundException{
 		if (args.length < 1) {
 			System.out.println("Use: java TemporalIntervalCreator <Resource list file> <temporal defacto output> <yago's gold standard>");
@@ -28,27 +28,30 @@ public class Script {
 		
 		//TemporalIntervalCreatoScriptTD tempAnnot= new TemporalIntervalCreatoScriptTD();
 		
-		TemporalIntervalCreatoScript tempAnnot= new TemporalIntervalCreatoScript();
+		TemporalIntervalCreatoScript_dbp tempAnnot= new TemporalIntervalCreatoScript_dbp();
 	
 		// Resource URI extraction
-				List<Fact> dateRepository=new ArrayList<Fact>();
-				dateRepository= new ReadFiles().csv(new File(args[0]));
-				HashMap<String,HashMap<String,List<Fact>>> groupedFactBySubjectObject = new FactGrouping().groupBySubjectObject(dateRepository); //group temporal facts (s,p,t) by subject and object (t)
+		List<Fact> dateRepository=new ReadFiles().readTabSeparatedFileLS(new File(args[0]));
+		//List<Fact> dateRepository=new ArrayList<Fact>();
+		//dateRepository= new ReadFiles().csv(new File(args[0]));
+		HashMap<String,HashMap<String,List<Fact>>> groupedFactBySubjectObject = new FactGrouping().groupBySubjectObject(dateRepository); //group temporal facts (s,p,t) by subject and object (t)
 				
 
-				// Read temporalDefacto facts
-				List<Fact> l = new ArrayList<Fact>();
-				l = new ReadFiles().csvGS(new File(args[1]));
+		// Read temporalDefacto facts
+		List<Fact> l = new ReadFiles().readTabSeparatedFileLS(new File(args[1]));
+		/*List<String> temporalDefactoFacts = ReadFiles.getURIs(new File(args[1]));
+		List<Fact> l = new ArrayList<Fact>();
+		l = new ReadFiles().creatListOfFacts(temporalDefactoFacts);*/
 				
 				
 		//Read gold standard facts
 		List<String> yagoFacts = ReadFiles.getURIs(new File(args[2]));
 		//logger.info("Yago facts parsed");
 				
-		int normalization = 0; 
+		int normalization = 1; 
 		
-		int selection=1; //default top-k 
-		int k=0,x=0;
+		int selection=2; //default top-k 
+		int k=2,x=10;
 		Scanner read = new Scanner(System.in); 
 		
 		do{

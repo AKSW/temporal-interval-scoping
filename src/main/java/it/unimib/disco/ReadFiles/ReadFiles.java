@@ -183,23 +183,25 @@ public class ReadFiles {
 
 		BufferedReader br = null;
 		String line = "";
-		String cvsSplitBy = ",";
+		String cvsSplitBy = ";";
  
 		try {
  
 		br = new BufferedReader(new FileReader(rsListFile));
 		while ((line = br.readLine()) != null) {
+			if(line.contains("[")){
 			line=line.substring(line.indexOf('[')+1,line.indexOf(']'));
+			}
 		        // use comma as separator
 			String[] fact = line.split(cvsSplitBy);
 			Fact f = new Fact();
-			f.add(Fact.Entry.SUBJECT, fact[0]);
-			f.add(Fact.Entry.PREDICATE, fact[1]);
-			f.add(Fact.Entry.OBJECT, fact[2]);
-			f.add(Fact.Entry.YAGOSTART, fact[3]);
-			f.add(Fact.Entry.YAGOEND, fact[4]);
-			f.add(Fact.Entry.DATE, fact[5]);
-			f.add(Fact.Entry.SCORE, fact[6]);
+			if (fact.length>0){f.add(Fact.Entry.SUBJECT, fact[0]);}
+			if (fact.length>1){f.add(Fact.Entry.PREDICATE, fact[1]);}
+			if (fact.length>2){f.add(Fact.Entry.OBJECT, fact[2]);}
+			if (fact.length>3){f.add(Fact.Entry.YAGOSTART, fact[3]);}
+			if (fact.length>4){f.add(Fact.Entry.YAGOEND, fact[4]);}
+			if (fact.length>5){f.add(Fact.Entry.DATE, fact[5]);}
+			if (fact.length>6){f.add(Fact.Entry.SCORE, fact[6]);}
 			
 			allFacts.add(f);
 		}
@@ -238,11 +240,14 @@ public class ReadFiles {
 				begin= remainingRecord.indexOf("	");
 				
 				if(begin<0){
-					
-					list.add(remainingRecord.substring(0,remainingRecord.length()));
+					String str = remainingRecord.substring(0,remainingRecord.length());
+					str=str.trim();
+					list.add(str);
 				}
 				else{
-					list.add(remainingRecord.substring(0, begin));
+					String str = remainingRecord.substring(0, begin);
+					str=str.trim();
+					list.add(str);
 
 					remainingRecord=remainingRecord.substring(begin+1);
 				}
@@ -253,6 +258,50 @@ public class ReadFiles {
 		}
 		return fileArray;
 
+	}
+	public List<Fact> readTabSeparatedFileLS(File rsListFile) {
+		List<Fact> allFacts = new ArrayList<Fact>();
+
+		BufferedReader br = null;
+		String line = "";
+		String cvsSplitBy = "	";
+ 
+		try {
+ 
+		br = new BufferedReader(new FileReader(rsListFile));
+		while ((line = br.readLine()) != null) {
+			if(line.contains("[")){
+			line=line.substring(line.indexOf('[')+1,line.indexOf(']'));
+			}
+		        // use comma as separator
+			String[] fact = line.split(cvsSplitBy);
+			Fact f = new Fact();
+			if (fact.length>0){f.add(Fact.Entry.SUBJECT, fact[0]);}
+			if (fact.length>1){f.add(Fact.Entry.PREDICATE, fact[1]);}
+			if (fact.length>2){f.add(Fact.Entry.OBJECT, fact[2]);}
+			if (fact.length>3){f.add(Fact.Entry.YAGOSTART, fact[3]);}
+			if (fact.length>4){f.add(Fact.Entry.YAGOEND, fact[4]);}
+			if (fact.length>5){f.add(Fact.Entry.DATE, fact[5]);}
+			if (fact.length>6){f.add(Fact.Entry.SCORE, fact[6]);}
+			
+			allFacts.add(f);
+		}
+ 
+	} catch (FileNotFoundException e) {
+		e.printStackTrace();
+	} catch (IOException e) {
+		e.printStackTrace();
+	} finally {
+		if (br != null) {
+			try {
+				br.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+ 
+	return allFacts;
 	}
 	
 	public HashSet<ArrayList<String>> readCSV(List<String> file) {

@@ -44,7 +44,7 @@ public class MatrixCreator {
 		HashMap<String, ArrayList<String>> res = new HashMap<String, ArrayList<String>>();
 		ArrayList<String> years = new ArrayList<String>();
 		
-		@SuppressWarnings("rawtypes")
+
 		Iterator it = file.iterator();
 		while (it.hasNext()){
 			Fact f = new Fact();
@@ -79,7 +79,7 @@ public class MatrixCreator {
 			dates = repositoryDates.get(uri);
 
 			Collections.sort(dates);
-
+			
 			maximalMatrix.put(uri, matrixCreator(dates,dates));
 		}
 		
@@ -195,6 +195,7 @@ public class MatrixCreator {
 		int leng=0;
 		for (String s: features.keySet()){
 			HashSet<String> hs=features.get(s);
+
 			Iterator it = hs.iterator();
 			while (it.hasNext()){
 				leng++;
@@ -207,6 +208,7 @@ public class MatrixCreator {
 		
 		int l=1;
 		for(String timepoint: features.keySet()){
+
 			Iterator it =features.get(timepoint).iterator();
 			while (it.hasNext()){
 				String predicate=(String) it.next();
@@ -217,6 +219,7 @@ public class MatrixCreator {
 		
 		int m=1;
 		for(String timepoint: features.keySet()){
+
 			Iterator it =features.get(timepoint).iterator();
 			while (it.hasNext()){
 				String predicate=(String) it.next();

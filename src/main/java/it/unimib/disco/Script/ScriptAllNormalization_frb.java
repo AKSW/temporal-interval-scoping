@@ -16,7 +16,7 @@ import java.util.Scanner;
 
 import org.aksw.distributions.Fact;
 
-public class Script2 {
+public class ScriptAllNormalization_frb {
 	public static void main (String args []) throws FileNotFoundException{
 		if (args.length < 1) {
 			System.out.println("Use: java TemporalIntervalCreator <Resource list file> <temporal defacto output> <yago's gold standard>");
@@ -25,16 +25,16 @@ public class Script2 {
 			
 			HashMap<String,HashMap<String,HashMap<String,QualityMeasure>>> outputResult = new HashMap<String,HashMap<String,HashMap<String,QualityMeasure>>>();
 			HashMap<String,HashMap<String,QualityMeasure>> evaluationResult= new HashMap<String,HashMap<String,QualityMeasure>>();
-
 		
 		//TemporalIntervalCreatoScriptTD tempAnnot= new TemporalIntervalCreatoScriptTD();
 		
-		TemporalIntervalCreatoScript tempAnnot= new TemporalIntervalCreatoScript();
+		TemporalIntervalCreatoScript_frb tempAnnot= new TemporalIntervalCreatoScript_frb();
 	
 		// Resource URI extraction
 		List<Fact> dateRepository=new ArrayList<Fact>();
 		dateRepository= new ReadFiles().csv(new File(args[0]));
 		HashMap<String,HashMap<String,List<Fact>>> groupedFactBySubjectObject = new FactGrouping().groupBySubjectObject(dateRepository); //group temporal facts (s,p,t) by subject and object (t)
+				
 
 		// Read temporalDefacto facts
 		List<Fact> l = new ArrayList<Fact>();
@@ -43,11 +43,12 @@ public class Script2 {
 				
 		//Read gold standard facts
 		List<String> yagoFacts = ReadFiles.getURIs(new File(args[2]));
+		//logger.info("Yago facts parsed");
 				
-		//2, 10, 1, 1
-		int normalization = 0; 
-		int selection=1; //default top-k 
-		int k=8,x=0;
+		int normalization = 1; 
+		
+		int selection=2; //default top-k 
+		int k=2,x=10;
 		Scanner read = new Scanner(System.in); 
 		
 		do{
@@ -62,17 +63,12 @@ public class Script2 {
 			
 			System.out.println("Selection function is topK");
 			do{
-				System.out.println("Please insert a positiv integer k from 1 to 2:");
+				System.out.println("Please insert a positiv integer k:");
 				k=read.nextInt();
-			}while(k<=0||k>3);
-			
-			System.out.println("Insert a normalization function");
-			do{
-				System.out.println("Please insert a positiv integer 1-no normalization, 2-local normalization, 3-global normalization, 4- chisquare normalization:");
-				normalization=read.nextInt();
-			}while(normalization<=0||normalization>4);
+			}while(k<=0);
 			
 			
+			while (normalization<=4){
 			//default no-normalization
 			if (normalization==1){
 				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,l,yagoFacts,normalization,selection,k,x);
@@ -98,6 +94,10 @@ public class Script2 {
 				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,l,yagoFacts,normalization,selection,k,x);
 				outputResult.put("chisquared-normalization",evaluationResult);
 			}
+			
+			normalization++;
+			}
+
 		}
 		
 		
@@ -108,21 +108,16 @@ public class Script2 {
 			
 			System.out.println("You selected the proxy selection function");
 			do{
-				System.out.println("Please insert a positiv integer x from 1 to 10:");
+				System.out.println("Please insert a positiv integer x:");
 				x=read.nextInt();
-			}while(x<=0||x>10);
+			}while(x<=0);
 			
-			System.out.println("Insert a normalization function");
-			do{
-				System.out.println("Please insert a positiv integer 1-no normalization, 2-local normalization, 3-global normalization, 4- chisquare normalization:");
-				normalization=read.nextInt();
-			}while(normalization<=0||normalization>4);
-
+			while (normalization<=4){
 			//default no-normalization
 			if (normalization==1){
 				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,l,yagoFacts,normalization,selection,k,x);
 				outputResult.put("no-normalization",evaluationResult);
-
+				System.out.println(evaluationResult);
 			}
 
 			//default local-normalization
@@ -143,7 +138,8 @@ public class Script2 {
 				outputResult.put("chisquared-normalization",evaluationResult);
 			}
 			
-
+			normalization++;
+			}
 
 		}
 		//selection function combined
@@ -153,19 +149,14 @@ public class Script2 {
 			
 			System.out.println("You selected neighbor function");
 			do{
-				System.out.println("Please insert a positiv integer for k from 1 to 2:");
+				System.out.println("Please insert a positiv integer for k:");
 				k=read.nextInt();
 				read.nextLine();
-				System.out.println("Please insert a positiv integer for x from 1 to 10:");
+				System.out.println("Please insert a positiv integer for x:");
 				x=read.nextInt();
-			}while((k <= 0||k > 2) && (x <= 0||x>10));
+			}while(k <= 0 && x <= 0);
 			
-			System.out.println("Insert a normalization function");
-			do{
-				System.out.println("Please insert a positiv integer 1-no normalization, 2-local normalization, 3-global normalization, 4- chisquare normalization:");
-				normalization=read.nextInt();
-			}while(normalization<=0||normalization>4);
-			
+			while (normalization<=4){
 			//default no-normalization
 			if (normalization==1){
 				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,l,yagoFacts,normalization,selection,k,x);
@@ -189,6 +180,9 @@ public class Script2 {
 			else{
 				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,l,yagoFacts,normalization,selection,k,x);
 				outputResult.put("chisquared-normalization",evaluationResult);
+			}
+			
+			normalization++;
 			}
 
 		}
@@ -219,7 +213,8 @@ public class Script2 {
 				
 				HashMap<String,QualityMeasure> er=result.get(uri);
 				for (String obj: er.keySet()){
-					QualityMeasure metrics = er.get(obj);
+					QualityMeasure  metrics = er.get(obj);
+
 					if(Double.isNaN(metrics.get(QualityMeasure.Entry.PRECISION))||Double.isNaN(metrics.get(QualityMeasure.Entry.RECALL))||Double.isNaN(metrics.get(QualityMeasure.Entry.fMEASURE))){
 					}
 					else{
@@ -233,7 +228,6 @@ public class Script2 {
 				}
 			}
 				
-			
 				double overlapPrec=avgP/total;
 				double overlapRec=avgR/total;
 				double microF1=avgF/total;

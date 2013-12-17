@@ -16,7 +16,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -28,7 +27,7 @@ public class TemporalIntervalCreator {
 
 
 
-public QualityMeasure measure(Configuration phenotype, HashMap<String,ArrayList<String>> repositoryDates,
+public QualityMeasure measure(Configuration phenotype, HashMap<String,HashMap<String,List<Fact>>> groupedFactBySubjectObject,
 		List<Fact> temporalDefactoFacts,List<String> goldstandard_facts) throws FileNotFoundException  {
 	
 	//System.out.println(phenotype.getSelection()+" "+phenotype.getX()+" "+phenotype.getK()+" "+phenotype.getNormalization());
@@ -43,34 +42,34 @@ public QualityMeasure measure(Configuration phenotype, HashMap<String,ArrayList<
 	 
 			
 		/******************RIM**************/
-		HashMap<String, DateOccurrence [][]> maximalRIM =  new MatrixCreator().createMaximalRIM(repositoryDates);
+		HashMap<String, DateOccurrence [][]> maximalRIM =  new MatrixCreator().createMaximalRIM(new FactGrouping().createRIMvectors(groupedFactBySubjectObject));
 		
 		
 		/******************Normalization **************/
-		List<Fact> factNormalized= new NormalizationSelection().normalize(phenotype.getNormalization(),temporalDefactoFacts);	
+		List<Fact> factNormalized= new NormalizationSelection().normalize(phenotype.getNormalization(),temporalDefactoFacts);
 			
 		/******************Matching **************/
 		HashMap<String,HashMap<String,List<Fact>>> groupFacts = new FactGrouping().groupBySubjectObject(factNormalized);
 		
 		Matcher ta = new Matcher();
 		HashMap<String,HashMap<String,List<Interval>>> sub_obj_interval = new HashMap<String,HashMap<String,List<Interval>>>() ;
-		
+				
 		try {
 		for (String uri: maximalRIM.keySet()){
 			HashMap<String,List<Interval>> obj_interval= new HashMap<String,List<Interval>>();
 			HashMap<String,List<Fact>> objbasedgroupfacts = groupFacts.get(uri);
-					
+			if(objbasedgroupfacts!=null){
 			for (String obj: objbasedgroupfacts.keySet()){
 				List<Fact> f = objbasedgroupfacts.get(obj);
 						
 				DateOccurrence [][] matrixManhattanDuration = ta.matrixYearsDuration(maximalRIM.get(uri));
-						
-				pw.println(uri+" "+obj);	
+					
+				phenotype.getNormalization();
 				obj_interval.put(obj, ta.dcCalculator(phenotype.getNormalization(),f,matrixManhattanDuration,pw));
 
-							
 			}
 			sub_obj_interval.put(uri, obj_interval);
+			}
 		}
 		} catch (NullPointerException e) {
 			e.printStackTrace();

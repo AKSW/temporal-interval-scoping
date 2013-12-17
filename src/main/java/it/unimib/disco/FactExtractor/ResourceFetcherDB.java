@@ -140,7 +140,8 @@ public Map<String,String> fetchLabels (OntModel m){
             
             String language = rdfNode.asLiteral().getLanguage();
             String label = rdfNode.asLiteral().getLexicalForm();
-            if(language.equalsIgnoreCase("en")||language.equalsIgnoreCase("de")||language.equalsIgnoreCase("fr")){
+            //if(language.equalsIgnoreCase("en")||language.equalsIgnoreCase("de")||language.equalsIgnoreCase("fr")){
+            if(language.equalsIgnoreCase("en")){
             labels.put(language,label);
             }
     }

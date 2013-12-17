@@ -2,7 +2,8 @@ package it.unimib.disco.Evaluation;
 
 import it.unimib.disco.Evaluation.QualityMeasure.Entry;
 import it.unimib.disco.MatrixCreator.MatrixCreator;
-import it.unimib.disco.ReadFiles.ReadFiles;
+import it.unimib.disco.ReadFiles.FactGrouping;
+
 import it.unimib.disco.Reasoning.Interval;
 import it.unimib.disco.Reasoning.TemporalInterval;
 
@@ -21,21 +22,21 @@ public class Evaluation {
 	
 		HashMap<String,QualityMeasure> metricsObj = new HashMap<String,QualityMeasure>();
 
-		HashMap<String,HashMap<String,ArrayList<String>>> yagoIntervalsUri = groupByEntity(goldstandard_facts);
+		HashMap<String,HashMap<String,ArrayList<String>>> yagoIntervalsUri = new FactGrouping().groupByEntity(goldstandard_facts);
 		HashMap<String,ArrayList<String>> yagoIntervals=yagoIntervalsUri.get(Uri);
-		
+		if(yagoIntervals!=null){
 		int relevantIntervals=yagoIntervals.size();
 	
 		double overlapPrec=0,overlapRecall=0,overlapFM=0;
-
 		
 		for (String obj: tempodefactoIntervals.keySet()){
-			
+			//System.out.println(Uri+" "+obj+" "+ tempodefactoIntervals.get(obj));
 			HashSet<Interval> intervalsRedu = tempodefactoIntervals.get(obj);
 
 			ArrayList<String> yagoInterval = yagoIntervals.get(obj);
+			if(yagoInterval==null){relevantIntervals=relevantIntervals-1;}
+			else{
 			
-
 			String yagoStart = yagoInterval.get(0);
 			String yagoEnd = yagoInterval.get(1);
 			if(yagoEnd.contains("NOW")){
@@ -130,7 +131,7 @@ public class Evaluation {
 
 
 		}
-		
+			
 		//values for a single temporal interval
 		overlapPrec  = countTcorrect/yearDistanceTot;
 		overlapRecall = countTcorrect/yearDistanceYago;
@@ -149,49 +150,17 @@ public class Evaluation {
 		//System.out.println(Uri+" "+obj+" "+metrics.get(QualityMeasure.Entry.RECALL)+" "+overlapRecall);
 		metricsObj.put(obj,metrics);
 
-		
-		pw.println(Uri+","+obj+","+intervalsRedu+","+yagoInterval+","+metrics.get(Entry.PRECISION)+","+metrics.get(Entry.RECALL)+","+metrics.get(Entry.fMEASURE));
+		//System.out.println(Uri+","+obj+","+intervalsRedu+","+yagoInterval+","+metrics.get(Entry.PRECISION)+","+metrics.get(Entry.RECALL)+","+metrics.get(Entry.fMEASURE));
+		pw.println(Uri+";"+obj+";"+intervalsRedu+";"+yagoInterval+";"+metrics.get(Entry.PRECISION)+";"+metrics.get(Entry.RECALL)+";"+metrics.get(Entry.fMEASURE));
 		
 		}
-		
+		}
+		}
 		return metricsObj;
+		
 	}
 	
-	public HashMap<String,HashMap<String,ArrayList<String>>> groupByEntity(List<String> temporaldefacto){
-		ReadFiles rf=new ReadFiles();
-		HashSet<ArrayList<String>> file=rf.readTabSeparatedFile(temporaldefacto);
-		
-		HashMap<String,HashMap<String,ArrayList<String>>> resource = new HashMap<String,HashMap<String,ArrayList<String>>>();
-		HashMap<String,ArrayList<String>> yagoIntervals= new HashMap<String,ArrayList<String>>(); 
-		
-		for (ArrayList<String> record:file){
-			ArrayList<String> yagoInterval = new ArrayList<String>();
-			if (!resource.containsKey(record.get(0))){
-				yagoIntervals = new HashMap<String,ArrayList<String>>();
-				resource.put(record.get(0), yagoIntervals);
-			}
-			if(yagoIntervals.containsKey(record.get(2))){
-				yagoInterval = new ArrayList<String>();
-				yagoIntervals.put(record.get(2), yagoInterval );
-			} 
-			
-			yagoIntervals=resource.get(record.get(0));
-			yagoInterval.add(record.get(3));
-			yagoInterval.add(record.get(4));
-			yagoIntervals.put(record.get(2),yagoInterval);
-			
-		resource.put(record.get(0), yagoIntervals);	
-		}
-		
-		
-		/*for ( String str: resource.keySet()){
-			HashMap<String,ArrayList<String>> hm = resource.get(str);
-			for (String y: hm.keySet()){
-				System.out.println(str+" "+ y+" "+ hm.get(y));
-			}
-		}*/
-		return resource;
-	}
+	
 	
 
 }

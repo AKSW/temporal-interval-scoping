@@ -23,9 +23,9 @@ import java.util.List;
 import org.aksw.distributions.Fact;
 import org.apache.log4j.Logger;
 
-public class TemporalIntervalCreatoScript {
+public class TemporalIntervalCreatoScript_frb {
 
-private static Logger logger = Logger.getLogger(TemporalIntervalCreatoScript.class);
+private static Logger logger = Logger.getLogger(TemporalIntervalCreatoScript_frb.class);
 	//HashMap<String,List<Features>> featuresUri
 public HashMap<String,HashMap<String,QualityMeasure>> temporalFact(HashMap<String,HashMap<String,List<Fact>>> groupedFactBySubjectObject,List<Fact> temporalDefactoFacts,List<String> goldstandard_facts,
 		int normalizationType,int selection,int k, int x) throws FileNotFoundException{

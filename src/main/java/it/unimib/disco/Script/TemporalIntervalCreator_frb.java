@@ -9,6 +9,7 @@ import it.unimib.disco.Normalization.NormalizationSelection;
 import it.unimib.disco.ReadFiles.FactGrouping;
 import it.unimib.disco.ReadFiles.ReadFiles;
 import it.unimib.disco.Reasoning.Interval;
+import it.unimib.disco.Reasoning.Reasoning;
 import it.unimib.disco.Selection.Selection;
 
 import java.io.File;
@@ -16,6 +17,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -23,9 +25,9 @@ import java.util.List;
 import org.aksw.distributions.Fact;
 import org.apache.log4j.Logger;
 
-public class TemporalIntervalCreator {
+public class TemporalIntervalCreator_frb {
 
-private static Logger logger = Logger.getLogger(TemporalIntervalCreator.class);
+private static Logger logger = Logger.getLogger(TemporalIntervalCreator_frb.class);
 	
 public static void main (String []args) throws FileNotFoundException{
 	if (args.length < 1) {
@@ -35,16 +37,14 @@ public static void main (String []args) throws FileNotFoundException{
 		
 		
 		// Resource URI extraction
-		List<Fact> dateRepository=new ReadFiles().readTabSeparatedFileLS(new File(args[0]));
-		//dateRepository= new ReadFiles().csv(new File(args[0]));
+		List<Fact> dateRepository=new ArrayList<Fact>();
+		dateRepository= new ReadFiles().csvGS(new File(args[0]));
 		HashMap<String,HashMap<String,List<Fact>>> groupedFactBySubjectObject = new FactGrouping().groupBySubjectObject(dateRepository); //group temporal facts (s,p,t) by subject and object (t)
 		logger.info("Temporal fact list file parsed");
 
 		// Read temporalDefacto facts
-		List<Fact> l = new ReadFiles().readTabSeparatedFileLS(new File(args[1]));
-		/*List<String> temporalDefactoFacts = ReadFiles.getURIs(new File(args[1]));
 		List<Fact> l = new ArrayList<Fact>();
-		l = new ReadFiles().creatListOfFacts(temporalDefactoFacts);*/
+		l = new ReadFiles().csvGS(new File(args[1]));
 		
 		logger.info("TemporalDefacto facts parsed");
 		
@@ -68,19 +68,11 @@ public static void main (String []args) throws FileNotFoundException{
 
 		//******************RIM**************//*
 		HashMap<String, DateOccurrence [][]> maximalRIM =  new MatrixCreator().createMaximalRIM(new FactGrouping().createRIMvectors(groupedFactBySubjectObject));
-		/*for (String uri: maximalRIM.keySet()){
-		for (int i=0; i<maximalRIM.get(uri).length;i++){
-			for (int j=0;j<maximalRIM.get(uri)[i].length;j++){
-				
-				System.out.print(maximalRIM.get(uri)[i][j].getDate()+""+ maximalRIM.get(uri)[i][j].getOccurrence()+";");
-			}
-			System.out.println();
-
-	}}*/
 		logger.info("Created maximal RIM");
 					
 		//******************Normalization **************/
 		List<Fact> factNormalized= new NormalizationSelection().normalize(normalizationType,l);
+		
 		
 		//******************Matching **************//*
 		HashMap<String,HashMap<String,List<Fact>>> groupFacts = new FactGrouping().groupBySubjectObject(factNormalized);
@@ -92,18 +84,18 @@ public static void main (String []args) throws FileNotFoundException{
 		for (String uri: maximalRIM.keySet()){
 			HashMap<String,List<Interval>> obj_interval= new HashMap<String,List<Interval>>();
 			HashMap<String,List<Fact>> objbasedgroupfacts = groupFacts.get(uri);
-			if (objbasedgroupfacts!=null){
+					
 			for (String obj: objbasedgroupfacts.keySet()){
 				List<Fact> f = objbasedgroupfacts.get(obj);
 
 				DateOccurrence [][] matrixYearsDuration = ta.matrixYearsDuration(maximalRIM.get(uri));
 						
 				pw.println(uri+" "+obj);
+				
 				obj_interval.put(obj, ta.dcCalculator(normalizationType,f,matrixYearsDuration,pw));
 			
 			}
 			sub_obj_interval.put(uri, obj_interval);
-			}
 		}
 		} catch (NullPointerException e) {
 			e.printStackTrace();
@@ -122,15 +114,24 @@ public static void main (String []args) throws FileNotFoundException{
 	    for (String uri:sub_obj_interval.keySet()){
 			
 			tempodefactoIntervalsUri.put(uri,new Selection().selection(selection, x, k,sub_obj_interval.get(uri)));
+			
 				
 		}
    
 	  //Concatenate intervals based on Allen's Algebra reasoning
 	    logger.info("Reasoning function");
 	    HashMap<String,HashMap<String,HashSet<Interval>>> reasoningIntervalsUri = new HashMap<String,HashMap<String,HashSet<Interval>>>();
-	    
+	    for(String u:tempodefactoIntervalsUri.keySet()){
+	    	HashMap<String,HashSet<Interval>> reasoningIntervals = new HashMap<String,HashSet<Interval>>();
+	    	
+	    	for (String o:tempodefactoIntervalsUri.get(u).keySet()){
+	    		reasoningIntervals.put(o, new Reasoning().concatenateIntervals(tempodefactoIntervalsUri.get(u).get(o)));
+	    		System.out.println(u+" "+o+" "+ new Reasoning().concatenateIntervals(tempodefactoIntervalsUri.get(u).get(o)));
+	    	}
+	    	reasoningIntervalsUri.put(u, reasoningIntervals);
+	    }
 	     
-	    Evaluation ev = new Evaluation();
+	   Evaluation ev = new Evaluation();
 		HashMap<String,HashMap<String,QualityMeasure>> evaluationResults = new HashMap<String,HashMap<String,QualityMeasure>>();
 		try {
 			

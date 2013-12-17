@@ -127,7 +127,7 @@ public class YagoFactMappedToDBpedia {
 				
 				File directory = new File (".");
 				try {
-					BufferedWriter bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output/"+"gold_standard_prov.csv")));
+					BufferedWriter bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output/"+"gold_standard_people_complete.csv")));
 					
 					// header
 					//bw.write("YagoFacts"+"\n" );
