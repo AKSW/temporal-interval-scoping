@@ -60,7 +60,53 @@ public HashMap<String,HashMap<String,List<Fact>>> groupBySubjectObject(List<Fact
 		return res;
 	}
 
-	public HashMap<String,HashMap<String,ArrayList<String>>> groupBySubject(List<String> temporaldefacto){
+public HashMap<String,HashMap<String,List<Fact>>> groupBySubjectTimepoint(List<Fact> listFromFact){
+	
+	HashMap<String,HashMap<String,List<Fact>>> res = new HashMap<String,HashMap<String,List<Fact>>>();
+	HashMap<String,List<Fact>> groupByObj = new HashMap<String,List<Fact>>();
+	List<Fact> facts = new ArrayList<Fact>();
+	
+	@SuppressWarnings("rawtypes")
+	Iterator it = listFromFact.iterator();
+	while (it.hasNext()){
+		Fact f = new Fact();
+		f = (Fact) it.next();
+		
+		
+		if (!res.containsKey(f.get(Entry.SUBJECT))){
+
+				groupByObj = new HashMap<String,List<Fact>>();
+				res.put(f.get(Entry.SUBJECT), groupByObj);
+
+		}
+		
+		groupByObj = res.get(f.get(Entry.SUBJECT));
+		if(!groupByObj.containsKey(f.get(Entry.DATE))){
+			
+			facts = new ArrayList<Fact>();
+			groupByObj.put(f.get(Entry.DATE),facts);
+		}
+		
+		facts=groupByObj.get(f.get(Entry.DATE));
+		facts.add(f); 
+		
+		groupByObj.put(f.get(Entry.DATE),facts);
+
+		res.put(f.get(Entry.SUBJECT), groupByObj);
+		
+	 }
+	
+
+	/*for ( String str: res.keySet()){
+		HashMap<String,List<Fact>> hm = res.get(str);
+		for (String obj: hm.keySet()){
+			System.out.println(hm.get(obj));
+		}
+	}*/
+	
+	return res;
+}
+public HashMap<String,HashMap<String,ArrayList<String>>> groupBySubject(List<String> temporaldefacto){
 		ReadFiles rf=new ReadFiles();
 		HashSet<ArrayList<String>> file=rf.readTabSeparatedFile(temporaldefacto);
 		

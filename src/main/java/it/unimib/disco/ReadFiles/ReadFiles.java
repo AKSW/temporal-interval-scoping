@@ -26,6 +26,7 @@ public class ReadFiles {
 			String line = br.readLine();
 			
 			while(line!=null){
+				
 				if(line.charAt(0)!='#'){
 					list.add(line);
 				}

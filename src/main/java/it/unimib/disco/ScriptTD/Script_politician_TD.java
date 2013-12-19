@@ -1,22 +1,22 @@
-package it.unimib.disco.Script;
+package it.unimib.disco.ScriptTD;
 
 import it.unimib.disco.Evaluation.QualityMeasure;
 import it.unimib.disco.ReadFiles.FactGrouping;
 import it.unimib.disco.ReadFiles.ReadFiles;
+import it.unimib.disco.Script.TemporalIntervalCreatoScript_dbp;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
 import org.aksw.distributions.Fact;
 
-public class Script_politician {
+public class Script_politician_TD {
 	public static void main (String args []) throws FileNotFoundException{
 		if (args.length < 1) {
 			System.out.println("Use: java TemporalIntervalCreator <Resource list file> <temporal defacto output> <yago's gold standard>");
@@ -26,28 +26,16 @@ public class Script_politician {
 			HashMap<String,HashMap<String,HashMap<String,QualityMeasure>>> outputResult = new HashMap<String,HashMap<String,HashMap<String,QualityMeasure>>>();
 			HashMap<String,HashMap<String,QualityMeasure>> evaluationResult= new HashMap<String,HashMap<String,QualityMeasure>>();
 
-		
-		//TemporalIntervalCreatoScriptTD tempAnnot= new TemporalIntervalCreatoScriptTD();	
-			
 			TemporalIntervalCreatoScript_dbp tempAnnot= new TemporalIntervalCreatoScript_dbp();
-		
-			// Resource URI extraction
-			List<Fact> dateRepository=new ReadFiles().readTabSeparatedFileLS(new File(args[0]));
-			//List<Fact> dateRepository=new ArrayList<Fact>();
-			//dateRepository= new ReadFiles().csv(new File(args[0]));
-			HashMap<String,HashMap<String,List<Fact>>> groupedFactBySubjectObject = new FactGrouping().groupBySubjectObject(dateRepository); //group temporal facts (s,p,t) by subject and object (t)
-					
 
 			// Read temporalDefacto facts
-			List<Fact> l = new ReadFiles().readTabSeparatedFileLS(new File(args[1]));
-			/*List<String> temporalDefactoFacts = ReadFiles.getURIs(new File(args[1]));
-			List<Fact> l = new ArrayList<Fact>();
-			l = new ReadFiles().creatListOfFacts(temporalDefactoFacts);*/
-					
+			List<Fact> tmpdefacto = new ReadFiles().readTabSeparatedFileLS(new File(args[0]));
+			HashMap<String,HashMap<String,List<Fact>>> groupedFactBySubjectObject = new FactGrouping().groupBySubjectTimepoint(tmpdefacto); //group temporal facts (s,p,t) by subject and object (t)
 					
 			//Read gold standard facts
-			List<String> yagoFacts = ReadFiles.getURIs(new File(args[2]));
+			List<String> yagoFacts = ReadFiles.getURIs(new File(args[1]));
 			//logger.info("Yago facts parsed");
+
 				
 		//2, 10, 1, 1
 		//[1, 6, 2, 1]
@@ -81,7 +69,7 @@ public class Script_politician {
 			
 			//default no-normalization
 			if (normalization==1){
-				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,l,yagoFacts,normalization,selection,k,x);
+				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,tmpdefacto,yagoFacts,normalization,selection,k,x);
 				outputResult.put("no-normalization",evaluationResult);
 				
 
@@ -89,19 +77,19 @@ public class Script_politician {
 
 			//default local-normalization
 			else if (normalization==2){
-				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,l,yagoFacts,normalization,selection,k,x);
+				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,tmpdefacto,yagoFacts,normalization,selection,k,x);
 				outputResult.put("local-normalization",evaluationResult);
 
 			}
 			//default global-normalization
 			else if(normalization==3){
-				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,l,yagoFacts,normalization,selection,k,x);
+				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,tmpdefacto,yagoFacts,normalization,selection,k,x);
 				outputResult.put("global-normalization",evaluationResult);
 
 			}
 			//default chisquared-normalization
 			else{
-				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,l,yagoFacts,normalization,selection,k,x);
+				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,tmpdefacto,yagoFacts,normalization,selection,k,x);
 				outputResult.put("chisquared-normalization",evaluationResult);
 			}
 		}
@@ -126,26 +114,26 @@ public class Script_politician {
 
 			//default no-normalization
 			if (normalization==1){
-				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,l,yagoFacts,normalization,selection,k,x);
+				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,tmpdefacto,yagoFacts,normalization,selection,k,x);
 				outputResult.put("no-normalization",evaluationResult);
 
 			}
 
 			//default local-normalization
 			else if (normalization==2){
-				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,l,yagoFacts,normalization,selection,k,x);
+				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,tmpdefacto,yagoFacts,normalization,selection,k,x);
 				outputResult.put("local-normalization",evaluationResult);
 
 			}
 			//default global-normalization
 			else if(normalization==3){
-				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,l,yagoFacts,normalization,selection,k,x);
+				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,tmpdefacto,yagoFacts,normalization,selection,k,x);
 				outputResult.put("global-normalization",evaluationResult);
 
 			}
 			//default chisquared-normalization
 			else{
-				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,l,yagoFacts,normalization,selection,k,x);
+				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,tmpdefacto,yagoFacts,normalization,selection,k,x);
 				outputResult.put("chisquared-normalization",evaluationResult);
 			}
 			
@@ -174,26 +162,26 @@ public class Script_politician {
 			
 			//default no-normalization
 			if (normalization==1){
-				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,l,yagoFacts,normalization,selection,k,x);
+				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,tmpdefacto,yagoFacts,normalization,selection,k,x);
 				outputResult.put("no-normalization",evaluationResult);
 
 			}
 
 			//default local-normalization
 			else if (normalization==2){
-				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,l,yagoFacts,normalization,selection,k,x);
+				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,tmpdefacto,yagoFacts,normalization,selection,k,x);
 				outputResult.put("local-normalization",evaluationResult);
 
 			}
 			//default global-normalization
 			else if(normalization==3){
-				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,l,yagoFacts,normalization,selection,k,x);
+				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,tmpdefacto,yagoFacts,normalization,selection,k,x);
 				outputResult.put("global-normalization",evaluationResult);
 
 			}
 			//default chisquared-normalization
 			else{
-				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,l,yagoFacts,normalization,selection,k,x);
+				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,tmpdefacto,yagoFacts,normalization,selection,k,x);
 				outputResult.put("chisquared-normalization",evaluationResult);
 			}
 
@@ -205,13 +193,13 @@ public class Script_politician {
 			File directory = new File (".");
 			if(selection==1){
 				
-				bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output/"+"evaluation_topK"+"-"+k+"-"+x+".csv")));
+				bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output_TD/"+"evaluation_topK"+"-"+k+"-"+x+".csv")));
 			}
 			else if(selection==2){
-				bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output/"+"evaluation_proxyX"+"-"+k+"-"+x+".csv")));
+				bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output_TD/"+"evaluation_proxyX"+"-"+k+"-"+x+".csv")));
 			}
 			else{
-				bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output/"+"evaluation_neighbor"+"-"+k+"-"+x+".csv")));
+				bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output_TD/"+"evaluation_neighbor"+"-"+k+"-"+x+".csv")));
 			}
 			
 			bw.write("normalizationType"+","+"overlapPrec"+","+"overlapRecall"+","+"Micro-F1"+","+"Macro-F1"+"\n" );
