@@ -38,7 +38,7 @@ public class ConfigurationEvaluator implements Evaluator<Configuration> {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		microF = m.get(Entry.fMEASURE);
+		microF = Double.parseDouble(m.get(Entry.fMEASURE));
 		Objectives objectives = new Objectives();
 		Objective objective = new Objective("maximize", Sign.MAX);
 		

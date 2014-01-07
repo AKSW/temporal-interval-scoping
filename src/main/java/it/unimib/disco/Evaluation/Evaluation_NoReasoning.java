@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
-public class Evaluation {
+public class Evaluation_NoReasoning {
 
 	
 	public List<QualityMeasure> overlap(String Uri,HashMap<String,HashSet<Interval>> tempodefactoIntervals, List<String> goldstandard_facts, PrintWriter pw){
@@ -32,13 +32,7 @@ public class Evaluation {
 		for (String obj: tempodefactoIntervals.keySet()){
 			//System.out.println(Uri+" "+obj+" "+ tempodefactoIntervals.get(obj));
 			HashSet<Interval> intervalsRedu = tempodefactoIntervals.get(obj);
-			String intervalsReduStr = null;
-			for(Interval interv:intervalsRedu){
-				if(intervalsReduStr!=null){
-				intervalsReduStr = intervalsReduStr+interv.toString();
-				}
-				else{intervalsReduStr = interv.toString();}
-			}
+			
 			
 			ArrayList<String> yagoInterval = yagoIntervals.get(obj);
 			
@@ -53,11 +47,13 @@ public class Evaluation {
 				yagoEnd="2013";
 			}
 			MatrixCreator mpc= new MatrixCreator();
+			
+			
+		String intervalsReduStr = null;
+			for(Interval interv:intervalsRedu){
 			double countTcorrect =0.0;
 			long yearDistanceYago = 0,yearDistance,yearDistanceTot=0;
-			
-		
-			for(Interval interv:intervalsRedu){
+			intervalsReduStr = interv.toString();
 			
 				Date column = mpc.stringToLong(interv.getEnd());					
 				Date row = mpc.stringToLong(interv.getStart());
@@ -142,7 +138,7 @@ public class Evaluation {
 			}
 
 
-		}
+		
 			
 		//values for a single temporal interval
 		overlapPrec  = countTcorrect/yearDistanceTot;
@@ -167,7 +163,7 @@ public class Evaluation {
 
 		//System.out.println(Uri+","+obj+","+intervalsRedu+","+yagoInterval+","+metrics.get(Entry.PRECISION)+","+metrics.get(Entry.RECALL)+","+metrics.get(Entry.fMEASURE));
 		pw.println(Uri+";"+obj+";"+intervalsRedu+";"+yagoInterval+";"+metrics.get(Entry.PRECISION)+";"+metrics.get(Entry.RECALL)+";"+metrics.get(Entry.fMEASURE));
-		
+			}
 		}
 		}
 		}

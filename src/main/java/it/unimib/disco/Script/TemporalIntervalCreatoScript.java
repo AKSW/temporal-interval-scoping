@@ -16,6 +16,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -23,11 +24,11 @@ import java.util.List;
 import org.aksw.distributions.Fact;
 import org.apache.log4j.Logger;
 
-public class TemporalIntervalCreatoScript_dbp {
+public class TemporalIntervalCreatoScript {
 
-private static Logger logger = Logger.getLogger(TemporalIntervalCreatoScript_dbp.class);
-	//HashMap<String,List<Features>> featuresUri
-public HashMap<String,HashMap<String,QualityMeasure>> temporalFact(HashMap<String,HashMap<String,List<Fact>>> groupedFactBySubjectObject,List<Fact> temporalDefactoFacts,List<String> goldstandard_facts,
+private static Logger logger = Logger.getLogger(TemporalIntervalCreatoScript.class);
+	
+public List<QualityMeasure> temporalFact(HashMap<String,HashMap<String,List<Fact>>> groupedFactBySubjectObject,List<Fact> temporalDefactoFacts,List<String> goldstandard_facts,
 		int normalizationType,int selection,int k, int x) throws FileNotFoundException{
 		
 		FileOutputStream fos,fos1;
@@ -48,26 +49,15 @@ public HashMap<String,HashMap<String,QualityMeasure>> temporalFact(HashMap<Strin
 			
 		}
 		
-
 		PrintWriter pw = new PrintWriter(fos);
 		PrintWriter pw1 = new PrintWriter(fos1);
 		
 	
 		/******************RIM**************/
-		/*HashMap<String,ArrayList<String>> dateRepository=new HashMap<String,ArrayList<String>>();
-		for ( String str: featuresUri.keySet()){
-			List<Features> hm = featuresUri.get(str);
-			HashSet<String> dateList = new HashSet<String>();
-			for (Features y: hm){
-				dateList.add(y.getTimepoint());
-			}
-			ArrayList<String> list = new ArrayList<String>(dateList);
-			dateRepository.put(str, list);
-		}*/
-		
 		HashMap<String, DateOccurrence [][]> maximalRIM =  new MatrixCreator().createMaximalRIM(new FactGrouping().createRIMvectors(groupedFactBySubjectObject));
-		System.out.println(maximalRIM.size());
+
 		logger.info("Created maximal RIM");
+		
 		
 		/******************lexical RIM**************/
 		//HashMap<String, DateOccurrence [][]> lexicalRIM =  new MatrixCreator().createLexicalRIM(featuresUri);
@@ -78,17 +68,16 @@ public HashMap<String,HashMap<String,QualityMeasure>> temporalFact(HashMap<Strin
 		
 		/******************Matching **************/
 		HashMap<String,HashMap<String,List<Fact>>> groupFacts = new FactGrouping().groupBySubjectObject(factNormalized);
-		System.out.println(groupFacts.size());
 		Matcher ta = new Matcher();
 		HashMap<String,HashMap<String,List<Interval>>> sub_obj_interval = new HashMap<String,HashMap<String,List<Interval>>>() ;
-		int count=0;
+		
 		try {
 		for (String uri: maximalRIM.keySet()){
 			HashMap<String,List<Interval>> obj_interval= new HashMap<String,List<Interval>>();
 			
 			HashMap<String,List<Fact>> objbasedgroupfacts = groupFacts.get(uri);
 			if(objbasedgroupfacts!=null){
-				count++;
+			
 
 			for (String obj: objbasedgroupfacts.keySet()){
 				List<Fact> f = objbasedgroupfacts.get(obj);
@@ -111,7 +100,7 @@ public HashMap<String,HashMap<String,QualityMeasure>> temporalFact(HashMap<Strin
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		System.out.println(count);
+		
 		  
 	    logger.info("Selection function");
 	    HashMap<String,HashMap<String,List<Interval>>> tempodefactoIntervalsUri = new HashMap<String,HashMap<String,List<Interval>>>();
@@ -136,21 +125,24 @@ public HashMap<String,HashMap<String,QualityMeasure>> temporalFact(HashMap<Strin
 	    	}
 	    	reasoningIntervalsUri.put(uri, reasoningIntervals);
 	    }
-	    
+
 	    Evaluation ev = new Evaluation();
-		HashMap<String,HashMap<String,QualityMeasure>> evaluationResults = new HashMap<String,HashMap<String,QualityMeasure>>();
+		List<QualityMeasure> evaluationResults = new ArrayList<QualityMeasure>();
 		try {
 			
 			for (String uri:reasoningIntervalsUri.keySet()){
 				HashMap<String,HashSet<Interval>> timeintervals=reasoningIntervalsUri.get(uri);
 				
-				HashMap<String,QualityMeasure> localmetrics=ev.overlap(uri,timeintervals,goldstandard_facts,pw1);
-				evaluationResults.put(uri,localmetrics);
+				List<QualityMeasure> localmetrics=ev.overlap(uri,timeintervals,goldstandard_facts,pw1);
+				for (int i = 0; i < localmetrics.size(); i++) {
+					evaluationResults.add(localmetrics.get(i).copy());
+				}
 	
 			}
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
+		System.out.println(evaluationResults.size());
 		pw1.close();
 		try {
 			fos1.close();

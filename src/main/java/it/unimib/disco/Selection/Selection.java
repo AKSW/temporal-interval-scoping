@@ -49,7 +49,7 @@ public class Selection {
 	}
 	
 
-	public List<Interval> combinedProxyTopk (List<Interval> intervals, int x,int k) throws ParseException{
+	public List<Interval> combinedProxyTopk(List<Interval> intervals, int x,int k) throws ParseException{
 			
 		List<Interval> allIntervals= new ArrayList<Interval>();
 		
@@ -105,6 +105,61 @@ public class Selection {
 		return allIntervals;
 	}
 	
+	public List<Interval> combinedProxyTopk_v1 (List<Interval> intervals, int x,int k) {
+                        
+		List<Interval> allIntervals= new ArrayList<Interval>();
+	
+			double maxProv=0d,value=0d,max=0d;
+			int count=0;
+			for (Interval interv: intervals){
+					value=Double.valueOf((interv.getValue().trim()));
+					if(value >= max && value!=0.0){
+					
+						max=value;
+
+					}
+			}
+			if(x==0){
+				maxProv=0d;
+			}
+			else{
+				maxProv=max-(x*max)/100;
+				
+			}
+			while (count<k){
+				Interval interMax=new Interval();
+				boolean added=false;
+				int index=0;
+				value=0d;double maxP=max;
+				for (int i=0;i<intervals.size();i++){
+					
+					value=Double.valueOf((intervals.get(i).getValue().trim()));
+					if(value>=maxProv){
+
+						if(value <= maxP && value!=0){
+						
+							maxP=value;
+							
+							interMax=new Interval();
+							interMax.addStart(intervals.get(i).getStart());
+							interMax.addEnd(intervals.get(i).getEnd());
+							interMax.addValue(intervals.get(i).getValue());
+							index=i;
+							added=true;
+						}
+					}	
+					
+				}
+				
+				if(added){			
+					allIntervals.add(interMax);
+					intervals.remove(index);
+				}
+				count++;
+			}
+
+		return allIntervals;
+	}
 	
 	public List<Interval> proxSelect (List<Interval> intervals, int x) throws ParseException{		
 		

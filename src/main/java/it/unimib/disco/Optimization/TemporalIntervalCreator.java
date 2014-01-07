@@ -16,6 +16,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -104,39 +105,46 @@ public QualityMeasure measure(Configuration phenotype, HashMap<String,HashMap<St
 		    	reasoningIntervalsUri.put(uri, reasoningIntervals);
 		 }
 		    
-			Evaluation ev = new Evaluation();
-			HashMap<String,HashMap<String,QualityMeasure>> evaluationResults = new HashMap<String,HashMap<String,QualityMeasure>>();
-
+		Evaluation ev = new Evaluation();
+		List<QualityMeasure> evaluationResults = new ArrayList<QualityMeasure>();
 				for (String uri:reasoningIntervalsUri.keySet()){
-					HashMap<String,HashSet<Interval>> tempodefactoIntervals=reasoningIntervalsUri.get(uri);
-					
-					HashMap<String,QualityMeasure> localmetrics=ev.overlap(uri,tempodefactoIntervals,goldstandard_facts,pw1);
-					evaluationResults.put(uri,localmetrics);
-		
-			
-	      
-
-		}  
+				HashMap<String,HashSet<Interval>> timeintervals=reasoningIntervalsUri.get(uri);
+				
+				List<QualityMeasure> localmetrics=ev.overlap(uri,timeintervals,goldstandard_facts,pw1);
+				for (int i = 0; i < localmetrics.size(); i++) {
+					evaluationResults.add(localmetrics.get(i).copy());
+				}
+	
+			}
 		double avgP=0d, avgR=0d, avgF=0d;
 		int total=0;
-		for (String uri:evaluationResults.keySet()){
-			
-			HashMap<String,QualityMeasure>  er=evaluationResults.get(uri);
-			for (String obj: er.keySet()){
-				QualityMeasure metrics = er.get(obj);
-				
-				avgP=avgP+metrics.get(QualityMeasure.Entry.PRECISION);
-				avgR=avgR+metrics.get(QualityMeasure.Entry.RECALL);
-				avgF=avgF+metrics.get(QualityMeasure.Entry.fMEASURE);
-				
-				total++;
-			}
-			
-		}
 
-		m.add(QualityMeasure.Entry.PRECISION, avgP/total);
-		m.add(QualityMeasure.Entry.RECALL, avgR/total );
-		m.add(QualityMeasure.Entry.fMEASURE, avgF/total );
+			for (QualityMeasure metrics:evaluationResults){
+					
+					double prec = Double.parseDouble(metrics.get(QualityMeasure.Entry.PRECISION));
+					double rec = Double.parseDouble(metrics.get(QualityMeasure.Entry.RECALL));
+					double fmes = Double.parseDouble(metrics.get(QualityMeasure.Entry.fMEASURE));
+					
+					
+					if(Double.isNaN(prec)||Double.isNaN(rec)||Double.isNaN(fmes)){
+					}
+					else{
+						avgP=avgP+prec;
+
+						avgR=avgR+rec;
+						avgF=avgF+fmes;
+					
+					total++;
+					}
+				}
+
+				double overlapPrec=avgP/total;
+				double overlapRec=avgR/total;
+				//double microF1=avgF/total;
+				double macroF1=2*(overlapPrec*overlapRec)/(overlapPrec+overlapRec);
+		m.add(QualityMeasure.Entry.PRECISION, String.valueOf(overlapPrec));
+		m.add(QualityMeasure.Entry.RECALL, String.valueOf(overlapRec ));
+		m.add(QualityMeasure.Entry.fMEASURE, String.valueOf(macroF1 ));
 		
 	     return m;
 	}

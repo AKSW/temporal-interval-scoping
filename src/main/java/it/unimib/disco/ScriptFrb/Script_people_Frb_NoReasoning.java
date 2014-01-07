@@ -1,9 +1,9 @@
-package it.unimib.disco.ScriptTD;
+package it.unimib.disco.ScriptFrb;
 
 import it.unimib.disco.Evaluation.QualityMeasure;
 import it.unimib.disco.ReadFiles.FactGrouping;
 import it.unimib.disco.ReadFiles.ReadFiles;
-import it.unimib.disco.Script.TemporalIntervalCreatoScript;
+import it.unimib.disco.Script.TemporalIntervalCreatoScript_NoReasoning;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -17,26 +17,21 @@ import java.util.Scanner;
 
 import org.aksw.distributions.Fact;
 
-public class Script_people_TD {
+public class Script_people_Frb_NoReasoning {
 	public static void main (String args []) throws FileNotFoundException{
 		if (args.length < 1) {
 			System.out.println("Use: java TemporalIntervalCreator <Resource list file> <temporal defacto output> <yago's gold standard>");
 			System.out.println("Example: java TemporalIntervalCreator /temporalIntervalCreator_ResourceList_in2.txt /sortbyplayer-labels-with-space_out_lionel.csv /goldStandard_30_entities.csv");
 		} else {
 			
-			HashMap<String,List<QualityMeasure>> outputResult = new HashMap<String,List<QualityMeasure>>();
+		HashMap<String,List<QualityMeasure>> outputResult = new HashMap<String,List<QualityMeasure>>();
 			List<QualityMeasure> evaluationResult= new ArrayList<QualityMeasure>();
 
 		
-		//TemporalIntervalCreatoScriptTD tempAnnot= new TemporalIntervalCreatoScriptTD();
 			
-		TemporalIntervalCreatoScript tempAnnot= new TemporalIntervalCreatoScript();
+		TemporalIntervalCreatoScript_NoReasoning tempAnnot= new TemporalIntervalCreatoScript_NoReasoning();
 		
-		// Resource URI extraction
-		//List<Fact> dateRepository=new ReadFiles().readTabSeparatedFileLS(new File(args[0]));
-		//HashMap<String,HashMap<String,List<Fact>>> groupedFactBySubjectObject = new FactGrouping().groupBySubjectObject(dateRepository); //group temporal facts (s,p,t) by subject and object (t)
-
-		// Read temporalDefacto facts
+			// Read temporalDefacto facts
 		List<Fact> tmpdefacto = new ReadFiles().readTabSeparatedFileLS(new File(args[0]));
 		HashMap<String,HashMap<String,List<Fact>>> groupedFactBySubjectObject = new FactGrouping().groupBySubjectTimepoint(tmpdefacto); //group temporal facts (s,p,t) by subject and object (t)
 		
@@ -200,14 +195,15 @@ public class Script_people_TD {
 			File directory = new File (".");
 			if(selection==1){
 				
-				bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output_TD/"+"evaluation_topK_people"+"-"+k+"-"+x+".csv")));
+				bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output_Frb/"+"evaluation_topK_NoReasoning"+"-"+k+"-"+x+".csv")));
 			}
 			else if(selection==2){
-				bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output_TD/"+"evaluation_proxyX_people"+"-"+k+"-"+x+".csv")));
+				bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output_Frb/"+"evaluation_proxyX_NoReasoning"+"-"+k+"-"+x+".csv")));
 			}
 			else{
-				bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output_TD/"+"evaluation_neighbor_people"+"-"+k+"-"+x+".csv")));
+				bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output_Frb/"+"evaluation_neighbor_NoReasoning"+"-"+k+"-"+x+".csv")));
 			}
+			
 			
 			bw.write("subject"+"	"+"object"+"	"+"interval"+"	"+"goldstandard"+"	"+"precision"+"	"+"recall"+"	"+"microF"+"	"+"macroF"+"\n" );
 			for(String str: outputResult.keySet()){

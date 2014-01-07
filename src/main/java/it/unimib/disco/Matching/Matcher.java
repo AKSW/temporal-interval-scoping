@@ -96,9 +96,7 @@ public class Matcher {
 	public DateOccurrence [][] matrixManhattanDuration( DateOccurrence [][] mRed){
 		
 			DateOccurrence [][] temporalDCMatrix= new DateOccurrence[mRed.length][mRed.length];
-			
-
-			temporalDCMatrix[0][0]= new DateOccurrence("[Start]/", "End");
+		temporalDCMatrix[0][0]= new DateOccurrence("[Start]/", "End");
 
 			
 			for(int l=1; l<temporalDCMatrix.length; l++){
@@ -111,12 +109,12 @@ public class Matcher {
 				temporalDCMatrix[0][m]= mRed[0][m];
 			}
 
-			
 			for (int i=1; i<temporalDCMatrix.length; i++){
 				int count=1;
-				for(int j=1; j<temporalDCMatrix[i].length; j++){
-		
-					if(j>=i&&!(mRed[i][j].getOccurrence().equalsIgnoreCase("X"))){
+	
+			for(int j=1; j<temporalDCMatrix[i].length; j++){
+					
+					if(j>=i){
 											
 						temporalDCMatrix[i][j]= new DateOccurrence("", String.valueOf(count));
 						count++;
@@ -150,14 +148,16 @@ public class Matcher {
 				for(int j=0; j<m[i].length; j++){
 					
 					if(i==0||j==0){
+					
 						m[0][j]=matrixMD[0][j];
 						m[i][0]=matrixMD[i][0];
 					}
 					
-					else if(j>i&&!(matrixMD[i][j].getOccurrence().contains("0"))){
-						
+					else if(j>i){
 						String occuMatrix = matrixMD[i][j].getOccurrence().trim();
-						
+					
+						int value = Integer.parseInt(occuMatrix);
+						if(value!=0){
 						int duration = Integer.valueOf(occuMatrix);
 						
 						MatrixCreator mpc= new MatrixCreator();
@@ -179,7 +179,7 @@ public class Matcher {
 						}
 						
 						m[i][j]= new DateOccurrence("", String.valueOf(formula));
-					
+						
 						//add start and end year and the formula
 						Interval interval = new Interval();
 						interval.addStart(m[i][0].getDate());
@@ -187,19 +187,23 @@ public class Matcher {
 						interval.addValue(String.valueOf(formula));
 						intervals.add(interval);
 					}
+					}
 					else{
 
 						m[i][j]= new DateOccurrence("", "0");
 					}
 					
 
-
-					pw.print(m[i][j].getDate()+""+ m[i][j].getOccurrence()+",");
+					if (i==0||j==0){
+						if(i==0&&j==0){
+							pw.print(m[i][j].getDate()+""+ m[i][j].getOccurrence()+"	");}
+						else{pw.print(m[i][j].getDate()+"	");}}
+					else{
+					pw.print(m[i][j].getDate()+"	"+ m[i][j].getOccurrence());}
 					
 				}pw.println();
 				
 			}
-
 
 		return intervals;
 		

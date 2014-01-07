@@ -38,16 +38,17 @@ public class TestEvaluation {
 		ls.add(interval1);
 		ls.add(interval2);
 		
+		
 		interval3.addStart("2003");
 		interval3.addEnd("2005");
 		interval3.addValue("0.53");
 	
 		ls2.add(interval3);
 		
-		 Evaluation ev = new Evaluation();
-		 
+		 Evaluation_NoReasoning ev = new Evaluation_NoReasoning();
+		 //Evaluation ev = new Evaluation();
 		String f1="messi	play	barcelona	1995	2000	false";
-		String f2="messi	play	barcelona_b	2003	2004	false]";
+		String f2="messi	play	barcelona_b	2003	2004	false";
 		 
 		
 		goldstandard_facts.add(f1);
@@ -58,10 +59,10 @@ public class TestEvaluation {
 		timeintervals.put("barcelona", ls);
 		timeintervals.put("barcelona_b", ls2);
 		
-		HashMap<String,QualityMeasure> localmetrics= new HashMap<String,QualityMeasure>();
-		localmetrics=ev.overlap("messi",timeintervals,goldstandard_facts,pw1);
-		for(String loc:localmetrics.keySet()){
-			System.out.println(localmetrics.get(loc));
+		
+		List<QualityMeasure> str = ev.overlap("messi",timeintervals,goldstandard_facts,pw1);
+		for(QualityMeasure loc:str){
+			System.out.println(loc);
 		}
 		
 	}

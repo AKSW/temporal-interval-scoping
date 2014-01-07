@@ -5,22 +5,22 @@ import java.util.Map;
 
 public class QualityMeasure {
 
-	 Map<Entry, Double> components;
+	 Map<Entry, String> components;
 
-	    public enum Entry {PRECISION, RECALL, fMEASURE};
+	    public enum Entry {SUBJECT, OBJECT, INTERVAL, GOLDSTANDARD, PRECISION, RECALL, fMEASURE};
 	    public QualityMeasure() {
-	        components = new HashMap<Entry, Double>();
+	        components = new HashMap<Entry, String>();
 	    }
 
-	    public double get(Entry e) {
+	    public String get(Entry e) {
 	        if (components.containsKey(e)) {
 	            return components.get(e);
 	        } else {
-	            return -1;
+	            return null;
 	        }
 	    }
 
-	    public void add(Entry key, Double d) {
+	    public void add(Entry key, String d) {
 	        components.put(key, d);
 	    }
 

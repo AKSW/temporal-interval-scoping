@@ -25,7 +25,7 @@ public class Configuration {
 		for (int i = 0; i < size; i++){ 
 			selection = 1 + (int)(Math.random() * ((3 - 1) + 1));
 			x = 1 + (int)(Math.random() * ((10 - 1) + 1));
-			k = 1 + (int)(Math.random() * ((2 - 1) + 1));
+			k = 1 + (int)(Math.random() * ((3 - 1) + 1));
 			normalization = 1 + (int)(Math.random() * ((4 - 1) + 1));
 			final Configuration configuration = new Configuration(selection, x, k, normalization);
 			configurations.add(configuration);

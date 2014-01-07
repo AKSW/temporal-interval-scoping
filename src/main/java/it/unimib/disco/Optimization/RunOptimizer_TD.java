@@ -15,25 +15,21 @@ import org.opt4j.core.Objective.Sign;
 import org.opt4j.core.Objectives;
 import org.opt4j.core.genotype.SelectGenotype;
 
-public class RunOptimizer {
+public class RunOptimizer_TD {
 
-	private static Logger logger = Logger.getLogger(RunOptimizer.class);
+	private static Logger logger = Logger.getLogger(RunOptimizer_TD.class);
 	public static void main (String args []) throws FileNotFoundException{
 		if (args.length < 1) {
 			System.out.println("Use: java TemporalIntervalCreator <Resource list file> <temporal defacto output> <yago's gold standard>");
 			System.out.println("Example: java TemporalIntervalCreator /temporalIntervalCreator_ResourceList_in2.txt /sortbyplayer-labels-with-space_out_lionel.csv /goldStandard_30_entities.csv");
 		} else {
 
-			// Resource URI extraction
-			List<Fact> dateRepository=new ReadFiles().readTabSeparatedFileLS(new File(args[0]));
-			HashMap<String,HashMap<String,List<Fact>>> groupedFactBySubjectObject = new FactGrouping().groupBySubjectObject(dateRepository); //group temporal facts (s,p,t) by subject and object (t)
-			
 			// Read temporalDefacto facts
-			List<Fact> temporalDefactoFacts = new ReadFiles().readTabSeparatedFileLS(new File(args[1]));
-			
-			//Read gold standard facts
-			List<String> goldstandard_facts = ReadFiles.getURIs(new File(args[2]));
-			//logger.info("Yago facts parsed");
+		List<Fact> temporalDefactoFacts = new ReadFiles().readTabSeparatedFileLS(new File(args[0]));
+		HashMap<String,HashMap<String,List<Fact>>> groupedFactBySubjectObject = new FactGrouping().groupBySubjectTimepoint(temporalDefactoFacts); //group temporal facts (s,p,t) by subject and object (t)
+		
+		//Read gold standard facts
+		List<String> goldstandard_facts = ReadFiles.getURIs(new File(args[1]));
 		
 			Objective objective = new Objective ("maximize", Sign.MAX);
 			

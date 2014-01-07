@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
@@ -16,39 +17,30 @@ import java.util.Scanner;
 import org.aksw.distributions.Fact;
 
 public class Script_people {
-	public static void main (String args []) throws FileNotFoundException{
+public static void main (String args []) throws FileNotFoundException{
 		if (args.length < 1) {
 			System.out.println("Use: java TemporalIntervalCreator <Resource list file> <temporal defacto output> <yago's gold standard>");
 			System.out.println("Example: java TemporalIntervalCreator /temporalIntervalCreator_ResourceList_in2.txt /sortbyplayer-labels-with-space_out_lionel.csv /goldStandard_30_entities.csv");
 		} else {
 			
-			HashMap<String,HashMap<String,HashMap<String,QualityMeasure>>> outputResult = new HashMap<String,HashMap<String,HashMap<String,QualityMeasure>>>();
-			HashMap<String,HashMap<String,QualityMeasure>> evaluationResult= new HashMap<String,HashMap<String,QualityMeasure>>();
+			HashMap<String,List<QualityMeasure>> outputResult = new HashMap<String,List<QualityMeasure>>();
+			List<QualityMeasure> evaluationResult= new ArrayList<QualityMeasure>();
 
 		
-		//TemporalIntervalCreatoScriptTD tempAnnot= new TemporalIntervalCreatoScriptTD();
-		
+			TemporalIntervalCreatoScript tempAnnot= new TemporalIntervalCreatoScript();
 			
-			
-			TemporalIntervalCreatoScript_dbp tempAnnot= new TemporalIntervalCreatoScript_dbp();
-		
 			// Resource URI extraction
 			List<Fact> dateRepository=new ReadFiles().readTabSeparatedFileLS(new File(args[0]));
-			//List<Fact> dateRepository=new ArrayList<Fact>();
-			//dateRepository= new ReadFiles().csv(new File(args[0]));
 			HashMap<String,HashMap<String,List<Fact>>> groupedFactBySubjectObject = new FactGrouping().groupBySubjectObject(dateRepository); //group temporal facts (s,p,t) by subject and object (t)
 					
 
 			// Read temporalDefacto facts
 			List<Fact> l = new ReadFiles().readTabSeparatedFileLS(new File(args[1]));
-			/*List<String> temporalDefactoFacts = ReadFiles.getURIs(new File(args[1]));
-			List<Fact> l = new ArrayList<Fact>();
-			l = new ReadFiles().creatListOfFacts(temporalDefactoFacts);*/
-					
+								
 					
 			//Read gold standard facts
 			List<String> yagoFacts = ReadFiles.getURIs(new File(args[2]));
-			//logger.info("Yago facts parsed");
+			
 				
 		//2, 10, 1, 1
 		//[1, 6, 2, 1]
@@ -60,12 +52,12 @@ public class Script_people {
 		do{
 			System.out.println("Please choose one of the selection function: 1- topK, 2- proxy, 3 - neighbor:");
 			selection=read.nextInt();
-		}while(selection < 1  && selection>3);
+		}while(selection < 1  && selection > 3);
 		
 		//selection function top-k
 		if(selection==1){
 			normalization = 1;//no-normalization
-			outputResult = new HashMap<String, HashMap<String,HashMap<String,QualityMeasure>>>();
+			outputResult = new HashMap<String, List<QualityMeasure>>();
 			
 			System.out.println("Selection function is topK");
 			do{
@@ -84,8 +76,6 @@ public class Script_people {
 			if (normalization==1){
 				evaluationResult = tempAnnot.temporalFact(groupedFactBySubjectObject,l,yagoFacts,normalization,selection,k,x);
 				outputResult.put("no-normalization",evaluationResult);
-				
-
 			}
 
 			//default local-normalization
@@ -111,7 +101,7 @@ public class Script_people {
 		//selection function proxy
 		else if(selection==2){
 			normalization = 1;//no-normalization
-			outputResult = new HashMap<String, HashMap<String,HashMap<String,QualityMeasure>>>();
+			outputResult = new HashMap<String, List<QualityMeasure>>();
 			
 			System.out.println("You selected the proxy selection function");
 			do{
@@ -156,7 +146,7 @@ public class Script_people {
 		//selection function combined
 		else{ 
 			normalization = 1;//no-normalization
-			outputResult = new HashMap<String, HashMap<String,HashMap<String,QualityMeasure>>>();
+			outputResult = new HashMap<String, List<QualityMeasure>>();
 			
 			System.out.println("You selected neighbor function");
 			do{
@@ -206,39 +196,41 @@ public class Script_people {
 			File directory = new File (".");
 			if(selection==1){
 				
-				bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output/"+"evaluation_topK"+"-"+k+"-"+x+".csv")));
+				bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output/"+"evaluation_topK_people"+"-"+k+"-"+x+".csv")));
 			}
 			else if(selection==2){
-				bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output/"+"evaluation_proxyX"+"-"+k+"-"+x+".csv")));
+				bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output/"+"evaluation_proxyX_people"+"-"+k+"-"+x+".csv")));
 			}
 			else{
-				bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output/"+"evaluation_neighbor"+"-"+k+"-"+x+".csv")));
+				bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output/"+"evaluation_neighbor_people"+"-"+k+"-"+x+".csv")));
 			}
 			
-			bw.write("normalizationType"+","+"overlapPrec"+","+"overlapRecall"+","+"Micro-F1"+","+"Macro-F1"+"\n" );
+bw.write("subject"+"	"+"object"+"	"+"interval"+"	"+"goldstandard"+"	"+"precision"+"	"+"recall"+"	"+"microF"+"	"+"macroF"+"\n" );
 			for(String str: outputResult.keySet()){
-				HashMap<String,HashMap<String,QualityMeasure>> result= new HashMap<String,HashMap<String,QualityMeasure>>();
-				result=	 outputResult.get(str);
+				List<QualityMeasure> result= new ArrayList<QualityMeasure>();
+				result = outputResult.get(str);
 
 				double avgP=0d, avgR=0d, avgF=0d;
 				int total=0;
-				for (String uri:result.keySet()){
-				
-				HashMap<String,QualityMeasure> er=result.get(uri);
-				for (String obj: er.keySet()){
-					QualityMeasure metrics = er.get(obj);
-					if(Double.isNaN(metrics.get(QualityMeasure.Entry.PRECISION))||Double.isNaN(metrics.get(QualityMeasure.Entry.RECALL))||Double.isNaN(metrics.get(QualityMeasure.Entry.fMEASURE))){
+				for (QualityMeasure metrics:result){
+					
+					double prec = Double.parseDouble(metrics.get(QualityMeasure.Entry.PRECISION));
+					double rec = Double.parseDouble(metrics.get(QualityMeasure.Entry.RECALL));
+					double fmes = Double.parseDouble(metrics.get(QualityMeasure.Entry.fMEASURE));
+					
+					bw.write(metrics.get(QualityMeasure.Entry.SUBJECT)+"	"+metrics.get(QualityMeasure.Entry.OBJECT)+"	"+metrics.get(QualityMeasure.Entry.INTERVAL)+"	"+metrics.get(QualityMeasure.Entry.GOLDSTANDARD)+"	"+prec+"	"+rec+"	"+fmes+"	"+" "+"\n" );
+					if(Double.isNaN(prec)||Double.isNaN(rec)||Double.isNaN(fmes)){
 					}
 					else{
-						avgP=avgP+metrics.get(QualityMeasure.Entry.PRECISION);
+						avgP=avgP+prec;
 
-						avgR=avgR+metrics.get(QualityMeasure.Entry.RECALL);
-						avgF=avgF+metrics.get(QualityMeasure.Entry.fMEASURE);
+						avgR=avgR+rec;
+						avgF=avgF+fmes;
 					
 					total++;
 					}
 				}
-			}
+		
 				
 			
 				double overlapPrec=avgP/total;
@@ -246,8 +238,7 @@ public class Script_people {
 				double microF1=avgF/total;
 				double macroF1=2*(overlapPrec*overlapRec)/(overlapPrec+overlapRec);
 			
-			bw.write(str+","+overlapPrec+","+overlapRec+","+microF1+","+macroF1+"\n" );
-
+			bw.write(" "+"	"+str+"	"+" "+"	"+" "+"	"+overlapPrec+"	"+overlapRec+"	"+microF1+"	"+macroF1+"\n" );
 			}
 			bw.flush();
 			bw.close();

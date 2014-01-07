@@ -42,17 +42,17 @@ public class YearExtractorFrb_predicates_people {
 	      String subject = null;
 	      for(int z=0;z<ls_resources_frb.size();z++){
 	    	  subject=ls_resources_frb.get(z);
-	    	  
-	      String query="[{  \"/type/object/id\":\""+ls_resources_frb.get(z)+"\",  \"/people/person/spouse_s\": [{    \"from\": null,    \"to\": null  }],  " +
+	    	 
+	      //String query="[{  \"/type/object/id\":\""+ls_resources_frb.get(z)+"\",  \"/people/person/spouse_s\": [{    \"from\": null,    \"to\": null  }],  " +
 	    //  "  \"/music/artist/active_start\":  null,  \"optional\": \"optional\" ," +
 	      //		"  \"/music/artist/active_end\":  null,  \"optional\": \"optional\" ," +		
 	    	//	  "  \"/music/group_member/membership\": [{    \"start\": null,    \"end\": null,    \"optional\": \"optional\"  }]}],"+
 	    //  "\"/tv/tv_actor/starring_roles\": [{    \"from\": null,    \"to\": null,    \"optional\": \"optional\"  }]," +
 	      //		"  \"/tv/tv_personality/tv_regular_appearances\": [{    \"from\": null,    \"to\": null,    \"optional\": \"optional\"  }]," +
-	      		"  \"/people/person/date_of_birth\": null,  " +
-	      		"  \"/people/person/employment_history\": [{    \"from\": null,    \"to\": null,    \"optional\": \"optional\"  }]," +
-	      		"  \"/people/person/education\": [{    \"start_date\": null,    \"end_date\": null,    \"optional\": \"optional\"  }]," +
-	      		"  \"/people/person/places_lived\": [{    \"start_date\": null,    \"end_date\": null,    \"optional\": \"optional\"  }]," ;
+	  //    		"  \"/people/person/date_of_birth\": null,   }]";
+	  //    		"  \"/people/person/employment_history\": [{    \"from\": null,    \"to\": null,    \"optional\": \"optional\"  }]," +
+	   //   		"  \"/people/person/education\": [{    \"start_date\": null,    \"end_date\": null,    \"optional\": \"optional\"  }]," +
+	    //  		"  \"/people/person/places_lived\": [{    \"start_date\": null,    \"end_date\": null,    \"optional\": \"optional\"  }]," +
 	      //		"  \"/theater/theater_actor/theater_roles\": [{    \"from\": null,    \"to\": null,    \"optional\": \"optional\"  }]," +
 	      	//	"  \"/award/award_nominee/award_nominations\": [{    \"year\": null,    \"optional\": \"optional\"  }]," +
 	      //		"\"/award/award_winner/awards_won\": [{    \"year\": null,    \"optional\": \"optional\"  }]," +
@@ -62,7 +62,19 @@ public class YearExtractorFrb_predicates_people {
 	      		
 	      	//	"  \"/award/ranked_item\": [{    \"year\": null    \"optional\": \"optional\"  }]," +
 	      		
-	      //String query = "[{\"type\":\"/soccer/football_player\",\"/type/object/id\":\""+ls_resources.get(z)+"\",\"statistics\":[{\"team\":null,\"appearances\":null,\"total_goals\":null,\"from\":null,\"to\":null}]}]";
+	      String query = "[{\"/type/object/id\":\""+ls_resources_frb.get(z)+"\",\"/people/person/spouse_s\":[{\"from\":null,\"to\":null}]," +
+	     "  \"/music/artist/active_start\":  null,  \"optional\": \"optional\" ," +
+	    		  "  \"/music/artist/active_end\":  null,  \"optional\": \"optional\" ," +
+	      "  \"/music/group_member/membership\": [{\"start\": null,\"end\": null,\"optional\": \"optional\"  }],"+
+	    		  "\"/tv/tv_actor/starring_roles\": [{    \"from\": null,    \"to\": null,    \"optional\": \"optional\"  }]," +
+	      "\"/tv/tv_personality/tv_regular_appearances\": [{    \"from\": null,    \"to\": null,    \"optional\": \"optional\"  }]," +
+	    		  "  \"/people/person/employment_history\": [{    \"from\": null,    \"to\": null,    \"optional\": \"optional\"  }]," +
+   		"  \"/people/person/education\": [{    \"start_date\": null,    \"end_date\": null,    \"optional\": \"optional\"  }]," +
+	     		"  \"/people/person/places_lived\": [{    \"start_date\": null,    \"end_date\": null,    \"optional\": \"optional\"  }]," +
+	      		"  \"/theater/theater_actor/theater_roles\": [{    \"from\": null,    \"to\": null,    \"optional\": \"optional\"  }]," +
+	      		"  \"/award/award_nominee/award_nominations\": [{    \"year\": null,    \"optional\": \"optional\"  }]," +
+	      		"\"/award/award_winner/awards_won\": [{    \"year\": null,    \"optional\": \"optional\"  }]," +
+	    		  "\"/people/person/date_of_birth\": null}]";
 	      GenericUrl url = new GenericUrl("https://www.googleapis.com/freebase/v1/mqlread");
 	      url.put("query", query);
 	      url.put("key", properties.get("API_KEY"));
@@ -100,13 +112,13 @@ public class YearExtractorFrb_predicates_people {
 
 		    	    }
 		    	    }
-	    	     if(res.get("/music/artist/active_start")!=null){
+	    	     if(!res.get("/music/artist/active_start").toString().contains("null")){
 	    	    	String from = new MatrixCreator().stemDate(res.get("/music/artist/active_start").toString());
 
 			    	   bw.write(subject+","+"/music/artist/active_start"+","+from+"\n" );
 
 		    	    }
-	    	     if(res.get("/music/artist/active_end")!=null){
+	    	     if(!(res.get("/music/artist/active_end")).toString().contains("null")){
 	    	    	String from = new MatrixCreator().stemDate(res.get("/music/artist/active_end").toString());
 
 			    	   bw.write(subject+","+"/music/artist/active_end"+","+from+"\n" );

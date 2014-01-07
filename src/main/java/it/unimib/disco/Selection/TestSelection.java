@@ -21,21 +21,21 @@ public class TestSelection {
 		
 		interval1.addStart("2003");
 		interval1.addEnd("2005");
-		interval1.addValue("0.45");
+		interval1.addValue("0.6");
 		
 		
 		interval2.addStart("2000");
 		interval2.addEnd("2001");
-		interval2.addValue("0.6");
+		interval2.addValue("0.53");
 	
 		
 		interval3.addStart("2002");
 		interval3.addEnd("2006");
-		interval3.addValue("0.599");
+		interval3.addValue("0.555");
 		
 		interval4.addStart("1990");
 		interval4.addEnd("2000");
-		interval4.addValue("0.6");
+		interval4.addValue("0.545");
 		
 		List<Interval> ls = new ArrayList<Interval>();
 		ls.add(interval1);
@@ -46,7 +46,7 @@ public class TestSelection {
 		
 		obj1.put("barcelona", ls);
 		
-		System.out.println(new Selection().selection(2, 0, 2, obj1));
+		System.out.println(new Selection().selection(3, 10, 2, obj1));
 	}
 
 }
