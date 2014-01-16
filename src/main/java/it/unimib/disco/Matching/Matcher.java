@@ -5,6 +5,8 @@ import it.unimib.disco.MatrixCreator.MatrixCreator;
 import it.unimib.disco.Reasoning.Interval;
 
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -269,6 +271,137 @@ public class Matcher {
 	            }
 		}
 
+		return hit;
+		
+	}
+	public List<Interval> las(int normalizationType, List<Fact> f,DateOccurrence [][] matrixMD,PrintWriter pw) {
+			
+			DateOccurrence [][] m = new DateOccurrence[matrixMD.length][matrixMD.length];
+			List<Interval> intervals =new ArrayList<Interval>();
+			for (int i=0; i<m.length; i++){
+				
+				for(int j=0; j<m[i].length; j++){
+					
+					if(i==0||j==0){
+					
+						m[0][j]=matrixMD[0][j];
+						m[i][0]=matrixMD[i][0];
+					}
+					
+					else if(j>=i){
+						String occuMatrix = matrixMD[i][j].getOccurrence().trim();
+					
+						int value = Integer.parseInt(occuMatrix);
+						if(value!=0){
+						int duration = Integer.valueOf(occuMatrix);
+						
+						MatrixCreator mpc= new MatrixCreator();
+						
+						Date column = mpc.stringToLong(m[0][j].getDate());
+						Date row = mpc.stringToLong(m[i][0].getDate());
+						
+						double formula=0d;
+						if(i!=j){
+						if(normalizationType==1){
+							//no normalization 
+							double hit=hitCountNoNormalization(row,column,f);
+							formula= hit/duration; 
+						}
+						else{
+							//normalization
+							formula=hitCountNormalization(normalizationType,row,column,f);
+							
+						}}
+						else{
+						//las(<i,j>)= score(<i,j>)*w_i,j
+						if(normalizationType==1){
+							//no normalization 
+							try {
+								formula = lasCalc(row,column,f);
+							} catch (ParseException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							
+						}
+						else{
+							//normalization
+							formula=hitCountNormalization(normalizationType,row,column,f);
+							
+						}}
+						
+						m[i][j]= new DateOccurrence("", String.valueOf(formula));
+						
+						//add start and end year and the formula
+						Interval interval = new Interval();
+						interval.addStart(m[i][0].getDate());
+						interval.addEnd(m[0][j].getDate());
+						interval.addValue(String.valueOf(formula));
+						intervals.add(interval);
+					}
+					}
+					else{
+
+						m[i][j]= new DateOccurrence("", "0");
+					}
+					
+
+					if (i==0||j==0){
+						if(i==0&&j==0){
+							pw.print(m[i][j].getDate()+""+ m[i][j].getOccurrence()+"	");}
+						else{pw.print(m[i][j].getDate()+"	");}}
+					else{
+					pw.print(m[i][j].getDate()+"	"+ m[i][j].getOccurrence());}
+					
+				}pw.println();
+				
+			}
+
+		return intervals;
+		
+	}
+	public double lasCalc(Date row, Date column,List<Fact> list ) throws ParseException{
+		double hit=0;
+		MatrixCreator mpc= new MatrixCreator();
+		long millisecDistance = column.getTime()-row.getTime();
+		long dayDistance= millisecDistance/(1000 * 60 * 60 * 24);
+		long intervDistance= dayDistance/365+1;
+		//w_interval = min( length(interval),length(ptd_f) ) / max( length(interval),length(ptd_f) )
+		SimpleDateFormat textFormat = new SimpleDateFormat("yyyy");
+String year_min_str = "9999";
+String year_max_str = "1111";
+
+
+		Date year_min  = textFormat.parse(year_min_str);;
+		Date year_max  = textFormat.parse(year_max_str);;
+		
+		for (Fact f:list){
+		
+	           Date year= mpc.stringToLong(f.get(Entry.DATE));
+	           if((year_min.after(year))){
+	        	   year_min=year;
+	           }
+	           if((!year_max.after(year))){
+	        	   year_max=year;
+	           } 
+	           if((column.after(year)||column.equals(year))&&(row.before(year)||row.equals(year))){
+	            
+	            	hit=hit+Double.valueOf(f.get(Entry.SCORE).trim());//occurrence value
+
+	            }
+
+		}
+
+		long millisecDistance2 = year_max.getTime()-year_min.getTime();
+		long dayDistance2= millisecDistance2/(1000 * 60 * 60 * 24);
+		long ptdDistance= dayDistance2/365+1;
+		
+		double min = Math.min(intervDistance,ptdDistance);
+		double max = Math.max(intervDistance,ptdDistance);
+
+	    double w_interval =min/(max*15);//occurrence value
+	    hit = hit * w_interval;
+	
 		return hit;
 		
 	}

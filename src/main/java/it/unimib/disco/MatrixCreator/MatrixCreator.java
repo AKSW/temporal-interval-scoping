@@ -45,7 +45,7 @@ public class MatrixCreator {
 		ArrayList<String> years = new ArrayList<String>();
 		
 
-		Iterator it = file.iterator();
+		Iterator<Fact> it = file.iterator();
 		while (it.hasNext()){
 			Fact f = new Fact();
 			f = (Fact) it.next();
@@ -196,7 +196,7 @@ public class MatrixCreator {
 		for (String s: features.keySet()){
 			HashSet<String> hs=features.get(s);
 
-			Iterator it = hs.iterator();
+			Iterator<String> it = hs.iterator();
 			while (it.hasNext()){
 				leng++;
 			}
@@ -209,7 +209,7 @@ public class MatrixCreator {
 		int l=1;
 		for(String timepoint: features.keySet()){
 
-			Iterator it =features.get(timepoint).iterator();
+			Iterator<String> it =features.get(timepoint).iterator();
 			while (it.hasNext()){
 				String predicate=(String) it.next();
 				matrix[l][0] = new DateOccurrence(timepoint,predicate);
@@ -220,7 +220,7 @@ public class MatrixCreator {
 		int m=1;
 		for(String timepoint: features.keySet()){
 
-			Iterator it =features.get(timepoint).iterator();
+			Iterator<String> it =features.get(timepoint).iterator();
 			while (it.hasNext()){
 				String predicate=(String) it.next();
 		

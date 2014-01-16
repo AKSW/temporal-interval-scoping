@@ -32,7 +32,10 @@ public class RunOptimizer {
 			List<Fact> temporalDefactoFacts = new ReadFiles().readTabSeparatedFileLS(new File(args[1]));
 			
 			//Read gold standard facts
-			List<String> goldstandard_facts = ReadFiles.getURIs(new File(args[2]));
+			List<Fact> yagoFactsLS = new ReadFiles().readTabSeparatedFileLS(new File(args[2]));
+			HashMap<String,HashMap<String,List<Fact>>> goldstandard_facts = new FactGrouping().groupBySubjectObject(yagoFactsLS);
+			//List<Fact> yagoFactsLS = new ReadFiles().readTabSeparatedFileLS(new File(args[2]));
+			//HashMap<String,HashMap<String,List<Fact>>> goldstandard_facts = new FactGrouping().groupBySubjectObject(yagoFactsLS);
 			//logger.info("Yago facts parsed");
 		
 			Objective objective = new Objective ("maximize", Sign.MAX);

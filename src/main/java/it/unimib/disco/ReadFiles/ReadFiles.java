@@ -54,15 +54,15 @@ public class ReadFiles {
 		for(String record:file){
 			record=record.trim();
 			ArrayList<String> list = new ArrayList<String>();
-			String subj=record.substring(1,record.indexOf(','));
+			String subj=record.substring(0,record.indexOf(';'));
 			list.add(subj);
-			String remainingRecord= record.substring(record.indexOf(',')+1);
-			remainingRecord=remainingRecord.substring(remainingRecord.indexOf('[')+1,remainingRecord.indexOf(']'));
+			String remainingRecord= record.substring(record.indexOf(';')+1);
+			//remainingRecord=remainingRecord.substring(remainingRecord.indexOf('[')+1,remainingRecord.indexOf(']'));
 			
 			int begin;
 			do{
 				
-				begin= remainingRecord.indexOf(',');
+				begin= remainingRecord.indexOf(';');
 				
 				if(begin<0){
 					

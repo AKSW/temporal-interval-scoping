@@ -1,6 +1,6 @@
 package it.unimib.disco.Optimization;
 
-import it.unimib.disco.Evaluation.Evaluation;
+import it.unimib.disco.Evaluation.Evaluation_v2;
 import it.unimib.disco.Evaluation.QualityMeasure;
 import it.unimib.disco.FactExtractor.DateOccurrence;
 import it.unimib.disco.Matching.Matcher;
@@ -29,7 +29,7 @@ public class TemporalIntervalCreator {
 
 
 public QualityMeasure measure(Configuration phenotype, HashMap<String,HashMap<String,List<Fact>>> groupedFactBySubjectObject,
-		List<Fact> temporalDefactoFacts,List<String> goldstandard_facts) throws FileNotFoundException  {
+		List<Fact> temporalDefactoFacts,HashMap<String,HashMap<String,List<Fact>>> goldstandard_facts) throws FileNotFoundException  {
 	
 	//System.out.println(phenotype.getSelection()+" "+phenotype.getX()+" "+phenotype.getK()+" "+phenotype.getNormalization());
 	 QualityMeasure m = new QualityMeasure();
@@ -40,7 +40,25 @@ public QualityMeasure measure(Configuration phenotype, HashMap<String,HashMap<St
 
 		PrintWriter pw = new PrintWriter(fos);
 		PrintWriter pw1 = new PrintWriter(fos1);
-	 
+	 //golds standarard normalization 
+		HashMap<String,HashMap<String,HashSet<Interval>>> goldstandard = new HashMap<String,HashMap<String,HashSet<Interval>>>();
+
+		for (String u:goldstandard_facts.keySet()){
+			HashMap<String,HashSet<Interval>> gsIntervals = new HashMap<String,HashSet<Interval>>();
+			for (String o:goldstandard_facts.get(u).keySet()){
+				List<Fact> f = goldstandard_facts.get(u).get(o);
+				List<Interval> gs_interv= new ArrayList<Interval>();
+				
+				for(Fact fact: f){
+					Interval interval = new Interval();
+					interval.addStart(fact.get(Fact.Entry.YAGOSTART));
+					interval.addEnd(fact.get(Fact.Entry.YAGOEND));
+					gs_interv.add(interval);
+				}
+				 gsIntervals.put(o, new Reasoning().concatenateIntervals(gs_interv));
+			}
+			goldstandard.put(u, gsIntervals);
+		}
 			
 		/******************RIM**************/
 		HashMap<String, DateOccurrence [][]> maximalRIM =  new MatrixCreator().createMaximalRIM(new FactGrouping().createRIMvectors(groupedFactBySubjectObject));
@@ -66,8 +84,8 @@ public QualityMeasure measure(Configuration phenotype, HashMap<String,HashMap<St
 				DateOccurrence [][] matrixManhattanDuration = ta.matrixYearsDuration(maximalRIM.get(uri));
 					
 				phenotype.getNormalization();
-				obj_interval.put(obj, ta.dcCalculator(phenotype.getNormalization(),f,matrixManhattanDuration,pw));
-
+				//obj_interval.put(obj, ta.dcCalculator(phenotype.getNormalization(),f,matrixManhattanDuration,pw));
+				obj_interval.put(obj, ta.las(phenotype.getNormalization(),f,matrixManhattanDuration,pw));
 			}
 			sub_obj_interval.put(uri, obj_interval);
 			}
@@ -105,17 +123,10 @@ public QualityMeasure measure(Configuration phenotype, HashMap<String,HashMap<St
 		    	reasoningIntervalsUri.put(uri, reasoningIntervals);
 		 }
 		    
-		Evaluation ev = new Evaluation();
+		Evaluation_v2 ev = new Evaluation_v2();
 		List<QualityMeasure> evaluationResults = new ArrayList<QualityMeasure>();
-				for (String uri:reasoningIntervalsUri.keySet()){
-				HashMap<String,HashSet<Interval>> timeintervals=reasoningIntervalsUri.get(uri);
-				
-				List<QualityMeasure> localmetrics=ev.overlap(uri,timeintervals,goldstandard_facts,pw1);
-				for (int i = 0; i < localmetrics.size(); i++) {
-					evaluationResults.add(localmetrics.get(i).copy());
-				}
-	
-			}
+
+		evaluationResults=ev.overlap(reasoningIntervalsUri,goldstandard,pw1);
 		double avgP=0d, avgR=0d, avgF=0d;
 		int total=0;
 

@@ -3,7 +3,7 @@ package it.unimib.disco.ScriptFrb;
 import it.unimib.disco.Evaluation.QualityMeasure;
 import it.unimib.disco.ReadFiles.FactGrouping;
 import it.unimib.disco.ReadFiles.ReadFiles;
-import it.unimib.disco.Script.TemporalIntervalCreatoScript;
+import it.unimib.disco.Script.TemporalIntervalCreatoScript_v2;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -27,7 +27,7 @@ public class Script_politician_Frb {
 			HashMap<String,List<QualityMeasure>> outputResult = new HashMap<String,List<QualityMeasure>>();
 			List<QualityMeasure> evaluationResult= new ArrayList<QualityMeasure>();
 
-			TemporalIntervalCreatoScript tempAnnot= new TemporalIntervalCreatoScript();
+			TemporalIntervalCreatoScript_v2 tempAnnot= new TemporalIntervalCreatoScript_v2();
 
 			// Resource URI extraction
 			List<Fact> dateRepository=new ReadFiles().readTabSeparatedFileLS(new File(args[0]));
@@ -44,7 +44,8 @@ public class Script_politician_Frb {
 					
 					
 			//Read gold standard facts
-			List<String> yagoFacts = ReadFiles.getURIs(new File(args[2]));
+			List<Fact> yagoFactsLS = new ReadFiles().readTabSeparatedFileLS(new File(args[2]));
+			HashMap<String,HashMap<String,List<Fact>>> yagoFacts = new FactGrouping().groupBySubjectObject(yagoFactsLS);
 			//logger.info("Yago facts parsed");
 				
 		//2, 10, 1, 1

@@ -38,6 +38,49 @@ public class Script_people_TD_NoReasoning {
 
 		// Read temporalDefacto facts
 		List<Fact> tmpdefacto = new ReadFiles().readTabSeparatedFileLS(new File(args[0]));
+			List<Fact> tmpdefacto2013 = new ArrayList<Fact>();
+			String subject="bla";
+			boolean add = false;
+			for (int i=0; i<tmpdefacto.size();i++){
+				if (!tmpdefacto.get(i).get(Fact.Entry.SUBJECT).toString().equalsIgnoreCase(subject)){
+					subject = tmpdefacto.get(i).get(Fact.Entry.SUBJECT).toString();
+					if(!tmpdefacto.get(i).get(Fact.Entry.DATE).toString().equalsIgnoreCase("2014")){
+						tmpdefacto2013.add(tmpdefacto.get(i).copy());
+					}
+					
+					if(!tmpdefacto.get(i).get(Fact.Entry.DATE).toString().equalsIgnoreCase("2013")){
+						add=true;
+					}
+					else{
+						add=false;
+					}
+					
+				}
+				else{
+					if(!tmpdefacto.get(i).get(Fact.Entry.DATE).toString().equalsIgnoreCase("2014")){
+						tmpdefacto2013.add(tmpdefacto.get(i).copy());
+					}
+					
+					if(!tmpdefacto.get(i).get(Fact.Entry.DATE).toString().equalsIgnoreCase("2013")){
+						add=true;
+					}
+					else{
+						add=false;
+					}
+					
+				}
+				if (add){
+					Fact f = new Fact();
+					f.add(Fact.Entry.SUBJECT, tmpdefacto.get(i).get(Fact.Entry.SUBJECT).toString());
+					f.add(Fact.Entry.PREDICATE, tmpdefacto.get(i).get(Fact.Entry.PREDICATE).toString());
+					f.add(Fact.Entry.OBJECT, tmpdefacto.get(i).get(Fact.Entry.OBJECT).toString());
+					f.add(Fact.Entry.YAGOSTART, tmpdefacto.get(i).get(Fact.Entry.YAGOSTART).toString());
+					f.add(Fact.Entry.YAGOEND, tmpdefacto.get(i).get(Fact.Entry.YAGOEND).toString());
+					f.add(Fact.Entry.DATE, "2013");
+					f.add(Fact.Entry.SCORE, "0");
+					tmpdefacto2013.add(f);
+				}
+			}
 		HashMap<String,HashMap<String,List<Fact>>> groupedFactBySubjectObject = new FactGrouping().groupBySubjectTimepoint(tmpdefacto); //group temporal facts (s,p,t) by subject and object (t)
 		
 		//Read gold standard facts

@@ -55,7 +55,7 @@ public List<QualityMeasure> temporalFact(HashMap<String,HashMap<String,List<Fact
 	
 		/******************RIM**************/
 		HashMap<String, DateOccurrence [][]> maximalRIM =  new MatrixCreator().createMaximalRIM(new FactGrouping().createRIMvectors(groupedFactBySubjectObject));
-
+		System.out.println("matrice " + maximalRIM.size());
 		logger.info("Created maximal RIM");
 		
 		
@@ -65,27 +65,29 @@ public List<QualityMeasure> temporalFact(HashMap<String,HashMap<String,List<Fact
 		
 		/******************Normalization **************/
 		List<Fact> factNormalized= new NormalizationSelection().normalize(normalizationType,temporalDefactoFacts);
-		
+
 		/******************Matching **************/
 		HashMap<String,HashMap<String,List<Fact>>> groupFacts = new FactGrouping().groupBySubjectObject(factNormalized);
 		Matcher ta = new Matcher();
 		HashMap<String,HashMap<String,List<Interval>>> sub_obj_interval = new HashMap<String,HashMap<String,List<Interval>>>() ;
-		
+
 		try {
+			
 		for (String uri: maximalRIM.keySet()){
 			HashMap<String,List<Interval>> obj_interval= new HashMap<String,List<Interval>>();
 			
 			HashMap<String,List<Fact>> objbasedgroupfacts = groupFacts.get(uri);
 			if(objbasedgroupfacts!=null){
 			
-
 			for (String obj: objbasedgroupfacts.keySet()){
 				List<Fact> f = objbasedgroupfacts.get(obj);
-						
+					
 				DateOccurrence [][] matrixManhattanDuration = ta.matrixYearsDuration(maximalRIM.get(uri));
 						
-				pw.println(uri+" "+obj);
+				pw.println(uri+"	"+obj);
+				
 				obj_interval.put(obj, ta.dcCalculator(normalizationType,f,matrixManhattanDuration,pw));	
+				//obj_interval.put(obj, ta.las(normalizationType,f,matrixManhattanDuration,pw));
 			}
 			sub_obj_interval.put(uri, obj_interval);
 			}
@@ -93,7 +95,8 @@ public List<QualityMeasure> temporalFact(HashMap<String,HashMap<String,List<Fact
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
-			pw.close();
+		System.out.println("with matrixManh " + sub_obj_interval.size());	
+		pw.close();
 		try {
 			fos.close();
 		} catch (IOException e1) {
@@ -101,18 +104,24 @@ public List<QualityMeasure> temporalFact(HashMap<String,HashMap<String,List<Fact
 			e1.printStackTrace();
 		}
 		
-		  
+		  int select=0;
 	    logger.info("Selection function");
 	    HashMap<String,HashMap<String,List<Interval>>> tempodefactoIntervalsUri = new HashMap<String,HashMap<String,List<Interval>>>();
 	    for (String uri:sub_obj_interval.keySet()){
 	    	
 	    	HashMap<String,List<Interval>> ls = new Selection().selection(selection, x, k,sub_obj_interval.get(uri));
+	    	for(String obj:ls.keySet()){
+	    		//System.out.println(uri +"	"+ obj+"	"+ ls.get(obj));
+	    		select=select+ls.get(obj).size();
+	    	}
 	    	
 			tempodefactoIntervalsUri.put(uri,ls);
 				
-		}
+		}System.out.println("select " + " fact " + select +" uri "+tempodefactoIntervalsUri.size());	
+	    
 	    
 	  //Concatenate intervals based on Allen's Algebra reasoning
+	    int reasoning=0;
 	    logger.info("Reasoning function");
 	    HashMap<String,HashMap<String,HashSet<Interval>>> reasoningIntervalsUri = new HashMap<String,HashMap<String,HashSet<Interval>>>();
 	    
@@ -120,12 +129,20 @@ public List<QualityMeasure> temporalFact(HashMap<String,HashMap<String,List<Fact
 	    	HashMap<String,HashSet<Interval>> reasoningIntervals = new HashMap<String,HashSet<Interval>>();
 	    	
 	    	for(String obj:tempodefactoIntervalsUri.get(uri).keySet()){
+	    		
+	    		
+	    		HashSet<Interval> interv= new HashSet<Interval>(); 
+	    		interv = new Reasoning().concatenateIntervals(tempodefactoIntervalsUri.get(uri).get(obj));
+	    		
 	    	
-	    		reasoningIntervals.put(obj, new Reasoning().concatenateIntervals(tempodefactoIntervalsUri.get(uri).get(obj)));
+	    		reasoningIntervals.put(obj, interv);
+	    		
 	    	}
+	    	reasoning=reasoning+reasoningIntervals.size();
+	    	//reasoning++;
 	    	reasoningIntervalsUri.put(uri, reasoningIntervals);
 	    }
-
+	    System.out.println("reasoning " +"facts "+ reasoning+ "uri" +reasoningIntervalsUri.size());
 	    Evaluation ev = new Evaluation();
 		List<QualityMeasure> evaluationResults = new ArrayList<QualityMeasure>();
 		try {

@@ -15,11 +15,11 @@ import org.opt4j.core.problem.Evaluator;
 
 public class ConfigurationEvaluator implements Evaluator<Configuration> {
 
-	List<String> yagoFacts;
+	HashMap<String,HashMap<String,List<Fact>>> yagoFacts = new HashMap<String,HashMap<String,List<Fact>>>();
 	HashMap<String,HashMap<String,List<Fact>>> groupedFactBySubjectObject = new HashMap<String,HashMap<String,List<Fact>>>();
 	List<Fact> temporalDefactoFacts;
 	
-	public ConfigurationEvaluator (HashMap<String,HashMap<String,List<Fact>>> groupedFactBySubjectObject, List<Fact> temporalDefactoFacts, List<String> yagoFacts){
+	public ConfigurationEvaluator (HashMap<String,HashMap<String,List<Fact>>> groupedFactBySubjectObject, List<Fact> temporalDefactoFacts, HashMap<String,HashMap<String,List<Fact>>> yagoFacts){
 		this.groupedFactBySubjectObject = groupedFactBySubjectObject;
 		this.temporalDefactoFacts = temporalDefactoFacts;
 		this.yagoFacts = yagoFacts;

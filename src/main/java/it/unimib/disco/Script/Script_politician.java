@@ -27,20 +27,21 @@ public static void main (String args []) throws FileNotFoundException{
 			List<QualityMeasure> evaluationResult= new ArrayList<QualityMeasure>();
 
 		
-			TemporalIntervalCreatoScript tempAnnot= new TemporalIntervalCreatoScript();
+			TemporalIntervalCreatoScript_v2 tempAnnot= new TemporalIntervalCreatoScript_v2();
 			
 			// Resource URI extraction
 			List<Fact> dateRepository=new ReadFiles().readTabSeparatedFileLS(new File(args[0]));
 			HashMap<String,HashMap<String,List<Fact>>> groupedFactBySubjectObject = new FactGrouping().groupBySubjectObject(dateRepository); //group temporal facts (s,p,t) by subject and object (t)
-					
+			
 
 			// Read temporalDefacto facts
 			List<Fact> l = new ReadFiles().readTabSeparatedFileLS(new File(args[1]));
-								
+			
 					
 			//Read gold standard facts
-			List<String> yagoFacts = ReadFiles.getURIs(new File(args[2]));
-			
+			List<Fact> yagoFactsLS = new ReadFiles().readTabSeparatedFileLS(new File(args[2]));
+			HashMap<String,HashMap<String,List<Fact>>> yagoFacts = new FactGrouping().groupBySubjectObject(yagoFactsLS);
+			System.out.println("gs fact " + yagoFacts.size());
 				
 		//2, 10, 1, 1
 		//[1, 6, 2, 1]
@@ -205,7 +206,7 @@ public static void main (String args []) throws FileNotFoundException{
 				bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output/"+"evaluation_neighbor_politician"+"-"+k+"-"+x+".csv")));
 			}
 			
-bw.write("subject"+"	"+"object"+"	"+"interval"+"	"+"goldstandard"+"	"+"precision"+"	"+"recall"+"	"+"microF"+"	"+"macroF"+"\n" );
+			bw.write("subject"+"	"+"object"+"	"+"interval"+"	"+"goldstandard"+"	"+"precision"+"	"+"recall"+"	"+"microF"+"	"+"macroF"+"\n" );
 			for(String str: outputResult.keySet()){
 				List<QualityMeasure> result= new ArrayList<QualityMeasure>();
 				result = outputResult.get(str);
@@ -230,9 +231,7 @@ bw.write("subject"+"	"+"object"+"	"+"interval"+"	"+"goldstandard"+"	"+"precision
 					total++;
 					}
 				}
-		
-				
-			
+	
 				double overlapPrec=avgP/total;
 				double overlapRec=avgR/total;
 				double microF1=avgF/total;

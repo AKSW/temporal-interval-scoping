@@ -3,7 +3,7 @@ package it.unimib.disco.ScriptTD;
 import it.unimib.disco.Evaluation.QualityMeasure;
 import it.unimib.disco.ReadFiles.FactGrouping;
 import it.unimib.disco.ReadFiles.ReadFiles;
-import it.unimib.disco.Script.TemporalIntervalCreatoScript;
+import it.unimib.disco.Script.TemporalIntervalCreatoScript_v2;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -28,14 +28,58 @@ public class Script_player_TD {
 			List<QualityMeasure> evaluationResult= new ArrayList<QualityMeasure>();
 
 		
-			TemporalIntervalCreatoScript tempAnnot= new TemporalIntervalCreatoScript();
+			TemporalIntervalCreatoScript_v2 tempAnnot= new TemporalIntervalCreatoScript_v2();
 
 			// Read temporalDefacto facts
 			List<Fact> tmpdefacto = new ReadFiles().readTabSeparatedFileLS(new File(args[0]));
+			List<Fact> tmpdefacto2013 = new ArrayList<Fact>();
+			String subject="bla";
+			boolean add = false;
+			for (int i=0; i<tmpdefacto.size();i++){
+				if (!tmpdefacto.get(i).get(Fact.Entry.SUBJECT).toString().equalsIgnoreCase(subject)){
+					subject = tmpdefacto.get(i).get(Fact.Entry.SUBJECT).toString();
+					if(!tmpdefacto.get(i).get(Fact.Entry.DATE).toString().equalsIgnoreCase("2014")){
+						tmpdefacto2013.add(tmpdefacto.get(i).copy());
+					}
+					
+					if(!tmpdefacto.get(i).get(Fact.Entry.DATE).toString().equalsIgnoreCase("2013")){
+						add=true;
+					}
+					else{
+						add=false;
+					}
+					
+				}
+				else{
+					if(!tmpdefacto.get(i).get(Fact.Entry.DATE).toString().equalsIgnoreCase("2014")){
+						tmpdefacto2013.add(tmpdefacto.get(i).copy());
+					}
+					
+					if(!tmpdefacto.get(i).get(Fact.Entry.DATE).toString().equalsIgnoreCase("2013")){
+						add=true;
+					}
+					else{
+						add=false;
+					}
+					
+				}
+				if (add){
+					Fact f = new Fact();
+					f.add(Fact.Entry.SUBJECT, tmpdefacto.get(i).get(Fact.Entry.SUBJECT).toString());
+					f.add(Fact.Entry.PREDICATE, tmpdefacto.get(i).get(Fact.Entry.PREDICATE).toString());
+					f.add(Fact.Entry.OBJECT, tmpdefacto.get(i).get(Fact.Entry.OBJECT).toString());
+					f.add(Fact.Entry.YAGOSTART, tmpdefacto.get(i).get(Fact.Entry.YAGOSTART).toString());
+					f.add(Fact.Entry.YAGOEND, tmpdefacto.get(i).get(Fact.Entry.YAGOEND).toString());
+					f.add(Fact.Entry.DATE, "2013");
+					f.add(Fact.Entry.SCORE, "0");
+					tmpdefacto2013.add(f);
+				}
+			}
 			HashMap<String,HashMap<String,List<Fact>>> groupedFactBySubjectObject = new FactGrouping().groupBySubjectTimepoint(tmpdefacto); //group temporal facts (s,p,t) by subject and object (t)
 					
 			//Read gold standard facts
-			List<String> yagoFacts = ReadFiles.getURIs(new File(args[1]));
+			List<Fact> yagoFactsLS = new ReadFiles().readTabSeparatedFileLS(new File(args[1]));
+			HashMap<String,HashMap<String,List<Fact>>> yagoFacts = new FactGrouping().groupBySubjectObject(yagoFactsLS);
 			//logger.info("Yago facts parsed");
 				
 		//2, 10, 1, 1
