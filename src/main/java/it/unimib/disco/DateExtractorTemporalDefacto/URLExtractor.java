@@ -15,8 +15,6 @@ import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import umontreal.iro.lecuyer.probdist.NormalDist;
-
 class URLExtractor {
 	
 	public PrintWriter smallContextWriter;
@@ -157,25 +155,6 @@ class URLExtractor {
 		return resource;
 	}
 	
-	@SuppressWarnings("static-access")
-	public HashMap<String, ArrayList<String>>probabilityCalculator(HashMap<String,Double> statisticalElements,HashMap<String, ArrayList<String>> facts) {
-		
-		double mean=statisticalElements.get("mean"),sd=statisticalElements.get("sd"), probability=0.0;
-		HashMap<String, ArrayList<String>> factsProb=new HashMap<String, ArrayList<String>>();
-		
-		NormalDist normdist= new NormalDist(mean,sd);
-	
-		for(String timepoint:facts.keySet()){
-			ArrayList<String> factProb=facts.get(timepoint);
-			double x = Integer.parseInt(facts.get(timepoint).get(6)) * 1.0;
-			probability = normdist.cdf(mean,sd,x);
-			factProb.add(7, String.valueOf(probability));
-			factsProb.put(timepoint,factProb);
-			
-		}
-		
-		return factsProb;
-	}
 	
 	
 	public HashMap<String,Double> statisticalCalculator(HashMap<String, ArrayList<String>> facts) {

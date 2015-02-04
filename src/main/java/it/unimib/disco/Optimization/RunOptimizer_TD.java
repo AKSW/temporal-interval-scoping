@@ -33,7 +33,7 @@ public class RunOptimizer_TD {
 		
 			Objective objective = new Objective ("maximize", Sign.MAX);
 			
-			ConfigurationEvaluator e = new ConfigurationEvaluator(groupedFactBySubjectObject, temporalDefactoFacts, goldstandard_facts);
+			ConfigurationEvaluator e = new ConfigurationEvaluator(groupedFactBySubjectObject, temporalDefactoFacts, (HashMap<String, HashMap<String, List<Fact>>>) goldstandard_facts);
 			HashMap<SelectGenotype<Configuration>,Objectives> collection = new HashMap<SelectGenotype<Configuration>,Objectives >();
 
 			for(int i=0;i<360;i++){
