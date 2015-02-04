@@ -1,18 +1,17 @@
 package it.unimib.disco.ReadFiles;
 
+import it.unimib.disco.Utilities.Configuration;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 
 import org.aksw.distributions.Fact;
-import org.aksw.distributions.FactReader;
 
 public class ReadFiles {
 
@@ -82,101 +81,6 @@ public class ReadFiles {
 
 	}
 	
-	public HashMap<String,ArrayList<String>> readCSVFile(List<String> file) {
-		HashMap<String,ArrayList<String>> fileArray = new HashMap<String,ArrayList<String>>(); 
-		
-		for(String record:file){
-			record=record.trim();
-			ArrayList<String> list = new ArrayList<String>();
-
-			String subj=record.substring(0,record.indexOf(','));
-			if (!fileArray.containsKey(subj)){
-				list= new ArrayList<String>();
-				fileArray.put(subj, list);
-			}
-			list=fileArray.get(subj);
-
-			String remainingRecord= record.substring(record.indexOf(',')+1);
-			//remainingRecord=remainingRecord.substring(remainingRecord.indexOf('[')+1,remainingRecord.indexOf(']'));
-			
-			int begin;
-			do{
-				
-				begin= remainingRecord.indexOf(',');
-				
-				if(begin<0){
-					
-					list.add(remainingRecord.substring(0,remainingRecord.length()));
-				}
-				else{
-					list.add(remainingRecord.substring(0, begin));
-
-					remainingRecord=remainingRecord.substring(begin+1);
-				}
-				
-			}while (begin>0);
-
-			fileArray.put(subj,list);
-		}
-		return fileArray;
-
-	}
-	public List<Fact> creatListOfFacts(List<String> temporaldefacto){
-		
-		Fact f = new Fact();
-		List<Fact> allFacts = new ArrayList<Fact>();
-		
-		HashSet<ArrayList<String>> file=readCommaSeparatedFile(temporaldefacto);
-		Iterator<ArrayList<String>> it = file.iterator();
-		
-		while (it.hasNext()){
-			f=FactReader.readFact((ArrayList<String>) it.next());
-			allFacts.add(f);
-		}
-		
-		return allFacts;
-	}
-	
-	
-	public List<Fact> csv (File rsListFile){
-
-		List<Fact> allFacts = new ArrayList<Fact>();
-
-		BufferedReader br = null;
-		String line = "";
-		String cvsSplitBy = ",";
- 
-		try {
- 
-		br = new BufferedReader(new FileReader(rsListFile));
-		while ((line = br.readLine()) != null) {
- 
-		        // use comma as separator
-			String[] fact = line.split(cvsSplitBy);
-			Fact f = new Fact();
-			f.add(Fact.Entry.SUBJECT, fact[0]);
-			f.add(Fact.Entry.PREDICATE, fact[1]);
-			f.add(Fact.Entry.OBJECT, fact[2]);
-			
-			allFacts.add(f);
-		}
- 
-	} catch (FileNotFoundException e) {
-		e.printStackTrace();
-	} catch (IOException e) {
-		e.printStackTrace();
-	} finally {
-		if (br != null) {
-			try {
-				br.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
- 
-	return allFacts;
-  }
 	
 	public List<Fact> csvGS (File rsListFile){
 
@@ -260,6 +164,47 @@ public class ReadFiles {
 		return fileArray;
 
 	}
+	
+	public Configuration readConfig(File rsListFile) {
+		
+		Configuration config = new Configuration();
+
+		BufferedReader br = null;
+		String line = "";
+		String cvsSplitBy = "	";
+ 
+		try {
+ 
+		br = new BufferedReader(new FileReader(rsListFile));
+		while ((line = br.readLine()) != null) {
+		
+		    // use comma as separator
+			String[] linesep = line.split(cvsSplitBy);
+
+			config.add(Configuration.Entry.Selection, Integer.parseInt(linesep[0]));
+			config.add(Configuration.Entry.Normalization, Integer.parseInt(linesep[1]));
+			config.add(Configuration.Entry.TopK, Integer.parseInt(linesep[2]));
+			config.add(Configuration.Entry.Proxy, Integer.parseInt(linesep[3]));
+			
+		}
+ 
+	} catch (FileNotFoundException e) {
+		e.printStackTrace();
+	} catch (IOException e) {
+		e.printStackTrace();
+	} finally {
+		if (br != null) {
+			try {
+				br.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+ 
+	return config;
+	}
+	
 	public List<Fact> readTabSeparatedFileLS(File rsListFile) {
 		List<Fact> allFacts = new ArrayList<Fact>();
 

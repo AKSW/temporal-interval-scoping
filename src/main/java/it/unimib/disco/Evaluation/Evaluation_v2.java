@@ -4,26 +4,34 @@ import it.unimib.disco.MatrixCreator.MatrixCreator;
 import it.unimib.disco.Reasoning.Interval;
 import it.unimib.disco.Reasoning.TemporalInterval;
 
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Evaluation_v2 {
 
-	public List<QualityMeasure> overlap(HashMap<String,HashMap<String,HashSet<Interval>>> approachIntervalUri, 
-			HashMap<String,HashMap<String,HashSet<Interval>>> goldstandard, PrintWriter pw){
+	public List<QualityMeasure> overlap(HashMap<String,HashMap<String,HashSet<Interval>>> approach, 
+			HashMap<String,HashMap<String,HashSet<Interval>>> goldstandard_unsorted){
 	
+		//sort both data structure
+		Map<String, HashMap<String,HashSet<Interval>>> approachIntervalUri = new TreeMap<String, HashMap<String,HashSet<Interval>>>(approach);
+		Map<String, HashMap<String,HashSet<Interval>>> goldstandard = new TreeMap<String, HashMap<String,HashSet<Interval>>>(goldstandard_unsorted);
+
 		List<QualityMeasure> metricsObj = new ArrayList<QualityMeasure>();
 		String yagoIntervalStr=null;
-
+		
 		for(String Uri: goldstandard.keySet()){
 			HashMap<String,HashSet<Interval>> yagoIntervals=goldstandard.get(Uri);
-			
+			System.out.println(Uri);
+			System.out.println(approachIntervalUri);
 			if (approachIntervalUri.containsKey(Uri)){
+				System.out.println(approachIntervalUri.size());
+				
 				HashMap<String,HashSet<Interval>> approachInterval = new HashMap<String,HashSet<Interval>>();
 				approachInterval = approachIntervalUri.get(Uri);
 				
@@ -31,7 +39,7 @@ public class Evaluation_v2 {
 				double overlapPrec=0,overlapRecall=0,overlapFM=0;
 		
 				for (String obj: yagoIntervals.keySet()){
-
+					System.out.println(yagoIntervals.size());
 				HashSet<Interval> yagoInterval = yagoIntervals.get(obj);
 				yagoIntervalStr = yagoInterval.toString();
 				if(approachInterval.containsKey(obj)){

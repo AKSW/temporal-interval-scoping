@@ -274,7 +274,7 @@ public class Matcher {
 		return hit;
 		
 	}
-	public List<Interval> las(int normalizationType, List<Fact> f,DateOccurrence [][] matrixMD,PrintWriter pw) {
+	public List<Interval> las(int normalizationType, List<Fact> f,DateOccurrence [][] matrixMD) {
 			
 			DateOccurrence [][] m = new DateOccurrence[matrixMD.length][matrixMD.length];
 			List<Interval> intervals =new ArrayList<Interval>();
@@ -345,15 +345,7 @@ public class Matcher {
 						m[i][j]= new DateOccurrence("", "0");
 					}
 					
-
-					if (i==0||j==0){
-						if(i==0&&j==0){
-							pw.print(m[i][j].getDate()+""+ m[i][j].getOccurrence()+"	");}
-						else{pw.print(m[i][j].getDate()+"	");}}
-					else{
-					pw.print(m[i][j].getDate()+"	"+ m[i][j].getOccurrence());}
-					
-				}pw.println();
+				}
 				
 			}
 

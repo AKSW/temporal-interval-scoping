@@ -81,6 +81,7 @@ public class MatrixCreator {
 			Collections.sort(dates);
 			
 			maximalMatrix.put(uri, matrixCreator(dates,dates));
+			
 		}
 		
 		return maximalMatrix;		

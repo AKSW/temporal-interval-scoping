@@ -3,7 +3,6 @@ package it.unimib.disco.ScriptTD;
 import it.unimib.disco.Evaluation.QualityMeasure;
 import it.unimib.disco.ReadFiles.FactGrouping;
 import it.unimib.disco.ReadFiles.ReadFiles;
-import it.unimib.disco.Script.TemporalIntervalCreatoScript;
 import it.unimib.disco.Script.TemporalIntervalCreatoScript_v2;
 
 import java.io.BufferedWriter;
