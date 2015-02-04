@@ -274,7 +274,7 @@ public class Matcher {
 		return hit;
 		
 	}
-	public List<Interval> las(int normalizationType, List<Fact> f,DateOccurrence [][] matrixMD) {
+	public List<Interval> las(int normalizationType, List<Fact> f,DateOccurrence [][] matrixMD,PrintWriter pw) {
 			
 			DateOccurrence [][] m = new DateOccurrence[matrixMD.length][matrixMD.length];
 			List<Interval> intervals =new ArrayList<Interval>();

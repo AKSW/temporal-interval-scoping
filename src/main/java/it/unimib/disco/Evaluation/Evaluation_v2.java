@@ -4,6 +4,7 @@ import it.unimib.disco.MatrixCreator.MatrixCreator;
 import it.unimib.disco.Reasoning.Interval;
 import it.unimib.disco.Reasoning.TemporalInterval;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -16,7 +17,7 @@ import java.util.TreeMap;
 public class Evaluation_v2 {
 
 	public List<QualityMeasure> overlap(HashMap<String,HashMap<String,HashSet<Interval>>> approach, 
-			HashMap<String,HashMap<String,HashSet<Interval>>> goldstandard_unsorted){
+			HashMap<String,HashMap<String,HashSet<Interval>>> goldstandard_unsorted,PrintWriter pw){
 	
 		//sort both data structure
 		Map<String, HashMap<String,HashSet<Interval>>> approachIntervalUri = new TreeMap<String, HashMap<String,HashSet<Interval>>>(approach);
