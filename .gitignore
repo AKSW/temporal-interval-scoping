@@ -126,3 +126,6 @@ output/evaluation_proxyX_player-1-10.csv
 output/interval/evaluationWithIntervals_proxyX-1-10.csv
 output/matrix/matrix_proxyX-1-10.csv
 .goldStandard_player.tsv.swp
+output/3_Outputs.csv
+output/evaluation_player.csv
+output/evaluation_player_MWBM.csv

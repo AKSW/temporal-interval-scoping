@@ -1,5 +1,8 @@
 package it.unimib.disco.ReadFiles;
 
+import it.unimib.disco.FactExtractor.DateOccurrence;
+import it.unimib.disco.MatrixCreator.MatrixCreator;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -81,6 +84,91 @@ public class ReadFiles {
 		return fileArray;
 
 	}
+	
+	public HashMap<String, HashMap<String, DateOccurrence[][]>> readTabSeparatedMatrixFile(File rsListMatrixFile)
+	{
+		HashMap<String, HashMap<String, DateOccurrence[][]>> subject_object_matrix = new HashMap<String, HashMap<String, DateOccurrence[][]>>();
+		
+		BufferedReader br = null;
+		String line = "";
+		String fileSplitBySpace = " ";
+		String fileSplitByTab = "\\t";
+		try 
+		{
+ 
+			br = new BufferedReader(new FileReader(rsListMatrixFile));
+			line = br.readLine();
+			while (line != null)
+			{
+				line = line.trim();
+				String[] string_tokens = line.split(fileSplitBySpace);
+				if (string_tokens.length == 2)
+				{
+					String subject = string_tokens[0];
+					String object = string_tokens[1];
+					DateOccurrence[][] matrix = new DateOccurrence[0][0];
+					ArrayList<String> startendobjOccurrence = new ArrayList<String>();
+					int rows_count = 0;
+					
+					line = br.readLine();
+					if (line == null) throw new Exception("File not well formatted.");
+					string_tokens = line.split(fileSplitByTab);
+					if (string_tokens.length < 2) throw new Exception("File not well formatted.");
+					rows_count = string_tokens.length; //rows count == col count
+					for (int i = 1; i < rows_count; i++)
+					{
+						//check date format?
+						startendobjOccurrence.add(string_tokens[i]);
+					}
+					matrix = new MatrixCreator().matrixCreator(startendobjOccurrence,startendobjOccurrence);
+					for (int i = 1; i < rows_count; i++)
+					{
+						line = br.readLine();
+						if (line == null) throw new Exception("File not well formatted.");
+						string_tokens = line.split(fileSplitByTab);
+						if (string_tokens.length != rows_count+1) throw new Exception("File not well formatted.");
+						for (int j=2; j < rows_count+1; j++)
+						{
+							if( (j-1)>=i && !(matrix[i][j-1].getOccurrence().equalsIgnoreCase("X")))
+							{
+								double value = Double.valueOf(string_tokens[j]);
+								matrix[i][j-1] = new DateOccurrence("", string_tokens[j]);
+							} else matrix[i][j-1] = new DateOccurrence("", "0"); //delete else for have "X"
+						}
+					}
+					if (subject_object_matrix.get(subject) != null)
+					{
+						if (subject_object_matrix.get(subject).get(object) == null)
+							subject_object_matrix.get(subject).put(object, matrix);
+						else throw new Exception("File not well formatted. An object is repeated.");
+					} else 
+					{
+						HashMap<String, DateOccurrence[][]> obj_matrix = new HashMap<String, DateOccurrence[][]>();
+						obj_matrix.put(object, matrix);
+						subject_object_matrix.put(subject, obj_matrix);
+					}
+					line = br.readLine();
+				} else throw new Exception("File not well formatted. " + string_tokens.length);		
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return subject_object_matrix;
+	}
+	
+
 	
 	public HashMap<String,ArrayList<String>> readCSVFile(List<String> file) {
 		HashMap<String,ArrayList<String>> fileArray = new HashMap<String,ArrayList<String>>(); 

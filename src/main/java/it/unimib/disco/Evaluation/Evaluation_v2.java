@@ -15,7 +15,7 @@ import java.util.List;
 public class Evaluation_v2 {
 
 	public List<QualityMeasure> overlap(HashMap<String,HashMap<String,HashSet<Interval>>> approachIntervalUri, 
-			HashMap<String,HashMap<String,HashSet<Interval>>> goldstandard, PrintWriter pw){
+			HashMap<String,HashMap<String,HashSet<Interval>>> goldstandard){
 	
 		List<QualityMeasure> metricsObj = new ArrayList<QualityMeasure>();
 		String yagoIntervalStr=null;
