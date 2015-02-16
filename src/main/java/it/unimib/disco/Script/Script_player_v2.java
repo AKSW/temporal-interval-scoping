@@ -13,6 +13,7 @@ import it.unimib.disco.Reasoning.Reasoning;
 import it.unimib.disco.Selection.Selection;
 import it.unimib.disco.Utilities.Configuration;
 import it.unimib.disco.Utilities.ConfigurationReader;
+import it.unimib.disco.Utilities.WriteOutput;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -31,7 +32,7 @@ public class Script_player_v2 {
 	private static Logger logger = Logger.getLogger(TemporalIntervalCreatoScript_v2.class);
 
 	public static void main (String args []) throws FileNotFoundException{
-		if (args.length < 5) {
+		if (args.length < 4) {
 			System.out.println("Use: java TemporalIntervalCreator <Resource list file> <temporal defacto output> <yago's gold standard>");
 			System.out.println("Example: java TemporalIntervalCreator /temporalIntervalCreator_ResourceList_in2.txt /sortbyplayer-labels-with-space_out_lionel.csv /goldStandard_30_entities.csv");
 		} else {
@@ -112,6 +113,8 @@ public class Script_player_v2 {
 		  
 		    logger.info("Selection function");
 		    HashMap<String,HashMap<String,List<Interval>>> tempodefactoIntervalsUri = new HashMap<String,HashMap<String,List<Interval>>>();
+		    WriteOutput w = new WriteOutput();
+		    w.writeIntervals(sub_obj_interval);
 		    for (String uri:sub_obj_interval.keySet()){
 		    	//selection, x, k
 		    	HashMap<String,List<Interval>> ls = new Selection().selection(config.get(Configuration.Entry.SELECTION),config.get(Configuration.Entry.PROXY),config.get(Configuration.Entry.TOPK),sub_obj_interval.get(uri));
@@ -119,6 +122,7 @@ public class Script_player_v2 {
 				tempodefactoIntervalsUri.put(uri,ls);
 				
 			}
+		    
 		    
 		  //Concatenate intervals based on Allen's Algebra reasoning
 		    logger.info("Reasoning function");
