@@ -129,3 +129,8 @@ output/matrix/matrix_proxyX-1-10.csv
 output/3_Outputs.csv
 output/evaluation_player.csv
 output/evaluation_player_MWBM.csv
+output/composedResult.tsv
+output/evaluation_player_partial.csv
+output/evaluation_player_v0.csv
+output/interval/intervals
+output/matrix/matrix.csv

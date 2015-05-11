@@ -8,8 +8,6 @@ import it.unimib.disco.ReadFiles.FactGrouping;
 import it.unimib.disco.ReadFiles.ReadFiles;
 import it.unimib.disco.Reasoning.Interval;
 import it.unimib.disco.Reasoning.Reasoning;
-import it.unimib.disco.Utilities.Configuration;
-import it.unimib.disco.Utilities.ConfigurationReader;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -25,32 +23,18 @@ import org.aksw.distributions.Fact;
 import org.apache.log4j.Logger;
 
 public class Script_player_MWBM {
-	private static Logger logger = Logger.getLogger(TemporalIntervalCreatoScript_v2.class);
+	private static Logger logger = Logger.getLogger(Script_player_MWBM.class);
 
 	public static void main (String args []) throws FileNotFoundException{
-		if (args.length < 4) {
+		if (args.length < 1) {
 			System.out.println("Use: java TemporalIntervalCreator <Resource list file> <temporal defacto output> <yago's gold standard>");
 			System.out.println("Example: java TemporalIntervalCreator /temporalIntervalCreator_ResourceList_in2.txt /sortbyplayer-labels-with-space_out_lionel.csv /goldStandard_30_entities.csv");
 		} else {
-			
-			// Resource URI extraction
-			List<Fact> dateRepository=new ReadFiles().readTabSeparatedFileLS(new File(args[0]));
-			HashMap<String,HashMap<String,List<Fact>>> groupedFactBySubjectObject = new FactGrouping().groupBySubjectObject(dateRepository); //group temporal facts (s,p,t) by subject and object (t)
-					
-
-			// Read temporalDefacto facts
-			List<Fact> temporalDefactoFacts = new ReadFiles().readTabSeparatedFileLS(new File(args[1]));
-								
-					
+											
 			//Read gold standard facts
-			List<Fact> yagoFactsLS = new ReadFiles().readTabSeparatedFileLS(new File(args[2]));
+			List<Fact> yagoFactsLS = new ReadFiles().readTabSeparatedFileLS(new File(args[0]));
 			HashMap<String,HashMap<String,List<Fact>>> goldstandard_facts = new FactGrouping().groupBySubjectObject(yagoFactsLS);
-			
-			//Read parameters
-			Configuration config = new ConfigurationReader().readConfiguration(new File(args[3]));
-			
-			//,normalization,selection,k,x 
-		
+
 		
 			HashMap<String,HashMap<String,HashSet<Interval>>> goldstandard = new HashMap<String,HashMap<String,HashSet<Interval>>>();
 			
@@ -80,7 +64,7 @@ public class Script_player_MWBM {
 			/***********Configuration end****/
 	
 			//lettura file
-			File file = new File("/Users/anisarula/Documents/git/temporal-interval-scoping.git/output/matrix/matrix_proxyX-1-10.csv");
+			File file = new File("/Users/anisarula/Documents/git/temporal-interval-scoping.git/output/matrix/matrix.csv");
 			HashMap<String, HashMap<String, DateOccurrence[][]>> subject_object_matrix = new ReadFiles().readTabSeparatedMatrixFile(file);
 
 			

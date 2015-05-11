@@ -13,6 +13,7 @@ import it.unimib.disco.Reasoning.Reasoning;
 import it.unimib.disco.Selection.Selection;
 import it.unimib.disco.Utilities.Configuration;
 import it.unimib.disco.Utilities.ConfigurationReader;
+import it.unimib.disco.Utilities.WriteMatrixOutput;
 import it.unimib.disco.Utilities.WriteOutput;
 
 import java.io.BufferedWriter;
@@ -29,7 +30,7 @@ import org.aksw.distributions.Fact;
 import org.apache.log4j.Logger;
 
 public class Script_player_v2 {
-	private static Logger logger = Logger.getLogger(TemporalIntervalCreatoScript_v2.class);
+	private static Logger logger = Logger.getLogger(Script_player_v2.class);
 
 	public static void main (String args []) throws FileNotFoundException{
 		if (args.length < 4) {
@@ -110,6 +111,7 @@ public class Script_player_v2 {
 					
 				}
 			}
+			new WriteMatrixOutput().printMatrix(sub_obj_interval);
 		  
 		    logger.info("Selection function");
 		    HashMap<String,HashMap<String,List<Interval>>> tempodefactoIntervalsUri = new HashMap<String,HashMap<String,List<Interval>>>();
