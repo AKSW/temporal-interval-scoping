@@ -27,29 +27,27 @@ public class RunOptimizer {
 			// Resource URI extraction
 			List<Fact> dateRepository=new ReadFiles().readTabSeparatedFileLS(new File(args[0]));
 			HashMap<String,HashMap<String,List<Fact>>> groupedFactBySubjectObject = new FactGrouping().groupBySubjectObject(dateRepository); //group temporal facts (s,p,t) by subject and object (t)
-			
+
 			// Read temporalDefacto facts
 			List<Fact> temporalDefactoFacts = new ReadFiles().readTabSeparatedFileLS(new File(args[1]));
-			
+
 			//Read gold standard facts
 			List<Fact> yagoFactsLS = new ReadFiles().readTabSeparatedFileLS(new File(args[2]));
 			HashMap<String,HashMap<String,List<Fact>>> goldstandard_facts = new FactGrouping().groupBySubjectObject(yagoFactsLS);
-			//List<Fact> yagoFactsLS = new ReadFiles().readTabSeparatedFileLS(new File(args[2]));
-			//HashMap<String,HashMap<String,List<Fact>>> goldstandard_facts = new FactGrouping().groupBySubjectObject(yagoFactsLS);
-			//logger.info("Yago facts parsed");
-		
+
 			Objective objective = new Objective ("maximize", Sign.MAX);
-			
+
 			ConfigurationEvaluator e = new ConfigurationEvaluator(groupedFactBySubjectObject, temporalDefactoFacts, goldstandard_facts);
+			
 			HashMap<SelectGenotype<Configuration>,Objectives> collection = new HashMap<SelectGenotype<Configuration>,Objectives >();
 
-			for(int i=0;i<360;i++){
+			for(int i=0;i<240;i++){
 				SelectGenotype<Configuration> genotype=new ConfigurationCreator().create();
 
 				Objectives obj = e.evaluate(new ConfigurationDecoder().decode(genotype));
 				System.out.println(genotype +"	"+ obj );
 				collection.put(genotype,obj);
-				 logger.info("Iteration " + i);
+				logger.info("Iteration " + i);
 			}
 
 			HashMap<SelectGenotype<Configuration>,Objectives> collection_max = new HashMap<SelectGenotype<Configuration>,Objectives >();
@@ -69,8 +67,8 @@ public class RunOptimizer {
 			for (SelectGenotype<Configuration> g:collection_max.keySet()){
 				System.out.println(g+" trovato max "+collection_max.get(g));
 			}
-			
-			
+
+
 		}
 	}
 

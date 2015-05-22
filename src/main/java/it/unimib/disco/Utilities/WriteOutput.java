@@ -19,25 +19,25 @@ import java.util.List;
 public class WriteOutput {
 
 	private BufferedWriter bw;
-	
+
 	public void writeEvaluationOutput(List<QualityMeasure> evaluationResults) {
-		
+
 		try {
-			
+
 			File directory = new File (".");
-			
+
 			bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output/"+"evaluation_player_MWBM.csv")));
 			bw.write("subject"+"	"+"object"+"	"+"interval"+"	"+"goldstandard"+"	"+"precision"+"	"+"recall"+"	"+"microF"+"	"+"macroF"+"\n" );
 
 			double avgP=0d, avgR=0d, avgF=0d;
 			int total=0;
-			
+
 			for (QualityMeasure metrics:evaluationResults){
-				
+
 				double prec = Double.parseDouble(metrics.get(QualityMeasure.Entry.PRECISION));
 				double rec = Double.parseDouble(metrics.get(QualityMeasure.Entry.RECALL));
 				double fmes = Double.parseDouble(metrics.get(QualityMeasure.Entry.fMEASURE));
-				
+
 				bw.write(metrics.get(QualityMeasure.Entry.SUBJECT)+"	"+metrics.get(QualityMeasure.Entry.OBJECT)+"	"+metrics.get(QualityMeasure.Entry.INTERVAL)+"	"+metrics.get(QualityMeasure.Entry.GOLDSTANDARD)+"	"+prec+"	"+rec+"	"+fmes+"	"+" "+"\n" );
 				if(Double.isNaN(prec)||Double.isNaN(rec)||Double.isNaN(fmes)){
 				}
@@ -46,8 +46,8 @@ public class WriteOutput {
 
 					avgR=avgR+rec;
 					avgF=avgF+fmes;
-				
-				total++;
+
+					total++;
 				}
 			}
 
@@ -55,9 +55,9 @@ public class WriteOutput {
 			double overlapRec=avgR/total;
 			double microF1=avgF/total;
 			double macroF1=2*(overlapPrec*overlapRec)/(overlapPrec+overlapRec);
-			
+
 			bw.write(" "+"	"+" "+"	"+" "+"	"+overlapPrec+"	"+overlapRec+"	"+microF1+"	"+macroF1+"\n" );
-			
+
 			bw.flush();
 			bw.close();
 		} catch (IOException e) {
@@ -65,18 +65,18 @@ public class WriteOutput {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void writeIntervals(HashMap<String,HashMap<String,List<Interval>>> matrixIntervals) {
-		
+
 		try {
-			
+
 			File directory = new File (".");
-			
+
 			bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output/interval/"+"intervals")));
 			//bw.write("subject"+"	"+"object"+"	"+"intervals"+"	"+"approachA"+"	"+"approachB"+"	"+"goldstandard"+"	"+"microF"+"\n" );
 			bw.write("subject"+"	"+"object"+"	"+"intervals"+"\n" );
 
-			
+
 			for (String uri:matrixIntervals.keySet()){
 				for (String obj:matrixIntervals.get(uri).keySet()){
 					bw.write(uri+"	"+obj+"	"+matrixIntervals.get(uri).get(obj)+"\n" );
@@ -90,7 +90,35 @@ public class WriteOutput {
 			e.printStackTrace();
 		}
 	}
-	
+
+	public void writeIntervalsForStatistics(HashMap<String,HashMap<String,List<Interval>>> matrixIntervals) {
+
+		try {
+
+			File directory = new File (".");
+
+			bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output/interval/"+"intervalsStat")));
+
+			for (String uri:matrixIntervals.keySet()){
+				for (String obj:matrixIntervals.get(uri).keySet()){
+					for (int i=0; i<matrixIntervals.get(uri).get(obj).size(); i++){
+				
+						bw.write(uri+"	"+obj
+								+"	"+matrixIntervals.get(uri).get(obj).get(i).getStart()
+								+"	"+matrixIntervals.get(uri).get(obj).get(i).getEnd()
+								+"	"+matrixIntervals.get(uri).get(obj).get(i).getValue().replace('.', ',')+"\n" );
+					}
+				}
+			}
+
+			bw.flush();
+			bw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 	public void writeComposedResult(HashSet<List<String>> f1, HashSet<List<String>> f2, HashSet<List<String>> f3) {
 
 		try {
@@ -109,7 +137,7 @@ public class WriteOutput {
 				while(itr3.hasNext())
 				{
 					List<String> lst3= itr3.next();
-	
+
 					if(lst3.get(0).equalsIgnoreCase(lst2.get(0))&&(lst3.get(1).equalsIgnoreCase(lst2.get(1)))){
 						Iterator<List<String>> itr1 = f1.iterator();
 						while(itr1.hasNext())
@@ -133,7 +161,7 @@ public class WriteOutput {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void main(String args []) throws IOException{
 		//lettura files
 		File file1 = new File("/Users/anisarula/Documents/git/temporal-interval-scoping.git/output/interval/intervals");
@@ -142,8 +170,8 @@ public class WriteOutput {
 		HashSet<List<String>> f2 = new ReadFiles().readTSV(file2);
 		File file3 = new File("/Users/anisarula/Documents/git/temporal-interval-scoping.git/output/evaluation_player_MWBM.csv");
 		HashSet<List<String>> f3 = new ReadFiles().readTSV(file3);
-		
+
 		WriteOutput w = new WriteOutput();
-	    w.writeComposedResult(f1, f2, f3);
+		w.writeComposedResult(f1, f2, f3);
 	}
 }

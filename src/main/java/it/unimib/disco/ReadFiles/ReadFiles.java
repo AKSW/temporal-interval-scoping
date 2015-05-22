@@ -132,7 +132,7 @@ public class ReadFiles {
 						{
 							if( (j-1)>=i && !(matrix[i][j-1].getOccurrence().equalsIgnoreCase("X")))
 							{
-								double value = Double.valueOf(string_tokens[j]);
+								//double value = Double.valueOf(string_tokens[j]);
 								matrix[i][j-1] = new DateOccurrence("", string_tokens[j]);
 							} else matrix[i][j-1] = new DateOccurrence("", "0"); //delete else for have "X"
 						}
