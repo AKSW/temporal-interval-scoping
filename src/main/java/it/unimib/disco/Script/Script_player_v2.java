@@ -91,11 +91,13 @@ public class Script_player_v2 {
 			HashMap<String,HashMap<String,List<Fact>>> groupFacts = new FactGrouping().groupBySubjectObject(factNormalized);
 			Matcher ta = new Matcher();
 			HashMap<String,HashMap<String,List<Interval>>> sub_obj_interval = new HashMap<String,HashMap<String,List<Interval>>>() ;
+			HashMap<String,HashMap<String,List<Interval>>> subj_occurrences_interval = new HashMap<String,HashMap<String,List<Interval>>>() ;
 
 
 			for (String uri: maximalRIM.keySet()){
 
 				HashMap<String,List<Interval>> obj_interval= new HashMap<String,List<Interval>>();
+				HashMap<String,List<Interval>> occurrences_interval= new HashMap<String,List<Interval>>();
 
 				HashMap<String,List<Fact>> objbasedgroupfacts = groupFacts.get(uri);
 				if(objbasedgroupfacts!=null){
@@ -107,18 +109,22 @@ public class Script_player_v2 {
 						DateOccurrence [][] matrixManhattanDuration = ta.matrixYearsDuration(maximalRIM.get(uri));
 
 						obj_interval.put(obj, ta.las(config.get(Configuration.Entry.NORMALIZATION),f,matrixManhattanDuration));
+						occurrences_interval.put(obj, ta.occurrences(config.get(Configuration.Entry.NORMALIZATION),f,matrixManhattanDuration));
 					}
 					sub_obj_interval.put(uri, obj_interval);
+					subj_occurrences_interval.put(uri, occurrences_interval);
 
 				}
 			}
 			new WriteMatrixOutput().printMatrix(sub_obj_interval);
+			
 
 			logger.info("Selection function");
 			HashMap<String,HashMap<String,List<Interval>>> tempodefactoIntervalsUri = new HashMap<String,HashMap<String,List<Interval>>>();
 			WriteOutput w = new WriteOutput();
 			w.writeIntervals(sub_obj_interval);
-			w.writeIntervalsForStatistics(sub_obj_interval);
+			w.writeIntervalsForStatistics(sub_obj_interval,"intervalsStat");
+			w.writeIntervalsForStatistics(subj_occurrences_interval, "intervalsOccurrences");
 			for (String uri:sub_obj_interval.keySet()){
 				//selection, x, k
 				HashMap<String,List<Interval>> ls = new Selection().selection(config.get(Configuration.Entry.SELECTION),config.get(Configuration.Entry.PROXY),config.get(Configuration.Entry.TOPK),sub_obj_interval.get(uri));

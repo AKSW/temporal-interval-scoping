@@ -91,13 +91,13 @@ public class WriteOutput {
 		}
 	}
 
-	public void writeIntervalsForStatistics(HashMap<String,HashMap<String,List<Interval>>> matrixIntervals) {
+	public void writeIntervalsForStatistics(HashMap<String,HashMap<String,List<Interval>>> matrixIntervals, String output) {
 
 		try {
 
 			File directory = new File (".");
 
-			bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output/interval/"+"intervalsStat")));
+			bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output/interval/"+output)));
 
 			for (String uri:matrixIntervals.keySet()){
 				for (String obj:matrixIntervals.get(uri).keySet()){
@@ -106,7 +106,8 @@ public class WriteOutput {
 						bw.write(uri+"	"+obj
 								+"	"+matrixIntervals.get(uri).get(obj).get(i).getStart()
 								+"	"+matrixIntervals.get(uri).get(obj).get(i).getEnd()
-								+"	"+matrixIntervals.get(uri).get(obj).get(i).getValue().replace('.', ',')+"\n" );
+								+"	"+matrixIntervals.get(uri).get(obj).get(i).getValue()+"\n" );
+						System.out.println(matrixIntervals.get(uri).get(obj).get(i).getValue());
 					}
 				}
 			}

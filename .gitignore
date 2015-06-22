@@ -134,3 +134,4 @@ output/evaluation_player_partial.csv
 output/evaluation_player_v0.csv
 output/interval/intervals
 output/matrix/matrix.csv
+/output/

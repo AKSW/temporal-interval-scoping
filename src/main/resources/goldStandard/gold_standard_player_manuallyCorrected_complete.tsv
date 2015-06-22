@@ -263,7 +263,8 @@ http://dbpedia.org/resource/Amr_Zaki	http://dbpedia.org/ontology/team	http://dbp
 http://dbpedia.org/resource/Amr_Zaki	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Hull_City_A.F.C.	2010	2010
 http://dbpedia.org/resource/Amr_Zaki	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Zamalek_SC	2006	2012
 http://dbpedia.org/resource/Amr_Zaki	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/El_Mansoura_SC	2001	2003
-http://dbpedia.org/resource/Amr_Zaki	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/ENPPI_Club	2003	2005	2012	2013
+http://dbpedia.org/resource/Amr_Zaki	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/ENPPI_Club	2003	2005
+http://dbpedia.org/resource/Amr_Zaki	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/ENPPI_Club	2012	2013
 http://dbpedia.org/resource/Amr_Zaki	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Elazığspor	2012	2012
 http://dbpedia.org/resource/Amy_Rodriguez	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Boston_Breakers_(WPS)	2009	2009
 http://dbpedia.org/resource/Amy_Rodriguez	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/USC_Trojans	2005	2008
@@ -315,14 +316,16 @@ http://dbpedia.org/resource/Ben_Foster_(footballer)	http://dbpedia.org/ontology/
 http://dbpedia.org/resource/Ben_Foster_(footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Stoke_City_F.C.	2001	2005
 http://dbpedia.org/resource/Ben_Foster_(footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Racing_Club_Warwick_F.C.	2000	2001
 http://dbpedia.org/resource/Ben_Foster_(footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/West_Bromwich_Albion_F.C.	2011	2013
-http://dbpedia.org/resource/Ben_May	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Brentford_F.C.	2003	2004	2004	2005
+http://dbpedia.org/resource/Ben_May	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Brentford_F.C.	2003	2004
+http://dbpedia.org/resource/Ben_May	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Brentford_F.C.	2004	2005
 http://dbpedia.org/resource/Ben_May	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Scunthorpe_United_F.C.	2007	2010
 http://dbpedia.org/resource/Ben_May	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Stevenage_F.C.	2010	2012
 http://dbpedia.org/resource/Ben_May	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Barnet_F.C.	2012	2012
 http://dbpedia.org/resource/Ben_May	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Southampton_F.C.	1998	1999
 http://dbpedia.org/resource/Ben_May	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Fulham_F.C.	1999	2000
 http://dbpedia.org/resource/Ben_May	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Millwall_F.C.	2000	2008
-http://dbpedia.org/resource/Ben_May	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Colchester_United_F.C.	2003	2003	2004	2005
+http://dbpedia.org/resource/Ben_May	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Colchester_United_F.C.	2003	2003
+http://dbpedia.org/resource/Ben_May	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Colchester_United_F.C.	2004	2005
 http://dbpedia.org/resource/Ben_May	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Dover_Athletic_F.C.	2012	2013
 http://dbpedia.org/resource/Ben_May	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Ebbsfleet_United_F.C.	2013	2013
 http://dbpedia.org/resource/Ben_Sahar	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Sheffield_Wednesday_F.C.	2008	2008
@@ -331,7 +334,8 @@ http://dbpedia.org/resource/Ben_Sahar	http://dbpedia.org/ontology/team	http://db
 http://dbpedia.org/resource/Ben_Sahar	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/AJ_Auxerre	2011	2012
 http://dbpedia.org/resource/Ben_Sahar	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Chelsea_F.C.	2006	2009
 http://dbpedia.org/resource/Ben_Sahar	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Queens_Park_Rangers_F.C.	2007	2007
-http://dbpedia.org/resource/Ben_Sahar	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Hapoel_Tel_Aviv_F.C.	2002	2006	2010	2011
+http://dbpedia.org/resource/Ben_Sahar	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Hapoel_Tel_Aviv_F.C.	2002	2006
+http://dbpedia.org/resource/Ben_Sahar	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Hapoel_Tel_Aviv_F.C.	2010	2011
 http://dbpedia.org/resource/Ben_Sahar	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Hertha_BSC	2012	2013
 http://dbpedia.org/resource/Ben_Sahar	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/De_Graafschap	2009	2009
 http://dbpedia.org/resource/Billy_Paynter	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Swindon_Town_F.C.	2007	2010
@@ -371,7 +375,8 @@ http://dbpedia.org/resource/Carlton_Cole	http://dbpedia.org/ontology/team	http:/
 http://dbpedia.org/resource/Carlton_Cole	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Charlton_Athletic_F.C.	2003	2004
 http://dbpedia.org/resource/Carlton_Cole	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Chelsea_F.C.	1996	2006
 http://dbpedia.org/resource/Chan_Siu_Ki	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Kitchee_SC	2003	2008
-http://dbpedia.org/resource/Chan_Siu_Ki	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/South_China_AA	2008	2012	2013	2013
+http://dbpedia.org/resource/Chan_Siu_Ki	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/South_China_AA	2008	2012
+http://dbpedia.org/resource/Chan_Siu_Ki	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/South_China_AA	2013	2013
 http://dbpedia.org/resource/Chan_Siu_Ki	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Tai_Po_FC	2002	2003
 http://dbpedia.org/resource/Chan_Siu_Ki	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Shaanxi_Wuzhou_F.C.	2012	2013
 http://dbpedia.org/resource/Chan_Siu_Ki	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Hong_Kong_Rangers_FC	2003	2004
@@ -393,7 +398,8 @@ http://dbpedia.org/resource/Chris_Birchall	http://dbpedia.org/ontology/team	http
 http://dbpedia.org/resource/Chris_Birchall	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Los_Angeles_Galaxy	2009	2011
 http://dbpedia.org/resource/Chris_Birchall	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Carlisle_United_F.C.	2008	2008
 http://dbpedia.org/resource/Chris_Birchall	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Brighton_%26_Hove_Albion_F.C.	2009	2009
-http://dbpedia.org/resource/Chris_Birchall	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Port_Vale_F.C.	1993	2006	2013	2013
+http://dbpedia.org/resource/Chris_Birchall	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Port_Vale_F.C.	1993	2006
+http://dbpedia.org/resource/Chris_Birchall	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Port_Vale_F.C.	2013	2013
 http://dbpedia.org/resource/Chris_Birchall	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/St._Mirren_F.C.	2007	2007
 http://dbpedia.org/resource/Chris_Birchall	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Columbus_Crew_SC	2012	2012
 http://dbpedia.org/resource/Chris_Carruthers	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Northampton_Town_F.C.	2000	2005
@@ -413,7 +419,8 @@ http://dbpedia.org/resource/Clayton_Donaldson	http://dbpedia.org/ontology/team	h
 http://dbpedia.org/resource/Clayton_Donaldson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Hibernian_F.C.	2007	2008
 http://dbpedia.org/resource/Clayton_Donaldson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Hull_City_A.F.C.	2002	2005
 http://dbpedia.org/resource/Clayton_Donaldson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Brentford_F.C.	2011	2013
-http://dbpedia.org/resource/Clayton_Donaldson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Harrogate_Town_F.C.	2002	2003	2004	2004
+http://dbpedia.org/resource/Clayton_Donaldson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Harrogate_Town_F.C.	2002	2003	
+http://dbpedia.org/resource/Clayton_Donaldson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Harrogate_Town_F.C.	2004	2004
 http://dbpedia.org/resource/Clayton_Donaldson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Scarborough_F.C.	2003	2003
 http://dbpedia.org/resource/Clayton_Donaldson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Halifax_Town_A.F.C.	2004	2004
 http://dbpedia.org/resource/Connor_Wickham	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Sunderland_A.F.C.	2011	2013
@@ -433,7 +440,8 @@ http://dbpedia.org/resource/Danny_Welbeck	http://dbpedia.org/ontology/team	http:
 http://dbpedia.org/resource/Danny_Welbeck	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Manchester_United_F.C.	2001	2013
 http://dbpedia.org/resource/Danny_Welbeck	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Preston_North_End_F.C.	2010	2010
 http://dbpedia.org/resource/Darren_Ambrose	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Charlton_Athletic_F.C.	2005	2009
-http://dbpedia.org/resource/Darren_Ambrose	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Ipswich_Town_F.C.	2001	2003	2008	2009
+http://dbpedia.org/resource/Darren_Ambrose	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Ipswich_Town_F.C.	2001	2003
+http://dbpedia.org/resource/Darren_Ambrose	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Ipswich_Town_F.C.	2008	2009
 http://dbpedia.org/resource/Darren_Ambrose	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Crystal_Palace_F.C.	2009	2012
 http://dbpedia.org/resource/Darren_Ambrose	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Newcastle_United_F.C.	2003	2005
 http://dbpedia.org/resource/Darren_Ambrose	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Birmingham_City_F.C.	2012	2013
@@ -447,7 +455,8 @@ http://dbpedia.org/resource/Darren_Fletcher	http://dbpedia.org/ontology/team	htt
 http://dbpedia.org/resource/Darren_Fletcher	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Manchester_United_F.C._Reserves_and_Academy	1995	2003
 http://dbpedia.org/resource/David_Bentley	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Arsenal_F.C.	1997	2006
 http://dbpedia.org/resource/David_Bentley	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Norwich_City_F.C.	2004	2005
-http://dbpedia.org/resource/David_Bentley	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Blackburn_Rovers_F.C.	2005	2008	2013	2013
+http://dbpedia.org/resource/David_Bentley	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Blackburn_Rovers_F.C.	2005	2008
+http://dbpedia.org/resource/David_Bentley	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Blackburn_Rovers_F.C.	2013	2013
 http://dbpedia.org/resource/David_Bentley	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Birmingham_City_F.C.	2011	2011
 http://dbpedia.org/resource/David_Bentley	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Tottenham_Hotspur_F.C.	2008	2013
 http://dbpedia.org/resource/David_Bentley	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/West_Ham_United_F.C.	2011	2011
@@ -500,7 +509,8 @@ http://dbpedia.org/resource/Eddie_Johnson_(English_footballer)	http://dbpedia.or
 http://dbpedia.org/resource/Eddie_Johnson_(English_footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Austin_Aztex_FC	2009	2010
 http://dbpedia.org/resource/Eddie_Johnson_(English_footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Royal_Antwerp_F.C.	2004	2004
 http://dbpedia.org/resource/Eddie_Johnson_(English_footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Portland_Timbers	2011	2012
-http://dbpedia.org/resource/Eddie_Johnson_(English_footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Crewe_Alexandra_F.C.	1994	1999	2005	2006
+http://dbpedia.org/resource/Eddie_Johnson_(English_footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Crewe_Alexandra_F.C.	1994	1999
+http://dbpedia.org/resource/Eddie_Johnson_(English_footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Crewe_Alexandra_F.C.	2005	2006
 http://dbpedia.org/resource/Eddie_Johnson_(English_footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Manchester_United_F.C.	1999	2006
 http://dbpedia.org/resource/Eddie_Johnson_(English_footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Coventry_City_F.C.	2004	2005
 http://dbpedia.org/resource/Eddie_Johnson_(English_footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Chester_City_F.C.	2008	2009
@@ -534,7 +544,8 @@ http://dbpedia.org/resource/Filipe_Morais	http://dbpedia.org/ontology/team	http:
 http://dbpedia.org/resource/Filipe_Morais	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Millwall_F.C.	2006	2007
 http://dbpedia.org/resource/Filipe_Morais	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Oldham_Athletic_A.F.C.	2010	2012
 http://dbpedia.org/resource/Filipe_Morais	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Chelsea_F.C.	2003	2006
-http://dbpedia.org/resource/Filipe_Morais	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/St._Johnstone_F.C.	2007	2007	2009	2010
+http://dbpedia.org/resource/Filipe_Morais	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/St._Johnstone_F.C.	2007	2007
+http://dbpedia.org/resource/Filipe_Morais	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/St._Johnstone_F.C.	2009	2010
 http://dbpedia.org/resource/Filipe_Morais	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Inverness_Caledonian_Thistle_F.C.	2009	2009
 http://dbpedia.org/resource/Filipe_Morais	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Stevenage_F.C.	2012	2013
 http://dbpedia.org/resource/Fraizer_Campbell	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Royal_Antwerp_F.C.	2006	2007
@@ -564,7 +575,8 @@ http://dbpedia.org/resource/George_Boyd_(footballer)	http://dbpedia.org/ontology
 http://dbpedia.org/resource/George_Boyd_(footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Nottingham_Forest_F.C.	2010	2010
 http://dbpedia.org/resource/George_Boyd_(footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Stevenage_F.C.	2001	2007
 http://dbpedia.org/resource/George_Boyd_(footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Charlton_Athletic_F.C._Academy	2000	2001
-http://dbpedia.org/resource/Giovani_dos_Santos	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/FC_Barcelona	2002	2006	2007	2008
+http://dbpedia.org/resource/Giovani_dos_Santos	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/FC_Barcelona	2002	2006
+http://dbpedia.org/resource/Giovani_dos_Santos	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/FC_Barcelona	2007	2008
 http://dbpedia.org/resource/Giovani_dos_Santos	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/FC_Barcelona_B	2006	2007
 http://dbpedia.org/resource/Giovani_dos_Santos	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Galatasaray_S.K._(football_team)	2010	2010
 http://dbpedia.org/resource/Giovani_dos_Santos	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Racing_de_Santander	2011	2011
@@ -588,12 +600,15 @@ http://dbpedia.org/resource/Greg_Pearson	http://dbpedia.org/ontology/team	http:/
 http://dbpedia.org/resource/Greg_Pearson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Hucknall_Town_F.C.	2006	2006
 http://dbpedia.org/resource/Greg_Pearson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Bishop%27s_Stortford_F.C.	2006	2008
 http://dbpedia.org/resource/Greg_Pearson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Grimsby_Town_F.C.	2012	2013
-http://dbpedia.org/resource/Greg_Young	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Northwich_Victoria_F.C.	2004	2005	2006	2006
+http://dbpedia.org/resource/Greg_Young	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Northwich_Victoria_F.C.	2004	2005	
+http://dbpedia.org/resource/Greg_Young	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Northwich_Victoria_F.C.	2006	2006
 http://dbpedia.org/resource/Greg_Young	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/York_City_F.C.	2010	2011
 http://dbpedia.org/resource/Greg_Young	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Halifax_Town_A.F.C.	2005	2008
 http://dbpedia.org/resource/Greg_Young	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Grimsby_Town_F.C.	2002	2005
-http://dbpedia.org/resource/Greg_Young	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Alfreton_Town_F.C.	2007	2007	2011	2012
-http://dbpedia.org/resource/Greg_Young	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Altrincham_F.C.	2008	2010	2011	2011
+http://dbpedia.org/resource/Greg_Young	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Alfreton_Town_F.C.	2007	2007
+http://dbpedia.org/resource/Greg_Young	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Alfreton_Town_F.C.	2011	2012
+http://dbpedia.org/resource/Greg_Young	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Altrincham_F.C.	2008	2010
+http://dbpedia.org/resource/Greg_Young	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Altrincham_F.C.	2011	2011
 http://dbpedia.org/resource/Greg_Young	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Gainsborough_Trinity_F.C.	2012	2013
 http://dbpedia.org/resource/Guy_Madjo	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Crawley_Town_F.C.	2007	2008
 http://dbpedia.org/resource/Guy_Madjo	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Shrewsbury_Town_F.C.	2008	2008
@@ -626,7 +641,8 @@ http://dbpedia.org/resource/James_McClean	http://dbpedia.org/ontology/team	http:
 http://dbpedia.org/resource/James_McClean	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Institute_F.C.	2007	2008
 http://dbpedia.org/resource/James_McClean	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Derry_City_F.C.	2008	2011
 http://dbpedia.org/resource/Jennison_Myrie-Williams	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Stevenage_F.C.	2011	2012
-http://dbpedia.org/resource/Jennison_Myrie-Williams	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Cheltenham_Town_F.C.	2007	2007	2008	2008
+http://dbpedia.org/resource/Jennison_Myrie-Williams	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Cheltenham_Town_F.C.	2007	2007
+http://dbpedia.org/resource/Jennison_Myrie-Williams	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Cheltenham_Town_F.C.	2008	2008
 http://dbpedia.org/resource/Jennison_Myrie-Williams	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Dundee_United_F.C.	2009	2010
 http://dbpedia.org/resource/Jennison_Myrie-Williams	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Port_Vale_F.C.	2011	2013
 http://dbpedia.org/resource/Jennison_Myrie-Williams	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Bristol_City_F.C.	2002	2009
@@ -642,7 +658,8 @@ http://dbpedia.org/resource/Jermaine_Pennant	http://dbpedia.org/ontology/team	ht
 http://dbpedia.org/resource/Jermaine_Pennant	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Leeds_United_A.F.C.	2003	2004
 http://dbpedia.org/resource/Jermaine_Pennant	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Watford_F.C.	2002	2003
 http://dbpedia.org/resource/Jermaine_Pennant	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Real_Zaragoza	2009	2010
-http://dbpedia.org/resource/Jermaine_Pennant	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Stoke_City_F.C.	2010	2010	2011	2013
+http://dbpedia.org/resource/Jermaine_Pennant	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Stoke_City_F.C.	2010	2010
+http://dbpedia.org/resource/Jermaine_Pennant	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Stoke_City_F.C.	2010	2010
 http://dbpedia.org/resource/Jermaine_Pennant	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Wolverhampton_Wanderers_F.C.	2012	2013
 http://dbpedia.org/resource/Joe_Colbeck	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Darlington_F.C.	2007	2007
 http://dbpedia.org/resource/Joe_Colbeck	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Oldham_Athletic_A.F.C.	2009	2010
@@ -657,7 +674,9 @@ http://dbpedia.org/resource/Joe_Hart	http://dbpedia.org/ontology/team	http://dbp
 http://dbpedia.org/resource/John_Guidetti	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Ligi_Ndogo_S.C.	2004	2005
 http://dbpedia.org/resource/John_Guidetti	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Mathare_United_F.C.	2003	2004
 http://dbpedia.org/resource/John_Guidetti	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Feyenoord	2011	2012
-http://dbpedia.org/resource/John_Guidetti	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/IF_Brommapojkarna	1998	2002	2006	2008	2010	2010
+http://dbpedia.org/resource/John_Guidetti	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/IF_Brommapojkarna	1998	2002
+http://dbpedia.org/resource/John_Guidetti	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/IF_Brommapojkarna	2006	2008
+http://dbpedia.org/resource/John_Guidetti	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/IF_Brommapojkarna	2010	2010
 http://dbpedia.org/resource/John_Guidetti	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Manchester_City_F.C.	2008	2013
 http://dbpedia.org/resource/John_Guidetti	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Burnley_F.C.	2010	2011
 http://dbpedia.org/resource/Jordon_Mutch	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Doncaster_Rovers_F.C.	2010	2010
@@ -682,7 +701,8 @@ http://dbpedia.org/resource/Kasper_Schmeichel	http://dbpedia.org/ontology/team	h
 http://dbpedia.org/resource/Kasper_Schmeichel	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Bury_F.C.	2006	2006
 http://dbpedia.org/resource/Kasper_Schmeichel	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Leicester_City_F.C.	2011	2013
 http://dbpedia.org/resource/Kenwyne_Jones	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/W_Connection	2002	2004
-http://dbpedia.org/resource/Kenwyne_Jones	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Stoke_City_F.C.	2005	2005	2010	2013
+http://dbpedia.org/resource/Kenwyne_Jones	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Stoke_City_F.C.	2005	2005
+http://dbpedia.org/resource/Kenwyne_Jones	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Stoke_City_F.C.	2010	2013
 http://dbpedia.org/resource/Kenwyne_Jones	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Joe_Public_F.C.	2002	2002
 http://dbpedia.org/resource/Kenwyne_Jones	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Southampton_F.C.	2004	2007
 http://dbpedia.org/resource/Kenwyne_Jones	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Sunderland_A.F.C.	2007	2010
@@ -718,7 +738,8 @@ http://dbpedia.org/resource/Lassana_Diarra	http://dbpedia.org/ontology/team	http
 http://dbpedia.org/resource/Lassana_Diarra	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Real_Madrid_C.F.	2009	2012
 http://dbpedia.org/resource/Lassana_Diarra	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Arsenal_F.C.	2007	2008
 http://dbpedia.org/resource/Lassana_Diarra	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/FC_Anzhi_Makhachkala	2012	2013
-http://dbpedia.org/resource/Laurent_Koscielny	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/ESA_Brive	1995	1997	1998	2002
+http://dbpedia.org/resource/Laurent_Koscielny	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/ESA_Brive	1995	1997
+http://dbpedia.org/resource/Laurent_Koscielny	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/ESA_Brive	1998	2002
 http://dbpedia.org/resource/Laurent_Koscielny	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Tours_FC	2007	2009
 http://dbpedia.org/resource/Laurent_Koscielny	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Limoges_FC	2002	2003
 http://dbpedia.org/resource/Laurent_Koscielny	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/En_Avant_de_Guingamp	2003	2007
@@ -758,7 +779,8 @@ http://dbpedia.org/resource/Lucas_Leiva	http://dbpedia.org/ontology/team	http://
 http://dbpedia.org/resource/Lucas_Leiva	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Liverpool_F.C.	2007	2013
 http://dbpedia.org/resource/Mamadou_Sakho	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Paris_FC	1996	2002
 http://dbpedia.org/resource/Mamadou_Sakho	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Paris_Saint-Germain_F.C.	2002	2013
-http://dbpedia.org/resource/Martin_Rice	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Torquay_United_F.C.	2007	2009	2011	2013
+http://dbpedia.org/resource/Martin_Rice	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Torquay_United_F.C.	2007	2009
+http://dbpedia.org/resource/Martin_Rice	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Torquay_United_F.C.	2011	2013
 http://dbpedia.org/resource/Martin_Rice	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Exeter_City_F.C.	2003	2007
 http://dbpedia.org/resource/Martin_Rice	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Truro_City_F.C.	2008	2011
 http://dbpedia.org/resource/Matty_Fryatt	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Carlisle_United_F.C.	2003	2004
@@ -768,13 +790,16 @@ http://dbpedia.org/resource/Matty_Fryatt	http://dbpedia.org/ontology/team	http:/
 http://dbpedia.org/resource/Max_Gradel	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/AS_Saint-Étienne	2011	2013
 http://dbpedia.org/resource/Max_Gradel	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/A.F.C._Bournemouth	2007	2008
 http://dbpedia.org/resource/Max_Gradel	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Leicester_City_F.C.	2005	2010
-http://dbpedia.org/resource/Max_Gradel	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Leeds_United_A.F.C.	2009	2009	2010	2011
+http://dbpedia.org/resource/Max_Gradel	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Leeds_United_A.F.C.	2009	2009
+http://dbpedia.org/resource/Max_Gradel	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Leeds_United_A.F.C.	2010	2011
 http://dbpedia.org/resource/Micah_Richards	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Manchester_City_F.C.	2001	2013
 http://dbpedia.org/resource/Micah_Richards	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Oldham_Athletic_A.F.C.	2000	2001
 http://dbpedia.org/resource/Michael_Chopra	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Sunderland_A.F.C.	2007	2009
 http://dbpedia.org/resource/Michael_Chopra	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Nottingham_Forest_F.C.	2004	2004
 http://dbpedia.org/resource/Michael_Chopra	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Watford_F.C.	2003	2003
-http://dbpedia.org/resource/Michael_Chopra	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Cardiff_City_F.C.	2006	2007	2008	2008	2009	2011
+http://dbpedia.org/resource/Michael_Chopra	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Cardiff_City_F.C.	2006	2007
+http://dbpedia.org/resource/Michael_Chopra	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Cardiff_City_F.C.	2008	2008
+http://dbpedia.org/resource/Michael_Chopra	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Cardiff_City_F.C.	2009	2011
 http://dbpedia.org/resource/Michael_Chopra	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Barnsley_F.C.	2004	2005
 http://dbpedia.org/resource/Michael_Chopra	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Ipswich_Town_F.C.	2011	2013
 http://dbpedia.org/resource/Michael_Chopra	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Newcastle_United_F.C.	1993	2006
@@ -784,14 +809,16 @@ http://dbpedia.org/resource/Michael_Coulson_(footballer)	http://dbpedia.org/onto
 http://dbpedia.org/resource/Michael_Coulson_(footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Chester_City_F.C.	2009	2009
 http://dbpedia.org/resource/Michael_Coulson_(footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/York_City_F.C.	2012	2013
 http://dbpedia.org/resource/Michael_Coulson_(footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Northwich_Victoria_F.C.	2007	2007
-http://dbpedia.org/resource/Michael_Symes	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Macclesfield_Town_F.C.	2006	2006	2008	2008
+http://dbpedia.org/resource/Michael_Symes	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Macclesfield_Town_F.C.	2006	2006
+http://dbpedia.org/resource/Michael_Symes	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Macclesfield_Town_F.C.	2008	2008
 http://dbpedia.org/resource/Michael_Symes	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Stockport_County_F.C.	2006	2006
 http://dbpedia.org/resource/Michael_Symes	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Bradford_City_A.F.C.	2004	2006
 http://dbpedia.org/resource/Michael_Symes	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Accrington_Stanley_F.C.	2009	2010
 http://dbpedia.org/resource/Michael_Symes	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Everton_F.C.	1994	2004
 http://dbpedia.org/resource/Michael_Symes	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Crewe_Alexandra_F.C.	2004	2004
 http://dbpedia.org/resource/Michael_Symes	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Shrewsbury_Town_F.C.	2006	2009
-http://dbpedia.org/resource/Michael_Symes	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/A.F.C._Bournemouth	2008	2008	2010	2012
+http://dbpedia.org/resource/Michael_Symes	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/A.F.C._Bournemouth	2008	2008
+http://dbpedia.org/resource/Michael_Symes	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/A.F.C._Bournemouth	2010	2012
 http://dbpedia.org/resource/Michael_Symes	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Rochdale_A.F.C.	2012	2012
 http://dbpedia.org/resource/Michael_Symes	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Leyton_Orient_F.C.	2012	2012
 http://dbpedia.org/resource/Mido_(footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Celta_de_Vigo	2003	2003
@@ -799,15 +826,19 @@ http://dbpedia.org/resource/Mido_(footballer)	http://dbpedia.org/ontology/team	h
 http://dbpedia.org/resource/Mido_(footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/K.A.A._Gent	2000	2001
 http://dbpedia.org/resource/Mido_(footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Middlesbrough_F.C.	2007	2010
 http://dbpedia.org/resource/Mido_(footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Wigan_Athletic_F.C.	2009	2009
-http://dbpedia.org/resource/Mido_(footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/AFC_Ajax	2001	2003	2010	2010
-http://dbpedia.org/resource/Mido_(footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Zamalek_SC	1999	2000	2009	2010	2011	2012
+http://dbpedia.org/resource/Mido_(footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/AFC_Ajax	2001	2003
+http://dbpedia.org/resource/Mido_(footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/AFC_Ajax	2010	2010
+http://dbpedia.org/resource/Mido_(footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Zamalek_SC	1999	2000
+http://dbpedia.org/resource/Mido_(footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Zamalek_SC	2009	2010
+http://dbpedia.org/resource/Mido_(footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Zamalek_SC	2011	2012
 http://dbpedia.org/resource/Mido_(footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Olympique_de_Marseille	2003	2004
 http://dbpedia.org/resource/Mido_(footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/West_Ham_United_F.C.	2010	2010
 http://dbpedia.org/resource/Mido_(footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/A.S._Roma	2004	2006
 http://dbpedia.org/resource/Mido_(footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Barnsley_F.C.	2012	2013
 http://dbpedia.org/resource/Mohd_Safee_Mohd_Sali	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Pelita_Jaya_FC	2011	2012
 http://dbpedia.org/resource/Mohd_Safee_Mohd_Sali	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Selangor_FA	2006	2011
-http://dbpedia.org/resource/Mohd_Safee_Mohd_Sali	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Kuala_Lumpur_FA	2000	2002	2003	2005
+http://dbpedia.org/resource/Mohd_Safee_Mohd_Sali	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Kuala_Lumpur_FA	2000	2002
+http://dbpedia.org/resource/Mohd_Safee_Mohd_Sali	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Kuala_Lumpur_FA	2003	2005
 http://dbpedia.org/resource/Mohd_Safee_Mohd_Sali	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Telekom_Malaysia_F.C.	2003	2003
 http://dbpedia.org/resource/Mohd_Safee_Mohd_Sali	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Sarawak_FA	2005	2006
 http://dbpedia.org/resource/Mohd_Safee_Mohd_Sali	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Arema_Cronus_F.C.	2012	2013
@@ -820,14 +851,17 @@ http://dbpedia.org/resource/Nashat_Akram	http://dbpedia.org/ontology/team	http:/
 http://dbpedia.org/resource/Nashat_Akram	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Lekhwiya_SC	2011	2012
 http://dbpedia.org/resource/Nashat_Akram	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Al-Shorta	2000	2003
 http://dbpedia.org/resource/Nashat_Akram	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Al-Quwa_Al-Jawiya	1996	1999
-http://dbpedia.org/resource/Nashat_Akram	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Al-Wakrah_Sports_Club	2010	2011	2012	2012
+http://dbpedia.org/resource/Nashat_Akram	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Al-Wakrah_Sports_Club	2010	2011
+http://dbpedia.org/resource/Nashat_Akram	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Al-Wakrah_Sports_Club	2012	2012
 http://dbpedia.org/resource/Nashat_Akram	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Al_Ain_FC	2007	2008
-http://dbpedia.org/resource/Nashat_Akram	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Al-Nassr_FC	2003	2004	2012	2013
+http://dbpedia.org/resource/Nashat_Akram	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Al-Nassr_FC	2003	2004
+http://dbpedia.org/resource/Nashat_Akram	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Al-Nassr_FC	2012	2013
 http://dbpedia.org/resource/Nashat_Akram	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Salahaddin_FC	2000	2000
 http://dbpedia.org/resource/Nashat_Akram	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Al-Zawra%27a_SC	1998	1999
 http://dbpedia.org/resource/Nashat_Akram	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Al-Quwa_Al-Jawiya	1996	1998
 http://dbpedia.org/resource/Nashat_Akram	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Al-Gharafa_Sports_Club	2008	2009
-http://dbpedia.org/resource/Neil_Kilkenny	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Oldham_Athletic_A.F.C.	2004	2005	2007	2008
+http://dbpedia.org/resource/Neil_Kilkenny	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Oldham_Athletic_A.F.C.	2004	2005
+http://dbpedia.org/resource/Neil_Kilkenny	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Oldham_Athletic_A.F.C.	2007	2008
 http://dbpedia.org/resource/Neil_Kilkenny	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Leeds_United_A.F.C.	2008	2011
 http://dbpedia.org/resource/Neil_Kilkenny	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Birmingham_City_F.C.	2004	2008
 http://dbpedia.org/resource/Neil_Kilkenny	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Bristol_City_F.C.	2011	2013
@@ -855,7 +889,8 @@ http://dbpedia.org/resource/Per_Mertesacker	http://dbpedia.org/ontology/team	htt
 http://dbpedia.org/resource/Per_Mertesacker	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Hannover_96	1995	2006
 http://dbpedia.org/resource/Per_Mertesacker	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Arsenal_F.C.	2011	2013
 http://dbpedia.org/resource/Philipp_Lahm	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/FC_Bayern_Munich_II	2001	2003
-http://dbpedia.org/resource/Philipp_Lahm	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/FC_Bayern_Munich	1995	2001	2002	2013
+http://dbpedia.org/resource/Philipp_Lahm	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/FC_Bayern_Munich	1995	2001
+http://dbpedia.org/resource/Philipp_Lahm	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/FC_Bayern_Munich	2002	2013
 http://dbpedia.org/resource/Philipp_Lahm	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/VfB_Stuttgart	2003	2005
 http://dbpedia.org/resource/Rafik_Djebbour	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/R.A.A._Louviéroise	2004	2005
 http://dbpedia.org/resource/Rafik_Djebbour	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Ethnikos_Asteras_F.C.	2005	2005
@@ -897,7 +932,8 @@ http://dbpedia.org/resource/Ross_McCormack	http://dbpedia.org/ontology/team	http
 http://dbpedia.org/resource/Ross_McCormack	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Doncaster_Rovers_F.C.	2006	2006
 http://dbpedia.org/resource/Ross_McCormack	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Leeds_United_A.F.C.	2010	2013
 http://dbpedia.org/resource/Ross_McCormack	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Cardiff_City_F.C.	2008	2010
-http://dbpedia.org/resource/Ryan_Babel	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/AFC_Ajax	1998	2007	2012	2013
+http://dbpedia.org/resource/Ryan_Babel	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/AFC_Ajax	1998	2007
+http://dbpedia.org/resource/Ryan_Babel	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/AFC_Ajax	2012	2013
 http://dbpedia.org/resource/Ryan_Babel	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Liverpool_F.C.	2007	2011
 http://dbpedia.org/resource/Ryan_Babel	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/TSG_1899_Hoffenheim	2011	2012
 http://dbpedia.org/resource/Ryan_Shawcross	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Royal_Antwerp_F.C.	2007	2007
@@ -946,11 +982,13 @@ http://dbpedia.org/resource/Steven_Fletcher_(footballer)	http://dbpedia.org/onto
 http://dbpedia.org/resource/Steven_Fletcher_(footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Sunderland_A.F.C.	2012	2013
 http://dbpedia.org/resource/Steven_Naismith	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Everton_F.C.	2012	2013
 http://dbpedia.org/resource/Steven_Naismith	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Kilmarnock_F.C.	2002	2007
-http://dbpedia.org/resource/Steven_Naismith	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Rangers_F.C.	2000	2002	2007	2012
+http://dbpedia.org/resource/Steven_Naismith	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Rangers_F.C.	2000	2002
+http://dbpedia.org/resource/Steven_Naismith	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Rangers_F.C.	2007	2012
 http://dbpedia.org/resource/Steven_Taylor_(footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Newcastle_United_F.C.	1995	2013
 http://dbpedia.org/resource/Steven_Taylor_(footballer)	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Wycombe_Wanderers_F.C.	2003	2004
 http://dbpedia.org/resource/Stuart_Tomlinson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Port_Vale_F.C.	2010	2012
-http://dbpedia.org/resource/Stuart_Tomlinson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Burton_Albion_F.C.	2008	2008	2012	2013
+http://dbpedia.org/resource/Stuart_Tomlinson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Burton_Albion_F.C.	2008	2008
+http://dbpedia.org/resource/Stuart_Tomlinson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Burton_Albion_F.C.	2012	2013
 http://dbpedia.org/resource/Stuart_Tomlinson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Crewe_Alexandra_F.C.	2001	2009
 http://dbpedia.org/resource/Stuart_Tomlinson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Barrow_A.F.C.	2009	2010
 http://dbpedia.org/resource/Stuart_Tomlinson	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Stafford_Rangers_F.C.	2004	2004
@@ -961,7 +999,8 @@ http://dbpedia.org/resource/Sulley_Muntari	http://dbpedia.org/ontology/team	http
 http://dbpedia.org/resource/Sulley_Muntari	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/A.C._Milan	2012	2013
 http://dbpedia.org/resource/Sulley_Muntari	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Udinese_Calcio	2001	2007
 http://dbpedia.org/resource/Sunil_Chhetri	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Kingfisher_East_Bengal_F.C.	2008	2009
-http://dbpedia.org/resource/Sunil_Chhetri	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Mohun_Bagan_A.C.	2002	2005	2011	2012
+http://dbpedia.org/resource/Sunil_Chhetri	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Mohun_Bagan_A.C.	2002	2005
+http://dbpedia.org/resource/Sunil_Chhetri	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Mohun_Bagan_A.C.	2011	2012
 http://dbpedia.org/resource/Sunil_Chhetri	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/JCT_FC	2005	2008
 http://dbpedia.org/resource/Sunil_Chhetri	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Sporting_Kansas_City	2010	2010
 http://dbpedia.org/resource/Sunil_Chhetri	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Dempo_S.C.	2009	2010
@@ -992,7 +1031,8 @@ http://dbpedia.org/resource/Yacine_Brahimi	http://dbpedia.org/ontology/team	http
 http://dbpedia.org/resource/Yacine_Brahimi	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Paris_Saint-Germain_F.C.	2004	2006
 http://dbpedia.org/resource/Yacine_Brahimi	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Granada_CF	2012	2013
 http://dbpedia.org/resource/Richard_Pacquette	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Queens_Park_Rangers_F.C.	2000	2004
-http://dbpedia.org/resource/Richard_Pacquette	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Stevenage_F.C.	2002	2003	2005	2005
+http://dbpedia.org/resource/Richard_Pacquette	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Stevenage_F.C.	2002	2003
+http://dbpedia.org/resource/Richard_Pacquette	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Stevenage_F.C.	2005	2005
 http://dbpedia.org/resource/Richard_Pacquette	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Dagenham_%26_Redbridge_F.C.	2003	2004
 http://dbpedia.org/resource/Richard_Pacquette	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Mansfield_Town_F.C.	2004	2004
 http://dbpedia.org/resource/Richard_Pacquette	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Milton_Keynes_Dons_F.C.	2004	2004
@@ -1005,7 +1045,8 @@ http://dbpedia.org/resource/Richard_Pacquette	http://dbpedia.org/ontology/team	h
 http://dbpedia.org/resource/Richard_Pacquette	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Worthing_F.C.	2005	2006
 http://dbpedia.org/resource/Richard_Pacquette	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Thurrock_F.C.	2006	2006
 http://dbpedia.org/resource/Richard_Pacquette	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Havant_%26_Waterlooville_F.C.	2006	2008
-http://dbpedia.org/resource/Richard_Pacquette	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Maidenhead_United_F.C.	2008	2009	2011	2011
+http://dbpedia.org/resource/Richard_Pacquette	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Maidenhead_United_F.C.	2008	2009
+http://dbpedia.org/resource/Richard_Pacquette	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Maidenhead_United_F.C.	2011	2011
 http://dbpedia.org/resource/Richard_Pacquette	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Histon_F.C.	2009	2009
 http://dbpedia.org/resource/Richard_Pacquette	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/York_City_F.C.	2009	2010
 http://dbpedia.org/resource/Richard_Pacquette	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Eastbourne_Borough_F.C.	2010	2011
@@ -1016,7 +1057,8 @@ http://dbpedia.org/resource/Richard_Pacquette	http://dbpedia.org/ontology/team	h
 http://dbpedia.org/resource/Peter_Philipakos	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/AEK_Athens_F.C.	2004	2004
 http://dbpedia.org/resource/Peter_Philipakos	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Olympiacos_F.C.	2004	2006
 http://dbpedia.org/resource/Peter_Philipakos	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Aris_F.C._(Thessaloniki)	2006	2006
-http://dbpedia.org/resource/Peter_Philipakos	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Ethnikos_Piraeus_F.C.	2006	2007	2008	2009
+http://dbpedia.org/resource/Peter_Philipakos	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Ethnikos_Piraeus_F.C.	2006	2007
+http://dbpedia.org/resource/Peter_Philipakos	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Ethnikos_Piraeus_F.C.	2008	2009
 http://dbpedia.org/resource/Peter_Philipakos	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/FK_Baník_Most	2007	2008
 http://dbpedia.org/resource/Peter_Philipakos	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Olympiakos_Chersonissos_F.C.	2010	2011
 http://dbpedia.org/resource/Peter_Philipakos	http://dbpedia.org/ontology/team	http://dbpedia.org/resource/Iraklis_Psachna_F.C.	2011	2012

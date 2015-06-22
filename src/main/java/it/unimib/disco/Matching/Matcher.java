@@ -353,6 +353,59 @@ public class Matcher {
 		return intervals;
 		
 	}
+	
+	public List<Interval> occurrences(int normalizationType, List<Fact> f,DateOccurrence [][] matrixMD) {
+		
+		DateOccurrence [][] m = new DateOccurrence[matrixMD.length][matrixMD.length];
+		List<Interval> intervals =new ArrayList<Interval>();
+		for (int i=0; i<m.length; i++){
+			
+			for(int j=0; j<m[i].length; j++){
+				
+				if(i==0||j==0){
+				
+					m[0][j]=matrixMD[0][j];
+					m[i][0]=matrixMD[i][0];
+				}
+				
+				else if(j>=i){
+					String occuMatrix = matrixMD[i][j].getOccurrence().trim();
+				
+					int value = Integer.parseInt(occuMatrix);
+					if(value!=0){
+					
+					MatrixCreator mpc= new MatrixCreator();
+					
+					Date column = mpc.stringToLong(m[0][j].getDate());
+					Date row = mpc.stringToLong(m[i][0].getDate());
+					
+					double formula=hitCountNoNormalization(row,column,f);
+				
+					
+					m[i][j]= new DateOccurrence("", String.valueOf(formula));
+					
+					//add start and end year and the formula
+					Interval interval = new Interval();
+					interval.addStart(m[i][0].getDate());
+					interval.addEnd(m[0][j].getDate());
+					interval.addValue(String.valueOf(formula));
+					intervals.add(interval);
+				}
+				}
+				else{
+
+					m[i][j]= new DateOccurrence("", "0");
+				}
+				
+				
+			}
+			
+		}
+
+	return intervals;
+	
+}
+	
 	public double lasCalc(Date row, Date column,List<Fact> list ) throws ParseException{
 		double hit=0;
 		MatrixCreator mpc= new MatrixCreator();
