@@ -92,7 +92,7 @@ public class ReadFiles {
 		
 		BufferedReader br = null;
 		String line = "";
-		String fileSplitBySpace = " ";
+		
 		String fileSplitByTab = "\\t";
 		try 
 		{
@@ -102,7 +102,9 @@ public class ReadFiles {
 			while (line != null)
 			{
 				line = line.trim();
-				String[] string_tokens = line.split(fileSplitBySpace);
+				
+				String[] string_tokens = line.split(fileSplitByTab);
+				
 				if (string_tokens.length == 2)
 				{
 					String subject = string_tokens[0];
@@ -112,6 +114,7 @@ public class ReadFiles {
 					int rows_count = 0;
 					
 					line = br.readLine();
+					
 					if (line == null) throw new Exception("File not well formatted.");
 					string_tokens = line.split(fileSplitByTab);
 					if (string_tokens.length < 2) throw new Exception("File not well formatted.");
@@ -121,14 +124,16 @@ public class ReadFiles {
 						//check date format?
 						startendobjOccurrence.add(string_tokens[i]);
 					}
+					
 					matrix = new MatrixCreator().matrixCreator(startendobjOccurrence,startendobjOccurrence);
 					for (int i = 1; i < rows_count; i++)
 					{
 						line = br.readLine();
 						if (line == null) throw new Exception("File not well formatted.");
 						string_tokens = line.split(fileSplitByTab);
-						if (string_tokens.length != rows_count+1) throw new Exception("File not well formatted.");
-						for (int j=2; j < rows_count+1; j++)
+						
+						if (string_tokens.length != rows_count) throw new Exception("File not well formatted.");
+						for (int j=2; j < rows_count; j++)
 						{
 							if( (j-1)>=i && !(matrix[i][j-1].getOccurrence().equalsIgnoreCase("X")))
 							{
@@ -270,6 +275,8 @@ public class ReadFiles {
 		return fileArray;
 
 	}
+	
+	
 	public List<Fact> readTabSeparatedFileLS(File rsListFile) {
 		List<Fact> allFacts = new ArrayList<Fact>();
 
@@ -315,6 +322,49 @@ public class ReadFiles {
 	return allFacts;
 	}
 	
+	
+	public List<Fact> readTabSeparatedIntervals(File rsListFile) {
+		List<Fact> allFacts = new ArrayList<Fact>();
+
+		BufferedReader br = null;
+		String line = "";
+		String cvsSplitBy = "	";
+ 
+		try {
+ 
+		br = new BufferedReader(new FileReader(rsListFile));
+		while ((line = br.readLine()) != null) {
+			if(line.contains("[")){
+			line=line.substring(line.indexOf('[')+1,line.indexOf(']'));
+			}
+		        // use comma as separator
+			String[] fact = line.split(cvsSplitBy);
+			Fact f = new Fact();
+			if (fact.length>0){f.add(Fact.Entry.SUBJECT, fact[0]);}
+			if (fact.length>1){f.add(Fact.Entry.OBJECT, fact[1]);}
+			if (fact.length>2){f.add(Fact.Entry.YAGOSTART, fact[2]);}
+			if (fact.length>3){f.add(Fact.Entry.YAGOEND, fact[3]);}
+			if (fact.length>4){f.add(Fact.Entry.SCORE, fact[4]);}
+			
+			allFacts.add(f);
+		}
+ 
+	} catch (FileNotFoundException e) {
+		e.printStackTrace();
+	} catch (IOException e) {
+		e.printStackTrace();
+	} finally {
+		if (br != null) {
+			try {
+				br.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+ 
+	return allFacts;
+	}
 	
 
 	public HashSet<List<String>> readTSV(File rsListFile) throws IOException{

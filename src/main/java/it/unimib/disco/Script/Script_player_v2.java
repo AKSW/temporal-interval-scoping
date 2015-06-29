@@ -90,14 +90,14 @@ public class Script_player_v2 {
 			/******************Matching **************/
 			HashMap<String,HashMap<String,List<Fact>>> groupFacts = new FactGrouping().groupBySubjectObject(factNormalized);
 			Matcher ta = new Matcher();
-			HashMap<String,HashMap<String,List<Interval>>> sub_obj_interval = new HashMap<String,HashMap<String,List<Interval>>>() ;
-			HashMap<String,HashMap<String,List<Interval>>> subj_occurrences_interval = new HashMap<String,HashMap<String,List<Interval>>>() ;
+			//HashMap<String,HashMap<String,List<Interval>>> sub_obj_diagonal_normalization = new HashMap<String,HashMap<String,List<Interval>>>() ;
+			HashMap<String,HashMap<String,List<Interval>>> subj_obj_no_diagonal_normalization = new HashMap<String,HashMap<String,List<Interval>>>() ;
 
 
 			for (String uri: maximalRIM.keySet()){
 
-				HashMap<String,List<Interval>> obj_interval= new HashMap<String,List<Interval>>();
-				HashMap<String,List<Interval>> occurrences_interval= new HashMap<String,List<Interval>>();
+				//HashMap<String,List<Interval>> obj_diagonal_normalization= new HashMap<String,List<Interval>>();
+				HashMap<String,List<Interval>> obj_no_diagonal_normalization= new HashMap<String,List<Interval>>();
 
 				HashMap<String,List<Fact>> objbasedgroupfacts = groupFacts.get(uri);
 				if(objbasedgroupfacts!=null){
@@ -108,30 +108,33 @@ public class Script_player_v2 {
 
 						DateOccurrence [][] matrixManhattanDuration = ta.matrixYearsDuration(maximalRIM.get(uri));
 
-						obj_interval.put(obj, ta.las(config.get(Configuration.Entry.NORMALIZATION),f,matrixManhattanDuration));
-						occurrences_interval.put(obj, ta.occurrences(config.get(Configuration.Entry.NORMALIZATION),f,matrixManhattanDuration));
+						//obj_diagonal_normalization.put(obj, ta.las(config.get(Configuration.Entry.NORMALIZATION),f,matrixManhattanDuration));
+						obj_no_diagonal_normalization.put(obj, ta.occurrencesNormalized(config.get(Configuration.Entry.NORMALIZATION),f,matrixManhattanDuration));
 					}
-					sub_obj_interval.put(uri, obj_interval);
-					subj_occurrences_interval.put(uri, occurrences_interval);
+					//sub_obj_diagonal_normalization.put(uri, obj_diagonal_normalization);
+					subj_obj_no_diagonal_normalization.put(uri, obj_no_diagonal_normalization);
 
 				}
 			}
-			new WriteMatrixOutput().printMatrix(sub_obj_interval);
+			new WriteMatrixOutput().printMatrix(subj_obj_no_diagonal_normalization);
 			
 
 			logger.info("Selection function");
 			HashMap<String,HashMap<String,List<Interval>>> tempodefactoIntervalsUri = new HashMap<String,HashMap<String,List<Interval>>>();
+			
 			WriteOutput w = new WriteOutput();
-			w.writeIntervals(sub_obj_interval);
-			w.writeIntervalsForStatistics(sub_obj_interval,"intervalsStat");
-			w.writeIntervalsForStatistics(subj_occurrences_interval, "intervalsOccurrences");
-			for (String uri:sub_obj_interval.keySet()){
+			
+			//w.writeIntervalsForStatistics(sub_obj_diagonal_normalization,"diagonalNormalizationMatching");
+			w.writeIntervalsForStatistics(subj_obj_no_diagonal_normalization, "noDiagonalNormalizationMatching");
+			
+			for (String uri:subj_obj_no_diagonal_normalization.keySet()){
 				//selection, x, k
-				HashMap<String,List<Interval>> ls = new Selection().selection(config.get(Configuration.Entry.SELECTION),config.get(Configuration.Entry.PROXY),config.get(Configuration.Entry.TOPK),sub_obj_interval.get(uri));
+				HashMap<String,List<Interval>> ls = new Selection().selection(config.get(Configuration.Entry.SELECTION),config.get(Configuration.Entry.PROXY),config.get(Configuration.Entry.TOPK),subj_obj_no_diagonal_normalization.get(uri));
 
 				tempodefactoIntervalsUri.put(uri,ls);
 
 			}
+			w.writeIntervalsForStatistics(tempodefactoIntervalsUri,"diagonalNormalizationSelection");
 
 
 			//Concatenate intervals based on Allen's Algebra reasoning
@@ -148,7 +151,8 @@ public class Script_player_v2 {
 				reasoningIntervalsUri.put(uri, reasoningIntervals);
 
 			}
-
+			
+			w.writeIntervalsReasoning(reasoningIntervalsUri,"diagonalNormalizationReasoning");
 			Evaluation_v2 ev = new Evaluation_v2();
 			List<QualityMeasure> evaluationResults = new ArrayList<QualityMeasure>();
 

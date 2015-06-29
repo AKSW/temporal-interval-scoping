@@ -19,19 +19,19 @@ import org.aksw.distributions.Fact.Entry;
 public class Matcher {
 
 	public HashMap<String,DateOccurrence [][]> diagonalMatrixCreator(HashMap<String, DateOccurrence [][]> reducedMatrix2){
-		
+
 		HashMap<String,DateOccurrence [][]> diagonalMatrixURI = new HashMap<String,DateOccurrence [][]>();
 
-		
+
 		for (String Uri: reducedMatrix2.keySet()){
 			DateOccurrence [][] diagonalMatrix= reducedMatrix2.get(Uri);
-			
+
 			for (int i=1; i<diagonalMatrix.length; i++){
 				for(int j=1; j<diagonalMatrix[i].length; j++){
 					if(j>=i&&!(diagonalMatrix[i][j].getOccurrence().equalsIgnoreCase("X"))){
-						
+
 						double value = (diagonalMatrix.length -j)*1.0/(diagonalMatrix.length-i); 
-	
+
 						diagonalMatrix[i][j]= new DateOccurrence("", String.valueOf(value));
 					}
 					else{
@@ -42,37 +42,37 @@ public class Matcher {
 			}
 			diagonalMatrixURI.put(Uri, diagonalMatrix);
 		}
-		
+
 		return diagonalMatrixURI;
-		
+
 	}
-	
+
 	public DateOccurrence [][] matrixYearsDuration(DateOccurrence [][] mRed){
-		
+
 		DateOccurrence [][] temporalDCMatrix= new DateOccurrence[mRed.length][mRed.length];
 		temporalDCMatrix[0][0]= new DateOccurrence("[Start]/", "End");
 
-		
+
 		for(int l=1; l<temporalDCMatrix.length; l++){
 			temporalDCMatrix[l][0] = mRed[l][0];
 		}
-		
+
 		for(int m=1; m<temporalDCMatrix.length; m++){
 			temporalDCMatrix[0][m]= mRed[0][m];
 		}
-			
+
 		for (int i=1; i<temporalDCMatrix.length; i++){
 			for(int j=1; j<temporalDCMatrix[i].length; j++){
-					
+
 				if(j>=i){
-						
+
 					MatrixCreator mpc= new MatrixCreator();
 					Date column = mpc.stringToLong(temporalDCMatrix[0][j].getDate());
 					Date row = mpc.stringToLong(temporalDCMatrix[i][0].getDate());
 					long millisecDistance = column.getTime()-row.getTime();
 					long dayDistance= millisecDistance/(1000 * 60 * 60 * 24);
 					long yearDistance= dayDistance/365+1;
-						
+
 					temporalDCMatrix[i][j]= new DateOccurrence("", String.valueOf(yearDistance));
 				}
 				else{
@@ -80,95 +80,95 @@ public class Matcher {
 				}
 			}
 		}
-			
-		
+
+
 		/*for (int i=0; i<temporalDCMatrix.length;i++){
 			for (int j=0;j<temporalDCMatrix[i].length;j++){
-				
+
 				System.out.print(temporalDCMatrix[i][j].getDate()+""+ temporalDCMatrix[i][j].getOccurrence()+";");
 			}
 			System.out.println();
 
 	}*/
 		return temporalDCMatrix;
-		
+
 	}
-	
+
 
 	public DateOccurrence [][] matrixManhattanDuration( DateOccurrence [][] mRed){
-		
-			DateOccurrence [][] temporalDCMatrix= new DateOccurrence[mRed.length][mRed.length];
+
+		DateOccurrence [][] temporalDCMatrix= new DateOccurrence[mRed.length][mRed.length];
 		temporalDCMatrix[0][0]= new DateOccurrence("[Start]/", "End");
 
-			
-			for(int l=1; l<temporalDCMatrix.length; l++){
-				temporalDCMatrix[l][0] = mRed[l][0];
 
-			}
-			
-			
-			for(int m=1; m<temporalDCMatrix.length; m++){
-				temporalDCMatrix[0][m]= mRed[0][m];
-			}
+		for(int l=1; l<temporalDCMatrix.length; l++){
+			temporalDCMatrix[l][0] = mRed[l][0];
 
-			for (int i=1; i<temporalDCMatrix.length; i++){
-				int count=1;
-	
+		}
+
+
+		for(int m=1; m<temporalDCMatrix.length; m++){
+			temporalDCMatrix[0][m]= mRed[0][m];
+		}
+
+		for (int i=1; i<temporalDCMatrix.length; i++){
+			int count=1;
+
 			for(int j=1; j<temporalDCMatrix[i].length; j++){
-					
-					if(j>=i){
-											
-						temporalDCMatrix[i][j]= new DateOccurrence("", String.valueOf(count));
-						count++;
-					}
-					else{
 
-						temporalDCMatrix[i][j]= new DateOccurrence("", "0");
-					}
-					
+				if(j>=i){
+
+					temporalDCMatrix[i][j]= new DateOccurrence("", String.valueOf(count));
+					count++;
 				}
-	
+				else{
+
+					temporalDCMatrix[i][j]= new DateOccurrence("", "0");
+				}
+
 			}
-			/*for (int i=0; i<temporalDCMatrix.length;i++){
+
+		}
+		/*for (int i=0; i<temporalDCMatrix.length;i++){
 			for (int j=0;j<temporalDCMatrix[i].length;j++){
-				
+
 				System.out.print(temporalDCMatrix[i][j].getDate()+""+ temporalDCMatrix[i][j].getOccurrence()+";");
 			}
 			System.out.println();
 
 	}*/
 		return temporalDCMatrix;
-		
+
 	}
 
 	public List<Interval> dcCalculator(int normalizationType, List<Fact> f,DateOccurrence [][] matrixMD,PrintWriter pw){
-			
-			DateOccurrence [][] m = new DateOccurrence[matrixMD.length][matrixMD.length];
-			List<Interval> intervals =new ArrayList<Interval>();
-			for (int i=0; i<m.length; i++){
-				
-				for(int j=0; j<m[i].length; j++){
-					
-					if(i==0||j==0){
-					
-						m[0][j]=matrixMD[0][j];
-						m[i][0]=matrixMD[i][0];
-					}
-					
-					else if(j>i){
-						String occuMatrix = matrixMD[i][j].getOccurrence().trim();
-					
-						int value = Integer.parseInt(occuMatrix);
-						if(value!=0){
+
+		DateOccurrence [][] m = new DateOccurrence[matrixMD.length][matrixMD.length];
+		List<Interval> intervals =new ArrayList<Interval>();
+		for (int i=0; i<m.length; i++){
+
+			for(int j=0; j<m[i].length; j++){
+
+				if(i==0||j==0){
+
+					m[0][j]=matrixMD[0][j];
+					m[i][0]=matrixMD[i][0];
+				}
+
+				else if(j>i){
+					String occuMatrix = matrixMD[i][j].getOccurrence().trim();
+
+					int value = Integer.parseInt(occuMatrix);
+					if(value!=0){
 						int duration = Integer.valueOf(occuMatrix);
-						
+
 						MatrixCreator mpc= new MatrixCreator();
-						
+
 						Date column = mpc.stringToLong(m[0][j].getDate());
 						Date row = mpc.stringToLong(m[i][0].getDate());
-						
+
 						double formula=0d;
-						
+
 						if(normalizationType==1){
 							//no normalization 
 							double hit=hitCountNoNormalization(row,column,f);
@@ -177,11 +177,11 @@ public class Matcher {
 						else{
 							//normalization
 							formula=hitCountNormalization(normalizationType,row,column,f);
-							
+
 						}
-						
+
 						m[i][j]= new DateOccurrence("", String.valueOf(formula));
-						
+
 						//add start and end year and the formula
 						Interval interval = new Interval();
 						interval.addStart(m[i][0].getDate());
@@ -189,61 +189,61 @@ public class Matcher {
 						interval.addValue(String.valueOf(formula));
 						intervals.add(interval);
 					}
-					}
-					else{
+				}
+				else{
 
-						m[i][j]= new DateOccurrence("", "0");
-					}
-					
+					m[i][j]= new DateOccurrence("", "0");
+				}
 
-					if (i==0||j==0){
-						if(i==0&&j==0){
-							pw.print(m[i][j].getDate()+""+ m[i][j].getOccurrence()+"	");}
-						else{pw.print(m[i][j].getDate()+"	");}}
-					else{
+
+				if (i==0||j==0){
+					if(i==0&&j==0){
+						pw.print(m[i][j].getDate()+""+ m[i][j].getOccurrence()+"	");}
+					else{pw.print(m[i][j].getDate()+"	");}}
+				else{
 					pw.print(m[i][j].getDate()+"	"+ m[i][j].getOccurrence());}
-					
-				}pw.println();
-				
-			}
+
+			}pw.println();
+
+		}
 
 		return intervals;
-		
+
 	}
-	
+
 	public double hitCountNoNormalization(Date row, Date column,List<Fact> list ){
 		double hit=0;
 		MatrixCreator mpc= new MatrixCreator();
 
 		for (Fact f:list){
-			
-	            Date year= mpc.stringToLong(f.get(Entry.DATE));
-	            
-	            if((column.after(year)||column.equals(year))&&(row.before(year)||row.equals(year))){
-	            
-	            	hit=hit+Double.valueOf(f.get(Entry.SCORE).trim());//occurrence value
 
-	            }
+			Date year= mpc.stringToLong(f.get(Entry.DATE));
+
+			if((column.after(year)||column.equals(year))&&(row.before(year)||row.equals(year))){
+
+				hit=hit+Double.valueOf(f.get(Entry.SCORE).trim());//occurrence value
+
+			}
 		}
 
 		return hit;
-		
+
 	}
-	
+
 	public double hitCountNormalization(int normalizationType,Date row, Date column, List<Fact> list ){
 		double hit=0;
 		MatrixCreator mpc= new MatrixCreator();
 		int count=0;
 		for (Fact f:list){
-	            Date year= mpc.stringToLong(f.get(Entry.DATE));
+			Date year= mpc.stringToLong(f.get(Entry.DATE));
 
-	            if((column.after(year)||column.equals(year))&&(row.before(year)||row.equals(year))){
+			if((column.after(year)||column.equals(year))&&(row.before(year)||row.equals(year))){
 
-	            		hit=hit+Double.valueOf(f.get(Entry.SCORE).trim());//occurrence value
+				hit=hit+Double.valueOf(f.get(Entry.SCORE).trim());//occurrence value
 
-	            	count++;
-			
-	            }
+				count++;
+
+			}
 		}
 
 		if (count>0){
@@ -254,84 +254,84 @@ public class Matcher {
 		}
 
 		return hit;
-		
+
 	}
-	
+
 	public int hitWeighted(Date row, Date column,HashSet<ArrayList<String>> yearOccu ){
 		int hit=0;
 		MatrixCreator mpc= new MatrixCreator();
 		for (ArrayList<String> value: yearOccu){
 
-	            Date year= mpc.stringToLong(value.get(0));
+			Date year= mpc.stringToLong(value.get(0));
 
-	            if((column.after(year)||column.equals(year))&&(row.before(year)||row.equals(year))){
+			if((column.after(year)||column.equals(year))&&(row.before(year)||row.equals(year))){
 
-	            	hit=hit+Integer.valueOf(value.get(1).trim());
-			
-	            }
+				hit=hit+Integer.valueOf(value.get(1).trim());
+
+			}
 		}
 
 		return hit;
-		
+
 	}
 	public List<Interval> las(int normalizationType, List<Fact> f,DateOccurrence [][] matrixMD) {
-			
-			DateOccurrence [][] m = new DateOccurrence[matrixMD.length][matrixMD.length];
-			List<Interval> intervals =new ArrayList<Interval>();
-			for (int i=0; i<m.length; i++){
-				
-				for(int j=0; j<m[i].length; j++){
-					
-					if(i==0||j==0){
-					
-						m[0][j]=matrixMD[0][j];
-						m[i][0]=matrixMD[i][0];
-					}
-					
-					else if(j>=i){
-						String occuMatrix = matrixMD[i][j].getOccurrence().trim();
-					
-						int value = Integer.parseInt(occuMatrix);
-						if(value!=0){
+
+		DateOccurrence [][] m = new DateOccurrence[matrixMD.length][matrixMD.length];
+		List<Interval> intervals =new ArrayList<Interval>();
+		for (int i=0; i<m.length; i++){
+
+			for(int j=0; j<m[i].length; j++){
+
+				if(i==0||j==0){
+
+					m[0][j]=matrixMD[0][j];
+					m[i][0]=matrixMD[i][0];
+				}
+
+				else if(j>=i){
+					String occuMatrix = matrixMD[i][j].getOccurrence().trim();
+
+					int value = Integer.parseInt(occuMatrix);
+					if(value!=0){
 						int duration = Integer.valueOf(occuMatrix);
-						
+
 						MatrixCreator mpc= new MatrixCreator();
-						
+
 						Date column = mpc.stringToLong(m[0][j].getDate());
 						Date row = mpc.stringToLong(m[i][0].getDate());
-						
+
 						double formula=0d;
 						if(i!=j){
-						if(normalizationType==1){
-							//no normalization 
-							double hit=hitCountNoNormalization(row,column,f);
-							formula= hit/duration; 
-						}
-						else{
-							//normalization
-							formula=hitCountNormalization(normalizationType,row,column,f);
-							
-						}}
-						else{
-						//las(<i,j>)= score(<i,j>)*w_i,j
-						if(normalizationType==1){
-							//no normalization 
-							try {
-								formula = lasCalc(row,column,f);
-							} catch (ParseException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
+							if(normalizationType==1){
+								//no normalization 
+								double hit=hitCountNoNormalization(row,column,f);
+								formula= hit/duration; 
 							}
-							
-						}
+							else{
+								//normalization
+								formula=hitCountNormalization(normalizationType,row,column,f);
+
+							}}
 						else{
-							//normalization
-							formula=hitCountNormalization(normalizationType,row,column,f);
-							
-						}}
-						
+							//las(<i,j>)= score(<i,j>)*w_i,j
+							if(normalizationType==1){
+								//no normalization 
+								try {
+									formula = lasCalc(row,column,f);
+								} catch (ParseException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+
+							}
+							else{
+								//normalization
+								formula=hitCountNormalization(normalizationType,row,column,f);
+
+							}}
+
 						m[i][j]= new DateOccurrence("", String.valueOf(formula));
-						
+
 						//add start and end year and the formula
 						Interval interval = new Interval();
 						interval.addStart(m[i][0].getDate());
@@ -339,73 +339,124 @@ public class Matcher {
 						interval.addValue(String.valueOf(formula));
 						intervals.add(interval);
 					}
-					}
-					else{
-
-						m[i][j]= new DateOccurrence("", "0");
-					}
-					
-					
-				}
-				
-			}
-
-		return intervals;
-		
-	}
-	
-	public List<Interval> occurrences(int normalizationType, List<Fact> f,DateOccurrence [][] matrixMD) {
-		
-		DateOccurrence [][] m = new DateOccurrence[matrixMD.length][matrixMD.length];
-		List<Interval> intervals =new ArrayList<Interval>();
-		for (int i=0; i<m.length; i++){
-			
-			for(int j=0; j<m[i].length; j++){
-				
-				if(i==0||j==0){
-				
-					m[0][j]=matrixMD[0][j];
-					m[i][0]=matrixMD[i][0];
-				}
-				
-				else if(j>=i){
-					String occuMatrix = matrixMD[i][j].getOccurrence().trim();
-				
-					int value = Integer.parseInt(occuMatrix);
-					if(value!=0){
-					
-					MatrixCreator mpc= new MatrixCreator();
-					
-					Date column = mpc.stringToLong(m[0][j].getDate());
-					Date row = mpc.stringToLong(m[i][0].getDate());
-					
-					double formula=hitCountNoNormalization(row,column,f);
-				
-					
-					m[i][j]= new DateOccurrence("", String.valueOf(formula));
-					
-					//add start and end year and the formula
-					Interval interval = new Interval();
-					interval.addStart(m[i][0].getDate());
-					interval.addEnd(m[0][j].getDate());
-					interval.addValue(String.valueOf(formula));
-					intervals.add(interval);
-				}
 				}
 				else{
 
 					m[i][j]= new DateOccurrence("", "0");
 				}
-				
-				
+
+
 			}
-			
+
 		}
 
-	return intervals;
-	
-}
-	
+		return intervals;
+
+	}
+
+	public List<Interval> occurrences(int normalizationType, List<Fact> f,DateOccurrence [][] matrixMD) {
+
+		DateOccurrence [][] m = new DateOccurrence[matrixMD.length][matrixMD.length];
+		List<Interval> intervals =new ArrayList<Interval>();
+		for (int i=0; i<m.length; i++){
+
+			for(int j=0; j<m[i].length; j++){
+
+				if(i==0||j==0){
+
+					m[0][j]=matrixMD[0][j];
+					m[i][0]=matrixMD[i][0];
+				}
+
+				else if(j>=i){
+					String occuMatrix = matrixMD[i][j].getOccurrence().trim();
+
+					int value = Integer.parseInt(occuMatrix);
+					if(value!=0){
+
+						MatrixCreator mpc= new MatrixCreator();
+
+						Date column = mpc.stringToLong(m[0][j].getDate());
+						Date row = mpc.stringToLong(m[i][0].getDate());
+
+						double formula=hitCountNoNormalization(row,column,f);
+
+
+						m[i][j]= new DateOccurrence("", String.valueOf(formula));
+
+						//add start and end year and the formula
+						Interval interval = new Interval();
+						interval.addStart(m[i][0].getDate());
+						interval.addEnd(m[0][j].getDate());
+						interval.addValue(String.valueOf(formula));
+						intervals.add(interval);
+					}
+				}
+				else{
+
+					m[i][j]= new DateOccurrence("", "0");
+				}
+
+
+			}
+
+		}
+
+		return intervals;
+
+	}
+	public List<Interval> occurrencesNormalized(int normalizationType, List<Fact> f,DateOccurrence [][] matrixMD) {
+
+		DateOccurrence [][] m = new DateOccurrence[matrixMD.length][matrixMD.length];
+		List<Interval> intervals =new ArrayList<Interval>();
+		for (int i=0; i<m.length; i++){
+
+			for(int j=0; j<m[i].length; j++){
+
+				if(i==0||j==0){
+
+					m[0][j]=matrixMD[0][j];
+					m[i][0]=matrixMD[i][0];
+				}
+
+				else if(j>=i){
+					String occuMatrix = matrixMD[i][j].getOccurrence().trim();
+
+					int value = Integer.parseInt(occuMatrix);
+					if(value!=0){
+						int duration = Integer.valueOf(occuMatrix);
+						MatrixCreator mpc= new MatrixCreator();
+
+						Date column = mpc.stringToLong(m[0][j].getDate());
+						Date row = mpc.stringToLong(m[i][0].getDate());
+
+						double hit =hitCountNoNormalization(row,column,f);
+						double formula= hit/duration; 
+
+						m[i][j]= new DateOccurrence("", String.valueOf(formula));
+
+						//add start and end year and the formula
+						Interval interval = new Interval();
+						interval.addStart(m[i][0].getDate());
+						interval.addEnd(m[0][j].getDate());
+						interval.addValue(String.valueOf(formula));
+						intervals.add(interval);
+					}
+				}
+				else{
+
+					m[i][j]= new DateOccurrence("", "0");
+				}
+
+
+			}
+
+		}
+
+		return intervals;
+
+	}
+
 	public double lasCalc(Date row, Date column,List<Fact> list ) throws ParseException{
 		double hit=0;
 		MatrixCreator mpc= new MatrixCreator();
@@ -414,41 +465,41 @@ public class Matcher {
 		long intervDistance= dayDistance/365+1;
 		//w_interval = min( length(interval),length(ptd_f) ) / max( length(interval),length(ptd_f) )
 		SimpleDateFormat textFormat = new SimpleDateFormat("yyyy");
-String year_min_str = "9999";
-String year_max_str = "1111";
+		String year_min_str = "9999";
+		String year_max_str = "1111";
 
 
 		Date year_min  = textFormat.parse(year_min_str);;
 		Date year_max  = textFormat.parse(year_max_str);;
-		
-		for (Fact f:list){
-		
-	           Date year= mpc.stringToLong(f.get(Entry.DATE));
-	           if((year_min.after(year))){
-	        	   year_min=year;
-	           }
-	           if((!year_max.after(year))){
-	        	   year_max=year;
-	           } 
-	           if((column.after(year)||column.equals(year))&&(row.before(year)||row.equals(year))){
-	            
-	            	hit=hit+Double.valueOf(f.get(Entry.SCORE).trim());//occurrence value
 
-	            }
+		for (Fact f:list){
+
+			Date year= mpc.stringToLong(f.get(Entry.DATE));
+			if((year_min.after(year))){
+				year_min=year;
+			}
+			if((!year_max.after(year))){
+				year_max=year;
+			} 
+			if((column.after(year)||column.equals(year))&&(row.before(year)||row.equals(year))){
+
+				hit=hit+Double.valueOf(f.get(Entry.SCORE).trim());//occurrence value
+
+			}
 
 		}
 
 		long millisecDistance2 = year_max.getTime()-year_min.getTime();
 		long dayDistance2= millisecDistance2/(1000 * 60 * 60 * 24);
 		long ptdDistance= dayDistance2/365+1;
-		
+
 		double min = Math.min(intervDistance,ptdDistance);
 		double max = Math.max(intervDistance,ptdDistance);
 
-	    double w_interval =min/(max*15);//occurrence value
-	    hit = hit * w_interval;
-	
+		double w_interval =min/(max*15);//occurrence value
+		hit = hit * w_interval;
+
 		return hit;
-		
+
 	}
 }
