@@ -13,6 +13,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
+import org.aksw.distributions.Fact;
+import org.aksw.distributions.Fact.Entry;
+
 public class WriteOutput {
 
 	private BufferedWriter bw;
@@ -145,59 +148,83 @@ public class WriteOutput {
 		e.printStackTrace();
 	}
 }
-public void writeComposedResult(HashSet<List<String>> f1, HashSet<List<String>> f2, HashSet<List<String>> f3) {
+	public void writeComposedResult(HashSet<List<String>> f1, HashSet<List<String>> f2, HashSet<List<String>> f3) {
 
-	try {
+		try {
 
-		File directory = new File (".");
+			File directory = new File (".");
 
-		bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output/composedResult.tsv")));
-		bw.write("subject"+"	"+"object"+"	"+"originalApproach"+"	"+"MWBMapproach"+"	"+"goldstandard"+"	"+"microF_orignialApproach"+"	"+"microF_MWBMapproach"+"\n" );
+			bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output/composedResult.tsv")));
+			bw.write("subject"+"	"+"object"+"	"+"originalApproach"+"	"+"MWBMapproach"+"	"+"goldstandard"+"	"+"microF_orignialApproach"+"	"+"microF_MWBMapproach"+"\n" );
 
-		Iterator<List<String>> itr2 = f2.iterator();
-		while(itr2.hasNext())
-		{
-			List<String> lst2= itr2.next();
-
-			Iterator<List<String>> itr3 = f3.iterator();
-			while(itr3.hasNext())
+			Iterator<List<String>> itr2 = f2.iterator();
+			while(itr2.hasNext())
 			{
-				List<String> lst3= itr3.next();
+				List<String> lst2= itr2.next();
 
-				if(lst3.get(0).equalsIgnoreCase(lst2.get(0))&&(lst3.get(1).equalsIgnoreCase(lst2.get(1)))){
-					Iterator<List<String>> itr1 = f1.iterator();
-					while(itr1.hasNext())
-					{
-						List<String> lst1= itr1.next();
-						if(lst1.get(0).equalsIgnoreCase(lst3.get(0))&&(lst1.get(1).equalsIgnoreCase(lst3.get(1)))){
+				Iterator<List<String>> itr3 = f3.iterator();
+				while(itr3.hasNext())
+				{
+					List<String> lst3= itr3.next();
 
-							bw.write(lst3.get(0)+"	"+lst3.get(1)+"	"+lst2.get(2)+"	"+lst3.get(2)+"	"+lst3.get(3)+"	"+lst2.get(6)+"	"+lst3.get(6)+"\n" );
+					if(lst3.get(0).equalsIgnoreCase(lst2.get(0))&&(lst3.get(1).equalsIgnoreCase(lst2.get(1)))){
+						Iterator<List<String>> itr1 = f1.iterator();
+						while(itr1.hasNext())
+						{
+							List<String> lst1= itr1.next();
+							if(lst1.get(0).equalsIgnoreCase(lst3.get(0))&&(lst1.get(1).equalsIgnoreCase(lst3.get(1)))){
+								//System.out.println(itr3.next().get(0));
+								bw.write(lst3.get(0)+"	"+lst3.get(1)+"	"+lst2.get(2)+"	"+lst3.get(2)+"	"+lst3.get(3)+"	"+lst2.get(6)+"	"+lst3.get(6)+"\n" );
+							}
 						}
 					}
 				}
 			}
+
+
+
+			bw.flush();
+			bw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
-
-
-		bw.flush();
-		bw.close();
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
 	}
-}
 
-public static void main(String args []) throws IOException{
-	//lettura files
-	File file1 = new File("/Users/anisarula/Documents/git/temporal-interval-scoping.git/output/interval/intervals");
-	HashSet<List<String>> f1 = new ReadFiles().readTSV(file1);
-	File file2 = new File("/Users/anisarula/Documents/git/temporal-interval-scoping.git/output/evaluation_player.csv");
-	HashSet<List<String>> f2 = new ReadFiles().readTSV(file2);
-	File file3 = new File("/Users/anisarula/Documents/git/temporal-interval-scoping.git/output/evaluation_player_MWBM.csv");
-	HashSet<List<String>> f3 = new ReadFiles().readTSV(file3);
+	public static void main(String args []) throws IOException{
+		//lettura files
+		File file1 = new File("/Users/anisarula/Documents/git/temporal-interval-scoping.git/output/interval/intervals");
+		HashSet<List<String>> f1 = new ReadFiles().readTSV(file1);
+		File file2 = new File("/Users/anisarula/Documents/git/temporal-interval-scoping.git/output/evaluation_player.csv");
+		HashSet<List<String>> f2 = new ReadFiles().readTSV(file2);
+		File file3 = new File("/Users/anisarula/Documents/git/temporal-interval-scoping.git/output/evaluation_player_MWBM.csv");
+		HashSet<List<String>> f3 = new ReadFiles().readTSV(file3);
 
-	WriteOutput w = new WriteOutput();
-	w.writeComposedResult(f1, f2, f3);
-}
+		WriteOutput w = new WriteOutput();
+		w.writeComposedResult(f1, f2, f3);
+	}
+	
+	public void writeFactList(List<Fact> facts) {
+
+		try {
+
+			File directory = new File (".");
+
+			bw = new BufferedWriter(new FileWriter(new File(directory.getAbsolutePath()+"/output/"+"facts_normalised.csv")));
+			bw.write("subject"+"	"+"object"+"	"+"predicate"+"	"+"yagostart"+"	"+"yagoend"+"	"+"date"+"	"+"score"+"\n" );
+
+			for (Fact fact:facts){
+				if (Double.parseDouble(fact.get(Entry.SCORE)) > 1.0)
+				{
+					bw.write(fact.get(Entry.SUBJECT)+"	"+fact.get(Entry.OBJECT)+"	"+fact.get(Entry.PREDICATE)+"	"+fact.get(Entry.YAGOSTART)+"	"+ fact.get(Entry.YAGOEND) + "	" + fact.get(Entry.DATE) + "	" + fact.get(Entry.SCORE) +"\n" );
+				}
+				}
+
+			bw.flush();
+			bw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

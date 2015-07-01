@@ -1,6 +1,5 @@
 package it.unimib.disco.FactExtractor;
 
-import it.unimib.disco.YagoDBpediaMapper.TransformYagoToDBpedia;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -9,7 +8,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 
-import org.apache.log4j.Logger;
 
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.Property;
@@ -19,8 +17,6 @@ import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 
 public class FactExtractor {
-
-	private static Logger logger = Logger.getLogger(TransformYagoToDBpedia.class);
 	
 	public HashMap<String, ArrayList<String>> fetchFacts(HashMap<String,OntModel> models){
 		
@@ -87,8 +83,7 @@ public class FactExtractor {
 			    		predObjKey.add(0, predicate.toString());
 			    		predObjKey.add(1, object.toString());
 			    		predObj.put(predObjKey, object.toString());
-			    		logger.info("Retrieved property value: "+ object.toString());
-			    	}
+			    		}
 			    }
 			} 
 			result.put(rUri, predObj);

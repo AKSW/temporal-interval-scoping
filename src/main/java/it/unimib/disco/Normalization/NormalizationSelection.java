@@ -42,6 +42,10 @@ public class NormalizationSelection {
 			else if(normalizationType==4){
 				fileNormalized = chiNormalizationFrequency(l);
 			}
+			//tf-idf normalization
+			else if(normalizationType==5){
+				fileNormalized = tfIdfNormalizationFrequency(l);
+			}
 		
 		}
 		
@@ -51,7 +55,7 @@ public class NormalizationSelection {
 		
 		return fileNormalized;
 	}
-	
+
 	//local normalization function
 	public List<Fact> localNormalizationFrequency(List<Fact> listOfFacts){
 		List<Fact> factsGNs = new ArrayList<Fact>();
@@ -157,5 +161,37 @@ public class NormalizationSelection {
 		return copy;
 	}
 	
-	
+	public List<Fact> tfIdfNormalizationFrequency(List<Fact> listOfFacts) {
+		List<Fact> factsTdIdfs = new ArrayList<Fact>();
+		List<Fact> copy = new ArrayList<Fact>();
+
+		HashMap<String,HashMap<String,List<Fact>>> res = new HashMap<String,HashMap<String,List<Fact>>>();
+		res=group.groupBySubjectObject(listOfFacts);
+
+		for (String u: res.keySet()){
+			List<Fact> facts = new ArrayList<Fact>();
+			
+			HashMap<String,List<Fact>> objgrouping= res.get(u);
+			
+			for (String o: objgrouping.keySet()){
+			
+				for (Fact f: objgrouping.get(o)){
+					
+			        facts.add(f);
+
+		        }
+			}
+
+			factsTdIdfs = (new TfIdfNormalization()).normalize(facts);
+		
+			 for (int i = 0; i < factsTdIdfs.size(); i++) {
+				 copy.add(factsTdIdfs.get(i));
+		     }
+			
+		}
+		/*for (Fact f:copy){
+			System.out.println(f);
+		}*/
+		return copy;
+	}
 }
