@@ -27,16 +27,16 @@ public class TestEvaluation {
 		Interval interval2 = new Interval();
 		Interval interval3 = new Interval();
 		
-		interval1.addStart("2008");
+		interval1.addStart("2012");
 		interval1.addEnd("2013");
 		interval1.addValue("0.45");
 		
-		interval2.addStart("1995");
+/*		interval2.addStart("1995");
 		interval2.addEnd("2000");
-		interval2.addValue("0.53");
+		interval2.addValue("0.53");*/
 
 		ls.add(interval1);
-		ls.add(interval2);
+		//ls.add(interval2);
 		
 		
 		interval3.addStart("2003");
@@ -47,8 +47,8 @@ public class TestEvaluation {
 		
 		 Evaluation_NoReasoning ev = new Evaluation_NoReasoning();
 		 //Evaluation ev = new Evaluation();
-		String f1="messi	play	barcelona	1995	2000	false";
-		String f2="messi	play	barcelona_b	2003	2004	false";
+		String f1="messi	play	barcelona	2012	2013	false";
+		String f2="messi	play	barcelona_b	2008	2008	false";
 		 
 		
 		goldstandard_facts.add(f1);

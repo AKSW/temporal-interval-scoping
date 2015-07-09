@@ -72,7 +72,7 @@ public class Script_player_v2 {
 						interval.addStart(fact.get(Fact.Entry.YAGOSTART));
 						interval.addEnd(fact.get(Fact.Entry.YAGOEND));
 						gs_interv.add(interval);
-						//System.out.println(gs_interv);
+						
 					}
 					gsIntervals.put(o, new Reasoning().concatenateIntervals(gs_interv));
 				}
